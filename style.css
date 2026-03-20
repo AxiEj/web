@@ -3,17 +3,53 @@
 :root{
   --bg:#fafafa;
   --mono:"Space Mono","Courier New",monospace;
+  --border:#e0dcd6;
+  --muted:#888;
+  --text:#0a0a0a;
 }
 
 html,body{
   width:100%;
   height:100%;
-  overflow:hidden;
   background:var(--bg);
+  font-family:var(--mono);
+}
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:10;
+  display:flex;
+  gap:1px;
+  background:var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-item{
+  flex:1;
+  padding:14px 0;
+  background:var(--bg);
+  border:none;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+  transition:color .2s, background .2s;
+}
+
+.nav-item:hover{color:var(--text)}
+
+.nav-item.active{
+  color:var(--text);
+  background:#fff;
 }
 
 .full{
-  width:100%;
-  height:100%;
+  position:fixed;
+  inset:45px 0 0 0;
   background:var(--bg) center/cover no-repeat;
 }
