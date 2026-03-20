@@ -31,6 +31,12 @@ nav{
 
 nav:hover{opacity:1}
 
+@media(max-width:768px){
+  nav{opacity:1}
+  nav:hover{opacity:1}
+  #viewer-img{object-fit:contain}
+}
+
 .nav-item{
   flex:1;
   padding:14px 0;
