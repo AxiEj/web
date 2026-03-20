@@ -1,36 +1,84 @@
-// Hero 视差效果
-const heroImg = document.querySelector('.hero-img');
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  if (heroImg && scrolled < window.innerHeight) {
-    heroImg.style.transform = `scale(1.03) translateY(${scrolled * 0.3}px)`;
-  }
-});
+// ============================================================
+// DATA — 只需编辑这里来增删改图片
+// layout: "full" | "half" | "wide" | "portrait"
+// ============================================================
+const HERO = 'images/01.png';
 
-// 图片帧入场动画
-const frames = document.querySelectorAll('.frame');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+const FRAMES = [
+  { src: 'images/02.png', layout: 'full'     },
+  { src: 'images/03.png', layout: 'half'     },
+  { src: 'images/04.png', layout: 'half'     },
+  { src: 'images/05.png', layout: 'wide'     },
+  { src: 'images/06.png', layout: 'portrait' },
+  { src: 'images/07.png', layout: 'full'     },
+];
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderHero() {
+  document.getElementById('hero-img').style.backgroundImage = `url('${HERO}')`;
+}
+
+function renderGallery() {
+  const frag = document.createDocumentFragment();
+  FRAMES.forEach(({ src, layout }) => {
+    const article = document.createElement('article');
+    article.className = `frame frame-${layout}`;
+    const div = document.createElement('div');
+    div.className = 'frame-img';
+    // 懒加载：图片进入视口才设置背景
+    div.dataset.src = src;
+    article.appendChild(div);
+    frag.appendChild(article);
+  });
+  document.getElementById('gallery').appendChild(frag);
+}
+
+// ============================================================
+// EFFECTS
+// ============================================================
+function bindParallax() {
+  const heroImg = document.getElementById('hero-img');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroImg.style.transform = `scale(1.03) translateY(${y * 0.3}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
-  });
-}, { threshold: 0.1 });
+  }, { passive: true });
+}
 
-frames.forEach(frame => {
-  frame.style.opacity = '0';
-  frame.style.transition = 'opacity 0.8s ease';
-  observer.observe(frame);
-});
+function bindLazyLoad() {
+  // 图片进入视口时才加载（省内存）
+  const imgObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const div = entry.target.querySelector('.frame-img');
+      if (div?.dataset.src) {
+        div.style.backgroundImage = `url('${div.dataset.src}')`;
+        delete div.dataset.src;
+      }
+      entry.target.classList.add('visible');
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '100px' });
 
+  document.querySelectorAll('.frame').forEach(f => imgObserver.observe(f));
+}
+
+// ============================================================
+// BOOT
+// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  frames.forEach(frame => {
-    frame.addEventListener('transitionend', () => {}, { once: true });
-  });
+  renderHero();
+  renderGallery();
+  bindParallax();
+  bindLazyLoad();
 });
-
-// 添加 visible 类时显示
-const style = document.createElement('style');
-style.textContent = '.frame.visible { opacity: 1 !important; }';
-document.head.appendChild(style);
