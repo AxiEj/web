@@ -25,7 +25,11 @@ nav{
   gap:1px;
   background:var(--border);
   border-bottom:1px solid var(--border);
+  opacity:0;
+  transition:opacity .4s ease;
 }
+
+nav:hover{opacity:1}
 
 .nav-item{
   flex:1;

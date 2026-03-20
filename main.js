@@ -29,3 +29,8 @@ CATEGORIES.forEach(({ label }, i) => {
 });
 
 activate(0);
+
+// 进入页面短暂显示导航栏后淡出
+const navEl = document.getElementById('nav');
+navEl.style.opacity = '1';
+setTimeout(() => { navEl.style.opacity = ''; }, 2000);
