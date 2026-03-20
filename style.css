@@ -107,7 +107,7 @@ nav:hover{opacity:1}
 .arrow.visible:hover{ opacity:1; }
 
 @media(max-width:768px){
-  .arrow{ width:48px; font-size:20px; }
+  .arrow{ width:48px; font-size:20px; top:52px; }
   .arrow.visible:active{ opacity:1; }
 }
 
