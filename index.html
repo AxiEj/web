@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Axie - 个人主页</title>
+  <title>FRAME — 影视图片</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,92 +11,77 @@
   <!-- 导航 -->
   <nav>
     <div class="nav-inner">
-      <span class="logo">Axie</span>
-      <ul>
-        <li><a href="#about">关于</a></li>
-        <li><a href="#skills">技能</a></li>
-        <li><a href="#projects">项目</a></li>
-        <li><a href="#contact">联系</a></li>
-      </ul>
+      <span class="logo">FRAME</span>
+      <span class="nav-sub">影视美学</span>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="hero-inner">
-      <h1>你好，我是 <span class="highlight">Axie</span></h1>
-      <p class="subtitle">全栈开发者 · 热爱构建有意义的产品</p>
-      <a href="#projects" class="btn">查看我的项目</a>
+  <!-- Hero 全屏第一张 -->
+  <section class="hero">
+    <div class="hero-img" style="background-image: url('images/01.jpg')"></div>
+    <div class="hero-caption">
+      <span class="caption-tag">封面</span>
+      <h1>影像之美</h1>
+      <p>用一帧画面，讲述一个故事</p>
     </div>
+    <div class="scroll-hint">↓</div>
   </section>
 
-  <!-- 关于 -->
-  <section id="about">
-    <div class="section-inner">
-      <h2>关于我</h2>
-      <p>我是一名热爱技术的开发者，专注于 Web 开发和服务器运维。喜欢把想法变成真实可用的产品，享受解决复杂问题的过程。</p>
-    </div>
-  </section>
+  <!-- 图片流 -->
+  <main class="gallery">
 
-  <!-- 技能 -->
-  <section id="skills">
-    <div class="section-inner">
-      <h2>技能栈</h2>
-      <div class="skills-grid">
-        <div class="skill-item">HTML / CSS</div>
-        <div class="skill-item">JavaScript</div>
-        <div class="skill-item">Python</div>
-        <div class="skill-item">Linux / Nginx</div>
-        <div class="skill-item">Git / GitHub</div>
-        <div class="skill-item">SSL / HTTPS</div>
+    <article class="frame frame-full">
+      <div class="frame-img" style="background-image: url('images/02.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2024</span>
+        <h2>电影名称一</h2>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- 项目 -->
-  <section id="projects">
-    <div class="section-inner">
-      <h2>项目</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>个人网站</h3>
-          <p>基于原生 HTML/CSS/JS 构建的个人主页，部署在阿里云 ECS，配置 HTTPS。</p>
-          <div class="tags">
-            <span>HTML</span><span>CSS</span><span>Nginx</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>项目二</h3>
-          <p>项目描述，介绍你做了什么、用了什么技术、解决了什么问题。</p>
-          <div class="tags">
-            <span>JavaScript</span><span>Python</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>项目三</h3>
-          <p>项目描述，介绍你做了什么、用了什么技术、解决了什么问题。</p>
-          <div class="tags">
-            <span>Linux</span><span>Git</span>
-          </div>
-        </div>
+    <article class="frame frame-half">
+      <div class="frame-img" style="background-image: url('images/03.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2023</span>
+        <h2>电影名称二</h2>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- 联系 -->
-  <section id="contact">
-    <div class="section-inner">
-      <h2>联系我</h2>
-      <p>有任何问题或合作意向，欢迎联系。</p>
-      <div class="contact-links">
-        <a href="mailto:your@email.com" class="contact-btn">邮件</a>
-        <a href="https://github.com/AxiEj" target="_blank" class="contact-btn">GitHub</a>
+    <article class="frame frame-half">
+      <div class="frame-img" style="background-image: url('images/04.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2023</span>
+        <h2>电影名称三</h2>
       </div>
-    </div>
-  </section>
+    </article>
+
+    <article class="frame frame-wide">
+      <div class="frame-img" style="background-image: url('images/05.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2022</span>
+        <h2>电影名称四</h2>
+      </div>
+    </article>
+
+    <article class="frame frame-portrait">
+      <div class="frame-img" style="background-image: url('images/06.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2022</span>
+        <h2>电影名称五</h2>
+      </div>
+    </article>
+
+    <article class="frame frame-full">
+      <div class="frame-img" style="background-image: url('images/07.jpg')"></div>
+      <div class="frame-info">
+        <span class="year">2021</span>
+        <h2>电影名称六</h2>
+      </div>
+    </article>
+
+  </main>
 
   <footer>
-    <p>© 2026 Axie · <a href="https://axiejhon.com">axiejhon.com</a></p>
+    <span>FRAME &copy; 2026</span>
   </footer>
 
   <script src="main.js"></script>
