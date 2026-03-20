@@ -1,12 +1,12 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#0d1117;
-  --surface:#161b22;
-  --border:#30363d;
-  --text:#e6edf3;
-  --muted:#8b949e;
-  --accent:#58a6ff;
+  --bg:#fafafa;
+  --surface:#f0ede8;
+  --border:#e0dcd6;
+  --text:#0a0a0a;
+  --muted:#888;
+  --accent:#0a0a0a;
   --mono:"Space Mono","Courier New",monospace;
   --gap:1px;
   --ease:cubic-bezier(.25,.46,.45,.94);
@@ -36,7 +36,7 @@ body{
   background:var(--surface) center/cover no-repeat;
   transform:scale(1.03);
   will-change:transform;
-  filter:brightness(.85) contrast(1.05);
+  filter:brightness(.92) contrast(1.02);
 }
 
 /* 左上角坐标水印 */
@@ -96,12 +96,10 @@ body{
   height:100%;
   background:center/cover no-repeat;
   transition:transform .7s var(--ease);
-  filter:brightness(.9) contrast(1.05);
   will-change:transform;
 }
 .frame:hover .frame-img{
   transform:scale(1.04);
-  filter:brightness(1) contrast(1.05);
 }
 
 /* hover 时左下角显示编号 */
