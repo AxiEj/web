@@ -53,6 +53,6 @@ nav:hover{opacity:1}
 
 .full{
   position:fixed;
-  inset:45px 0 0 0;
+  inset:0;
   background:var(--bg) center/cover no-repeat;
 }
