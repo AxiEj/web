@@ -1,11 +1,29 @@
 // ============================================================
-// DATA — 在这里修改分类名称和对应图片
+// DATA — 只需填写分类名称和对应的图片文件夹路径
 // ============================================================
 const CATEGORIES = [
-  { label: 'jojo7',    src: 'images/01.jpg' },
-  { label: '老七老八',  src: 'images/02.jpg' },
-  { label: '几何炸弹王', src: 'images/03.jpg' },
+  { label: 'jojo7',    dir: 'images/jojo7/' },
+  { label: '老七老八',  dir: 'images/laoqilaobi/' },
+  { label: '几何炸弹王', dir: 'images/geometrydashbombing/' },
+  { label: 'KON',      dir: 'images/kon/' },
+  { label: 'CLANNAD',  dir: 'images/clannad/' },
 ];
+
+const IMAGE_EXTS = /\.(jpe?g|png|gif|webp|avif|bmp|svg)$/i;
+
+// 通过 Nginx autoindex 的 HTML 响应解析出图片文件名
+async function fetchImages(dir) {
+  try {
+    const res = await fetch(dir);
+    const html = await res.text();
+    const matches = [...html.matchAll(/href="([^"]+)"/g)]
+      .map(m => m[1])
+      .filter(name => IMAGE_EXTS.test(name));
+    return matches.map(name => dir + name);
+  } catch {
+    return [];
+  }
+}
 
 // ============================================================
 // IMAGE VIEWER — pan & zoom
@@ -24,7 +42,6 @@ function applyTransform() {
 
 function resetTransform() {
   ox = 0; oy = 0;
-  // fit the image inside the viewport (contain behaviour)
   const fitW = container.clientWidth / img.naturalWidth;
   const fitH = container.clientHeight / img.naturalHeight;
   scale = (img.naturalWidth && img.naturalHeight) ? Math.min(fitW, fitH, 1) : 1;
@@ -65,7 +82,7 @@ function stopDrag() {
 }
 window.addEventListener('mouseup', stopDrag);
 
-// touch pinch & pan — 只绑定在 container，不影响导航栏
+// touch pinch & pan
 let touches = {};
 let lastDist = null, lastMid = null, baseTouchOx, baseTouchOy;
 
@@ -133,7 +150,6 @@ container.addEventListener('touchend', e => {
   }
 }, { passive: false });
 
-// double-tap to reset
 container.addEventListener('dblclick', resetTransform);
 
 // ============================================================
@@ -141,13 +157,27 @@ container.addEventListener('dblclick', resetTransform);
 // ============================================================
 const nav = document.getElementById('nav');
 
-function activate(index) {
-  img.onload = resetTransform;
-  img.src = CATEGORIES[index].src;
-  resetTransform();
+// 每个分类缓存已加载的图片列表
+const imageCache = new Array(CATEGORIES.length).fill(null);
+
+async function activate(index) {
   document.querySelectorAll('.nav-item').forEach((el, i) => {
     el.classList.toggle('active', i === index);
   });
+
+  if (!imageCache[index]) {
+    imageCache[index] = await fetchImages(CATEGORIES[index].dir);
+  }
+
+  const imgs = imageCache[index];
+  if (imgs.length === 0) {
+    img.src = '';
+    return;
+  }
+
+  img.onload = resetTransform;
+  img.src = imgs[0];
+  resetTransform();
 }
 
 CATEGORIES.forEach(({ label }, i) => {
