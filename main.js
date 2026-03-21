@@ -162,10 +162,11 @@ const arrPrev = document.getElementById('arr-prev');
 const arrNext = document.getElementById('arr-next');
 const counter = document.getElementById('counter');
 const mapleFrame = document.getElementById('maple-frame');
-const mapleCover = document.getElementById('maple-cover');
+
+const fullEl = document.getElementById('full');
 
 mapleFrame.addEventListener('load', () => {
-  setTimeout(() => { mapleCover.classList.remove('visible'); }, 50);
+  setTimeout(() => { mapleFrame.classList.add('visible'); }, 30);
   try {
     mapleFrame.contentDocument.addEventListener('click', e => {
       const a = e.target.closest('a[href]');
@@ -173,10 +174,9 @@ mapleFrame.addEventListener('load', () => {
       const href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || a.target === '_blank') return;
       e.preventDefault();
-      // 把相对路径转成绝对路径（相对于当前 iframe 页面）
       const abs = new URL(href, mapleFrame.contentWindow.location.href).href;
-      mapleCover.classList.add('visible');
-      setTimeout(() => { mapleFrame.src = abs; }, 120);
+      mapleFrame.classList.remove('visible');
+      setTimeout(() => { mapleFrame.src = abs; }, 200);
     });
   } catch(e) {}
 });
@@ -210,13 +210,13 @@ function showImage(imgs, index) {
   updateCounter(imgs);
 }
 
-// 通用过渡：遮罩淡入后执行 fn，再淡出
-function withCover(fn) {
-  mapleCover.classList.add('visible');
+// 通用过渡：内容淡出 → 执行 fn → 淡入
+function fadeSwitch(el, fn) {
+  el.classList.add('fading');
   setTimeout(() => {
     fn();
-    setTimeout(() => { mapleCover.classList.remove('visible'); }, 50);
-  }, 120);
+    setTimeout(() => { el.classList.remove('fading'); }, 30);
+  }, 200);
 }
 
 async function activate(index) {
@@ -224,7 +224,7 @@ async function activate(index) {
   if (panel.classList.contains('open')) toggleAbout();
   if (mapleFrame.classList.contains('open')) closeMaple();
 
-  withCover(async () => {
+  fadeSwitch(fullEl, async () => {
     currentCat = index;
     currentImg = 0;
     document.querySelectorAll('.nav-item').forEach((el, i) => {
@@ -297,28 +297,30 @@ CATEGORIES.forEach(({ label }, i) => {
 function openMaple() {
   const panel = document.getElementById('about-panel');
   if (panel.classList.contains('open')) toggleAbout();
-  mapleCover.classList.add('visible');
+  fullEl.classList.add('fading');
   setTimeout(() => {
     if (!mapleFrame.src.endsWith('maple/index.html')) {
       mapleFrame.src = 'maple/index.html';
     } else {
-      setTimeout(() => { mapleCover.classList.remove('visible'); }, 50);
+      setTimeout(() => { mapleFrame.classList.add('visible'); }, 30);
     }
     mapleFrame.classList.add('open');
+    fullEl.style.visibility = 'hidden';
     document.body.classList.add('maple-open');
-    document.getElementById('full').style.visibility = 'hidden';
     btnMaple.classList.add('active');
     arrPrev.classList.add('hidden');
     arrNext.classList.add('hidden');
     counter.classList.add('hidden');
-  }, 120);
+  }, 200);
 }
 
 function closeMaple() {
-  withCover(() => {
+  mapleFrame.classList.remove('visible');
+  setTimeout(() => {
     mapleFrame.classList.remove('open');
     document.body.classList.remove('maple-open');
-    document.getElementById('full').style.visibility = '';
+    fullEl.style.visibility = '';
+    fullEl.classList.remove('fading');
     btnMaple.classList.remove('active');
     const imgs = imageCache[currentCat];
     if (imgs && imgs.length > 1) {
@@ -326,7 +328,7 @@ function closeMaple() {
       arrNext.classList.remove('hidden');
       counter.classList.remove('hidden');
     }
-  });
+  }, 200);
 }
 
 const btnMaple = document.createElement('button');

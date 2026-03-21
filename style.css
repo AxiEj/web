@@ -158,28 +158,21 @@ body.kuromi-bg .full{
   display:none;
   z-index:12;
   background:#fff;
+  opacity:0;
+  transition:opacity .2s;
 }
 #maple-frame.open{
   display:block;
 }
-#maple-cover{
-  position:fixed;
-  inset:0;
-  top:45px;
-  background:#fff;
-  z-index:13;
-  display:block;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .1s;
-}
-body.maple-open #maple-cover{
-  display:block;
-}
-#maple-cover.visible{
+#maple-frame.visible{
   opacity:1;
-  pointer-events:auto;
-  transition:opacity .1s;
+}
+
+.full{
+  transition:opacity .2s;
+}
+.full.fading{
+  opacity:0;
 }
 
 /* ============================================================
