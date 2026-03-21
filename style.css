@@ -1,10 +1,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 /* View Transitions — gallery category switch */
-::view-transition-old(viewer-img){
+::view-transition-old(gallery){
   animation:vt-out .15s ease forwards;
 }
-::view-transition-new(viewer-img){
+::view-transition-new(gallery){
   animation:vt-in .2s ease forwards;
 }
 @keyframes vt-out{
@@ -99,6 +99,7 @@ nav:hover{opacity:1}
   align-items:center;
   justify-content:center;
   touch-action:none;
+  view-transition-name:gallery;
 }
 
 body.kuromi-bg .full{
@@ -114,7 +115,6 @@ body.kuromi-bg .full{
   transform-origin:center center;
   user-select:none;
   pointer-events:none;
-  view-transition-name:viewer-img;
 }
 
 /* 左右翻页箭头 */
