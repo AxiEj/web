@@ -1152,3 +1152,21 @@ footer {
 .mb-1 { margin-bottom: 0.5rem; }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
+
+/* ============================================================
+   View Transitions — page navigation animation
+   ============================================================ */
+@keyframes vt-fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+::view-transition-old(root) {
+  animation: vt-fade-out .18s ease forwards;
+}
+::view-transition-new(root) {
+  animation: vt-fade-in .22s ease forwards;
+}

@@ -151,4 +151,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ----- 7. View Transitions — smooth page navigation -----
+  // Only activate when supported and running inside iframe (AxiEJohnWeb)
+  if (!document.startViewTransition) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || a.target === '_blank') return;
+    var next = new URL(href, location.href).href;
+    if (next === location.href) return; // current page — no-op
+    e.preventDefault();
+    document.startViewTransition(function () {
+      location.href = next;
+    });
+  });
+
 });
