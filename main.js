@@ -187,9 +187,12 @@ function updateCounter(imgs) {
 
 function showImage(imgs, index) {
   currentImg = (index + imgs.length) % imgs.length;
-  img.onload = resetTransform;
+  img.classList.add('switching');
+  img.onload = () => {
+    resetTransform();
+    img.classList.remove('switching');
+  };
   img.src = imgs[currentImg];
-  resetTransform();
   updateCounter(imgs);
   // 预加载前后相邻图片，消除快速翻页时的加载延迟
   const pre = n => { const p = new Image(); p.src = imgs[(currentImg + n + imgs.length) % imgs.length]; };

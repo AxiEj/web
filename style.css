@@ -98,6 +98,11 @@ body.kuromi-bg .full{
   transform-origin:center center;
   user-select:none;
   pointer-events:none;
+  opacity:1;
+  transition:opacity .25s;
+}
+#viewer-img.switching{
+  opacity:0;
 }
 
 /* 左右翻页箭头 */
