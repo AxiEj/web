@@ -165,19 +165,18 @@ const mapleFrame = document.getElementById('maple-frame');
 const mapleCover = document.getElementById('maple-cover');
 
 mapleFrame.addEventListener('load', () => {
-  mapleCover.classList.add('visible');
-  // 稍等让新页面渲染完再淡出遮罩
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    mapleCover.classList.remove('visible');
-  }));
-  // 拦截新页面内所有链接点击，点击时立即盖上遮罩
+  // 等页面渲染完再淡出遮罩
+  setTimeout(() => { mapleCover.classList.remove('visible'); }, 50);
+  // 拦截新页面内所有链接点击，点击时先淡入遮罩再跳转
   try {
     mapleFrame.contentDocument.addEventListener('click', e => {
       const a = e.target.closest('a[href]');
       if (!a) return;
       const href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || a.target === '_blank') return;
+      e.preventDefault();
       mapleCover.classList.add('visible');
+      setTimeout(() => { mapleFrame.contentWindow.location.href = href; }, 120);
     });
   } catch(e) {}
 });
