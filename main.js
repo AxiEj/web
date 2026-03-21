@@ -32,13 +32,18 @@ async function fetchImages(dir) {
 }
 
 // 预加载：后台静默加载所有分类，缓存命中后激活当前分类
+const preloadImg = src => { const p = new Image(); p.src = src; };
+
 (async () => {
   await Promise.all(CATEGORIES.map(async (cat, i) => {
     imageCache[i] = await fetchImages(cat.dir);
   }));
-  // 预加载完成后刷新当前显示（若图片列表已变化）
+  // 图片列表全部就绪后，预加载当前分类所有图片
   const imgs = imageCache[currentCat];
-  if (imgs && imgs.length) showImage(imgs, 0);
+  if (imgs?.length) {
+    imgs.forEach(preloadImg);
+    showImage(imgs, 0);
+  }
 })();
 
 // ============================================================
@@ -206,6 +211,7 @@ function activate(index) {
     updateCounter([]);
     return;
   }
+  imgs.forEach(preloadImg);
   showImage(imgs, 0);
 }
 
