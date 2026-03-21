@@ -162,6 +162,25 @@ const arrPrev = document.getElementById('arr-prev');
 const arrNext = document.getElementById('arr-next');
 const counter = document.getElementById('counter');
 const mapleFrame = document.getElementById('maple-frame');
+const mapleCover = document.getElementById('maple-cover');
+
+mapleFrame.addEventListener('load', () => {
+  mapleCover.classList.remove('visible');
+});
+
+try {
+  mapleFrame.contentWindow.addEventListener('beforeunload', () => {
+    mapleCover.classList.add('visible');
+  });
+} catch(e) {}
+
+mapleFrame.addEventListener('load', () => {
+  try {
+    mapleFrame.contentWindow.addEventListener('beforeunload', () => {
+      mapleCover.classList.add('visible');
+    });
+  } catch(e) {}
+});
 
 // 每个分类缓存已加载的图片列表
 const imageCache = new Array(CATEGORIES.length).fill(null);

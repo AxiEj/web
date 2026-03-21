@@ -162,6 +162,22 @@ body.kuromi-bg .full{
 #maple-frame.open{
   display:block;
 }
+#maple-cover{
+  position:fixed;
+  inset:0;
+  top:45px;
+  background:#fff;
+  z-index:13;
+  display:none;
+  opacity:0;
+  transition:opacity .15s;
+}
+body.maple-open #maple-cover{
+  display:block;
+}
+#maple-cover.visible{
+  opacity:1;
+}
 
 /* ============================================================
    ABOUT PANEL
