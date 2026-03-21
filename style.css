@@ -160,11 +160,15 @@ body.kuromi-bg .full{
   background:#fff;
   opacity:0;
   pointer-events:none;
-  transition:opacity .35s;
+  transition:opacity .3s;
 }
 #maple-frame.open{
   opacity:1;
   pointer-events:auto;
+}
+#maple-frame.fading{
+  opacity:0;
+  transition:opacity .15s;
 }
 
 /* ============================================================

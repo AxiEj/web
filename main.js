@@ -272,6 +272,7 @@ function toggleMaple() {
 }
 
 mapleFrame.addEventListener('load', () => {
+  mapleFrame.classList.remove('fading');
   try {
     mapleFrame.contentDocument.addEventListener('click', e => {
       const a = e.target.closest('a[href]');
@@ -279,6 +280,7 @@ mapleFrame.addEventListener('load', () => {
       const href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || a.target === '_blank') return;
       e.preventDefault();
+      mapleFrame.classList.add('fading');
       mapleFrame.src = new URL(href, mapleFrame.contentWindow.location.href).href;
     });
   } catch(e) {}
