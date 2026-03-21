@@ -199,19 +199,20 @@ function activate(index) {
   if (aboutPanel.classList.contains('open')) toggleAbout();
   if (mapleFrame.classList.contains('open')) toggleMaple();
 
-  currentCat = index;
-  currentImg = 0;
-  navBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
-  document.body.classList.toggle('kuromi-bg', !!CATEGORIES[index].kuromi);
+  const run = () => {
+    currentCat = index;
+    currentImg = 0;
+    navBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
+    document.body.classList.toggle('kuromi-bg', !!CATEGORIES[index].kuromi);
 
-  const imgs = imageCache[index];
-  if (!imgs || imgs.length === 0) {
-    img.src = '';
-    updateCounter([]);
-    return;
-  }
-  imgs.forEach(preloadImg);
-  showImage(imgs, 0);
+    const imgs = imageCache[index];
+    if (!imgs || imgs.length === 0) { img.src = ''; updateCounter([]); return; }
+    imgs.forEach(preloadImg);
+    showImage(imgs, 0);
+  };
+
+  if (document.startViewTransition) document.startViewTransition(run);
+  else run();
 }
 
 arrPrev.addEventListener('click', () => {
@@ -272,7 +273,6 @@ function toggleMaple() {
 }
 
 mapleFrame.addEventListener('load', () => {
-  mapleFrame.classList.remove('fading');
   try {
     mapleFrame.contentDocument.addEventListener('click', e => {
       const a = e.target.closest('a[href]');
@@ -281,8 +281,7 @@ mapleFrame.addEventListener('load', () => {
       if (!href || href.startsWith('#') || href.startsWith('http') || a.target === '_blank') return;
       e.preventDefault();
       const next = new URL(href, mapleFrame.contentWindow.location.href).href;
-      if (next === mapleFrame.contentWindow.location.href) return; // 当前页无反应
-      mapleFrame.classList.add('fading');
+      if (next === mapleFrame.contentWindow.location.href) return;
       mapleFrame.src = next;
     });
   } catch(e) {}

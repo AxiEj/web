@@ -1,5 +1,21 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
+/* View Transitions — gallery category switch */
+::view-transition-old(viewer-img){
+  animation:vt-out .15s ease forwards;
+}
+::view-transition-new(viewer-img){
+  animation:vt-in .2s ease forwards;
+}
+@keyframes vt-out{
+  from{opacity:1;transform:scale(1)}
+  to  {opacity:0;transform:scale(.97)}
+}
+@keyframes vt-in{
+  from{opacity:0;transform:scale(1.03)}
+  to  {opacity:1;transform:scale(1)}
+}
+
 :root{
   --bg:#fafafa;
   --mono:"Space Mono","Courier New",monospace;
@@ -98,6 +114,7 @@ body.kuromi-bg .full{
   transform-origin:center center;
   user-select:none;
   pointer-events:none;
+  view-transition-name:viewer-img;
 }
 
 /* 左右翻页箭头 */
@@ -165,10 +182,6 @@ body.kuromi-bg .full{
 #maple-frame.open{
   opacity:1;
   pointer-events:auto;
-}
-#maple-frame.fading{
-  opacity:0;
-  transition:opacity .15s;
 }
 
 /* ============================================================
