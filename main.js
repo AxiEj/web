@@ -274,6 +274,7 @@ function openMaple() {
   }
   mapleFrame.classList.add('open');
   document.body.classList.add('maple-open');
+  document.getElementById('full').style.visibility = 'hidden';
   btnMaple.classList.add('active');
   arrPrev.classList.add('hidden');
   arrNext.classList.add('hidden');
@@ -283,6 +284,7 @@ function openMaple() {
 function closeMaple() {
   mapleFrame.classList.remove('open');
   document.body.classList.remove('maple-open');
+  document.getElementById('full').style.visibility = '';
   btnMaple.classList.remove('active');
   const imgs = imageCache[currentCat];
   if (imgs && imgs.length > 1) {
