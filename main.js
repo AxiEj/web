@@ -162,11 +162,10 @@ const arrPrev = document.getElementById('arr-prev');
 const arrNext = document.getElementById('arr-next');
 const counter = document.getElementById('counter');
 const mapleFrame = document.getElementById('maple-frame');
-
 const fullEl = document.getElementById('full');
 
 mapleFrame.addEventListener('load', () => {
-  setTimeout(() => { mapleFrame.classList.add('visible'); }, 30);
+  requestAnimationFrame(() => { mapleFrame.classList.add('visible'); });
   try {
     mapleFrame.contentDocument.addEventListener('click', e => {
       const a = e.target.closest('a[href]');
@@ -176,7 +175,7 @@ mapleFrame.addEventListener('load', () => {
       e.preventDefault();
       const abs = new URL(href, mapleFrame.contentWindow.location.href).href;
       mapleFrame.classList.remove('visible');
-      setTimeout(() => { mapleFrame.src = abs; }, 200);
+      mapleFrame.src = abs;
     });
   } catch(e) {}
 });
@@ -210,45 +209,33 @@ function showImage(imgs, index) {
   updateCounter(imgs);
 }
 
-// 通用过渡：内容淡出 → 执行 fn → 淡入
-function fadeSwitch(el, fn) {
-  el.classList.add('fading');
-  setTimeout(() => {
-    fn();
-    setTimeout(() => { el.classList.remove('fading'); }, 30);
-  }, 200);
-}
-
 async function activate(index) {
   const panel = document.getElementById('about-panel');
   if (panel.classList.contains('open')) toggleAbout();
   if (mapleFrame.classList.contains('open')) closeMaple();
-
-  fadeSwitch(fullEl, async () => {
-    currentCat = index;
-    currentImg = 0;
-    document.querySelectorAll('.nav-item').forEach((el, i) => {
-      el.classList.toggle('active', i === index);
-    });
-
-    if (!imageCache[index]) {
-      imageCache[index] = await fetchImages(CATEGORIES[index].dir);
-    }
-
-    const KUROMI_CATS = ['KON', 'CLANNAD', '猫·2015'];
-    document.body.classList.toggle('kuromi-bg', KUROMI_CATS.includes(CATEGORIES[index].label));
-
-    const imgs = imageCache[index];
-    if (imgs.length === 0) {
-      img.src = '';
-      counter.textContent = '';
-      counter.classList.remove('visible');
-      arrPrev.classList.remove('visible');
-      arrNext.classList.remove('visible');
-      return;
-    }
-    showImage(imgs, 0);
+  currentCat = index;
+  currentImg = 0;
+  document.querySelectorAll('.nav-item').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
   });
+
+  if (!imageCache[index]) {
+    imageCache[index] = await fetchImages(CATEGORIES[index].dir);
+  }
+
+  const KUROMI_CATS = ['KON', 'CLANNAD', '猫·2015'];
+  document.body.classList.toggle('kuromi-bg', KUROMI_CATS.includes(CATEGORIES[index].label));
+
+  const imgs = imageCache[index];
+  if (imgs.length === 0) {
+    img.src = '';
+    counter.textContent = '';
+    counter.classList.remove('visible');
+    arrPrev.classList.remove('visible');
+    arrNext.classList.remove('visible');
+    return;
+  }
+  showImage(imgs, 0);
 }
 
 arrPrev.addEventListener('click', () => {
@@ -297,30 +284,26 @@ CATEGORIES.forEach(({ label }, i) => {
 function openMaple() {
   const panel = document.getElementById('about-panel');
   if (panel.classList.contains('open')) toggleAbout();
-  fullEl.classList.add('fading');
-  setTimeout(() => {
-    if (!mapleFrame.src.endsWith('maple/index.html')) {
-      mapleFrame.src = 'maple/index.html';
-    } else {
-      setTimeout(() => { mapleFrame.classList.add('visible'); }, 30);
-    }
-    mapleFrame.classList.add('open');
-    fullEl.style.visibility = 'hidden';
-    document.body.classList.add('maple-open');
-    btnMaple.classList.add('active');
-    arrPrev.classList.add('hidden');
-    arrNext.classList.add('hidden');
-    counter.classList.add('hidden');
-  }, 200);
+  if (!mapleFrame.src.endsWith('maple/index.html')) {
+    mapleFrame.src = 'maple/index.html';
+  } else {
+    requestAnimationFrame(() => { mapleFrame.classList.add('visible'); });
+  }
+  mapleFrame.classList.add('open');
+  fullEl.style.visibility = 'hidden';
+  document.body.classList.add('maple-open');
+  btnMaple.classList.add('active');
+  arrPrev.classList.add('hidden');
+  arrNext.classList.add('hidden');
+  counter.classList.add('hidden');
 }
 
 function closeMaple() {
   mapleFrame.classList.remove('visible');
-  setTimeout(() => {
+  mapleFrame.addEventListener('transitionend', () => {
     mapleFrame.classList.remove('open');
     document.body.classList.remove('maple-open');
     fullEl.style.visibility = '';
-    fullEl.classList.remove('fading');
     btnMaple.classList.remove('active');
     const imgs = imageCache[currentCat];
     if (imgs && imgs.length > 1) {
@@ -328,7 +311,7 @@ function closeMaple() {
       arrNext.classList.remove('hidden');
       counter.classList.remove('hidden');
     }
-  }, 200);
+  }, { once: true });
 }
 
 const btnMaple = document.createElement('button');
