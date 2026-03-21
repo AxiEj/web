@@ -273,6 +273,7 @@ function openMaple() {
     mapleFrame.src = 'maple/index.html';
   }
   mapleFrame.classList.add('open');
+  document.body.classList.add('maple-open');
   btnMaple.classList.add('active');
   arrPrev.classList.add('hidden');
   arrNext.classList.add('hidden');
@@ -281,6 +282,7 @@ function openMaple() {
 
 function closeMaple() {
   mapleFrame.classList.remove('open');
+  document.body.classList.remove('maple-open');
   btnMaple.classList.remove('active');
   const imgs = imageCache[currentCat];
   if (imgs && imgs.length > 1) {

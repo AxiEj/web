@@ -20,6 +20,8 @@ html,body{
   touch-action:none;
 }
 
+body.maple-open nav{opacity:1}
+
 body.kuromi-bg{
   background-image:url('images/mvbg-kuromi.png');
 }
