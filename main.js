@@ -161,6 +161,7 @@ const nav = document.getElementById('nav');
 const arrPrev = document.getElementById('arr-prev');
 const arrNext = document.getElementById('arr-next');
 const counter = document.getElementById('counter');
+const mapleFrame = document.getElementById('maple-frame');
 
 // 每个分类缓存已加载的图片列表
 const imageCache = new Array(CATEGORIES.length).fill(null);
@@ -194,6 +195,7 @@ function showImage(imgs, index) {
 async function activate(index) {
   const panel = document.getElementById('about-panel');
   if (panel.classList.contains('open')) toggleAbout();
+  if (mapleFrame.classList.contains('open')) closeMaple();
   currentCat = index;
   currentImg = 0;
   document.querySelectorAll('.nav-item').forEach((el, i) => {
@@ -263,10 +265,38 @@ CATEGORIES.forEach(({ label }, i) => {
   nav.appendChild(btn);
 });
 
-const btnMaple = document.createElement('a');
+function openMaple() {
+  const panel = document.getElementById('about-panel');
+  if (panel.classList.contains('open')) toggleAbout();
+  if (mapleFrame.src !== location.origin + '/maple/index.html' &&
+      !mapleFrame.src.endsWith('maple/index.html')) {
+    mapleFrame.src = 'maple/index.html';
+  }
+  mapleFrame.classList.add('open');
+  btnMaple.classList.add('active');
+  arrPrev.classList.add('hidden');
+  arrNext.classList.add('hidden');
+  counter.classList.add('hidden');
+}
+
+function closeMaple() {
+  mapleFrame.classList.remove('open');
+  btnMaple.classList.remove('active');
+  const imgs = imageCache[currentCat];
+  if (imgs && imgs.length > 1) {
+    arrPrev.classList.remove('hidden');
+    arrNext.classList.remove('hidden');
+    counter.classList.remove('hidden');
+  }
+}
+
+const btnMaple = document.createElement('button');
 btnMaple.className = 'nav-item nav-maple';
 btnMaple.textContent = 'MAPLE';
-btnMaple.href = 'maple/index.html';
+btnMaple.addEventListener('click', () => {
+  if (mapleFrame.classList.contains('open')) closeMaple();
+  else openMaple();
+});
 nav.appendChild(btnMaple);
 
 const btnAbout = document.createElement('button');

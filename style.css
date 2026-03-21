@@ -144,6 +144,23 @@ body.kuromi-bg .full{
 #counter.visible{ opacity:1; }
 
 /* ============================================================
+   MAPLE IFRAME
+   ============================================================ */
+#maple-frame{
+  position:fixed;
+  inset:0;
+  top:45px;
+  width:100%;
+  height:calc(100% - 45px);
+  border:none;
+  display:none;
+  z-index:12;
+}
+#maple-frame.open{
+  display:block;
+}
+
+/* ============================================================
    ABOUT PANEL
    ============================================================ */
 #about-panel{
