@@ -263,6 +263,12 @@ CATEGORIES.forEach(({ label }, i) => {
   nav.appendChild(btn);
 });
 
+const btnMaple = document.createElement('a');
+btnMaple.className = 'nav-item nav-maple';
+btnMaple.textContent = 'MAPLE';
+btnMaple.href = 'maple/index.html';
+nav.appendChild(btnMaple);
+
 const btnAbout = document.createElement('button');
 btnAbout.className = 'nav-item nav-about';
 btnAbout.textContent = '关于我';

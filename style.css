@@ -45,7 +45,7 @@ nav:hover{opacity:1}
   nav:hover{opacity:1}
 }
 
-.nav-item{
+.nav-item, a.nav-item{
   flex:1;
   padding:14px 0;
   background:var(--bg);
@@ -57,6 +57,7 @@ nav:hover{opacity:1}
   color:var(--muted);
   transition:color .2s, background .2s;
   touch-action:manipulation;
+  text-decoration:none;
 }
 
 .nav-item:hover{color:var(--text)}
