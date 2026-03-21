@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVE Molecular Dynamics - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="md_nve.html" class="active">NVE</a></li>
+                    <li><a href="md_nvt.html">NVT</a></li>
+                    <li><a href="md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Docs</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="md.html">Molecular Dynamics</a>
+          <span class="separator">/</span>
+          <span class="current">NVE</span>
+        </nav>
+
+        <h1>NVE Molecular Dynamics</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The NVE ensemble (microcanonical ensemble) conserves particle number (N), volume (V), and total energy (E). It is the most fundamental MD ensemble: no thermostat or barostat is applied, so the system evolves under pure Newtonian mechanics driven by the ML potential forces.</p>
+        <p>NVE is used primarily as a <strong>production ensemble</strong> after a system has been pre-equilibrated under NVT conditions. Because there is no artificial coupling to an external bath, dynamical properties derived from NVE trajectories&mdash;such as diffusion coefficients, velocity autocorrelation functions, and vibrational spectra&mdash;are unperturbed by thermostat artifacts.</p>
+        <p>Energy conservation quality is automatically assessed at the end of each run. MAPLE reports the linear drift rate, relative energy fluctuation, and kinetic-potential energy anti-correlation as standard quality metrics.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>timestep</code></td>
+                <td>float</td>
+                <td><code>0.25</code></td>
+                <td>Integration time step in femtoseconds. The default (0.25 fs) is conservative and recommended for ML potentials to ensure energy conservation.</td>
+              </tr>
+              <tr>
+                <td><code>steps</code></td>
+                <td>int</td>
+                <td><code>400000</code></td>
+                <td>Total number of integration steps (= 100 ps at 0.25 fs default).</td>
+              </tr>
+              <tr>
+                <td><code>temperature</code></td>
+                <td>float</td>
+                <td><code>300.0</code></td>
+                <td>Temperature in Kelvin used only for initializing velocities from the Maxwell&ndash;Boltzmann distribution. Has no effect when <code>init_from</code> is set.</td>
+              </tr>
+              <tr>
+                <td><code>traj_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a trajectory frame every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>log_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a thermodynamic log entry every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>remove_com_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Remove center-of-mass translational momentum every N steps to prevent slow drift from floating-point accumulation.</td>
+              </tr>
+              <tr>
+                <td><code>remove_rotation</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Also remove angular momentum about the center of mass. Recommended only for isolated gas-phase molecules where overall rotation is not of interest.</td>
+              </tr>
+              <tr>
+                <td><code>init_velocities</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Initialize velocities from a Maxwell&ndash;Boltzmann distribution. Set to <code>False</code> when loading velocities from a prior trajectory via <code>init_from</code>.</td>
+              </tr>
+              <tr>
+                <td><code>init_from</code></td>
+                <td>str</td>
+                <td><code>None</code></td>
+                <td>Path to a <code>*_md_final.xyz</code> file. Loads positions and velocities to continue from a prior run (e.g., after NVT equilibration).</td>
+              </tr>
+              <tr>
+                <td><code>resume</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Resume an interrupted simulation, appending to existing trajectory and log files and offsetting the step counter.</td>
+              </tr>
+              <tr>
+                <td><code>random_seed</code></td>
+                <td>int</td>
+                <td><code>None</code></td>
+                <td>Integer seed for reproducible velocity initialization. If <code>None</code>, a random seed is used.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Output verbosity (0 = energy only, 1 = standard thermodynamic output).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>NVE production run starting from an NVT-equilibrated structure:</p>
+        <pre><code>#model=ani2x
+#md(ensemble=nve, steps=400000, init_from=water_nvt_md_final.xyz)
+#device=cpu
+
+XYZ water_opt_opt.xyz</code></pre>
+
+        <p>Simple NVE run from scratch with fresh velocity initialization:</p>
+        <pre><code>#model=ani2x
+#md(ensemble=nve, temperature=300, steps=200000, timestep=0.25)
+#device=cpu
+
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200</code></pre>
+
+        <h2 id="energy-conservation">Energy Conservation</h2>
+        <p>After the simulation completes, MAPLE prints a summary of energy conservation quality. The reported metrics are:</p>
+        <ul>
+          <li><strong>Linear drift rate</strong>: slope of a linear fit to the total energy over the second half of the trajectory (Eh/ps). A well-behaved NVE run should show drift &lt; 10<sup>&minus;4</sup> Eh/ps for typical molecular systems.</li>
+          <li><strong>Relative energy fluctuation</strong>: &sigma;(E)/|&langle;E&rangle;|, the standard deviation of the total energy relative to its mean. Values below 10<sup>&minus;4</sup> indicate excellent conservation.</li>
+          <li><strong>KE&ndash;PE anti-correlation</strong>: for a well-conserved NVE trajectory this approaches &minus;1.0, reflecting the compensation between kinetic and potential energy fluctuations.</li>
+        </ul>
+        <p>If energy conservation is poor, reduce the <code>timestep</code> or verify that the input structure was properly equilibrated at the target energy before starting the NVE run.</p>
+
+        <div class="admonition tip">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.9V17H8v-2.1A7 7 0 0 1 12 2z"/></svg>
+            Tip
+          </div>
+          <div class="admonition-body">
+            <p>Always pre-equilibrate with <a href="md_nvt.html">NVT</a> before running NVE production. Starting NVE from a poorly relaxed structure or from an arbitrary velocity distribution leads to large initial energy fluctuations and unreliable statistics.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="md.html">&larr; Molecular Dynamics</a>
+          <a class="next" href="md_nvt.html">NVT &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

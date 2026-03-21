@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVT Molecular Dynamics - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="md_nve.html">NVE</a></li>
+                    <li><a href="md_nvt.html" class="active">NVT</a></li>
+                    <li><a href="md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Docs</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="md.html">Molecular Dynamics</a>
+          <span class="separator">/</span>
+          <span class="current">NVT</span>
+        </nav>
+
+        <h1>NVT Molecular Dynamics</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The NVT ensemble (canonical ensemble) holds particle number (N), volume (V), and temperature (T) constant. A thermostat couples the system to a heat bath, maintaining the target temperature throughout the simulation. NVT is the standard choice for temperature equilibration and for thermodynamic sampling at a fixed temperature.</p>
+        <p>MAPLE provides two NVT thermostats:</p>
+        <ul>
+          <li><strong>Langevin</strong> (default): per-atom stochastic friction and random forces using the BAOAB splitting scheme (Leimkuhler &amp; Matthews, 2013). Produces the correct canonical ensemble; ergodic by construction. The standard choice for most NVT simulations.</li>
+          <li><strong>V-rescale</strong>: stochastic velocity rescaling (Bussi et al., 2007). Scales all velocities uniformly by a single factor with a stochastic correction term, producing the correct canonical ensemble without per-atom noise. Less perturbative to dynamical properties than Langevin, but slightly less robust far from equilibrium.</li>
+        </ul>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>timestep</code></td>
+                <td>float</td>
+                <td><code>1.0</code></td>
+                <td>Integration time step in femtoseconds. 1.0 fs is safe for most organic molecules with ML potentials when C&ndash;H bond stretching is the fastest motion.</td>
+              </tr>
+              <tr>
+                <td><code>steps</code></td>
+                <td>int</td>
+                <td><code>100000</code></td>
+                <td>Total number of integration steps (= 100 ps at 1 fs default).</td>
+              </tr>
+              <tr>
+                <td><code>temperature</code></td>
+                <td>float</td>
+                <td><code>300.0</code></td>
+                <td>Target temperature in Kelvin.</td>
+              </tr>
+              <tr>
+                <td><code>thermostat</code></td>
+                <td>str</td>
+                <td><code>langevin</code></td>
+                <td>Thermostat algorithm. Options: <code>langevin</code>, <code>v-rescale</code>.</td>
+              </tr>
+              <tr>
+                <td><code>friction</code></td>
+                <td>float</td>
+                <td><code>0.001</code></td>
+                <td>Langevin friction coefficient &gamma; in 1/fs. Controls the coupling strength to the heat bath. Used only when <code>thermostat=langevin</code>.</td>
+              </tr>
+              <tr>
+                <td><code>tau_t</code></td>
+                <td>float</td>
+                <td><code>100.0</code></td>
+                <td>Temperature coupling time constant &tau;<sub>T</sub> in femtoseconds for V-rescale. Larger values give weaker coupling; smaller values follow the target temperature more closely. Used only when <code>thermostat=v-rescale</code>.</td>
+              </tr>
+              <tr>
+                <td><code>traj_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a trajectory frame every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>log_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a thermodynamic log entry every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>init_velocities</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Initialize velocities from a Maxwell&ndash;Boltzmann distribution at <code>temperature</code>.</td>
+              </tr>
+              <tr>
+                <td><code>init_from</code></td>
+                <td>str</td>
+                <td><code>None</code></td>
+                <td>Path to a <code>*_md_final.xyz</code> file. Loads positions and velocities from a previous run.</td>
+              </tr>
+              <tr>
+                <td><code>resume</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Resume an interrupted simulation, appending to existing output files.</td>
+              </tr>
+              <tr>
+                <td><code>random_seed</code></td>
+                <td>int</td>
+                <td><code>None</code></td>
+                <td>Integer seed for reproducible velocity initialization and thermostat noise.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Output verbosity (0 = minimal, 1 = standard).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>NVT equilibration at 300 K using the default Langevin thermostat:</p>
+        <pre><code>#model=ani2x
+#md(ensemble=nvt, temperature=300, steps=100000, thermostat=langevin)
+#device=cpu
+
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200</code></pre>
+
+        <p>NVT run with V-rescale thermostat and tighter temperature coupling:</p>
+        <pre><code>#model=ani2x
+#md(ensemble=nvt, temperature=300, steps=200000, thermostat=v-rescale, tau_t=50.0)
+#device=cpu
+
+XYZ water_opt_opt.xyz</code></pre>
+
+        <h2 id="thermostat-choice">Choosing a Thermostat</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Thermostat</th>
+                <th>Correct Ensemble</th>
+                <th>Dynamics</th>
+                <th>When to Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>langevin</code></td>
+                <td>Yes</td>
+                <td>Perturbed (per-atom noise)</td>
+                <td>General-purpose equilibration; robust far from equilibrium; default recommendation.</td>
+              </tr>
+              <tr>
+                <td><code>v-rescale</code></td>
+                <td>Yes</td>
+                <td>Less perturbed (global scaling)</td>
+                <td>When dynamical properties (diffusion, spectra) must be preserved and the system is already near equilibrium.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admonition note">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Note
+          </div>
+          <div class="admonition-body">
+            <p>The Langevin friction coefficient <code>friction=0.001</code> 1/fs is intentionally weak. This mild coupling ensures correct canonical sampling while minimally perturbing inertial dynamics. Only increase it (e.g., to 0.01) if temperature equilibration is very slow.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="md_nve.html">&larr; NVE</a>
+          <a class="next" href="md_npt.html">NPT &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

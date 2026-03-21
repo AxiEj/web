@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Point Energy - MAPLE</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html" class="active">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="md/md_nve.html">NVE</a></li>
+                    <li><a href="md/md_nvt.html">NVT</a></li>
+                    <li><a href="md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <span>Tasks</span>
+        <span class="separator">/</span>
+        <span class="current">Single Point</span>
+      </nav>
+
+      <article>
+        <h1>Single Point Energy</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>A single point (SP) calculation computes the electronic energy and atomic forces at a fixed molecular geometry. Unlike optimization or transition state searches, no atoms are moved during the calculation. The geometry remains exactly as specified in the input, and MAPLE evaluates the energy and gradient at that single configuration.</p>
+        <p>This is the simplest and fastest task type available in MAPLE, making it the foundation upon which more complex workflows are built.</p>
+
+        <h2 id="usage">Usage</h2>
+        <p>The single point task is invoked by including the <code>#sp</code> header command in the input file. No additional parameters are required.</p>
+        <pre><code>#sp</code></pre>
+        <p>The <code>#sp</code> command does not accept any method or convergence parameters since there is no iterative procedure involved. You only need to specify the model and device alongside the task command.</p>
+
+        <div class="admonition tip">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+            Tip
+          </div>
+          <div class="admonition-body">
+            <p>SP is the default task type. If no job type is specified in the input file (i.e., no <code>#sp</code>, <code>#opt</code>, <code>#freq</code>, etc.), MAPLE will automatically perform a single point energy calculation.</p>
+          </div>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>Below is a complete input file for a single point calculation on a small system using the ANI-1xnr model on a GPU:</p>
+        <pre><code>#model=ani1xnr
+#sp
+#device=gpu0
+
+C   0.0  0.0  0.0
+H   1.0  0.0  0.0
+O   2.0  0.0  0.0</code></pre>
+        <p>The first three lines are header commands that set the ML model, task type, and compute device. The remaining lines define the atomic coordinates in Cartesian format (element symbol followed by X, Y, Z positions in angstroms).</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <p>The single point task accepts the following parameter:</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td>1</td>
+                <td>Output verbosity level. 0 = energy only, 1 = detailed output with forces, 2 = suppress coordinate printing.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="output">Output</h2>
+        <p>The output file from a single point calculation contains the following information:</p>
+        <ul>
+          <li><strong>Total energy</strong> -- reported in Hartree (Eh) units. This is the primary result of the SP calculation.</li>
+          <li><strong>Gradient / forces</strong> -- the atomic forces (negative gradient of the energy with respect to nuclear positions) are computed and printed for each atom.</li>
+        </ul>
+        <p>Example output:</p>
+        <pre><code>Energy: -10434.811113387317</code></pre>
+        <p>The energy value represents the total electronic energy of the system at the given geometry as predicted by the specified ML potential.</p>
+
+        <h2 id="use-cases">Use Cases</h2>
+        <p>Single point calculations are useful in a variety of scenarios:</p>
+        <ul>
+          <li><strong>Benchmarking</strong> -- comparing energies from different ML models or against reference DFT/ab initio values for the same geometry.</li>
+          <li><strong>Energy comparisons</strong> -- evaluating relative energies of conformers, isomers, or reaction intermediates at their respective geometries.</li>
+          <li><strong>Post-optimization checks</strong> -- verifying the energy at an optimized geometry using a different or higher-level model than was used during optimization.</li>
+          <li><strong>Force analysis</strong> -- examining the magnitude and direction of forces on atoms to assess whether a structure is close to a stationary point.</li>
+          <li><strong>Workflow building blocks</strong> -- SP calculations serve as the fundamental energy/force evaluation used internally by optimization, frequency, TS search, and other iterative tasks.</li>
+        </ul>
+
+        <nav class="page-nav">
+          <a href="../setup/models.html">&larr; Prev: ML Models</a>
+          <a class="next" href="../tasks/frequency.html">Next: Frequency &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

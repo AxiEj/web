@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Models - MAPLE Documentation</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../setup/models.html" class="active">ML Models</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/md/md_nve.html">NVE</a></li>
+                    <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
+                    <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <span>Input Setup</span>
+        <span class="separator">/</span>
+        <span class="current">ML Models</span>
+      </nav>
+      <article>
+        <h1>Machine Learning Potentials</h1>
+
+        <p>MAPLE uses machine learning interatomic potentials (MLIPs) to compute energies and forces instead of traditional quantum mechanical methods. This approach provides near-DFT accuracy at a fraction of the computational cost, enabling rapid geometry optimizations, frequency calculations, and molecular dynamics simulations. The <code>#model</code> command in the settings block selects which potential to use.</p>
+
+        <h2 id="available-models">Available Models</h2>
+
+        <p>The table below lists all machine learning potentials currently supported in MAPLE, along with their keyword, element coverage, and accuracy characteristics.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Model Name</th>
+              <th>Keyword</th>
+              <th>Supported Elements</th>
+              <th>Accuracy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ANI-2x</td>
+              <td><code>ani2x</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>Trained on wB97X/6-31G(d); good general-purpose accuracy for organic molecules</td>
+            </tr>
+            <tr>
+              <td>ANI-1x</td>
+              <td><code>ani1x</code></td>
+              <td>H, C, N, O</td>
+              <td>Trained on wB97X/6-31G(d); limited to four elements but well-validated</td>
+            </tr>
+            <tr>
+              <td>ANI-1ccx</td>
+              <td><code>ani1ccx</code></td>
+              <td>H, C, N, O</td>
+              <td>Transfer-learned to CCSD(T)/CBS; high accuracy for small organic molecules</td>
+            </tr>
+            <tr>
+              <td>ANI-1xnr</td>
+              <td><code>ani1xnr</code></td>
+              <td>H, C, N, O</td>
+              <td>Non-reactive variant of ANI-1x; trained without bond-breaking data</td>
+            </tr>
+            <tr>
+              <td>AIMNet2</td>
+              <td><code>aimnet2</code></td>
+              <td>H, B, C, N, O, F, Si, P, S, Cl, As, Se, Br, I</td>
+              <td>Broad element coverage with wB97M-D3BJ accuracy; supports charged species</td>
+            </tr>
+            <tr>
+              <td>AIMNet2-NSE</td>
+              <td><code>aimnet2nse</code></td>
+              <td>H, B, C, N, O, F, Si, P, S, Cl, As, Se, Br, I</td>
+              <td>AIMNet2 variant with nuclear spin-orbit effects; useful for heavy-element systems</td>
+            </tr>
+            <tr>
+              <td>MACE-OFF23 (Small)</td>
+              <td><code>maceoff23s</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>Fast equivariant model; suitable for quick screening of organic molecules</td>
+            </tr>
+            <tr>
+              <td>MACE-OFF23 (Medium)</td>
+              <td><code>maceoff23m</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>Balanced speed and accuracy for organic chemistry applications</td>
+            </tr>
+            <tr>
+              <td>MACE-OFF23 (Large)</td>
+              <td><code>maceoff23l</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>Highest accuracy MACE-OFF variant; recommended for publication-quality results</td>
+            </tr>
+            <tr>
+              <td>MACE-OMol</td>
+              <td><code>maceomol</code></td>
+              <td>H, Li, B, C, N, O, F, Na, Mg, Si, P, S, Cl, K, Ca, Br, I</td>
+              <td>Extended organic-molecular MACE model; broader element support than OFF23</td>
+            </tr>
+            <tr>
+              <td>EGRET</td>
+              <td><code>egret</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>Graph-based equivariant model; competitive accuracy for drug-like molecules</td>
+            </tr>
+            <tr>
+              <td>UMA</td>
+              <td><code>uma</code></td>
+              <td>Broad periodic table coverage</td>
+              <td>Universal model with wide element support; good default choice for diverse systems</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="model-selection">Model Selection Guide</h2>
+
+        <p>Choosing the right model depends on your molecular system, required accuracy, and available computational resources. Here are general recommendations:</p>
+
+        <ul>
+          <li><strong>Organic molecules (H, C, N, O only):</strong> Start with <code>ani2x</code> for general use or <code>ani1ccx</code> when coupled-cluster accuracy is needed for small molecules.</li>
+          <li><strong>Organic molecules with halogens (F, S, Cl):</strong> Use <code>ani2x</code>, <code>maceoff23m</code>, or <code>egret</code>. For the highest accuracy, try <code>maceoff23l</code>.</li>
+          <li><strong>Systems with heavier elements (Br, I, P, Si, etc.):</strong> Use <code>aimnet2</code> or <code>maceomol</code>, which support a broader range of elements.</li>
+          <li><strong>Diverse or unknown systems:</strong> Use <code>uma</code> as a reliable general-purpose potential with the widest element coverage.</li>
+          <li><strong>Speed-critical workflows:</strong> Use <code>maceoff23s</code> or <code>ani2x</code> for the fastest evaluation times. The ANI models are particularly fast on GPUs.</li>
+          <li><strong>Publication-quality results:</strong> Use <code>maceoff23l</code> or <code>ani1ccx</code> for the highest available accuracy within their element ranges.</li>
+        </ul>
+
+        <h2 id="physical-corrections">Physical Corrections</h2>
+
+        <p>ML potentials can be augmented with physical corrections to improve accuracy for specific interactions that are challenging for neural network models.</p>
+
+        <h3 id="d4-dispersion">DFT-D4 Dispersion Correction</h3>
+        <p>The D4 dispersion correction adds London dispersion interactions (van der Waals forces) to the ML potential energy. This is particularly important for non-covalent interactions, stacking, and large molecular systems where dispersion forces play a significant role.</p>
+        <pre><code>#model = ani2x
+#d4
+#opt</code></pre>
+
+        <h3 id="gbsa-solvation">GBSA Solvation</h3>
+        <p>The Generalized Born with Solvent-Accessible Surface Area (GBSA) model provides implicit solvation corrections. This is configured through the <code>#solv</code> command. See the <a href="../functions/solvent.html">Solvation</a> page for details.</p>
+        <pre><code>#model = uma
+#solv(implicit=gbsa)
+#opt</code></pre>
+
+        <h3 id="qeq-charges">QEq Charges</h3>
+        <p>The charge equilibration (QEq) method computes atomic partial charges, which are used internally by the GBSA solvation model. QEq charges are computed automatically when implicit solvation is enabled and do not require a separate command.</p>
+
+        <div class="admonition important">
+          <p class="admonition-title">Important</p>
+          <p>Large models such as <code>maceoff23l</code> and <code>maceomol</code> require significantly more GPU memory than smaller models. If you encounter out-of-memory errors, try switching to a smaller model variant (e.g., <code>maceoff23s</code>) or use <code>#device = cpu</code> for systems that exceed your GPU memory.</p>
+        </div>
+
+        <h2 id="usage-examples">Usage Examples</h2>
+
+        <p>Below are complete input file examples demonstrating model selection for various scenarios.</p>
+
+        <h3>General-purpose optimization with UMA</h3>
+        <pre><code>#model = uma
+#device = gpu0
+#opt(method=lbfgs, convergence=tight)
+
+0 1
+C    0.000000    0.000000    0.000000
+O    1.200000    0.000000    0.000000
+H   -0.540000    0.940000    0.000000
+H   -0.540000   -0.940000    0.000000</code></pre>
+
+        <h3>High-accuracy calculation with AIMNet2 and D4</h3>
+        <pre><code>#model = aimnet2
+#d4
+#device = gpu0
+#opt(method=lbfgs, convergence=extratight)
+
+0 1
+C    0.000000    0.000000    0.000000
+Br   1.940000    0.000000    0.000000
+H   -0.390000    0.000000    1.028000
+H   -0.390000    0.890000   -0.514000
+H   -0.390000   -0.890000   -0.514000</code></pre>
+
+        <h3>Frequency calculation with MACE-OFF23</h3>
+        <pre><code>#model = maceoff23m
+#device = gpu0
+#freq
+
+XYZ /path/to/optimized_geometry.xyz</code></pre>
+
+        <h3>CPU-based calculation for large systems</h3>
+        <pre><code>#model = maceoff23s
+#device = cpu
+#opt(convergence=loose)
+
+XYZ /path/to/large_molecule.xyz</code></pre>
+
+      </article>
+      <nav class="page-nav">
+        <a class="prev" href="../setup/coordinates.html">&larr; Previous: Coordinates</a>
+        <a class="next" href="../tasks/singlepoint.html">Next: Single Point &rarr;</a>
+      </nav>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#available-models">Available Models</a></li>
+          <li><a href="#model-selection">Model Selection Guide</a></li>
+          <li><a href="#physical-corrections">Physical Corrections</a></li>
+          <li><a href="#usage-examples">Usage Examples</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sidebar-overlay"></div>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

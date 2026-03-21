@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD/CG Optimization - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="opt_rfo.html">RFO</a></li>
+                    <li><a href="opt_sd.html" class="active">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../md/md_nve.html">NVE</a></li>
+                    <li><a href="../md/md_nvt.html">NVT</a></li>
+                    <li><a href="../md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Docs</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="optimization.html">Optimization</a>
+          <span class="separator">/</span>
+          <span class="current">SD/CG</span>
+        </nav>
+
+        <h1>SD/CG Optimization</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The SD/CG optimizer is a hybrid steepest-descent / conjugate-gradient method with optional DIIS (Direct Inversion in the Iterative Subspace) acceleration. It begins with a steepest descent phase to rapidly reduce large forces, then automatically switches to the conjugate gradient algorithm for more efficient convergence near a minimum. DIIS extrapolation can be applied periodically to further accelerate convergence.</p>
+        <p>This method is invoked with the keyword <code>sdcg</code>. The active phase is controlled via the <code>method</code> parameter of <code>#opt()</code>: use <code>method=sd</code> for pure steepest descent, <code>method=cg</code> for pure conjugate gradient, or <code>method=sdcg</code> (the default) for the full SD+CG fusion. The parameters <code>sd_enabled</code> and <code>cg_enabled</code> listed in the table below are derived internally from the <code>method</code> keyword and are not intended to be set directly by users.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>max_step</code></td>
+                <td>float</td>
+                <td><code>0.2</code></td>
+                <td>Maximum step length in Angstrom.</td>
+              </tr>
+              <tr>
+                <td><code>max_iter</code></td>
+                <td>int</td>
+                <td><code>256</code></td>
+                <td>Maximum number of optimization cycles.</td>
+              </tr>
+              <tr>
+                <td><code>write_traj</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Write intermediate geometries to a trajectory file.</td>
+              </tr>
+              <tr>
+                <td><code>traj_every</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Write trajectory frame every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Output verbosity level.</td>
+              </tr>
+              <tr>
+                <td><code>sd_enabled</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Enable steepest descent phase. Derived internally from <code>method</code>; prefer using <code>method=sd/cg/sdcg</code> instead of setting this directly.</td>
+              </tr>
+              <tr>
+                <td><code>cg_enabled</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Enable conjugate gradient phase. Derived internally from <code>method</code>; prefer using <code>method=sd/cg/sdcg</code> instead of setting this directly.</td>
+              </tr>
+              <tr>
+                <td><code>sd_max_iter</code></td>
+                <td>int</td>
+                <td><code>50</code></td>
+                <td>Max iterations for the initial SD phase.</td>
+              </tr>
+              <tr>
+                <td><code>cg_switch_fmax</code></td>
+                <td>float</td>
+                <td><code>0.0</code></td>
+                <td>Switch from SD to CG when max force drops below this value.</td>
+              </tr>
+              <tr>
+                <td><code>cg_restart_threshold</code></td>
+                <td>float</td>
+                <td><code>0.2</code></td>
+                <td>Restart CG directions when gradient change exceeds this ratio.</td>
+              </tr>
+              <tr>
+                <td><code>cg_beta_method</code></td>
+                <td>str</td>
+                <td><code>"prp+"</code></td>
+                <td>Conjugate gradient beta formula.</td>
+              </tr>
+              <tr>
+                <td><code>diis_enabled</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Enable DIIS extrapolation acceleration.</td>
+              </tr>
+              <tr>
+                <td><code>diis_store_every</code></td>
+                <td>int</td>
+                <td><code>5</code></td>
+                <td>Store DIIS snapshot every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>diis_min_snapshots</code></td>
+                <td>int</td>
+                <td><code>3</code></td>
+                <td>Minimum snapshots before DIIS extrapolation is attempted.</td>
+              </tr>
+              <tr>
+                <td><code>diis_memory</code></td>
+                <td>int</td>
+                <td><code>6</code></td>
+                <td>Maximum number of DIIS snapshots stored.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>A complete input file using the SD/CG optimizer with default parameters:</p>
+        <pre><code>#model=ani2x
+#opt(method=sdcg)
+#device=gpu0
+
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200</code></pre>
+
+        <h2 id="when-to-use-sdcg">When to Use SD/CG</h2>
+        <ul>
+          <li><strong>Initial rough optimization:</strong> When the starting geometry is far from any minimum and contains large steric clashes or unreasonable bond lengths, the SD phase can quickly reduce the worst forces before the CG phase takes over for efficient convergence.</li>
+          <li><strong>Very far from the minimum:</strong> In the early stages of optimization where the energy surface is steep and nearly linear, the SD phase is just as efficient as higher-order methods and considerably cheaper per step.</li>
+          <li><strong>When L-BFGS oscillates:</strong> If L-BFGS enters a cycle of large oscillating steps, SD/CG can provide a more stable convergence path by combining gradient-only steps with conjugate gradient refinement.</li>
+          <li><strong>Pure SD or pure CG:</strong> Use <code>method=sd</code> for pure steepest descent, or <code>method=cg</code> for pure conjugate gradient.</li>
+        </ul>
+
+        <div class="admonition note">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Note
+          </div>
+          <div class="admonition-body">
+            <p>For production-quality geometry optimizations, <a href="opt_lbfgs.html">L-BFGS</a> (the default) is generally preferred due to its superior convergence near minima. SD/CG is most useful as a pre-optimizer for severely distorted structures or when L-BFGS has difficulty converging.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="opt_rfo.html">&larr; RFO</a>
+          <a class="next" href="../ts/ts.html">Transition State &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

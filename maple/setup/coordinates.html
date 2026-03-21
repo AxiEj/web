@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates - MAPLE Documentation</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html" class="active">Coordinates</a></li>
+                <li><a href="../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/md/md_nve.html">NVE</a></li>
+                    <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
+                    <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <span>Input Setup</span>
+        <span class="separator">/</span>
+        <span class="current">Coordinates</span>
+      </nav>
+      <article>
+        <h1>Part II: Coordinate Input</h1>
+
+        <p>The coordinate section of a MAPLE input file defines the molecular geometry. Coordinates are specified in Cartesian format (Angstroms) and can be provided either inline within the input file or loaded from external files. An optional charge and multiplicity line may precede the atomic coordinates.</p>
+
+        <h2 id="inline-coordinates">Inline Coordinates</h2>
+
+        <p>The simplest way to provide molecular geometry is to include Cartesian coordinates directly in the input file. Each atom is given on its own line with the element symbol followed by the x, y, and z coordinates in Angstroms.</p>
+
+        <p>An optional first line specifying <strong>charge</strong> and <strong>multiplicity</strong> can precede the coordinate block. If omitted, MAPLE assumes a neutral singlet (charge=0, multiplicity=1).</p>
+
+        <h3>Basic format (neutral singlet assumed)</h3>
+        <pre><code>#model = ani2x
+#opt
+
+H    0.000000    0.000000    0.000000
+O    0.000000    0.000000    0.960000
+H    0.000000    0.757160    1.197280</code></pre>
+
+        <h3>With charge and multiplicity</h3>
+        <pre><code>#model = uma
+#opt
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H   -0.392000   -0.506000   -0.875000
+H    1.932000    0.506000    0.875000
+H    1.932000    0.506000   -0.875000
+H    1.932000   -1.011000    0.000000</code></pre>
+
+        <div class="admonition tip">
+          <p class="admonition-title">Tip</p>
+          <p>The charge/multiplicity line must contain exactly two integers separated by whitespace. MAPLE distinguishes this line from coordinate data by checking whether the first token is an element symbol or an integer.</p>
+        </div>
+
+        <h2 id="external-xyz">External XYZ Files</h2>
+
+        <p>For larger molecules or when reusing geometries across calculations, you can load coordinates from an external XYZ file using the <code>XYZ</code> keyword followed by the file path.</p>
+
+        <pre><code>#model = aimnet2
+#opt(method=lbfgs, convergence=tight)
+
+XYZ /path/to/molecule.xyz</code></pre>
+
+        <p>You can also specify the charge and multiplicity before the <code>XYZ</code> line:</p>
+
+        <pre><code>#model = uma
+#freq
+
+-1 1
+XYZ /path/to/anion.xyz</code></pre>
+
+        <p>The external XYZ file should follow the standard XYZ format:</p>
+        <pre><code>3
+Water molecule
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757160   -0.469200
+H    0.000000   -0.757160   -0.469200</code></pre>
+
+        <h2 id="trajectory-files">Trajectory Files</h2>
+
+        <p>For tasks that require multiple geometries (such as NEB or string methods for transition state searches), you can provide a trajectory file containing a sequence of structures using the <code>XYZTRAJ</code> keyword.</p>
+
+        <pre><code>#model = uma
+#ts(method=neb)
+
+XYZTRAJ /path/to/trajectory.xyz</code></pre>
+
+        <p>The trajectory file is a concatenation of standard XYZ frames. Each frame begins with the atom count, followed by a comment line and then the coordinate block:</p>
+
+        <pre><code>3
+Frame 1 - Reactant
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757160   -0.469200
+H    0.000000   -0.757160   -0.469200
+3
+Frame 2 - Product
+O    0.000000    0.000000    0.117300
+H    0.000000    0.900000   -0.350000
+H    0.000000   -0.900000   -0.350000</code></pre>
+
+        <h2 id="post-processing">Post-Processing Commands</h2>
+
+        <p>After the coordinate block, you can add post-processing commands to apply constraints or define scan coordinates. These commands modify how specific internal coordinates are treated during the calculation. See the <a href="../functions/constrain.html">Constraints</a> page for full details.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>C</code></td>
+              <td><code>C i</code></td>
+              <td>Fix the position of atom <em>i</em> (freeze in place)</td>
+            </tr>
+            <tr>
+              <td><code>B</code></td>
+              <td><code>B i j</code></td>
+              <td>Fix the bond distance between atoms <em>i</em> and <em>j</em></td>
+            </tr>
+            <tr>
+              <td><code>A</code></td>
+              <td><code>A i j k</code></td>
+              <td>Fix the bond angle formed by atoms <em>i</em>, <em>j</em>, <em>k</em></td>
+            </tr>
+            <tr>
+              <td><code>D</code></td>
+              <td><code>D i j k l</code></td>
+              <td>Fix the dihedral angle formed by atoms <em>i</em>, <em>j</em>, <em>k</em>, <em>l</em></td>
+            </tr>
+            <tr>
+              <td><code>S</code></td>
+              <td><code>S i j step nsteps</code></td>
+              <td>Define a scan coordinate along atoms <em>i</em>, <em>j</em> (bond), <em>i j k</em> (angle), or <em>i j k l</em> (dihedral)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Example with constraints</h3>
+        <pre><code>#model = uma
+#opt(method=lbfgs)
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+O    2.340000    1.100000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H    1.932000   -0.506000    0.875000
+
+C 3
+B 1 2</code></pre>
+
+        <p>In this example, atom 3 (oxygen) is frozen in place and the bond between atoms 1 and 2 (C-C) is constrained at its initial distance during optimization.</p>
+
+        <h3>Example with scan coordinate</h3>
+        <pre><code>#model = uma
+#scan(method=lbfgs)
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H    1.932000    0.506000    0.875000
+H    1.932000   -1.011000    0.000000
+
+S 1 2 0.05 10</code></pre>
+
+        <p>This scans the C-C bond length (atoms 1 and 2) in 10 steps of 0.05 Angstroms each.</p>
+
+      </article>
+      <nav class="page-nav">
+        <a class="prev" href="../setup/settings.html">&larr; Previous: Settings</a>
+        <a class="next" href="../setup/models.html">Next: ML Models &rarr;</a>
+      </nav>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#inline-coordinates">Inline Coordinates</a></li>
+          <li><a href="#external-xyz">External XYZ Files</a></li>
+          <li><a href="#trajectory-files">Trajectory Files</a></li>
+          <li><a href="#post-processing">Post-Processing Commands</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sidebar-overlay"></div>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

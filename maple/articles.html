@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles &amp; Publications — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="documentation.html">Documentation</a></li>
+          <li><a href="articles.html" class="active">Articles</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Articles &amp; Publications</h1>
+    <p class="subtitle">Research papers, preprints, and publications related to the MAPLE project and the machine learning potentials it supports.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <div class="section-header">
+        <h2 id="maple-papers">MAPLE Publications</h2>
+        <p>Papers describing the MAPLE framework and its applications.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">Framework</div>
+          <h3>MAPLE: A General Framework for Automated Molecular Modeling Across Machine Learning Potentials</h3>
+          <p>Presents MAPLE as a comprehensive framework for automated molecular modeling that works seamlessly across different machine learning potentials, providing a unified interface for diverse computational chemistry applications.</p>
+          <p class="mt-1"><a href="https://github.com/ClickFF/MAPLE" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+        </div>
+      </div>
+
+      <div class="section-header mt-3">
+        <h2 id="ml-potential-papers">ML Potential References</h2>
+        <p>Key publications for the machine learning potentials supported by MAPLE.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">ANI</div>
+          <h3>ANI-2x: A Transferable Neural Network Potential</h3>
+          <p>Devereux et al. Extending the applicability of the ANI deep learning potential to include organic molecules containing sulfur, fluorine, and chlorine. <em>J. Chem. Theory Comput.</em>, 2020.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">ANI</div>
+          <h3>ANI-1: An Extensible Neural Network Potential</h3>
+          <p>Smith et al. ANI-1: an extensible neural network potential with DFT accuracy at force field computational cost. <em>Chem. Sci.</em>, 2017.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">ANI</div>
+          <h3>ANI-1ccx: Approaching Coupled Cluster Accuracy</h3>
+          <p>Smith et al. Approaching coupled cluster accuracy with a general-purpose neural network potential through transfer learning. <em>Nat. Commun.</em>, 2019.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">AIMNet</div>
+          <h3>AIMNet2: A Neural Network Interatomic Potential</h3>
+          <p>Anstine and Isayev. AIMNet2: a neural network interatomic potential to meet your neutral and charged molecular modeling needs. 2024.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">MACE</div>
+          <h3>MACE-OFF: Transferable Organic Force Fields</h3>
+          <p>Kovacs et al. MACE-OFF23: transferable machine learning force fields for organic molecules. 2023.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Universal</div>
+          <h3>UMA: Universal Machine-learning Architecture</h3>
+          <p>Meta FAIR. A foundation model for chemistry covering broad chemical space with a single unified interatomic potential.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Equivariant</div>
+          <h3>EGRET: Equivariant Graph Network</h3>
+          <p>An equivariant graph neural network potential for reactive and non-reactive molecular simulations.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

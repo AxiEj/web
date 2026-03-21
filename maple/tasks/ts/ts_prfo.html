@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P-RFO (Partitioned Rational Function Optimization) - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="ts_prfo.html" class="active">P-RFO</a></li>
+                    <li><a href="ts_neb.html">NEB</a></li>
+                    <li><a href="ts_dimmer.html">Dimer</a></li>
+                    <li><a href="ts_string.html">String/GSM</a></li>
+                    <li><a href="ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../md/md_nve.html">NVE</a></li>
+                    <li><a href="../md/md_nvt.html">NVT</a></li>
+                    <li><a href="../md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <a href="../../documentation.html">Tasks</a>
+        <span class="separator">/</span>
+        <a href="ts.html">Transition State</a>
+        <span class="separator">/</span>
+        <span class="current">P-RFO</span>
+      </nav>
+
+      <article>
+        <h1>P-RFO (Partitioned Rational Function Optimization)</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>P-RFO is a second-order saddle point optimizer based on the Partitioned Rational Function Optimization algorithm. It works by partitioning the Hessian eigenspace into one mode to maximize along (the reaction coordinate) and all remaining modes to minimize along. This dual-shift approach, combined with a trust-region framework and mode-following in mass-weighted coordinates, efficiently converges to the nearest first-order saddle point from an initial guess geometry.</p>
+        <p>P-RFO is the default TS refinement method in MAPLE and is the final optimization step used by <code>refine=nebts</code> after NEB or String calculations. It requires a good starting geometry that is already close to the true TS.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>max_iter</code></td>
+                <td>int</td>
+                <td>256</td>
+                <td>Maximum number of optimization cycles.</td>
+              </tr>
+              <tr>
+                <td><code>trust_radius</code></td>
+                <td>float</td>
+                <td>0.2</td>
+                <td>Initial trust radius in Angstrom.</td>
+              </tr>
+              <tr>
+                <td><code>trust_min</code></td>
+                <td>float</td>
+                <td>1e-3</td>
+                <td>Minimum trust radius.</td>
+              </tr>
+              <tr>
+                <td><code>trust_max</code></td>
+                <td>float</td>
+                <td>1.0</td>
+                <td>Maximum trust radius.</td>
+              </tr>
+              <tr>
+                <td><code>eta_shrink</code></td>
+                <td>float</td>
+                <td>0.75</td>
+                <td>Trust radius shrink factor when step is poor.</td>
+              </tr>
+              <tr>
+                <td><code>eta_expand</code></td>
+                <td>float</td>
+                <td>1.75</td>
+                <td>Trust radius expansion factor when step is good.</td>
+              </tr>
+              <tr>
+                <td><code>evals_eps</code></td>
+                <td>float</td>
+                <td>1e-10</td>
+                <td>Eigenvalue epsilon for numerical stability.</td>
+              </tr>
+              <tr>
+                <td><code>mu_margin</code></td>
+                <td>float</td>
+                <td>1e-8</td>
+                <td>Margin for the level-shift parameter.</td>
+              </tr>
+              <tr>
+                <td><code>max_bisect_it</code></td>
+                <td>int</td>
+                <td>60</td>
+                <td>Maximum bisection iterations for level-shift.</td>
+              </tr>
+              <tr>
+                <td><code>f_max_th</code></td>
+                <td>float</td>
+                <td>9.5e-3</td>
+                <td>Max force convergence threshold (Hartree/Bohr).</td>
+              </tr>
+              <tr>
+                <td><code>f_rms_th</code></td>
+                <td>float</td>
+                <td>5e-3</td>
+                <td>RMS force convergence threshold.</td>
+              </tr>
+              <tr>
+                <td><code>dp_max_th</code></td>
+                <td>float</td>
+                <td>1.8e-3</td>
+                <td>Max displacement convergence threshold (Bohr).</td>
+              </tr>
+              <tr>
+                <td><code>dp_rms_th</code></td>
+                <td>float</td>
+                <td>1.2e-3</td>
+                <td>RMS displacement convergence threshold.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <pre><code>#model=ani1xnr
+#ts(method=prfo)
+#device=gpu0
+
+XYZ /path/to/ts_guess.xyz</code></pre>
+
+        <h2 id="tips">Tips</h2>
+        <ul>
+          <li><strong>Start from a good guess.</strong> The best starting geometry is typically the highest-energy image (HEI) from a converged NEB or String calculation. You can extract this from the <code>*_hei.xyz</code> output file.</li>
+          <li><strong>Verify with a frequency calculation.</strong> After P-RFO converges, always run a frequency calculation to confirm exactly one imaginary frequency. If there are multiple imaginary frequencies, the converged structure may be a higher-order saddle point.</li>
+          <li><strong>Use <code>refine=nebts</code> for automation.</strong> Rather than running P-RFO manually, you can set <code>refine=nebts</code> in your NEB or String input to automatically apply P-RFO refinement after the path search completes.</li>
+          <li><strong>Trust radius adjustment.</strong> If P-RFO oscillates or fails to converge, consider providing a geometry closer to the true TS. The trust-region mechanism will automatically adapt the step size, but a poor initial guess can cause the search to wander.</li>
+        </ul>
+
+        <nav class="page-nav">
+          <a href="ts.html">&larr; Previous: Transition State</a>
+          <a class="next" href="ts_neb.html">Next: NEB &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc"><div class="toc-sticky"><h3>On this page</h3><ul></ul></div></aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constraints - MAPLE Documentation</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/md/md_nve.html">NVE</a></li>
+                    <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
+                    <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html" class="active">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <span>Functions</span>
+        <span class="separator">/</span>
+        <span class="current">Constraints</span>
+      </nav>
+      <article>
+        <h1>Constraints</h1>
+
+        <p>Constraints in MAPLE allow you to impose geometric restrictions on atoms or internal coordinates during optimization, scan, and dynamics calculations. They are specified in the post-processing section of the input file, which follows the coordinate block. Constraint commands fix specific degrees of freedom (atom positions, bond lengths, angles, or dihedrals) at their initial values, while scan commands define coordinate ranges to be systematically explored.</p>
+
+        <h2 id="atom-constraints">Atom Constraints (C Command)</h2>
+
+        <p>The <code>C</code> command freezes an atom at its current position. The atom will not move during optimization or dynamics. This is useful for anchoring specific parts of a molecular system, such as fixing a metal center or holding boundary atoms in place.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>C i</code></td>
+              <td>Fix the position of atom <em>i</em></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pre><code>C 3</code></pre>
+        <p>This freezes atom 3 at its initial Cartesian coordinates. All three spatial components (x, y, z) are held fixed.</p>
+
+        <p>You can fix multiple atoms by including multiple <code>C</code> commands:</p>
+        <pre><code>C 1
+C 5
+C 12</code></pre>
+
+        <h2 id="bond-constraints">Bond Constraints (B Command)</h2>
+
+        <p>The <code>B</code> command fixes the distance between two atoms at its initial value. During optimization, the bond length will remain constant while the rest of the system relaxes.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>B i j</code></td>
+              <td>Fix the bond distance between atoms <em>i</em> and <em>j</em></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pre><code>B 1 5</code></pre>
+        <p>This constrains the distance between atoms 1 and 5 at whatever value it has in the input geometry.</p>
+
+        <h2 id="angle-constraints">Angle Constraints (A Command)</h2>
+
+        <p>The <code>A</code> command fixes the bond angle formed by three atoms. The angle i-j-k (with j as the vertex atom) is held constant during the calculation.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>A i j k</code></td>
+              <td>Fix the bond angle at vertex atom <em>j</em> between atoms <em>i</em>, <em>j</em>, and <em>k</em></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pre><code>A 2 1 4</code></pre>
+        <p>This constrains the angle formed by atoms 2-1-4 at its initial value.</p>
+
+        <h2 id="dihedral-constraints">Dihedral Constraints (D Command)</h2>
+
+        <p>The <code>D</code> command fixes the dihedral (torsion) angle formed by four atoms. The torsion angle defined by the i-j-k-l atom sequence is held constant throughout the simulation.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>D i j k l</code></td>
+              <td>Fix the dihedral angle formed by atoms <em>i</em>, <em>j</em>, <em>k</em>, <em>l</em></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pre><code>D 1 2 3 6</code></pre>
+        <p>This constrains the torsion angle along the 1-2-3-6 atom chain at its initial value.</p>
+
+        <h2 id="scan-coordinates">Scan Coordinates (S Command)</h2>
+
+        <p>The <code>S</code> command defines an internal coordinate to be scanned over a range of values. It is used exclusively with <code>#scan</code> tasks. The scan systematically varies the specified coordinate from its initial value, stepping by a fixed increment for a given number of steps. At each step, the remaining degrees of freedom are optimized.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Coordinate Type</th>
+              <th>Format</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bond length</td>
+              <td><code>S i j step nsteps</code></td>
+              <td>Scan the distance between atoms <em>i</em> and <em>j</em></td>
+            </tr>
+            <tr>
+              <td>Bond angle</td>
+              <td><code>S i j k step nsteps</code></td>
+              <td>Scan the angle at vertex <em>j</em></td>
+            </tr>
+            <tr>
+              <td>Dihedral angle</td>
+              <td><code>S i j k l step nsteps</code></td>
+              <td>Scan the torsion angle along <em>i-j-k-l</em></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The <code>step</code> parameter specifies the increment per step (in Angstroms for bond lengths, degrees for angles), and <code>nsteps</code> is the number of steps to take.</p>
+
+        <pre><code>S 1 2 0.05 10</code></pre>
+        <p>This scans the bond length between atoms 1 and 2, increasing it by 0.05 Angstroms at each of 10 steps.</p>
+
+        <pre><code>S 2 1 3 10.0 6</code></pre>
+        <p>This scans the bond angle at atom 1 (between atoms 2, 1, and 3), increasing it by 10 degrees at each of 6 steps.</p>
+
+        <div class="admonition tip">
+          <p class="admonition-title">Tip</p>
+          <p>You can define multiple <code>S</code> commands to perform a multi-dimensional scan. MAPLE will systematically vary all scan coordinates, creating a grid of geometries across the combined coordinate space.</p>
+        </div>
+
+        <h2 id="post-command">POST Command</h2>
+
+        <p>The <code>POST</code> command allows you to load constraint definitions from an external file instead of listing them inline. This is useful when you have a large number of constraints or want to reuse the same constraint set across multiple calculations.</p>
+
+        <pre><code>POST /path/to/constraints.txt</code></pre>
+
+        <p>The external file should contain constraint commands (one per line) in the same format as inline constraints:</p>
+        <pre><code>C 1
+C 2
+B 3 7
+A 4 5 6
+D 1 2 3 4</code></pre>
+
+        <h2 id="examples">Examples</h2>
+
+        <h3>Constrained optimization: freeze atoms and fix a bond</h3>
+        <pre><code>#model = uma
+#device = gpu0
+#opt(method=lbfgs, convergence=tight)
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+O    2.340000    1.100000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H   -0.392000   -0.506000   -0.875000
+H    1.932000   -0.506000    0.875000
+H    1.932000   -0.506000   -0.875000
+
+C 3
+B 1 2</code></pre>
+        <p>Atom 3 (oxygen) is frozen and the C-C bond (atoms 1-2) is held at its initial distance while everything else optimizes.</p>
+
+        <h3>Constrained optimization: fix a dihedral angle</h3>
+        <pre><code>#model = aimnet2
+#device = gpu0
+#opt(method=lbfgs)
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+C    2.100000    1.450000    0.000000
+C    3.640000    1.450000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H    1.932000   -0.506000    0.875000
+H    1.932000   -0.506000   -0.875000
+H    1.700000    1.956000    0.875000
+H    1.700000    1.956000   -0.875000
+H    4.032000    0.944000    0.875000
+H    4.032000    0.944000   -0.875000
+H    4.032000    2.461000    0.000000
+
+D 5 1 2 3</code></pre>
+        <p>The dihedral angle along H(5)-C(1)-C(2)-C(3) is fixed at its initial value while the rest of the geometry relaxes.</p>
+
+        <h3>1D bond scan</h3>
+        <pre><code>#model = uma
+#device = gpu0
+#scan(method=lbfgs)
+
+0 1
+C    0.000000    0.000000    0.000000
+C    1.540000    0.000000    0.000000
+H   -0.392000    1.011000    0.000000
+H   -0.392000   -0.506000    0.875000
+H   -0.392000   -0.506000   -0.875000
+H    1.932000    0.506000    0.875000
+H    1.932000    0.506000   -0.875000
+H    1.932000   -1.011000    0.000000
+
+S 1 2 0.05 10</code></pre>
+        <p>Scans the C-C bond in 10 increments of 0.05 Angstroms.</p>
+
+        <h3>2D scan: bond length + bond angle</h3>
+        <pre><code>#model = uma
+#device = gpu0
+#scan(method=lbfgs)
+
+0 1
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757160   -0.469200
+H    0.000000   -0.757160   -0.469200
+
+S 1 2 0.05 5
+S 2 1 3 5.0 6</code></pre>
+        <p>Simultaneously scans the O-H bond length (5 steps of 0.05 Angstroms) and the H-O-H bond angle (6 steps of 5 degrees), producing a 2D potential energy surface.</p>
+
+        <h3>Using the POST command for external constraints</h3>
+        <pre><code>#model = uma
+#device = gpu0
+#opt(method=lbfgs)
+
+XYZ /path/to/molecule.xyz
+
+POST /path/to/constraints.txt</code></pre>
+
+      </article>
+      <nav class="page-nav">
+        <a class="prev" href="../functions/solvent.html">&larr; Previous: Solvation</a>
+        <span class="next"></span>
+      </nav>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#atom-constraints">Atom Constraints (C)</a></li>
+          <li><a href="#bond-constraints">Bond Constraints (B)</a></li>
+          <li><a href="#angle-constraints">Angle Constraints (A)</a></li>
+          <li><a href="#dihedral-constraints">Dihedral Constraints (D)</a></li>
+          <li><a href="#scan-coordinates">Scan Coordinates (S)</a></li>
+          <li><a href="#post-command">POST Command</a></li>
+          <li><a href="#examples">Examples</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sidebar-overlay"></div>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

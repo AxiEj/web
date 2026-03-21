@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="documentation.html">Documentation</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="issues.html" class="active">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Report an Issue</h1>
+    <p class="subtitle">Help us improve MAPLE by reporting bugs, requesting features, or asking questions through our GitHub issue tracker.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <h2 id="how-to-report">How to Report a Bug</h2>
+      <p>We use GitHub Issues to track bugs, feature requests, and questions. Reporting issues through GitHub ensures they are visible to the entire community and can be addressed systematically by the development team.</p>
+
+      <div class="admonition tip">
+        <div class="admonition-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Tip
+        </div>
+        <div class="admonition-body">
+          <p>Before opening a new issue, search the existing issues to check if your problem has already been reported. This helps avoid duplicates and may lead you to a solution faster.</p>
+        </div>
+      </div>
+
+      <h3 id="steps">Steps to Submit an Issue</h3>
+      <ol>
+        <li>Go to the <a href="https://github.com/ClickFF/MAPLE/issues" target="_blank" rel="noopener noreferrer">MAPLE Issues page on GitHub</a>.</li>
+        <li>Click <strong>"New issue"</strong> to create a new report.</li>
+        <li>Choose the appropriate issue type (Bug report, Feature request, or Question).</li>
+        <li>Fill in the template with as much detail as possible.</li>
+        <li>Submit the issue.</li>
+      </ol>
+
+      <h3 id="what-to-include">What to Include in a Bug Report</h3>
+      <p>A good bug report helps us reproduce and fix the problem quickly. Please include the following information:</p>
+      <ul>
+        <li><strong>MAPLE version</strong> &mdash; Run <code>python -c "import maple; print(maple.__version__)"</code> to find your version.</li>
+        <li><strong>Python version</strong> &mdash; Run <code>python --version</code>.</li>
+        <li><strong>Operating system</strong> &mdash; e.g., Ubuntu 22.04, CentOS 8, macOS 14.</li>
+        <li><strong>GPU and CUDA version</strong> &mdash; Run <code>nvidia-smi</code> to check.</li>
+        <li><strong>Input file</strong> &mdash; The <code>.inp</code> file (or a minimal reproduction) that triggers the issue.</li>
+        <li><strong>Full error message</strong> &mdash; Copy the complete traceback or error output.</li>
+        <li><strong>Expected behavior</strong> &mdash; What you expected to happen.</li>
+        <li><strong>Actual behavior</strong> &mdash; What actually happened.</li>
+      </ul>
+
+      <h3 id="example-report">Example Bug Report</h3>
+      <pre><code><span class="section">Title:</span> Optimization crashes with MACE-OFF23 on molecules with fluorine
+
+<span class="section">Description:</span>
+Running geometry optimization with maceoff23s on a fluorine-containing
+molecule causes a RuntimeError during force evaluation.
+
+<span class="section">MAPLE version:</span> 2025.3
+<span class="section">Python:</span> 3.11.5
+<span class="section">OS:</span> Ubuntu 22.04
+<span class="section">GPU:</span> NVIDIA A100, CUDA 12.1
+
+<span class="section">Input file:</span>
+#model=maceoff23s
+#opt(method=lbfgs)
+#device=gpu0
+
+C  0.000  0.000  0.000
+F  1.350  0.000  0.000
+
+<span class="section">Error:</span>
+RuntimeError: element index out of range in model forward pass</code></pre>
+
+      <div class="admonition note">
+        <div class="admonition-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Note
+        </div>
+        <div class="admonition-body">
+          <p>For general questions about how to use MAPLE, consider checking the <a href="documentation.html">Documentation</a> first. Many common questions are answered in the tutorials and reference pages.</p>
+        </div>
+      </div>
+
+      <h2 id="feature-requests">Feature Requests</h2>
+      <p>We welcome suggestions for new features and improvements. When submitting a feature request, please describe:</p>
+      <ul>
+        <li>The problem you are trying to solve or the workflow you want to improve.</li>
+        <li>Your proposed solution or the behavior you would like to see.</li>
+        <li>Any alternatives you have considered.</li>
+      </ul>
+
+      <h2 id="contact">Contact</h2>
+      <p>For issues that cannot be reported through GitHub (e.g., security vulnerabilities), please contact the development team directly through the repository contact information.</p>
+      <p><a href="https://github.com/ClickFF/MAPLE/issues/new" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open an Issue on GitHub</a></p>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

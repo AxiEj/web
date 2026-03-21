@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molecular Dynamics - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="md.html" class="active">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="md_nve.html">NVE</a></li>
+                    <li><a href="md_nvt.html">NVT</a></li>
+                    <li><a href="md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Docs</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Tasks</a>
+          <span class="separator">/</span>
+          <span class="current">Molecular Dynamics</span>
+        </nav>
+
+        <h1>Molecular Dynamics</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>Molecular dynamics (MD) propagates the equations of motion for a molecular system, generating a time-ordered trajectory from which thermodynamic properties, conformational flexibility, and dynamical processes can be extracted. MAPLE integrates ML potentials with a symplectic Velocity Verlet integrator and provides three statistical ensembles covering the most common simulation conditions.</p>
+        <p>MD simulations in MAPLE are invoked with the <code>#md</code> directive. The ensemble is selected via the <code>ensemble</code> parameter. All three ensembles share a common integrator and output infrastructure.</p>
+
+        <h2 id="available-ensembles">Available Ensembles</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Ensemble</th>
+                <th>Keyword</th>
+                <th>Fixed Quantities</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="md_nve.html"><strong>NVE</strong></a></td>
+                <td><code>nve</code></td>
+                <td>N, V, E</td>
+                <td>Microcanonical ensemble. Energy-conserving reference simulation; no thermostat or barostat. <strong>Default.</strong></td>
+              </tr>
+              <tr>
+                <td><a href="md_nvt.html"><strong>NVT</strong></a></td>
+                <td><code>nvt</code></td>
+                <td>N, V, T</td>
+                <td>Canonical ensemble. Constant temperature via Langevin or V-rescale thermostat.</td>
+              </tr>
+              <tr>
+                <td><a href="md_npt.html"><strong>NPT</strong></a></td>
+                <td><code>npt</code></td>
+                <td>N, P, T</td>
+                <td>Isothermal-isobaric ensemble. Constant temperature and pressure; requires periodic boundary conditions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="quick-usage">Quick Usage</h2>
+        <p>To run an MD simulation, add the <code>#md</code> directive to your input file. The ensemble is specified with the <code>ensemble</code> parameter:</p>
+        <pre><code>#md(ensemble=nvt, temperature=300, steps=100000)</code></pre>
+        <p>If no ensemble is specified, NVE is used by default:</p>
+        <pre><code>#md</code></pre>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>A complete NVT equilibration of a water molecule at 300 K for 100 ps:</p>
+        <pre><code>#model=ani2x
+#md(ensemble=nvt, temperature=300, steps=100000, timestep=1.0, thermostat=langevin)
+#device=cpu
+
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200</code></pre>
+
+        <h2 id="common-parameters">Common Parameters</h2>
+        <p>These parameters are accepted by all three ensembles. Ensemble-specific parameters are documented on the individual ensemble pages.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ensemble</code></td>
+                <td>str</td>
+                <td><code>nve</code></td>
+                <td>Statistical ensemble: <code>nve</code>, <code>nvt</code>, or <code>npt</code>.</td>
+              </tr>
+              <tr>
+                <td><code>timestep</code></td>
+                <td>float</td>
+                <td>ensemble-dependent</td>
+                <td>Integration time step in femtoseconds. Default: 0.25 fs (NVE), 1.0 fs (NVT), 0.5 fs (NPT).</td>
+              </tr>
+              <tr>
+                <td><code>steps</code></td>
+                <td>int</td>
+                <td>ensemble-dependent</td>
+                <td>Total number of integration steps. Default: 400000 (NVE), 100000 (NVT), 10000 (NPT).</td>
+              </tr>
+              <tr>
+                <td><code>temperature</code></td>
+                <td>float</td>
+                <td><code>300.0</code></td>
+                <td>Target temperature in Kelvin. Used for velocity initialization in all ensembles and for thermostat control in NVT/NPT.</td>
+              </tr>
+              <tr>
+                <td><code>traj_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a trajectory frame every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>log_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a thermodynamic log entry every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>init_velocities</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Initialize velocities from a Maxwell&ndash;Boltzmann distribution at the target temperature.</td>
+              </tr>
+              <tr>
+                <td><code>init_from</code></td>
+                <td>str</td>
+                <td><code>None</code></td>
+                <td>Path to a <code>*_md_final.xyz</code> file from a previous run. Loads positions and velocities to continue a simulation.</td>
+              </tr>
+              <tr>
+                <td><code>resume</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Resume an interrupted simulation, appending to existing output files and offsetting the step counter.</td>
+              </tr>
+              <tr>
+                <td><code>remove_com</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Periodically remove center-of-mass translational momentum to eliminate floating-point drift.</td>
+              </tr>
+              <tr>
+                <td><code>random_seed</code></td>
+                <td>int</td>
+                <td><code>None</code></td>
+                <td>Random seed for reproducible velocity initialization and thermostat noise. If <code>None</code>, a random seed is used.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Output verbosity (0 = minimal, 1 = standard thermodynamic output, 2 = debug).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="output-files">Output Files</h2>
+        <p>Every MD run produces the following output files, where <code>*</code> is the input file base name:</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Contents</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>*_md_traj.xyz</code></td>
+                <td>Full trajectory in extended XYZ format. Each frame includes atomic symbols, positions (&#8491;), and velocities (&#8491;/fs), plus a comment line with step number, time, energy, and temperature.</td>
+              </tr>
+              <tr>
+                <td><code>*_md.dat</code></td>
+                <td>Thermodynamic log. Tab-separated columns: step, time (ps), total energy (Eh), potential energy (Eh), kinetic energy (Eh), temperature (K), and &mdash; for NPT &mdash; pressure (bar) and volume (&#8491;&sup3;).</td>
+              </tr>
+              <tr>
+                <td><code>*_md_final.xyz</code></td>
+                <td>Last frame of the trajectory, including velocities. Suitable as input to <code>init_from</code> for continuing or chaining simulations.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="workflow">Recommended Workflow</h2>
+        <p>A typical ML-MD protocol for a molecular system proceeds in three stages:</p>
+        <ol>
+          <li><strong>Geometry optimization</strong> &mdash; Relax the input structure with <code>#opt</code> before starting MD to remove large forces that can destabilize the integration.</li>
+          <li><strong>NVT equilibration</strong> &mdash; Run NVT for at least 50&ndash;100 ps to bring the system to the target temperature. Save the final frame with <code>init_from</code>.</li>
+          <li><strong>NVE or NVT production</strong> &mdash; Use the equilibrated structure as input. NVE is preferred for computing dynamical properties; NVT is appropriate for thermodynamic sampling.</li>
+        </ol>
+        <pre><code># Step 1: optimization
+#model=ani2x
+#opt
+
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200</code></pre>
+        <pre><code># Step 2: NVT equilibration (water_opt_opt.xyz produced by step 1)
+#model=ani2x
+#md(ensemble=nvt, temperature=300, steps=100000)
+
+XYZ water_opt_opt.xyz</code></pre>
+        <pre><code># Step 3: NVE production from equilibrated structure
+#model=ani2x
+#md(ensemble=nve, steps=400000, init_from=water_md_nvt_md_final.xyz)
+
+XYZ water_opt_opt.xyz</code></pre>
+
+        <div class="admonition important">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+            Important
+          </div>
+          <div class="admonition-body">
+            <p>NPT simulations require a periodic simulation cell. Set the cell dimensions using the <code>#pbc</code> directive before running NPT. Isolated molecules without PBC must use NVE or NVT.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="../../tasks/frequency.html">&larr; Frequency</a>
+          <a class="next" href="md_nve.html">NVE &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

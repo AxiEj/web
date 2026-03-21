@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPT Molecular Dynamics - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="md_nve.html">NVE</a></li>
+                    <li><a href="md_nvt.html">NVT</a></li>
+                    <li><a href="md_npt.html" class="active">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Docs</a>
+          <span class="separator">/</span>
+          <a href="../../documentation.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="md.html">Molecular Dynamics</a>
+          <span class="separator">/</span>
+          <span class="current">NPT</span>
+        </nav>
+
+        <h1>NPT Molecular Dynamics</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The NPT ensemble (isothermal-isobaric ensemble) holds particle number (N), pressure (P), and temperature (T) constant. Both a thermostat and a barostat are active simultaneously: the thermostat regulates kinetic energy (temperature), while the barostat periodically rescales the simulation cell to maintain the target pressure. NPT is the appropriate ensemble for condensed-phase simulations where the system must relax to its equilibrium density, and for computing thermodynamic properties such as density, compressibility, and enthalpy.</p>
+        <p>NPT requires periodic boundary conditions. Isolated gas-phase molecules must use <a href="md_nve.html">NVE</a> or <a href="md_nvt.html">NVT</a> instead.</p>
+        <p>MAPLE provides two thermostat choices and two barostat choices for NPT, which can be combined independently:</p>
+
+        <h3 id="thermostats">Thermostats</h3>
+        <ul>
+          <li><strong>V-rescale</strong> (default for NPT): stochastic velocity rescaling (Bussi et al., 2007). Uniform velocity scaling with a stochastic correction. Produces the correct NVT marginal distribution.</li>
+          <li><strong>Langevin</strong>: per-atom stochastic friction using the BAOAB scheme. Correct canonical distribution; ergodic. Higher friction can interfere with slow collective motions in condensed phases.</li>
+        </ul>
+
+        <h3 id="barostats">Barostats</h3>
+        <ul>
+          <li><strong>C-rescale</strong> (default for NPT): stochastic cell rescaling (Bernetti &amp; Bussi, 2020). Deterministic Berendsen rescaling augmented with a stochastic noise term to produce the correct NPT distribution. Recommended for production simulations.</li>
+          <li><strong>Berendsen</strong>: deterministic cell rescaling. Does <em>not</em> produce the correct NPT ensemble and suppresses pressure fluctuations. Use only for rapid pre-equilibration of cell dimensions before switching to C-rescale.</li>
+        </ul>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>timestep</code></td>
+                <td>float</td>
+                <td><code>0.5</code></td>
+                <td>Integration time step in femtoseconds. Smaller than NVT to ensure stability with cell rescaling operations.</td>
+              </tr>
+              <tr>
+                <td><code>steps</code></td>
+                <td>int</td>
+                <td><code>10000</code></td>
+                <td>Total number of integration steps (= 5 ps at 0.5 fs default). Extend to at least 200000 steps for production density calculations.</td>
+              </tr>
+              <tr>
+                <td><code>temperature</code></td>
+                <td>float</td>
+                <td><code>300.0</code></td>
+                <td>Target temperature in Kelvin.</td>
+              </tr>
+              <tr>
+                <td><code>pressure</code></td>
+                <td>float</td>
+                <td><code>1.0</code></td>
+                <td>Target pressure in bar.</td>
+              </tr>
+              <tr>
+                <td><code>thermostat</code></td>
+                <td>str</td>
+                <td><code>v-rescale</code></td>
+                <td>Thermostat algorithm. Options: <code>v-rescale</code>, <code>langevin</code>.</td>
+              </tr>
+              <tr>
+                <td><code>barostat</code></td>
+                <td>str</td>
+                <td><code>c-rescale</code></td>
+                <td>Barostat algorithm. Options: <code>c-rescale</code> (correct NPT ensemble), <code>berendsen</code> (pre-equilibration only).</td>
+              </tr>
+              <tr>
+                <td><code>friction</code></td>
+                <td>float</td>
+                <td><code>0.001</code></td>
+                <td>Langevin friction coefficient in 1/fs. Used only when <code>thermostat=langevin</code>.</td>
+              </tr>
+              <tr>
+                <td><code>tau_t</code></td>
+                <td>float</td>
+                <td><code>200.0</code></td>
+                <td>Temperature coupling time constant &tau;<sub>T</sub> in femtoseconds for V-rescale. Slightly larger than the NVT default to avoid over-coupling in the NPT ensemble.</td>
+              </tr>
+              <tr>
+                <td><code>tau_p</code></td>
+                <td>float</td>
+                <td><code>2000.0</code></td>
+                <td>Pressure coupling time constant &tau;<sub>P</sub> in femtoseconds. Large value (2 ps) accounts for the noise in ML potential stress tensors; do not set below 500 fs.</td>
+              </tr>
+              <tr>
+                <td><code>compressibility</code></td>
+                <td>float</td>
+                <td><code>4.5e-5</code></td>
+                <td>Isothermal compressibility in 1/bar. Default is the compressibility of liquid water at 300 K and 1 bar. Adjust for other solvents or materials.</td>
+              </tr>
+              <tr>
+                <td><code>traj_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a trajectory frame every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>log_every</code></td>
+                <td>int</td>
+                <td><code>100</code></td>
+                <td>Write a thermodynamic log entry every N steps. The log includes pressure and volume in addition to the standard energy and temperature columns.</td>
+              </tr>
+              <tr>
+                <td><code>init_velocities</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Initialize velocities from a Maxwell&ndash;Boltzmann distribution at <code>temperature</code>.</td>
+              </tr>
+              <tr>
+                <td><code>init_from</code></td>
+                <td>str</td>
+                <td><code>None</code></td>
+                <td>Path to a <code>*_md_final.xyz</code> file from a previous run.</td>
+              </tr>
+              <tr>
+                <td><code>resume</code></td>
+                <td>bool</td>
+                <td><code>False</code></td>
+                <td>Resume an interrupted simulation.</td>
+              </tr>
+              <tr>
+                <td><code>random_seed</code></td>
+                <td>int</td>
+                <td><code>None</code></td>
+                <td>Integer seed for reproducible velocity initialization and stochastic thermostat/barostat noise.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>1</code></td>
+                <td>Output verbosity (0 = minimal, 1 = standard).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>NPT density equilibration of a periodic water box at 300 K and 1 bar using the recommended V-rescale + C-rescale combination:</p>
+        <pre><code>#model=maceoff23m
+#md(ensemble=npt, temperature=300, pressure=1.0, steps=200000, timestep=0.5)
+#pbc(18.6, 18.6, 18.6)
+#device=gpu0
+
+XYZ water_box.xyz</code></pre>
+
+        <p>Pre-equilibration with Berendsen barostat for rapid cell relaxation, followed by production with C-rescale:</p>
+        <pre><code># Pre-equilibration (berendsen_equil.inp)
+#model=maceoff23m
+#md(ensemble=npt, temperature=300, pressure=1.0, steps=20000,
+    barostat=berendsen, tau_p=500.0)
+#pbc(18.6, 18.6, 18.6)
+#device=gpu0
+
+XYZ water_box.xyz</code></pre>
+        <pre><code># Production (production.inp)
+#model=maceoff23m
+#md(ensemble=npt, temperature=300, pressure=1.0, steps=400000,
+    barostat=c-rescale, init_from=water_box_berendsen_equil_md_final.xyz)
+#pbc(18.6, 18.6, 18.6)
+#device=gpu0
+
+XYZ water_box.xyz</code></pre>
+
+        <h2 id="barostat-choice">Choosing a Barostat</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Barostat</th>
+                <th>Correct Ensemble</th>
+                <th>Pressure Fluctuations</th>
+                <th>When to Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>c-rescale</code></td>
+                <td>Yes</td>
+                <td>Physically correct</td>
+                <td>All production NPT simulations. Default recommendation.</td>
+              </tr>
+              <tr>
+                <td><code>berendsen</code></td>
+                <td>No</td>
+                <td>Suppressed</td>
+                <td>Rapid initial cell equilibration only. Do not use for computing thermodynamic averages.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admonition important">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+            Important
+          </div>
+          <div class="admonition-body">
+            <p>NPT requires a periodic simulation cell defined with the <code>#pbc</code> directive. Attempting to run NPT on a non-periodic system will raise an error. See the <a href="../../setup/coordinates.html">Coordinates</a> page for the <code>#pbc</code> syntax.</p>
+          </div>
+        </div>
+
+        <div class="admonition note">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Note
+          </div>
+          <div class="admonition-body">
+            <p>The default <code>tau_p=2000.0</code> fs is intentionally long. ML potentials typically have higher stress-tensor noise than classical force fields, so aggressive pressure coupling (short &tau;<sub>P</sub>) can lead to cell instability. If the density converges slowly, do not decrease &tau;<sub>P</sub> below 500 fs.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="md_nvt.html">&larr; NVT</a>
+          <a class="next" href="../../tasks/scan/scan.html">PES Scan &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

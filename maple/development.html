@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Development &amp; Releases — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="documentation.html">Documentation</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html" class="active">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Development &amp; Releases</h1>
+    <p class="subtitle">Track the evolution of MAPLE through release notes, changelogs, and development milestones.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <h2 id="source-code">Source Code</h2>
+      <p>MAPLE is developed openly on GitHub. Contributions, bug reports, and feature requests are welcome.</p>
+      <p><a href="https://github.com/ClickFF/MAPLE" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub</a>
+        <a href="https://github.com/ClickFF/MAPLE/releases" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">All Releases</a></p>
+
+      <h2 id="changelog">Changelog</h2>
+
+      <h3 id="v2025-3">Version 2025.3 <span class="text-muted">&mdash; September 12, 2025</span></h3>
+      <p>Major release with AutoNEB support and improved convergence behavior.</p>
+      <ul>
+        <li><strong>New: AutoNEB method</strong> &mdash; Automatic nudged elastic band with adaptive image insertion for transition state searches. Reduces manual setup for complex reaction paths.</li>
+        <li><strong>Improved convergence</strong> &mdash; Refined step-size control for L-BFGS and RFO optimizers, leading to more robust convergence on flat potential energy surfaces.</li>
+        <li><strong>Growing String Method enhancements</strong> &mdash; Better interpolation for initial path generation and improved reparameterization.</li>
+        <li><strong>Bug fix:</strong> Fixed incorrect thermochemistry corrections when using symmetry-reduced Hessians in frequency calculations.</li>
+        <li><strong>Bug fix:</strong> Resolved memory leak in multi-structure scan calculations that affected long-running jobs.</li>
+        <li><strong>Performance:</strong> Reduced GPU memory footprint for MACE models by approximately 15% through optimized graph construction.</li>
+      </ul>
+
+      <h3 id="v2025-2">Version 2025.2 <span class="text-muted">&mdash; June 3, 2025</span></h3>
+      <p>Expanded model support and new PES scanning capabilities.</p>
+      <ul>
+        <li><strong>New model: MACE-OMol</strong> &mdash; Added support for the MACE-OMol potential trained on the OMol25 data set for broad organic molecular coverage.</li>
+        <li><strong>New model: EGRET</strong> &mdash; Added support for the EGRET equivariant graph neural network potential.</li>
+        <li><strong>N-dimensional PES scans</strong> &mdash; Extended scan module to support arbitrary N-dimensional relaxed and rigid scans along multiple internal coordinates simultaneously.</li>
+        <li><strong>Dimer method improvements</strong> &mdash; Better initial rotation algorithm and convergence criteria for dimer-based transition state searches.</li>
+        <li><strong>Bug fix:</strong> Corrected coordinate transformation for systems with linear molecular fragments during optimization.</li>
+        <li><strong>Bug fix:</strong> Fixed incorrect energy reporting in scan output when using AIMNet2-NSE with D4 dispersion.</li>
+      </ul>
+
+      <h3 id="v2025-1">Version 2025.1 <span class="text-muted">&mdash; March 15, 2025</span></h3>
+      <p>Initial public release of MAPLE with core computational capabilities.</p>
+      <ul>
+        <li><strong>Frequency analysis</strong> &mdash; Normal mode analysis with mass-weighted Hessian diagonalization, RRHO thermochemistry corrections, and IR spectrum generation.</li>
+        <li><strong>ML potential support</strong> &mdash; ANI-2x, ANI-1x, ANI-1ccx, ANI-1xnr, AIMNet2, AIMNet2-NSE, MACE-OFF23 (s/m/l), and UMA.</li>
+        <li><strong>Geometry optimization</strong> &mdash; L-BFGS, RFO, steepest descent, conjugate gradient, DIIS, and bracketing L-BFGS methods.</li>
+        <li><strong>Transition state search</strong> &mdash; NEB, CI-NEB, P-RFO, Dimer, and Growing String methods.</li>
+        <li><strong>IRC</strong> &mdash; Intrinsic reaction coordinate with GS, LQA, HPC, and EulerPC integrators.</li>
+        <li><strong>PES scan</strong> &mdash; 1D relaxed and rigid scans along bonds, angles, and dihedrals.</li>
+        <li><strong>Solvation</strong> &mdash; GBSA implicit solvation and explicit solvent models.</li>
+        <li><strong>Constraints</strong> &mdash; Fix atoms, bonds, angles, and dihedral angles during optimization.</li>
+        <li><strong>GPU acceleration</strong> &mdash; Full CUDA support for all ML potential evaluations.</li>
+        <li><strong>D4 dispersion</strong> &mdash; Optional DFT-D4 dispersion correction for all calculation types.</li>
+      </ul>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

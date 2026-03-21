@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nudged Elastic Band (NEB) - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../documentation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="ts_prfo.html">P-RFO</a></li>
+                    <li><a href="ts_neb.html" class="active">NEB</a></li>
+                    <li><a href="ts_dimmer.html">Dimer</a></li>
+                    <li><a href="ts_string.html">String/GSM</a></li>
+                    <li><a href="ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../md/md_nve.html">NVE</a></li>
+                    <li><a href="../md/md_nvt.html">NVT</a></li>
+                    <li><a href="../md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <a href="../../documentation.html">Tasks</a>
+        <span class="separator">/</span>
+        <a href="ts.html">Transition State</a>
+        <span class="separator">/</span>
+        <span class="current">NEB</span>
+      </nav>
+
+      <article>
+        <h1>Nudged Elastic Band (NEB)</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The Nudged Elastic Band (NEB) method is a chain-of-states approach for finding the minimum energy path (MEP) between a known reactant and product. A series of intermediate images are connected by spring forces and optimized simultaneously. The "nudging" procedure projects out the perpendicular component of the spring force and the parallel component of the true force, ensuring that the images converge to the MEP rather than sliding down to the endpoints.</p>
+        <p>MAPLE's NEB implementation uses Image Dependent Pair Potential (IDPP) interpolation to generate a physically reasonable initial path, dynamic spring constants to improve image distribution near the transition state, and an L-BFGS optimizer for efficient band relaxation.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>n_images</code></td>
+                <td>int</td>
+                <td>10</td>
+                <td>Number of internal images along the path (excluding fixed endpoints).</td>
+              </tr>
+              <tr>
+                <td><code>k_min</code></td>
+                <td>float</td>
+                <td>0.03</td>
+                <td>Minimum spring constant (Eh/Ang&sup2;).</td>
+              </tr>
+              <tr>
+                <td><code>k_max</code></td>
+                <td>float</td>
+                <td>0.3</td>
+                <td>Maximum spring constant (Eh/Ang&sup2;).</td>
+              </tr>
+              <tr>
+                <td><code>use_dynamic_k</code></td>
+                <td>bool</td>
+                <td>True</td>
+                <td>Enable energy-weighted dynamic spring constants.</td>
+              </tr>
+              <tr>
+                <td><code>k_decay</code></td>
+                <td>float</td>
+                <td>0.5</td>
+                <td>Decay factor for dynamic spring constant weighting.</td>
+              </tr>
+              <tr>
+                <td><code>max_iter</code></td>
+                <td>int</td>
+                <td>500</td>
+                <td>Maximum L-BFGS optimization iterations for the NEB band.</td>
+              </tr>
+              <tr>
+                <td><code>lbfgs_m</code></td>
+                <td>int</td>
+                <td>20</td>
+                <td>L-BFGS memory for the NEB optimizer.</td>
+              </tr>
+              <tr>
+                <td><code>step0</code></td>
+                <td>float</td>
+                <td>2e-2</td>
+                <td>Initial step length for the L-BFGS optimizer.</td>
+              </tr>
+              <tr>
+                <td><code>ifidpp</code></td>
+                <td>int</td>
+                <td>1</td>
+                <td>IDPP interpolation flag (1=IDPP, 0=linear).</td>
+              </tr>
+              <tr>
+                <td><code>neb_f_max_th</code></td>
+                <td>float</td>
+                <td>9.5e-3</td>
+                <td>Max force convergence threshold for NEB.</td>
+              </tr>
+              <tr>
+                <td><code>neb_f_rms_th</code></td>
+                <td>float</td>
+                <td>5e-3</td>
+                <td>RMS force convergence threshold for NEB.</td>
+              </tr>
+              <tr>
+                <td><code>initial_opt</code></td>
+                <td>bool</td>
+                <td>False</td>
+                <td>Optimize endpoints before building the NEB path.</td>
+              </tr>
+              <tr>
+                <td><code>refine</code></td>
+                <td>str</td>
+                <td>None</td>
+                <td>Post-NEB refinement: None, "cineb", or "nebts".</td>
+              </tr>
+              <tr>
+                <td><code>cineb_f_max_th</code></td>
+                <td>float</td>
+                <td>1e-2</td>
+                <td>Max force threshold for CI-NEB refinement.</td>
+              </tr>
+              <tr>
+                <td><code>cineb_f_rms_th</code></td>
+                <td>float</td>
+                <td>1e-2</td>
+                <td>RMS force threshold for CI-NEB refinement.</td>
+              </tr>
+              <tr>
+                <td><code>cilbfgs_m</code></td>
+                <td>int</td>
+                <td>20</td>
+                <td>L-BFGS memory for CI-NEB optimizer.</td>
+              </tr>
+              <tr>
+                <td><code>cistep0</code></td>
+                <td>float</td>
+                <td>5e-3</td>
+                <td>Initial step for CI-NEB optimizer.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="refinement-options">Refinement Options</h2>
+        <h3>CI-NEB (Climbing Image NEB)</h3>
+        <p>When <code>refine=cineb</code> is set, the highest-energy image (HEI) is freed from spring forces and instead climbs along the band tangent toward the true saddle point. The remaining images continue to be optimized with springs. This gives a more accurate TS estimate without requiring a separate local TS optimizer.</p>
+
+        <h3>NEBTS (NEB + TS Refinement)</h3>
+        <p>When <code>refine=nebts</code> is set, MAPLE first performs CI-NEB to refine the HEI, then applies a P-RFO local TS optimizer starting from the climbing image. This two-stage approach provides the most accurate TS geometry and is recommended for production calculations.</p>
+
+        <h2 id="input-example">Input Example</h2>
+        <pre><code>#model=ani1xnr
+#ts(method=neb,refine=nebts)
+#device=gpu0
+
+XYZ /path/to/reactant.xyz
+XYZ /path/to/product.xyz</code></pre>
+
+        <h2 id="output-files">Output Files</h2>
+        <ul>
+          <li><code>*_mep.xyz</code> &mdash; Multi-frame XYZ file containing all images along the converged minimum energy path.</li>
+          <li><code>*_hei.xyz</code> &mdash; The highest-energy image extracted from the converged NEB band.</li>
+          <li><code>*_cineb_*.xyz</code> &mdash; Climbing-image NEB trajectory and converged path (when <code>refine=cineb</code> or <code>refine=nebts</code>).</li>
+          <li><code>*_nebts_ts.xyz</code> &mdash; Final optimized TS geometry from P-RFO refinement (when <code>refine=nebts</code>).</li>
+        </ul>
+
+        <div class="admonition important">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Important
+          </div>
+          <div class="admonition-body">
+            <p>Always ensure your reactant and product endpoint geometries are properly optimized before running NEB. Poorly optimized endpoints introduce artificial forces into the band and can prevent convergence or lead to incorrect MEPs. Use <code>initial_opt=true</code> or run separate optimization calculations beforehand.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="ts_prfo.html">&larr; Previous: P-RFO</a>
+          <a class="next" href="ts_dimmer.html">Next: Dimer &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc"><div class="toc-sticky"><h3>On this page</h3><ul></ul></div></aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

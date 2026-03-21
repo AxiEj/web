@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - MAPLE Documentation</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html" class="active">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+                <li><a href="../setup/models.html">ML Models</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/md/md_nve.html">NVE</a></li>
+                    <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
+                    <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <span>Input Setup</span>
+        <span class="separator">/</span>
+        <span class="current">Settings</span>
+      </nav>
+      <article>
+        <h1>Part I: Settings Block</h1>
+
+        <p>MAPLE input files (<code>.inp</code>) begin with a settings block that configures the calculation type, selects the machine learning potential model, specifies the computational device, and sets global options. All control commands in this block start with the <code>#</code> symbol. During input processing, these commands are parsed first to determine the calculation task and its parameter settings.</p>
+
+        <div class="admonition tip">
+          <p class="admonition-title">Tip</p>
+          <p>If the input file does not define any task type, MAPLE automatically performs a single point energy calculation (<code>sp</code>) using default settings. Parameters left unspecified within any task command will also use their defaults.</p>
+        </div>
+
+        <h2 id="header-commands">Header Commands</h2>
+
+        <p>The following header commands control the core behavior of a MAPLE calculation. Each command begins with <code>#</code> and can appear in any order within the settings block.</p>
+
+        <h3 id="model">#model</h3>
+        <p>Specifies the machine learning potential model used for the calculation. See the <a href="../setup/models.html">ML Models</a> page for a complete list of supported potentials and guidance on choosing one.</p>
+        <pre><code>#model = ani2x
+#model = uma
+#model = aimnet2
+#model = maceoff23m</code></pre>
+
+        <h3 id="opt">#opt</h3>
+        <p>Requests a geometry optimization. Parameters such as the optimization method and convergence criteria can be supplied in parentheses.</p>
+        <pre><code>#opt
+#opt(method=lbfgs)
+#opt(method=lbfgs, convergence=tight)</code></pre>
+
+        <h3 id="ts">#ts</h3>
+        <p>Requests a transition state search. The method and convergence settings are specified in parentheses.</p>
+        <pre><code>#ts
+#ts(method=prfo)
+#ts(method=neb, convergence=tight)</code></pre>
+
+        <h3 id="freq">#freq</h3>
+        <p>Requests a vibrational frequency calculation. This computes the Hessian matrix and derives harmonic frequencies, zero-point energy, and thermochemical properties.</p>
+        <pre><code>#freq</code></pre>
+
+        <h3 id="irc">#irc</h3>
+        <p>Requests an intrinsic reaction coordinate (IRC) calculation, tracing the minimum energy path from a transition state toward reactants and products.</p>
+        <pre><code>#irc
+#irc(method=gs, direction=both)
+#irc(method=lqa, steps=50)</code></pre>
+
+        <h3 id="scan">#scan</h3>
+        <p>Requests a potential energy surface (PES) scan along one or more internal coordinates. Scan coordinates are defined in the post-processing section of the input file.</p>
+        <pre><code>#scan
+#scan(method=lbfgs)
+#scan(method=rfo, convergence=tight)</code></pre>
+
+        <h3 id="device">#device</h3>
+        <p>Specifies the hardware device on which the calculation will run. See <a href="#device-selection">Device Selection</a> below for details.</p>
+        <pre><code>#device = cpu
+#device = gpu0
+#device = cuda</code></pre>
+
+        <h2 id="job-types">Job Types</h2>
+
+        <p>The table below summarizes all supported job types, their command syntax, and default methods.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Job Type</th>
+              <th>Command</th>
+              <th>Description</th>
+              <th>Default Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Single Point</td>
+              <td><code>#sp</code></td>
+              <td>Computes energy and forces at the current geometry</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Optimization</td>
+              <td><code>#opt</code></td>
+              <td>Minimizes the molecular geometry</td>
+              <td>L-BFGS</td>
+            </tr>
+            <tr>
+              <td>Frequency</td>
+              <td><code>#freq</code></td>
+              <td>Computes vibrational frequencies and thermochemistry</td>
+              <td>Numerical Hessian</td>
+            </tr>
+            <tr>
+              <td>Transition State</td>
+              <td><code>#ts</code></td>
+              <td>Locates first-order saddle points</td>
+              <td>P-RFO</td>
+            </tr>
+            <tr>
+              <td>IRC</td>
+              <td><code>#irc</code></td>
+              <td>Traces the minimum energy path from a TS</td>
+              <td>GS</td>
+            </tr>
+            <tr>
+              <td>PES Scan</td>
+              <td><code>#scan</code></td>
+              <td>Scans along internal coordinates</td>
+              <td>L-BFGS</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="admonition tip">
+          <p class="admonition-title">Tip</p>
+          <p>Task commands accept parameters in parentheses using the format <code>#taskname(param1=value1, param2=value2)</code>. If no parameters are given, MAPLE uses the default settings for that job type.</p>
+        </div>
+
+        <h2 id="device-selection">Device Selection</h2>
+
+        <p>MAPLE can run on CPUs or NVIDIA GPUs. Use the <code>#device</code> command to select the target hardware. When multiple GPUs are available, you can target a specific one by index.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CPU</td>
+              <td><code>#device = cpu</code></td>
+              <td>Run on the CPU (default if no GPU is detected)</td>
+            </tr>
+            <tr>
+              <td>GPU 0</td>
+              <td><code>#device = gpu0</code></td>
+              <td>Run on the first GPU (CUDA device 0)</td>
+            </tr>
+            <tr>
+              <td>GPU 1</td>
+              <td><code>#device = gpu1</code></td>
+              <td>Run on the second GPU (CUDA device 1)</td>
+            </tr>
+            <tr>
+              <td>CUDA (auto)</td>
+              <td><code>#device = cuda</code></td>
+              <td>Automatically select an available CUDA GPU</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="convergence-levels">Convergence Levels</h2>
+
+        <p>MAPLE provides several predefined convergence levels for geometry optimizations and transition state searches. These control the thresholds for maximum force (<code>f_max</code>), RMS force (<code>f_rms</code>), maximum displacement (<code>dp_max</code>), and RMS displacement (<code>dp_rms</code>). All force values are in Hartree/Bohr and displacements in Bohr.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>f_max</th>
+              <th>f_rms</th>
+              <th>dp_max</th>
+              <th>dp_rms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>extratight</code></td>
+              <td>1.5e-06</td>
+              <td>1.0e-06</td>
+              <td>6.0e-06</td>
+              <td>4.0e-06</td>
+            </tr>
+            <tr>
+              <td><code>tight</code></td>
+              <td>1.5e-05</td>
+              <td>1.0e-05</td>
+              <td>6.0e-05</td>
+              <td>4.0e-05</td>
+            </tr>
+            <tr>
+              <td><code>medium</code></td>
+              <td>4.5e-04</td>
+              <td>3.0e-04</td>
+              <td>1.8e-03</td>
+              <td>1.2e-03</td>
+            </tr>
+            <tr>
+              <td><code>loose</code></td>
+              <td>2.5e-03</td>
+              <td>1.7e-03</td>
+              <td>1.0e-02</td>
+              <td>6.7e-03</td>
+            </tr>
+            <tr>
+              <td><code>extraloose</code></td>
+              <td>2.5e-02</td>
+              <td>1.7e-02</td>
+              <td>1.0e-01</td>
+              <td>6.7e-02</td>
+            </tr>
+            <tr>
+              <td><code>superloose</code></td>
+              <td>2.5e-01</td>
+              <td>1.7e-01</td>
+              <td>1.0e+00</td>
+              <td>6.7e-01</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Set the convergence level inside the task command parentheses:</p>
+        <pre><code>#opt(method=lbfgs, convergence=tight)
+#ts(method=prfo, convergence=extratight)</code></pre>
+
+        <div class="admonition tip">
+          <p class="admonition-title">Tip</p>
+          <p>The default convergence level is <code>medium</code>. For high-accuracy work such as computing thermochemical corrections, consider using <code>tight</code> or <code>extratight</code>. For quick preliminary scans, <code>loose</code> or <code>extraloose</code> can dramatically reduce computation time.</p>
+        </div>
+
+      </article>
+      <nav class="page-nav">
+        <a class="prev" href="../tutorials/input_output.html">&larr; Previous: Input &amp; Output</a>
+        <a class="next" href="../setup/coordinates.html">Next: Coordinates &rarr;</a>
+      </nav>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#header-commands">Header Commands</a></li>
+          <li><a href="#job-types">Job Types</a></li>
+          <li><a href="#device-selection">Device Selection</a></li>
+          <li><a href="#convergence-levels">Convergence Levels</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sidebar-overlay"></div>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
