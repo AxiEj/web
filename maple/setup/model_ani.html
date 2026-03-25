@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Single Point Energy - MAPLE</title>
+  <title>ANI Models - MAPLE Documentation</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
                 <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
               </ul>
             </li>
-            <li>
+            <li class="open">
               <span class="tree-section"><span class="chevron"></span> Input Setup</span>
               <ul class="children">
                 <li><a href="../setup/settings.html">Settings</a></li>
@@ -56,17 +56,17 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../setup/models.html">ML Models</a></span>
                   <ul class="children">
                     <li><a href="../setup/model_uma.html">UMA</a></li>
-                    <li><a href="../setup/model_ani.html">ANI</a></li>
+                    <li><a href="../setup/model_ani.html" class="active">ANI</a></li>
                     <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
                     <li><a href="../setup/model_mace.html">MACE</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li class="open">
+            <li>
               <span class="tree-section"><span class="chevron"></span> Tasks</span>
               <ul class="children">
-                <li><a href="../tasks/singlepoint.html" class="active">Single Point</a></li>
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
                 <li><a href="../tasks/frequency.html">Frequency</a></li>
                 <li>
                   <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
@@ -122,103 +122,135 @@
         <span class="separator">/</span>
         <a href="../documentation.html">Docs</a>
         <span class="separator">/</span>
-        <span>Tasks</span>
+        <a href="../setup/models.html">ML Models</a>
         <span class="separator">/</span>
-        <span class="current">Single Point</span>
+        <span class="current">ANI</span>
       </nav>
-
       <article>
-        <h1>Single Point Energy</h1>
+        <h1>ANI Models</h1>
 
-        <h2 id="overview">Overview</h2>
-        <p>A single point (SP) calculation computes the electronic energy and atomic forces at a fixed molecular geometry. Unlike optimization or transition state searches, no atoms are moved during the calculation. The geometry remains exactly as specified in the input, and MAPLE evaluates the energy and gradient at that single configuration.</p>
-        <p>This is the simplest and fastest task type available in MAPLE, making it the foundation upon which more complex workflows are built.</p>
+        <p>The <strong>ANI</strong> (Accurate NeurAl networK engINe for Molecular Energies) family is a set of neural network potentials developed by the Roitberg group. ANI models are among the fastest ML potentials available, making them ideal for high-throughput screening and rapid prototyping of organic molecular systems.</p>
 
-        <h2 id="usage">Usage</h2>
-        <p>The single point task is invoked by including the <code>#sp</code> header command in the input file. No additional parameters are required.</p>
-        <pre><code>#sp</code></pre>
-        <p>The <code>#sp</code> command does not accept any method or convergence parameters since there is no iterative procedure involved. You only need to specify the model and device alongside the task command.</p>
+        <h2 id="variants">Available Variants</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Keyword</th>
+              <th>Elements</th>
+              <th>Training Level</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ANI-2x</td>
+              <td><code>ani2x</code></td>
+              <td>H, C, N, O, F, S, Cl</td>
+              <td>&omega;B97X / 6-31G(d)</td>
+              <td>General organic chemistry with halogens</td>
+            </tr>
+            <tr>
+              <td>ANI-1x</td>
+              <td><code>ani1x</code></td>
+              <td>H, C, N, O</td>
+              <td>&omega;B97X / 6-31G(d)</td>
+              <td>Fast calculations on HCNO-only systems</td>
+            </tr>
+            <tr>
+              <td>ANI-1ccx</td>
+              <td><code>ani1ccx</code></td>
+              <td>H, C, N, O</td>
+              <td>CCSD(T)/CBS (transfer-learned)</td>
+              <td>Publication-quality accuracy for small molecules</td>
+            </tr>
+            <tr>
+              <td>ANI-1xnr</td>
+              <td><code>ani1xnr</code></td>
+              <td>H, C, N, O</td>
+              <td>&omega;B97X / 6-31G(d) (non-reactive)</td>
+              <td>Equilibrium geometries without bond-breaking</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="d4-dispersion">DFT-D4 Dispersion Correction</h2>
+
+        <p>ANI models are the only models in MAPLE that support the DFT-D4 dispersion correction. D4 adds London dispersion (van der Waals) interactions, which is critical for non-covalent binding, molecular stacking, and conformational energetics.</p>
+
+        <pre><code><span class="keyword">#model</span>=<span class="value">ani2x</span>
+<span class="keyword">#d4</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)</code></pre>
 
         <div class="admonition tip">
-          <div class="admonition-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
-            Tip
-          </div>
-          <div class="admonition-body">
-            <p>SP is the default task type. If no job type is specified in the input file (i.e., no <code>#sp</code>, <code>#opt</code>, <code>#freq</code>, etc.), MAPLE will automatically perform a single point energy calculation.</p>
-          </div>
+          <p class="admonition-title">Tip</p>
+          <p>Always enable <code>#d4</code> when studying systems with significant non-covalent interactions (hydrogen bonds, pi-stacking, host-guest complexes). The computational overhead is minimal.</p>
         </div>
 
-        <h2 id="input-example">Input Example</h2>
-        <p>Below is a complete input file for a single point calculation on a small system using the ANI-1xnr model on a GPU:</p>
-        <pre><code>#model=ani1xnr
-#sp
-#device=gpu0
+        <h2 id="examples">Usage Examples</h2>
 
-C   0.0  0.0  0.0
-H   1.0  0.0  0.0
-O   2.0  0.0  0.0</code></pre>
-        <p>The first three lines are header commands that set the ML model, task type, and compute device. The remaining lines define the atomic coordinates in Cartesian format (element symbol followed by X, Y, Z positions in angstroms).</p>
+        <h3>General organic optimization</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">ani2x</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
 
-        <h2 id="parameters">Parameters</h2>
-        <p>The single point task accepts the following parameter:</p>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>verbose</code></td>
-                <td>int</td>
-                <td>1</td>
-                <td>Output verbosity level. 0 = energy only, 1 = detailed output with forces, 2 = suppress coordinate printing.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+0 1
+C    0.000000    0.000000    0.000000
+O    1.200000    0.000000    0.000000
+H   -0.540000    0.940000    0.000000
+H   -0.540000   -0.940000    0.000000</code></pre>
 
-        <h2 id="output">Output</h2>
-        <p>The output file from a single point calculation contains the following information:</p>
+        <h3>High-accuracy with coupled-cluster potential</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">ani1ccx</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>, <span class="param">convergence</span>=<span class="value">extratight</span>)
+
+0 1
+O    0.000000    0.000000    0.117300
+H    0.000000    0.756900   -0.469200
+H    0.000000   -0.756900   -0.469200</code></pre>
+
+        <h3>With D4 dispersion for non-covalent interactions</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">ani2x</span>
+<span class="keyword">#d4</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>, <span class="param">convergence</span>=<span class="value">tight</span>)
+
+XYZ /path/to/dimer_complex.xyz</code></pre>
+
+        <h2 id="limitations">Limitations</h2>
         <ul>
-          <li><strong>Total energy</strong> -- reported in Hartree (Eh) units. This is the primary result of the SP calculation.</li>
-          <li><strong>Gradient / forces</strong> -- the atomic forces (negative gradient of the energy with respect to nuclear positions) are computed and printed for each atom.</li>
-        </ul>
-        <p>Example output:</p>
-        <pre><code>Energy: -10434.811113387317</code></pre>
-        <p>The energy value represents the total electronic energy of the system at the given geometry as predicted by the specified ML potential.</p>
-
-        <h2 id="use-cases">Use Cases</h2>
-        <p>Single point calculations are useful in a variety of scenarios:</p>
-        <ul>
-          <li><strong>Benchmarking</strong> -- comparing energies from different ML models or against reference DFT/ab initio values for the same geometry.</li>
-          <li><strong>Energy comparisons</strong> -- evaluating relative energies of conformers, isomers, or reaction intermediates at their respective geometries.</li>
-          <li><strong>Post-optimization checks</strong> -- verifying the energy at an optimized geometry using a different or higher-level model than was used during optimization.</li>
-          <li><strong>Force analysis</strong> -- examining the magnitude and direction of forces on atoms to assess whether a structure is close to a stationary point.</li>
-          <li><strong>Workflow building blocks</strong> -- SP calculations serve as the fundamental energy/force evaluation used internally by optimization, frequency, TS search, and other iterative tasks.</li>
+          <li><strong>No charge/multiplicity support.</strong> ANI models always assume neutral, singlet ground state. Charged or open-shell species will be treated as neutral singlets without warning.</li>
+          <li><strong>Limited elements.</strong> ANI-2x covers 7 elements; ANI-1x/1ccx/1xnr cover only H, C, N, O.</li>
+          <li><strong>No periodic systems.</strong> ANI models do not support periodic boundary conditions.</li>
+          <li><strong>No implicit solvation.</strong> GBSA solvation is not available for ANI models.</li>
         </ul>
 
-        <nav class="page-nav">
-          <a href="../setup/models.html">&larr; Prev: ML Models</a>
-          <a class="next" href="../tasks/frequency.html">Next: Frequency &rarr;</a>
-        </nav>
       </article>
+      <nav class="page-nav">
+        <a class="prev" href="../setup/model_uma.html">&larr; Previous: UMA</a>
+        <a class="next" href="../setup/model_aimnet.html">Next: AIMNet2 &rarr;</a>
+      </nav>
     </main>
 
     <aside class="toc">
       <div class="toc-sticky">
         <h3>On this page</h3>
-        <ul></ul>
+        <ul>
+          <li><a href="#variants">Available Variants</a></li>
+          <li><a href="#d4-dispersion">DFT-D4 Dispersion</a></li>
+          <li><a href="#examples">Usage Examples</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+        </ul>
       </div>
     </aside>
   </div>
+
   <div class="sidebar-overlay"></div>
-  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

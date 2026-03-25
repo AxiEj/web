@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>P-RFO (Partitioned Rational Function Optimization) - MAPLE</title>
   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
               <ul class="children">
                 <li><a href="../../setup/settings.html">Settings</a></li>
                 <li><a href="../../setup/coordinates.html">Coordinates</a></li>
-                <li><a href="../../setup/models.html">ML Models</a></li>
+                <li>
+                    <span class="tree-label"><span class="chevron"></span> <a href="../../setup/models.html">ML Models</a></span>
+                    <ul class="children">
+                      <li><a href="../../setup/model_uma.html">UMA</a></li>
+                      <li><a href="../../setup/model_ani.html">ANI</a></li>
+                      <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                      <li><a href="../../setup/model_mace.html">MACE</a></li>
+                    </ul>
+                  </li>
               </ul>
             </li>
             <li class="open">
@@ -83,20 +90,16 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
                   <ul class="children">
                     <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../scan/scan_rfo.html">RFO</a></li>
                   </ul>
                 </li>
                 <li>
                   <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
                   <ul class="children">
                     <li><a href="../irc/irc_gs.html">GS</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
-                  <ul class="children">
-                    <li><a href="../md/md_nve.html">NVE</a></li>
-                    <li><a href="../md/md_nvt.html">NVT</a></li>
-                    <li><a href="../md/md_npt.html">NPT</a></li>
+                    <li><a href="../irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../irc/irc_eulerpc.html">EulerPC</a></li>
                   </ul>
                 </li>
               </ul>

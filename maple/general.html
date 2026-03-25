@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>About MAPLE — Machine-learning Potential for Landscape Exploration</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -105,12 +104,11 @@
       <h3 id="task-types">Supported Task Types</h3>
       <ul>
         <li><strong><a href="tasks/singlepoint.html">Single Point (sp)</a></strong> &mdash; Compute molecular energies and properties at fixed geometries.</li>
-        <li><strong><a href="tasks/frequency.html">Frequency (freq)</a></strong> &mdash; Normal mode analysis, RRHO thermochemistry, and IR spectra via mass-weighted Hessian diagonalization.</li>
+        <li><strong>Frequency (freq)</strong> &mdash; Normal mode analysis, RRHO thermochemistry, and IR spectra via mass-weighted Hessian diagonalization.</li>
         <li><strong><a href="tasks/opt/optimization.html">Optimization (opt)</a></strong> &mdash; Locate equilibrium geometries using L-BFGS, RFO, steepest descent, conjugate gradient, DIIS, or bracketing L-BFGS.</li>
         <li><strong><a href="tasks/ts/ts.html">Transition State (ts)</a></strong> &mdash; Saddle point search via NEB, CI-NEB, P-RFO, Dimer, Growing String, or AutoNEB methods.</li>
         <li><strong><a href="tasks/scan/scan.html">PES Scan (scan)</a></strong> &mdash; 1D to N-dimensional relaxed or rigid scans along chosen internal coordinates.</li>
         <li><strong><a href="tasks/irc/irc.html">IRC (irc)</a></strong> &mdash; Intrinsic reaction coordinate with GS, LQA, HPC, and EulerPC integrators.</li>
-        <li><strong><a href="tasks/md/md.html">Molecular Dynamics (md)</a></strong> &mdash; NVE, NVT, and NPT ensembles with Langevin, V-rescale, Berendsen, and C-rescale algorithms. Symplectic Velocity Verlet integrator with trajectory output and resume support.</li>
       </ul>
 
       <h3 id="additional-features">Additional Features</h3>
@@ -190,7 +188,6 @@
         <li><strong>Thermochemistry</strong> &mdash; Frequency calculations with RRHO corrections for free energy and enthalpy estimates.</li>
         <li><strong>High-throughput screening</strong> &mdash; GPU-accelerated single point calculations across large molecular libraries.</li>
         <li><strong>Benchmarking ML potentials</strong> &mdash; Compare results from different ML models (ANI, MACE, AIMNet2, UMA) on the same molecular system using a unified interface.</li>
-        <li><strong>Molecular dynamics sampling</strong> &mdash; NVT and NPT simulations for conformational sampling, density equilibration, and computing thermodynamic properties from ML-driven trajectories.</li>
       </ul>
     </article>
   </div>

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>L-BFGS Optimization - MAPLE</title>
   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
               <ul class="children">
                 <li><a href="../../setup/settings.html">Settings</a></li>
                 <li><a href="../../setup/coordinates.html">Coordinates</a></li>
-                <li><a href="../../setup/models.html">ML Models</a></li>
+                <li>
+                    <span class="tree-label"><span class="chevron"></span> <a href="../../setup/models.html">ML Models</a></span>
+                    <ul class="children">
+                      <li><a href="../../setup/model_uma.html">UMA</a></li>
+                      <li><a href="../../setup/model_ani.html">ANI</a></li>
+                      <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                      <li><a href="../../setup/model_mace.html">MACE</a></li>
+                    </ul>
+                  </li>
               </ul>
             </li>
             <li class="open">
@@ -83,20 +90,16 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
                   <ul class="children">
                     <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../scan/scan_rfo.html">RFO</a></li>
                   </ul>
                 </li>
                 <li>
                   <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
                   <ul class="children">
                     <li><a href="../irc/irc_gs.html">GS</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
-                  <ul class="children">
-                    <li><a href="../md/md_nve.html">NVE</a></li>
-                    <li><a href="../md/md_nvt.html">NVT</a></li>
-                    <li><a href="../md/md_npt.html">NPT</a></li>
+                    <li><a href="../irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../irc/irc_eulerpc.html">EulerPC</a></li>
                   </ul>
                 </li>
               </ul>
@@ -197,9 +200,45 @@
 #opt(method=lbfgs)
 #device=gpu0
 
-O    0.000000    0.000000    0.117300
-H    0.000000    0.757200   -0.469200
-H    0.000000   -0.757200   -0.469200</code></pre>
+C      -0.77812600     -1.06756100      0.32105900
+C       1.30255300      0.05212000     -0.02829900
+C      -0.97199300      1.45624900      0.82365700
+C       1.98122900     -0.41843300      1.25017500
+C       2.26403300      0.43516800     -1.13310700
+N       0.29116400     -0.87682100     -0.50039900
+N      -2.01916300     -1.37200600     -0.23311200
+O      -1.66473400      1.63022300     -0.40183700
+H      -2.25863200      0.87013900     -0.47589900
+H       0.02784900     -0.67831200     -1.45849500
+H      -0.60975900     -1.36785600      1.34117800
+H       0.68126400      0.91830000      0.28694100
+H      -2.57326300     -2.05736100      0.25741200
+H      -2.05242800     -1.50454200     -1.23382300
+H      -0.36899300      2.35139200      0.99174700
+H      -1.63960900      1.29421500      1.67465300
+H       2.76444900      0.29146200      1.52284600
+H       1.72511400      0.73069500     -2.03779400
+H       2.43559300     -1.40609800      1.13421500
+H       1.27300500     -0.44722400      2.08057900
+H       2.85034500      1.29869700     -0.81432200
+H       2.96000900     -0.36880600     -1.38891000</code></pre>
+
+        <h2 id="convergence">Convergence Behaviour</h2>
+        <p>The figures below illustrate a typical L-BFGS run on a 22-atom organic molecule (UMA model). Energy is reported relative to the converged value; forces are on a logarithmic scale with convergence thresholds shown as dashed lines.</p>
+        <div class="figure-row">
+          <figure class="doc-figure">
+            <img src="../../assets/images/opt/lbfgs/energy_vs_iter_lbfgs.png" alt="L-BFGS energy vs iteration">
+            <figcaption>Fig. 1 — Energy convergence (L-BFGS)</figcaption>
+          </figure>
+          <figure class="doc-figure">
+            <img src="../../assets/images/opt/lbfgs/force_vs_iter_lbfgs.png" alt="L-BFGS force vs iteration">
+            <figcaption>Fig. 2 — Force convergence (L-BFGS)</figcaption>
+          </figure>
+        </div>
+        <figure class="doc-figure" style="max-width:480px;margin:1.75rem auto;">
+          <img src="../../assets/images/opt/lbfgs/inp1_traj.gif" alt="L-BFGS optimization trajectory animation">
+          <figcaption>Fig. 3 — Optimization trajectory (L-BFGS)</figcaption>
+        </figure>
 
         <h2 id="tips">Tips</h2>
         <ul>

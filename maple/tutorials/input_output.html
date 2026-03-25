@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
     <title>Input &amp; Output - MAPLE</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
                             <ul class="children">
                                 <li><a href="../setup/settings.html">Settings</a></li>
                                 <li><a href="../setup/coordinates.html">Coordinates</a></li>
-                                <li><a href="../setup/models.html">ML Models</a></li>
+                                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../setup/models.html">ML Models</a></span>
+                  <ul class="children">
+                    <li><a href="../setup/model_uma.html">UMA</a></li>
+                    <li><a href="../setup/model_ani.html">ANI</a></li>
+                    <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                    <li><a href="../setup/model_mace.html">MACE</a></li>
+                  </ul>
+                </li>
                             </ul>
                         </li>
                         <li>
@@ -83,20 +90,16 @@
                                     <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
                                     <ul class="children">
                                         <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                                        <li><a href="../tasks/scan/scan_rfo.html">RFO</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
                                     <ul class="children">
                                         <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
-                                    <ul class="children">
-                                        <li><a href="../tasks/md/md_nve.html">NVE</a></li>
-                                        <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
-                                        <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                                        <li><a href="../tasks/irc/irc_lqa.html">LQA</a></li>
+                                        <li><a href="../tasks/irc/irc_hpc.html">HPC</a></li>
+                                        <li><a href="../tasks/irc/irc_eulerpc.html">EulerPC</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -196,11 +199,6 @@ H    0.000000   -0.757200   -0.469200</code></pre>
                             <td><code>#scan</code></td>
                             <td>Perform a potential energy surface scan</td>
                             <td><code>#scan(method=lbfgs)</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>#md</code></td>
-                            <td>Run a molecular dynamics simulation</td>
-                            <td><code>#md(ensemble=nvt)</code></td>
                         </tr>
                         <tr>
                             <td><code>#device</code></td>
@@ -344,7 +342,7 @@ XYZ product.xyz</code></pre>
                         </tr>
                         <tr>
                             <td>Optimization</td>
-                            <td><code>*_traj.xyz</code></td>
+                            <td><code>*_opt_traj.xyz</code></td>
                             <td>Full optimization trajectory</td>
                         </tr>
                         <tr>
@@ -377,25 +375,10 @@ XYZ product.xyz</code></pre>
                             <td><code>*_scan.dat</code></td>
                             <td>Energy vs. scan coordinate data</td>
                         </tr>
-                        <tr>
-                            <td>Molecular Dynamics</td>
-                            <td><code>*_md_traj.xyz</code></td>
-                            <td>Full MD trajectory in extended XYZ format (positions, velocities, and thermodynamic data per frame)</td>
-                        </tr>
-                        <tr>
-                            <td>Molecular Dynamics</td>
-                            <td><code>*_md.dat</code></td>
-                            <td>Thermodynamic log: step, time, total/potential/kinetic energy, temperature (and pressure/volume for NPT)</td>
-                        </tr>
-                        <tr>
-                            <td>Molecular Dynamics</td>
-                            <td><code>*_md_final.xyz</code></td>
-                            <td>Last frame with velocities; use as <code>init_from</code> to continue or chain simulations</td>
-                        </tr>
                     </tbody>
                 </table>
 
-                <p>In the table above, <code>*</code> represents the input file name (without the <code>.inp</code> extension). For example, running <code>maple water_opt.inp</code> with an optimization task produces <code>water_opt_opt.xyz</code> (final structure) and <code>water_opt_traj.xyz</code> (full trajectory).</p>
+                <p>In the table above, <code>*</code> represents the input file name (without the <code>.inp</code> extension). For example, running <code>maple water_opt.inp</code> with an optimization task produces <code>water_opt_opt.xyz</code> and <code>water_opt_opt_traj.xyz</code>.</p>
 
                 <div class="admonition important">
                     <div class="admonition-title">

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
     <title>Quick Start Tutorial - MAPLE</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
                             <ul class="children">
                                 <li><a href="../setup/settings.html">Settings</a></li>
                                 <li><a href="../setup/coordinates.html">Coordinates</a></li>
-                                <li><a href="../setup/models.html">ML Models</a></li>
+                                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../setup/models.html">ML Models</a></span>
+                  <ul class="children">
+                    <li><a href="../setup/model_uma.html">UMA</a></li>
+                    <li><a href="../setup/model_ani.html">ANI</a></li>
+                    <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                    <li><a href="../setup/model_mace.html">MACE</a></li>
+                  </ul>
+                </li>
                             </ul>
                         </li>
                         <li>
@@ -83,20 +90,16 @@
                                     <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
                                     <ul class="children">
                                         <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                                        <li><a href="../tasks/scan/scan_rfo.html">RFO</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
                                     <ul class="children">
                                         <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
-                                    <ul class="children">
-                                        <li><a href="../tasks/md/md_nve.html">NVE</a></li>
-                                        <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
-                                        <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                                        <li><a href="../tasks/irc/irc_lqa.html">LQA</a></li>
+                                        <li><a href="../tasks/irc/irc_hpc.html">HPC</a></li>
+                                        <li><a href="../tasks/irc/irc_eulerpc.html">EulerPC</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -176,44 +179,22 @@ H    0.000000   -0.800000   -0.480000</code></pre>
 
                 <p>MAPLE will iteratively adjust the atomic positions to minimize the energy. The output shows the progress of each optimization step:</p>
 
-                <pre><code>======================================================================
-                         LBFGS Parameters
-======================================================================
-memory:     5
-curvature:  70.0
-max_step:   0.2
-max_iter:   256
+                <pre><code>Iteration   E(Eh)            dE(kcal/mol)   max(|G|)    RMS(G)
+Convergence thresholds                      0.000450    0.000300
+  0        -76.389012          0.00         0.012345    0.005678
+  1        -76.389398         -0.24         0.003210    0.001234
+  2        -76.389412         -0.01         0.000321    0.000142
 
-                            Coordinates
-----------------------------------------------------------------------
-0    O              0.0000              0.1200              0.0000
-1    H              0.0000              0.8000             -0.4800
-2    H              0.0000             -0.8000             -0.4800
-
-
-Energy:                -76.389012 Convergence criteria  Is converged
-Maximum Force:           0.012345       0.000450  No
-RMS Force:               0.005678       0.000300  No
-Maximum Displacement:    0.021234       0.001800  No
-RMS Displacement:        0.009876       0.001200  No
-
-...
-
-LBFGS converged at iteration 3.
-Final frame written to water_opt_opt.xyz
-Complete trajectory written to water_opt_traj.xyz</code></pre>
+Optimization converged in 2 steps.</code></pre>
 
                 <p>You can customize the optimization method and convergence criteria. For example, to use the L-BFGS optimizer with a tighter convergence threshold:</p>
 
                 <pre><code>#model = ani2x
-#opt(method=lbfgs)
-#convergence=tight
+#opt(method=lbfgs, convergence=1e-6)
 
 O    0.000000    0.000000    0.120000
 H    0.000000    0.800000   -0.480000
 H    0.000000   -0.800000   -0.480000</code></pre>
-
-                <p>Note that <code>#convergence</code> is a standalone header command, not a parameter inside <code>#opt()</code>. See the <a href="input_output.html#convergence-levels">convergence levels</a> reference for available options.</p>
 
                 <div class="admonition tip">
                     <div class="admonition-title">
@@ -231,18 +212,17 @@ H    0.000000   -0.800000   -0.480000</code></pre>
 
                 <ul>
                     <li><strong>Energy</strong>: The electronic energy in Hartree (Eh) at each step.</li>
-                    <li><strong>Maximum Force</strong>: The largest force component on any atom.</li>
-                    <li><strong>RMS Force</strong>: The root-mean-square of all atomic forces.</li>
-                    <li><strong>Maximum Displacement</strong>: The largest atomic displacement from the previous step.</li>
-                    <li><strong>RMS Displacement</strong>: The root-mean-square of all atomic displacements.</li>
+                    <li><strong>dE</strong>: The energy change from the previous step in kcal/mol.</li>
+                    <li><strong>max(|G|)</strong>: The maximum component of the gradient (atomic forces).</li>
+                    <li><strong>RMS(G)</strong>: The root-mean-square of the gradient.</li>
                 </ul>
 
-                <p>Convergence is reached when all four criteria — <code>Maximum Force</code>, <code>RMS Force</code>, <code>Maximum Displacement</code>, and <code>RMS Displacement</code> — fall below their respective thresholds simultaneously, as shown in the <code>Is converged</code> column of the output.</p>
+                <p>Convergence is reached when both <code>max(|G|)</code> and <code>RMS(G)</code> fall below their respective thresholds, as shown in the convergence threshold line of the output.</p>
 
                 <p>For optimization jobs, the optimized geometry is written to an XYZ file that you can visualize with molecular viewers such as ASE GUI, Avogadro, or VMD:</p>
 
                 <pre><code># View the optimized structure with ASE
-ase gui water_opt_opt.xyz</code></pre>
+ase gui water_opt.xyz</code></pre>
 
                 <h2 id="next-steps">Next Steps</h2>
 

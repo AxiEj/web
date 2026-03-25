@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Single Point Energy - MAPLE</title>
+  <title>AIMNet2 - MAPLE Documentation</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
                 <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
               </ul>
             </li>
-            <li>
+            <li class="open">
               <span class="tree-section"><span class="chevron"></span> Input Setup</span>
               <ul class="children">
                 <li><a href="../setup/settings.html">Settings</a></li>
@@ -57,16 +57,16 @@
                   <ul class="children">
                     <li><a href="../setup/model_uma.html">UMA</a></li>
                     <li><a href="../setup/model_ani.html">ANI</a></li>
-                    <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                    <li><a href="../setup/model_aimnet.html" class="active">AIMNet2</a></li>
                     <li><a href="../setup/model_mace.html">MACE</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li class="open">
+            <li>
               <span class="tree-section"><span class="chevron"></span> Tasks</span>
               <ul class="children">
-                <li><a href="../tasks/singlepoint.html" class="active">Single Point</a></li>
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
                 <li><a href="../tasks/frequency.html">Frequency</a></li>
                 <li>
                   <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
@@ -122,103 +122,127 @@
         <span class="separator">/</span>
         <a href="../documentation.html">Docs</a>
         <span class="separator">/</span>
-        <span>Tasks</span>
+        <a href="../setup/models.html">ML Models</a>
         <span class="separator">/</span>
-        <span class="current">Single Point</span>
+        <span class="current">AIMNet2</span>
       </nav>
-
       <article>
-        <h1>Single Point Energy</h1>
+        <h1>AIMNet2</h1>
 
-        <h2 id="overview">Overview</h2>
-        <p>A single point (SP) calculation computes the electronic energy and atomic forces at a fixed molecular geometry. Unlike optimization or transition state searches, no atoms are moved during the calculation. The geometry remains exactly as specified in the input, and MAPLE evaluates the energy and gradient at that single configuration.</p>
-        <p>This is the simplest and fastest task type available in MAPLE, making it the foundation upon which more complex workflows are built.</p>
+        <p><strong>AIMNet2</strong> is a neural network potential that provides broad element coverage (14 elements) with &omega;B97M-D3BJ accuracy. It is one of only two models in MAPLE (along with UMA) that natively supports charged and open-shell molecular systems.</p>
 
-        <h2 id="usage">Usage</h2>
-        <p>The single point task is invoked by including the <code>#sp</code> header command in the input file. No additional parameters are required.</p>
-        <pre><code>#sp</code></pre>
-        <p>The <code>#sp</code> command does not accept any method or convergence parameters since there is no iterative procedure involved. You only need to specify the model and device alongside the task command.</p>
+        <h2 id="variants">Variants</h2>
 
-        <div class="admonition tip">
-          <div class="admonition-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
-            Tip
-          </div>
-          <div class="admonition-body">
-            <p>SP is the default task type. If no job type is specified in the input file (i.e., no <code>#sp</code>, <code>#opt</code>, <code>#freq</code>, etc.), MAPLE will automatically perform a single point energy calculation.</p>
-          </div>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Keyword</th>
+              <th>Elements</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AIMNet2</td>
+              <td><code>aimnet2</code></td>
+              <td>H, B, C, N, O, F, Si, P, S, Cl, As, Se, Br, I</td>
+              <td>Standard variant with &omega;B97M-D3BJ accuracy</td>
+            </tr>
+            <tr>
+              <td>AIMNet2-NSE</td>
+              <td><code>aimnet2nse</code></td>
+              <td>H, B, C, N, O, F, Si, P, S, Cl, As, Se, Br, I</td>
+              <td>Variant including nuclear spin-orbit effects for heavy elements</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <h2 id="input-example">Input Example</h2>
-        <p>Below is a complete input file for a single point calculation on a small system using the ANI-1xnr model on a GPU:</p>
-        <pre><code>#model=ani1xnr
-#sp
-#device=gpu0
+        <h2 id="charge-spin">Charge and Spin Support</h2>
 
-C   0.0  0.0  0.0
-H   1.0  0.0  0.0
-O   2.0  0.0  0.0</code></pre>
-        <p>The first three lines are header commands that set the ML model, task type, and compute device. The remaining lines define the atomic coordinates in Cartesian format (element symbol followed by X, Y, Z positions in angstroms).</p>
+        <p>AIMNet2 natively handles charged species and different spin multiplicities. Specify charge and multiplicity in the coordinate block:</p>
 
-        <h2 id="parameters">Parameters</h2>
-        <p>The single point task accepts the following parameter:</p>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>verbose</code></td>
-                <td>int</td>
-                <td>1</td>
-                <td>Output verbosity level. 0 = energy only, 1 = detailed output with forces, 2 = suppress coordinate printing.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <pre><code><span class="keyword">#model</span>=<span class="value">aimnet2</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
 
-        <h2 id="output">Output</h2>
-        <p>The output file from a single point calculation contains the following information:</p>
+<span class="comment">-1 1</span>
+C    0.000000    0.000000    0.000000
+O    1.250000    0.000000    0.000000
+O   -1.250000    0.000000    0.000000</code></pre>
+
+        <p>The first line specifies <code>charge multiplicity</code> (here: charge = &minus;1, multiplicity = 1 for a formate anion).</p>
+
+        <h2 id="solvation">Implicit Solvation</h2>
+
+        <p>AIMNet2 supports GBSA implicit solvation correction. QEq charges are computed automatically:</p>
+
+        <pre><code><span class="keyword">#model</span>=<span class="value">aimnet2</span>
+<span class="keyword">#solv</span>(<span class="param">method</span>=<span class="value">gbsa</span>, <span class="param">implicit</span>=<span class="value">water</span>)
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+-1 1
+C    0.000000    0.000000    0.000000
+O    1.250000    0.000000    0.000000
+O   -1.250000    0.000000    0.000000</code></pre>
+
+        <h2 id="examples">Usage Examples</h2>
+
+        <h3>Optimization with heavy elements (Br, I)</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">aimnet2</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+0 1
+C    0.000000    0.000000    0.000000
+Br   1.940000    0.000000    0.000000
+H   -0.390000    0.000000    1.028000
+H   -0.390000    0.890000   -0.514000
+H   -0.390000   -0.890000   -0.514000</code></pre>
+
+        <h3>NSE variant for systems with heavy-element spin-orbit effects</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">aimnet2nse</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+0 1
+C    0.000000    0.000000    0.000000
+I    2.140000    0.000000    0.000000
+H   -0.390000    0.000000    1.028000
+H   -0.390000    0.890000   -0.514000
+H   -0.390000   -0.890000   -0.514000</code></pre>
+
+        <h2 id="limitations">Limitations</h2>
         <ul>
-          <li><strong>Total energy</strong> -- reported in Hartree (Eh) units. This is the primary result of the SP calculation.</li>
-          <li><strong>Gradient / forces</strong> -- the atomic forces (negative gradient of the energy with respect to nuclear positions) are computed and printed for each atom.</li>
-        </ul>
-        <p>Example output:</p>
-        <pre><code>Energy: -10434.811113387317</code></pre>
-        <p>The energy value represents the total electronic energy of the system at the given geometry as predicted by the specified ML potential.</p>
-
-        <h2 id="use-cases">Use Cases</h2>
-        <p>Single point calculations are useful in a variety of scenarios:</p>
-        <ul>
-          <li><strong>Benchmarking</strong> -- comparing energies from different ML models or against reference DFT/ab initio values for the same geometry.</li>
-          <li><strong>Energy comparisons</strong> -- evaluating relative energies of conformers, isomers, or reaction intermediates at their respective geometries.</li>
-          <li><strong>Post-optimization checks</strong> -- verifying the energy at an optimized geometry using a different or higher-level model than was used during optimization.</li>
-          <li><strong>Force analysis</strong> -- examining the magnitude and direction of forces on atoms to assess whether a structure is close to a stationary point.</li>
-          <li><strong>Workflow building blocks</strong> -- SP calculations serve as the fundamental energy/force evaluation used internally by optimization, frequency, TS search, and other iterative tasks.</li>
+          <li><strong>No D4 dispersion.</strong> The &omega;B97M-D3BJ training already includes dispersion corrections.</li>
+          <li><strong>No periodic systems.</strong> AIMNet2 does not support periodic boundary conditions.</li>
+          <li><strong>14 elements only.</strong> Systems with elements outside the supported set (e.g., transition metals) require <code>uma</code> instead.</li>
         </ul>
 
-        <nav class="page-nav">
-          <a href="../setup/models.html">&larr; Prev: ML Models</a>
-          <a class="next" href="../tasks/frequency.html">Next: Frequency &rarr;</a>
-        </nav>
       </article>
+      <nav class="page-nav">
+        <a class="prev" href="../setup/model_ani.html">&larr; Previous: ANI</a>
+        <a class="next" href="../setup/model_mace.html">Next: MACE &rarr;</a>
+      </nav>
     </main>
 
     <aside class="toc">
       <div class="toc-sticky">
         <h3>On this page</h3>
-        <ul></ul>
+        <ul>
+          <li><a href="#variants">Variants</a></li>
+          <li><a href="#charge-spin">Charge and Spin</a></li>
+          <li><a href="#solvation">Implicit Solvation</a></li>
+          <li><a href="#examples">Usage Examples</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+        </ul>
       </div>
     </aside>
   </div>
+
   <div class="sidebar-overlay"></div>
-  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

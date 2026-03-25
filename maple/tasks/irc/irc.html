@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>Intrinsic Reaction Coordinate (IRC) - MAPLE</title>
   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
               <ul class="children">
                 <li><a href="../../setup/settings.html">Settings</a></li>
                 <li><a href="../../setup/coordinates.html">Coordinates</a></li>
-                <li><a href="../../setup/models.html">ML Models</a></li>
+                <li>
+                    <span class="tree-label"><span class="chevron"></span> <a href="../../setup/models.html">ML Models</a></span>
+                    <ul class="children">
+                      <li><a href="../../setup/model_uma.html">UMA</a></li>
+                      <li><a href="../../setup/model_ani.html">ANI</a></li>
+                      <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                      <li><a href="../../setup/model_mace.html">MACE</a></li>
+                    </ul>
+                  </li>
               </ul>
             </li>
             <li class="open">
@@ -83,20 +90,16 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
                   <ul class="children">
                     <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../scan/scan_rfo.html">RFO</a></li>
                   </ul>
                 </li>
                 <li class="open">
                   <span class="tree-label"><span class="chevron"></span> <a href="irc.html" class="active">IRC</a></span>
                   <ul class="children">
                     <li><a href="irc_gs.html">GS</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
-                  <ul class="children">
-                    <li><a href="../md/md_nve.html">NVE</a></li>
-                    <li><a href="../md/md_nvt.html">NVT</a></li>
-                    <li><a href="../md/md_npt.html">NPT</a></li>
+                    <li><a href="irc_lqa.html">LQA</a></li>
+                    <li><a href="irc_hpc.html">HPC</a></li>
+                    <li><a href="irc_eulerpc.html">EulerPC</a></li>
                   </ul>
                 </li>
               </ul>
@@ -131,7 +134,7 @@
         <p>Starting from the TS, the IRC integrator displaces the geometry along the unique imaginary vibrational mode (the eigenvector corresponding to the single negative eigenvalue of the mass-weighted Hessian) and then follows the gradient downhill in both the forward and backward directions until local minima are reached or the maximum number of path points is exceeded.</p>
 
         <h2 id="available-methods">Available Methods</h2>
-        <p>MAPLE currently implements the following IRC integration algorithm:</p>
+        <p>MAPLE supports four IRC integration algorithms:</p>
         <table>
           <thead>
             <tr>
@@ -145,6 +148,21 @@
               <td><strong><a href="irc_gs.html">GS</a></strong></td>
               <td>Gonzalez&ndash;Schlegel</td>
               <td>Default method. Mass-weighted coordinates with pivot-step and constrained optimization on a hypersphere. Robust and well-tested.</td>
+            </tr>
+            <tr>
+              <td><strong><a href="irc_lqa.html">LQA</a></strong></td>
+              <td>Local Quadratic Approximation</td>
+              <td>Fits a local quadratic surface to the PES at each point. Can be faster than GS on smooth surfaces.</td>
+            </tr>
+            <tr>
+              <td><strong><a href="irc_hpc.html">HPC</a></strong></td>
+              <td>Hessian Predictor&ndash;Corrector</td>
+              <td>Uses Hessian information for both predictor and corrector steps. Good balance of speed and accuracy.</td>
+            </tr>
+            <tr>
+              <td><strong><a href="irc_eulerpc.html">EulerPC</a></strong></td>
+              <td>Euler Predictor&ndash;Corrector</td>
+              <td>Simplest predictor-corrector approach using Euler integration. Most robust for difficult or highly anharmonic surfaces.</td>
             </tr>
           </tbody>
         </table>
@@ -182,7 +200,7 @@ XYZ /path/to/transition_state.xyz</code></pre>
         </ol>
 
         <nav class="page-nav">
-          <a href="../scan/scan_lbfgs.html">&larr; Previous: Scan L-BFGS</a>
+          <a href="../scan/scan_rfo.html">&larr; Previous: Scan RFO</a>
           <a href="irc_gs.html">Next: GS &rarr;</a>
         </nav>
       </article>

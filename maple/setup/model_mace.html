@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MACE &amp; EGRET - MAPLE Documentation</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../documentation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../setup/models.html">ML Models</a></span>
+                  <ul class="children">
+                    <li><a href="../setup/model_uma.html">UMA</a></li>
+                    <li><a href="../setup/model_ani.html">ANI</a></li>
+                    <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                    <li><a href="../setup/model_mace.html" class="active">MACE</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/scan/scan_rfo.html">RFO</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                    <li><a href="../tasks/irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../tasks/irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../tasks/irc/irc_eulerpc.html">EulerPC</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="../documentation.html">Docs</a>
+        <span class="separator">/</span>
+        <a href="../setup/models.html">ML Models</a>
+        <span class="separator">/</span>
+        <span class="current">MACE &amp; EGRET</span>
+      </nav>
+      <article>
+        <h1>MACE &amp; EGRET Models</h1>
+
+        <p><strong>MACE</strong> (Multi-ACE) is a family of equivariant message-passing neural network potentials that achieves excellent accuracy through higher-order many-body interactions. <strong>EGRET</strong> is a related graph-based equivariant model with competitive accuracy for drug-like molecules.</p>
+
+        <h2 id="mace-off23">MACE-OFF23 Family</h2>
+
+        <p>The MACE-OFF23 models are trained on the SPICE dataset for organic molecules containing H, C, N, O, F, S, Cl. Three sizes are available with increasing accuracy and cost:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Keyword</th>
+              <th>Parameters</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MACE-OFF23 (Small)</td>
+              <td><code>maceoff23s</code></td>
+              <td>~0.5M</td>
+              <td>Fast screening, large systems, speed-critical workflows</td>
+            </tr>
+            <tr>
+              <td>MACE-OFF23 (Medium)</td>
+              <td><code>maceoff23m</code></td>
+              <td>~2M</td>
+              <td>Balanced speed/accuracy for production calculations</td>
+            </tr>
+            <tr>
+              <td>MACE-OFF23 (Large)</td>
+              <td><code>maceoff23l</code></td>
+              <td>~8M</td>
+              <td>Publication-quality results, final geometries</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="admonition important">
+          <p class="admonition-title">Important</p>
+          <p><code>maceoff23l</code> requires significantly more GPU memory than the smaller variants. If you encounter out-of-memory errors, switch to <code>maceoff23m</code> or <code>maceoff23s</code>, or use <code>#device=cpu</code>.</p>
+        </div>
+
+        <h2 id="mace-omol">MACE-OMol</h2>
+
+        <p>MACE-OMol extends element coverage beyond OFF23, supporting 17 elements including alkali and alkaline earth metals:</p>
+
+        <p><strong>Elements:</strong> H, Li, B, C, N, O, F, Na, Mg, Si, P, S, Cl, K, Ca, Br, I</p>
+
+        <pre><code><span class="keyword">#model</span>=<span class="value">maceomol</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+0 1
+Li   0.000000    0.000000    0.000000
+F    1.570000    0.000000    0.000000</code></pre>
+
+        <h2 id="egret">EGRET</h2>
+
+        <p>EGRET is a graph-based equivariant model with competitive accuracy for drug-like molecules. It covers the same elements as MACE-OFF23 (H, C, N, O, F, S, Cl).</p>
+
+        <pre><code><span class="keyword">#model</span>=<span class="value">egret</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+XYZ /path/to/drug_molecule.xyz</code></pre>
+
+        <h2 id="examples">Usage Examples</h2>
+
+        <h3>Quick screening with MACE-OFF23 Small</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">maceoff23s</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">convergence</span>=<span class="value">loose</span>)
+
+XYZ /path/to/molecule.xyz</code></pre>
+
+        <h3>Publication-quality optimization with MACE-OFF23 Large</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">maceoff23l</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>, <span class="param">convergence</span>=<span class="value">tight</span>)
+
+XYZ /path/to/optimized_guess.xyz</code></pre>
+
+        <h3>Frequency calculation</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">maceoff23m</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#freq</span>
+
+XYZ /path/to/optimized_geometry.xyz</code></pre>
+
+        <h3>CPU fallback for large systems</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">maceoff23s</span>
+<span class="keyword">#device</span>=<span class="value">cpu</span>
+<span class="keyword">#opt</span>(<span class="param">convergence</span>=<span class="value">loose</span>)
+
+XYZ /path/to/large_system.xyz</code></pre>
+
+        <h2 id="limitations">Limitations</h2>
+        <ul>
+          <li><strong>No charge/multiplicity support.</strong> All MACE and EGRET models assume neutral singlet state.</li>
+          <li><strong>No D4 dispersion.</strong> D4 correction is not available for MACE or EGRET models.</li>
+          <li><strong>No periodic systems.</strong> These models do not support periodic boundary conditions.</li>
+          <li><strong>Limited elements.</strong> MACE-OFF23 and EGRET cover 7 elements; MACE-OMol covers 17 elements. For broader coverage, use <code>uma</code>.</li>
+        </ul>
+
+      </article>
+      <nav class="page-nav">
+        <a class="prev" href="../setup/model_aimnet.html">&larr; Previous: AIMNet2</a>
+        <a class="next" href="../tasks/singlepoint.html">Next: Single Point &rarr;</a>
+      </nav>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#mace-off23">MACE-OFF23 Family</a></li>
+          <li><a href="#mace-omol">MACE-OMol</a></li>
+          <li><a href="#egret">EGRET</a></li>
+          <li><a href="#examples">Usage Examples</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="sidebar-overlay"></div>
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

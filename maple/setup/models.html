@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>ML Models - MAPLE Documentation</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
               <ul class="children">
                 <li><a href="../setup/settings.html">Settings</a></li>
                 <li><a href="../setup/coordinates.html">Coordinates</a></li>
-                <li><a href="../setup/models.html" class="active">ML Models</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../setup/models.html" class="active">ML Models</a></span>
+                  <ul class="children">
+                    <li><a href="../setup/model_uma.html">UMA</a></li>
+                    <li><a href="../setup/model_ani.html">ANI</a></li>
+                    <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                    <li><a href="../setup/model_mace.html">MACE</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li>
@@ -83,20 +90,16 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
                   <ul class="children">
                     <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/scan/scan_rfo.html">RFO</a></li>
                   </ul>
                 </li>
                 <li>
                   <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
                   <ul class="children">
                     <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/md/md.html">Molecular Dynamics</a></span>
-                  <ul class="children">
-                    <li><a href="../tasks/md/md_nve.html">NVE</a></li>
-                    <li><a href="../tasks/md/md_nvt.html">NVT</a></li>
-                    <li><a href="../tasks/md/md_npt.html">NPT</a></li>
+                    <li><a href="../tasks/irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../tasks/irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../tasks/irc/irc_eulerpc.html">EulerPC</a></li>
                   </ul>
                 </li>
               </ul>
@@ -143,10 +146,10 @@
           </thead>
           <tbody>
             <tr>
-              <td>ANI-2x</td>
+              <td><a href="../setup/model_ani.html">ANI-2x</a></td>
               <td><code>ani2x</code></td>
               <td>H, C, N, O, F, S, Cl</td>
-              <td>Trained on wB97X/6-31G(d); good general-purpose accuracy for organic molecules</td>
+              <td>Trained on wB97X/6-31G(d); good general-purpose accuracy for organic molecules. <a href="../setup/model_ani.html">Details &rarr;</a></td>
             </tr>
             <tr>
               <td>ANI-1x</td>
@@ -167,10 +170,10 @@
               <td>Non-reactive variant of ANI-1x; trained without bond-breaking data</td>
             </tr>
             <tr>
-              <td>AIMNet2</td>
+              <td><a href="../setup/model_aimnet.html">AIMNet2</a></td>
               <td><code>aimnet2</code></td>
               <td>H, B, C, N, O, F, Si, P, S, Cl, As, Se, Br, I</td>
-              <td>Broad element coverage with wB97M-D3BJ accuracy; supports charged species</td>
+              <td>Broad element coverage with wB97M-D3BJ accuracy; supports charged species. <a href="../setup/model_aimnet.html">Details &rarr;</a></td>
             </tr>
             <tr>
               <td>AIMNet2-NSE</td>
@@ -179,10 +182,10 @@
               <td>AIMNet2 variant with nuclear spin-orbit effects; useful for heavy-element systems</td>
             </tr>
             <tr>
-              <td>MACE-OFF23 (Small)</td>
+              <td><a href="../setup/model_mace.html">MACE-OFF23 (Small)</a></td>
               <td><code>maceoff23s</code></td>
               <td>H, C, N, O, F, S, Cl</td>
-              <td>Fast equivariant model; suitable for quick screening of organic molecules</td>
+              <td>Fast equivariant model; suitable for quick screening of organic molecules. <a href="../setup/model_mace.html">Details &rarr;</a></td>
             </tr>
             <tr>
               <td>MACE-OFF23 (Medium)</td>
@@ -209,10 +212,10 @@
               <td>Graph-based equivariant model; competitive accuracy for drug-like molecules</td>
             </tr>
             <tr>
-              <td>UMA</td>
+              <td><a href="../setup/model_uma.html">UMA</a></td>
               <td><code>uma</code></td>
-              <td>Broad periodic table coverage</td>
-              <td>Universal model with wide element support; good default choice for diverse systems</td>
+              <td>Broad periodic table coverage (83+ elements)</td>
+              <td>Universal model from Meta FAIR (v1.2); supports 7 task domains, 3 model sizes. <a href="../setup/model_uma.html">Details &rarr;</a></td>
             </tr>
           </tbody>
         </table>
@@ -225,7 +228,8 @@
           <li><strong>Organic molecules (H, C, N, O only):</strong> Start with <code>ani2x</code> for general use or <code>ani1ccx</code> when coupled-cluster accuracy is needed for small molecules.</li>
           <li><strong>Organic molecules with halogens (F, S, Cl):</strong> Use <code>ani2x</code>, <code>maceoff23m</code>, or <code>egret</code>. For the highest accuracy, try <code>maceoff23l</code>.</li>
           <li><strong>Systems with heavier elements (Br, I, P, Si, etc.):</strong> Use <code>aimnet2</code> or <code>maceomol</code>, which support a broader range of elements.</li>
-          <li><strong>Diverse or unknown systems:</strong> Use <code>uma</code> as a reliable general-purpose potential with the widest element coverage.</li>
+          <li><strong>Diverse or unknown systems:</strong> Use <code>uma</code> as a reliable general-purpose potential with the widest element coverage. Specify a <a href="../setup/model_uma.html">task domain</a> for best accuracy.</li>
+          <li><strong>Periodic materials / catalysis:</strong> Use <code>uma</code> with a materials task such as <code>omat</code>, <code>oc20</code>, or <code>omc</code>.</li>
           <li><strong>Speed-critical workflows:</strong> Use <code>maceoff23s</code> or <code>ani2x</code> for the fastest evaluation times. The ANI models are particularly fast on GPUs.</li>
           <li><strong>Publication-quality results:</strong> Use <code>maceoff23l</code> or <code>ani1ccx</code> for the highest available accuracy within their element ranges.</li>
         </ul>
@@ -258,16 +262,24 @@
 
         <p>Below are complete input file examples demonstrating model selection for various scenarios.</p>
 
-        <h3>General-purpose optimization with UMA</h3>
-        <pre><code>#model = uma
-#device = gpu0
-#opt(method=lbfgs, convergence=tight)
+        <h3>General-purpose optimization with UMA (default: v1.2, omol task)</h3>
+        <pre><code><span class="comment"># Uses uma-s-1p2 checkpoint, omol task by default</span>
+<span class="keyword">#model</span>=<span class="value">uma</span>
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>, <span class="param">convergence</span>=<span class="value">tight</span>)
 
 0 1
 C    0.000000    0.000000    0.000000
 O    1.200000    0.000000    0.000000
 H   -0.540000    0.940000    0.000000
 H   -0.540000   -0.940000    0.000000</code></pre>
+
+        <h3>UMA for inorganic materials (omat task)</h3>
+        <pre><code><span class="keyword">#model</span>=<span class="value">uma</span>(<span class="param">task</span>=<span class="value">omat</span>)
+<span class="keyword">#device</span>=<span class="value">gpu0</span>
+<span class="keyword">#opt</span>(<span class="param">method</span>=<span class="value">lbfgs</span>)
+
+XYZ /path/to/material.xyz</code></pre>
 
         <h3>High-accuracy calculation with AIMNet2 and D4</h3>
         <pre><code>#model = aimnet2

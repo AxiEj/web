@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
   <title>IRC: Euler Predictor-Corrector (EulerPC) - MAPLE</title>
   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -53,7 +52,15 @@
               <ul class="children">
                 <li><a href="../../setup/settings.html">Settings</a></li>
                 <li><a href="../../setup/coordinates.html">Coordinates</a></li>
-                <li><a href="../../setup/models.html">ML Models</a></li>
+                <li>
+                    <span class="tree-label"><span class="chevron"></span> <a href="../../setup/models.html">ML Models</a></span>
+                    <ul class="children">
+                      <li><a href="../../setup/model_uma.html">UMA</a></li>
+                      <li><a href="../../setup/model_ani.html">ANI</a></li>
+                      <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                      <li><a href="../../setup/model_mace.html">MACE</a></li>
+                    </ul>
+                  </li>
               </ul>
             </li>
             <li class="open">
@@ -83,20 +90,16 @@
                   <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
                   <ul class="children">
                     <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../scan/scan_rfo.html">RFO</a></li>
                   </ul>
                 </li>
                 <li class="open">
                   <span class="tree-label"><span class="chevron"></span> <a href="irc.html">IRC</a></span>
                   <ul class="children">
                     <li><a href="irc_gs.html">GS</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span class="tree-label"><span class="chevron"></span> <a href="../md/md.html">Molecular Dynamics</a></span>
-                  <ul class="children">
-                    <li><a href="../md/md_nve.html">NVE</a></li>
-                    <li><a href="../md/md_nvt.html">NVT</a></li>
-                    <li><a href="../md/md_npt.html">NPT</a></li>
+                    <li><a href="irc_lqa.html">LQA</a></li>
+                    <li><a href="irc_hpc.html">HPC</a></li>
+                    <li><a href="irc_eulerpc.html" class="active">EulerPC</a></li>
                   </ul>
                 </li>
               </ul>
@@ -126,11 +129,6 @@
 
       <article>
         <h1>IRC: Euler Predictor&ndash;Corrector (EulerPC)</h1>
-
-        <div class="admonition warning">
-          <p class="admonition-title">Warning</p>
-          <p>This IRC method is not yet implemented in the current version of MAPLE. The only available IRC method is <a href="irc_gs.html">GS (Gonzalez&ndash;Schlegel)</a>.</p>
-        </div>
 
         <h2 id="overview">Overview</h2>
         <p>The Euler Predictor&ndash;Corrector (EulerPC) method is the simplest predictor-corrector IRC integrator available in MAPLE. It uses a basic Euler integration step (following the negative gradient direction) as the predictor, then applies a corrector step to project the path back onto the true minimum energy path. While EulerPC is generally slower than the other IRC methods due to smaller effective step sizes, it is the most robust option for difficult potential energy surfaces where higher-order methods may fail to converge.</p>
