@@ -1872,6 +1872,138 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
+   EDUCATION TIMELINE - 优雅时间线
+   ============================================================ */
+
+.education-timeline {
+  max-width: 600px;
+  margin: var(--space-2xl) auto;
+  position: relative;
+  padding-left: 30px;
+}
+
+.education-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-muted), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all var(--duration-slow) var(--ease-smooth);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -26px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--gold-glow), 0 0 24px var(--gold-muted);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.4);
+  box-shadow: 0 0 20px var(--gold-glow), 0 0 40px var(--gold-muted);
+}
+
+.timeline-marker::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--gold-muted);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.timeline-item:hover .timeline-marker::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.timeline-content {
+  background: rgba(250, 249, 247, 0.6);
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  position: relative;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.timeline-item:hover .timeline-content {
+  border-color: var(--gold-muted);
+  box-shadow: 0 4px 20px rgba(196, 163, 90, 0.1);
+  transform: translateX(4px);
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  border-radius: 8px 8px 0 0;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.timeline-item:hover .timeline-content::before {
+  opacity: 1;
+}
+
+.timeline-period {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink-black);
+  margin-bottom: 4px;
+}
+
+.timeline-subtitle {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.timeline-desc {
+  font-size: 13px;
+  color: var(--ink-ghost);
+  line-height: 1.5;
+}
+
+/* ============================================================
    GALLERY - 黄金网格
    ============================================================ */
 
