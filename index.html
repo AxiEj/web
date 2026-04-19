@@ -1,87 +1,541 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hallucination</title>
+  <title>Jiahao Xie | PhD Student</title>
+  <meta name="description" content="Jiahao Xie - PhD Student in Molecular Dynamics Simulation at Dalian Medical University">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Noto+Serif+SC:wght@400&display=swap">
-  <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>墨</text></svg>">
 </head>
 <body>
-  <nav id="nav"></nav>
-  <div class="full" id="full"></div>
-  <button class="arrow left" id="arr-prev">&#8592;</button>
-  <button class="arrow right" id="arr-next">&#8594;</button>
-  <div id="counter"></div>
-  <iframe id="maple-frame" src="" tabindex="0"></iframe>
-  <div id="about-panel">
-    <button id="about-close">✕</button>
-    <div class="about-inner">
-      <!-- Header card -->
-      <div class="about-header">
-        <img class="about-avatar" src="images/avatar.jpg" alt="avatar">
-        <div class="about-header-text">
-          <h1 class="about-name">Jiahao Xie</h1>
-          <p class="about-title">Undergraduate · Dalian Medical University</p>
-          <p class="about-bio">A man with ambition.</p>
-          <div class="about-links">
-            <a href="https://orcid.org/0009-0004-2387-7021" target="_blank">ORCID</a>
-            <a href="https://github.com/AxiEj" target="_blank">GitHub</a>
-            <span class="about-link-text">xjhdl@dmu.edu.cn</span>
-          </div>
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">JX</a>
+      <div class="nav-links">
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#" class="maple-link" id="maple-btn"><span>MAPLE</span></a>
+      </div>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Maple iframe -->
+  <iframe id="maple-frame" src="about:blank" title="MAPLE"></iframe>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <!-- Golden Spiral -->
+    <svg class="golden-spiral top-right" viewBox="0 0 100 100">
+      <path d="M50,50 Q50,20 80,20 Q100,20 100,50 Q100,80 70,80 Q40,80 40,50" fill="none" stroke="currentColor" stroke-width="0.3"/>
+      <path d="M50,50 Q50,35 65,35 Q80,35 80,50 Q80,65 65,65 Q50,65 50,50" fill="none" stroke="currentColor" stroke-width="0.3"/>
+      <path d="M50,50 Q50,42 58,42 Q66,42 66,50 Q66,58 58,58 Q50,58 50,50" fill="none" stroke="currentColor" stroke-width="0.3"/>
+    </svg>
+    <svg class="golden-spiral bottom-left" viewBox="0 0 100 100">
+      <path d="M50,50 Q50,20 80,20 Q100,20 100,50 Q100,80 70,80 Q40,80 40,50" fill="none" stroke="currentColor" stroke-width="0.3"/>
+      <path d="M50,50 Q50,35 65,35 Q80,35 80,50 Q80,65 65,65 Q50,65 50,50" fill="none" stroke="currentColor" stroke-width="0.3"/>
+    </svg>
+
+    <!-- Golden Grid -->
+    <div class="golden-grid"></div>
+
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+      <span class="particle particle-1"></span>
+      <span class="particle particle-2"></span>
+      <span class="particle particle-3"></span>
+      <span class="particle particle-4"></span>
+      <span class="particle particle-5"></span>
+      <span class="particle particle-6"></span>
+      <span class="particle particle-7"></span>
+      <span class="particle particle-8"></span>
+      <span class="particle particle-9"></span>
+      <span class="particle particle-10"></span>
+    </div>
+
+    <!-- Golden Ratio Reference Lines -->
+    <svg class="golden-ratio-lines top-left-ratio" viewBox="0 0 200 200">
+      <line x1="0" y1="100" x2="100" y2="100" stroke="currentColor" stroke-width="0.5"/>
+      <line x1="100" y1="0" x2="100" y2="100" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="3" fill="currentColor"/>
+      <rect x="96" y="96" width="8" height="8" fill="none" stroke="currentColor" stroke-width="0.5" transform="rotate(45 100 100)"/>
+    </svg>
+    <svg class="golden-ratio-lines bottom-right-ratio" viewBox="0 0 200 200">
+      <line x1="100" y1="100" x2="200" y2="100" stroke="currentColor" stroke-width="0.5"/>
+      <line x1="100" y1="100" x2="100" y2="200" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="3" fill="currentColor"/>
+      <rect x="96" y="96" width="8" height="8" fill="none" stroke="currentColor" stroke-width="0.5" transform="rotate(45 100 100)"/>
+    </svg>
+
+    <!-- Corner Decorations -->
+    <div class="corner-decoration top-left">
+      <svg viewBox="0 0 80 80">
+        <path d="M0,40 L0,2 Q0,0 2,0 L40,0" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M0,25 L0,2 Q0,0 2,0 L25,0" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="corner-decoration top-right">
+      <svg viewBox="0 0 80 80">
+        <path d="M80,40 L80,2 Q80,0 78,0 L40,0" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M80,25 L80,2 Q80,0 78,0 L55,0" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="72" cy="8" r="1.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="corner-decoration bottom-left">
+      <svg viewBox="0 0 80 80">
+        <path d="M0,40 L0,78 Q0,80 2,80 L40,80" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M0,55 L0,78 Q0,80 2,80 L25,80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="8" cy="72" r="1.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="corner-decoration bottom-right">
+      <svg viewBox="0 0 80 80">
+        <path d="M80,40 L80,78 Q80,80 78,80 L40,80" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M80,55 L80,78 Q80,80 78,80 L55,80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="72" cy="72" r="1.5" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Dalian Medical University</p>
+
+      <!-- Golden Ratio Divider Above Title -->
+      <div class="hero-golden-divider">
+        <span class="divider-line"></span>
+        <span class="divider-diamond"></span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- 花体名字 -->
+      <h1 class="hero-title">Jiahao Xie
+        <span class="hero-title-line">
+          <span></span>
+          <span></span>
+        </span>
+      </h1>
+
+      <div class="hero-subtitle-row">
+        <span class="hero-subtitle">PhD Student</span>
+        <span class="hero-separator"></span>
+        <span class="hero-subtitle">Molecular Dynamics</span>
+      </div>
+
+      <p class="hero-tagline">Computational Chemistry & Biophysics</p>
+
+      <div class="hero-cta">
+        <a href="#gallery" class="btn btn-primary"><span>View Gallery</span></a>
+        <a href="#about" class="btn btn-secondary"><span>Learn More</span></a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="content-section about-section" id="about">
+    <!-- Background Decorations -->
+    <div class="section-bg-pattern"></div>
+    <div class="floating-decorations">
+      <span class="float-dot dot-1"></span>
+      <span class="float-dot dot-2"></span>
+      <span class="float-dot dot-3"></span>
+    </div>
+
+    <div class="section-container">
+      <header class="section-header reveal">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">
+          <span class="title-decoration left"></span>
+          About Me
+          <span class="title-decoration right"></span>
+        </h2>
+      </header>
+
+      <div class="about-content reveal">
+        <p class="about-lead">
+          Exploring the molecular world through computational simulations,
+          <br>seeking to understand the intricate dance of atoms.
+        </p>
+        <div class="about-divider">
+          <span class="divider-dot-left"></span>
+          <span class="divider-center"></span>
+          <span class="divider-dot-right"></span>
+        </div>
+        <div class="about-text">
+          <p>
+            My research focuses on molecular dynamics simulations to study
+            protein-ligand interactions and drug discovery mechanisms.
+          </p>
+          <p>
+            I work with computational tools including GROMACS, AMBER,
+            and various bioinformatics resources to investigate
+            molecular-level phenomena.
+          </p>
         </div>
       </div>
-      <!-- Sections -->
-      <section class="about-section">
-        <h2>Education</h2>
-        <ul>
-          <li><span class="about-year">2023–</span>Undergraduate, Dalian Medical University</li>
-        </ul>
-      </section>
-      <section class="about-section">
-        <h2>Research / Skills</h2>
-        <div class="about-tags">
-          <span class="tag">Artificial Intelligence</span>
-          <span class="tag">Machine Learning Potential</span>
-          <span class="tag">Molecular Dynamics Simulation</span>
-          <span class="tag">Umbrella Sampling</span>
-          <span class="tag">ABFE</span>
-          <span class="tag"><a href="https://www.gromacs.org" target="_blank" style="color:inherit;border:none">GROMACS</a></span>
-          <span class="tag"><a href="https://github.com/ClickFF/MAPLE" target="_blank" style="color:inherit;border:none">MAPLE</a></span>
-          <span class="tag"><a href="https://gaussian.com" target="_blank" style="color:inherit;border:none">Gaussian</a></span>
-          <span class="tag"><a href="https://openmm.org" target="_blank" style="color:inherit;border:none">OpenMM</a></span>
-          <span class="tag"><a href="http://sobereva.com/multiwfn/" target="_blank" style="color:inherit;border:none">Multiwfn</a></span>
-          <span class="tag"><a href="http://sobereva.com/soft/Sobtop/" target="_blank" style="color:inherit;border:none">Sobtop</a></span>
-          <span class="tag"><a href="https://charmm-gui.org" target="_blank" style="color:inherit;border:none">CHARMM-GUI</a></span>
-          <span class="tag"><a href="https://orcaforum.kofo.mpg.de/" target="_blank" style="color:inherit;border:none">ORCA</a></span>
-          <span class="tag"><a href="https://github.com/grimme-lab/xtb" target="_blank" style="color:inherit;border:none">xTB</a></span>
-          <span class="tag"><a href="https://www.plumed.org" target="_blank" style="color:inherit;border:none">PLUMED</a> &amp; <a href="https://colvars.github.io" target="_blank" style="color:inherit;border:none">Colvars</a></span>
-          <span class="tag"><a href="http://bbs.keinsci.com/forum.php" target="_blank" style="color:inherit;border:none">Computational Chemistry Commune</a></span>
-        </div>
-      </section>
-      <section class="about-section">
-        <h2>Research Group</h2>
-        <ul>
-          <li>Liang Wang Lab · Dalian Medical University</li>
-          <li>Feng Zhang Lab · Dept. of Gastrointestinal Surgery, Second Affiliated Hospital, Dalian Medical University</li>
-          <li>Junmei Wang Lab · Computational Chemical Genomics Screening Center (CCGS), University of Pittsburgh School of Pharmacy <span class="about-year" style="width:auto;margin-left:4px">(supervised by Xujian Wang)</span></li>
-        </ul>
-      </section>
-      <section class="about-section">
-        <h2>Publications</h2>
-        <p style="font-size:12px;color:var(--muted);letter-spacing:1px">— None yet —</p>
-      </section>
-      <section class="about-section">
-        <h2>GitHub Projects</h2>
-        <ul class="about-repos">
-          <li><a href="https://github.com/AxiEj/AxiEJohnWeb" target="_blank">AxiEJohnWeb</a> — Personal website</li>
-          <li><a href="https://github.com/ClickFF/MAPLE" target="_blank">MAPLE — Machine learning potential framework</a></li>
-        </ul>
-      </section>
     </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+      <span class="divider-dot"></span>
+      <span class="divider-line"></span>
+      <span class="divider-diamond"></span>
+      <span class="divider-line"></span>
+      <span class="divider-dot"></span>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="content-section gallery-section" id="gallery">
+    <!-- Background Decorations -->
+    <div class="section-bg-pattern"></div>
+    <div class="floating-decorations">
+      <span class="float-dot dot-4"></span>
+      <span class="float-dot dot-5"></span>
+      <span class="float-dot dot-6"></span>
+    </div>
+
+    <div class="section-container">
+      <header class="section-header reveal">
+        <p class="section-eyebrow">Collection</p>
+        <h2 class="section-title">
+          <span class="title-decoration left"></span>
+          Selected Photos
+          <span class="title-decoration right"></span>
+        </h2>
+      </header>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Gallery items will be loaded from JSON -->
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+      <span class="divider-dot"></span>
+      <span class="divider-line"></span>
+      <span class="divider-diamond"></span>
+      <span class="divider-line"></span>
+      <span class="divider-dot"></span>
+    </div>
+  </section>
+
+  <!-- Research Section -->
+  <section class="content-section research-section" id="research">
+    <!-- Background Decorations -->
+    <div class="section-bg-pattern"></div>
+    <div class="floating-decorations">
+      <span class="float-dot dot-7"></span>
+      <span class="float-dot dot-8"></span>
+      <span class="float-dot dot-9"></span>
+    </div>
+
+    <div class="section-container">
+      <header class="section-header reveal">
+        <p class="section-eyebrow">Tools</p>
+        <h2 class="section-title">
+          <span class="title-decoration left"></span>
+          Research Tools
+          <span class="title-decoration right"></span>
+        </h2>
+      </header>
+
+      <div class="research-grid">
+        <div class="research-item reveal reveal-delay-1">
+          <div class="research-icon">G</div>
+          <h3>GROMACS</h3>
+          <p>Molecular Dynamics</p>
+        </div>
+        <div class="research-item reveal reveal-delay-2">
+          <div class="research-icon">M</div>
+          <h3>MAPLE</h3>
+          <p>Protein Modeling</p>
+        </div>
+        <div class="research-item reveal reveal-delay-3">
+          <div class="research-icon">O</div>
+          <h3>OpenMM</h3>
+          <p>GPU Acceleration</p>
+        </div>
+        <div class="research-item reveal reveal-delay-4">
+          <div class="research-icon">P</div>
+          <h3>PLUMED</h3>
+          <p>Enhanced Sampling</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+      <span class="divider-dot"></span>
+      <span class="divider-line"></span>
+      <span class="divider-diamond"></span>
+      <span class="divider-line"></span>
+      <span class="divider-dot"></span>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="content-section contact-section" id="contact">
+    <!-- Background Decorations -->
+    <div class="section-bg-pattern"></div>
+    <div class="floating-decorations">
+      <span class="float-dot dot-10"></span>
+      <span class="float-dot dot-11"></span>
+      <span class="float-dot dot-12"></span>
+    </div>
+
+    <div class="section-container">
+      <header class="section-header reveal">
+        <p class="section-eyebrow" style="color: rgba(250, 249, 247, 0.4);">Contact</p>
+        <h2 class="section-title">
+          <span class="title-decoration left"></span>
+          Get in Touch
+          <span class="title-decoration right"></span>
+        </h2>
+      </header>
+
+      <div class="contact-grid reveal">
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <a href="mailto:xjhdl@dmu.edu.cn" class="contact-link">xjhdl@dmu.edu.cn</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">GitHub</p>
+          <a href="https://github.com/AxiEj" class="contact-link">@AxiEj</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">ORCID</p>
+          <a href="https://orcid.org/0009-0004-2387-7021" class="contact-link">0009-0004-2387-7021</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="copyright">© 2024 Jiahao Xie</p>
+      <span class="footer-divider"></span>
+      <p class="footer-note">Built with precision</p>
+    </div>
+  </footer>
+
+  <!-- Gallery Modal -->
+  <div class="modal" id="gallery-modal">
+    <button class="modal-close" id="modal-close" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="modal-nav">
+      <button class="modal-nav-btn" id="modal-prev" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button class="modal-nav-btn" id="modal-next" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-content">
+      <img src="" alt="" id="gallery-img">
+    </div>
+    <p class="modal-caption" id="modal-caption"></p>
   </div>
-  <script src="main.js"></script>
+
+  <!-- Gallery Data -->
+  <script>
+    const galleryData = [
+      {
+        id: "jojo7",
+        title: "jojo7",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b0e4b0e3c5f4f6b7c8",
+        count: 1
+      },
+      {
+        id: "老七老八",
+        title: "老七老八",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b1e4b0e3c5f4f6b7c9",
+        count: 17
+      },
+      {
+        id: "几何炸弹王",
+        title: "几何炸弹王",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b2e4b0e3c5f4f6b7ca",
+        count: 9
+      },
+      {
+        id: "KON",
+        title: "KON",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b3e4b0e3c5f4f6b7cb",
+        count: 19
+      },
+      {
+        id: "CLANNAD",
+        title: "CLANNAD",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b4e4b0e3c5f4f6b7cc",
+        count: 3
+      },
+      {
+        id: "性情",
+        title: "性情",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b5e4b0e3c5f4f6b7cd",
+        count: 1
+      },
+      {
+        id: "猫·2015",
+        title: "猫·2015",
+        cover: "https://imgbed.sankongtang.top/api/file/img/654fc6b6e4b0e3c5f4f6b7ce",
+        count: 13
+      }
+    ];
+
+    let currentImageIndex = 0;
+    let currentAlbumImages = [];
+
+    function initGallery() {
+      const grid = document.getElementById('gallery-grid');
+
+      galleryData.forEach((album, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item reveal';
+        item.dataset.index = index;
+        item.innerHTML = `
+          <img src="${album.cover}" alt="${album.title}" loading="lazy">
+          <div class="gallery-overlay">
+            <div>
+              <p class="gallery-label">${album.title}</p>
+              <p class="gallery-meta">${album.count} photos</p>
+            </div>
+          </div>
+        `;
+        item.addEventListener('click', () => openGallery(index));
+        grid.appendChild(item);
+      });
+
+      observeReveal();
+    }
+
+    async function openGallery(albumIndex) {
+      const album = galleryData[albumIndex];
+
+      try {
+        const response = await fetch(`https://imgbed.sankongtang.top/api/album/${album.id}`);
+        const data = await response.json();
+        currentAlbumImages = data.images || [];
+        currentImageIndex = 0;
+
+        if (currentAlbumImages.length > 0) {
+          document.getElementById('gallery-img').src = currentAlbumImages[0];
+        }
+      } catch (error) {
+        document.getElementById('gallery-img').src = album.cover;
+      }
+
+      document.getElementById('modal-caption').textContent = album.title;
+      document.getElementById('gallery-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      document.getElementById('gallery-modal').classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('gallery-img').src = '';
+    }
+
+    function navigateModal(direction) {
+      if (currentAlbumImages.length === 0) return;
+      currentImageIndex = (currentImageIndex + direction + currentAlbumImages.length) % currentAlbumImages.length;
+      document.getElementById('gallery-img').src = currentAlbumImages[currentImageIndex];
+    }
+
+    function observeReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.section-header').forEach(el => observer.observe(el));
+    }
+
+    function handleNavScroll() {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    function toggleMaple() {
+      const frame = document.getElementById('maple-frame');
+      if (frame.classList.contains('open')) {
+        frame.classList.remove('open');
+        frame.src = 'about:blank';
+      } else {
+        frame.src = 'https://alrob茸大.applight.guru:8080';
+        frame.classList.add('open');
+      }
+    }
+
+    // Event listeners
+    document.getElementById('modal-close').addEventListener('click', closeGallery);
+    document.getElementById('modal-prev').addEventListener('click', () => navigateModal(-1));
+    document.getElementById('modal-next').addEventListener('click', () => navigateModal(1));
+    document.getElementById('menu-btn').addEventListener('click', toggleMenu);
+    document.getElementById('maple-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMaple();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') navigateModal(-1);
+      if (e.keyListener' ArrowRight') navigateModal(1);
+    });
+
+    document.getElementById('gallery-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeGallery();
+    });
+
+    window.addEventListener('scroll', handleNavScroll);
+
+    // Initialize
+    initGallery();
+    handleNavScroll();
+  </script>
 </body>
 </html>
