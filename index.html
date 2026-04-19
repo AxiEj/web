@@ -181,15 +181,36 @@
           <span class="divider-center"></span>
           <span class="divider-dot-right"></span>
         </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3><span class="card-icon">🎓</span> Education</h3>
+            <p>PhD in Molecular Dynamics Simulation<br>Dalian Medical University</p>
+          </div>
+          <div class="about-card">
+            <h3><span class="card-icon">🔬</span> Research Focus</h3>
+            <p>Protein-ligand interactions<br>Drug discovery mechanisms</p>
+          </div>
+          <div class="about-card">
+            <h3><span class="card-icon">💻</span> Computational Tools</h3>
+            <p>GROMACS, AMBER, OpenMM<br>MD simulations & analysis</p>
+          </div>
+        </div>
+
         <div class="about-text">
           <p>
             My research focuses on molecular dynamics simulations to study
             protein-ligand interactions and drug discovery mechanisms.
+            Using computational approaches, I investigate how molecules interact
+            at the atomic level to understand biological processes and develop
+            potential therapeutic interventions.
           </p>
           <p>
             I work with computational tools including GROMACS, AMBER,
             and various bioinformatics resources to investigate
-            molecular-level phenomena.
+            molecular-level phenomena. My goal is to contribute to the
+            understanding of complex biological systems through
+            computational modeling and simulation.
           </p>
         </div>
       </div>
@@ -280,6 +301,26 @@
           <div class="research-icon">P</div>
           <h3>PLUMED</h3>
           <p>Enhanced Sampling</p>
+        </div>
+        <div class="research-item reveal reveal-delay-5">
+          <div class="research-icon">A</div>
+          <h3>AMBER</h3>
+          <p>Biomolecular MD</p>
+        </div>
+        <div class="research-item reveal reveal-delay-6">
+          <div class="research-icon">V</div>
+          <h3>VMD</h3>
+          <p>Visualization</p>
+        </div>
+        <div class="research-item reveal reveal-delay-7">
+          <div class="research-icon">P</div>
+          <h3>PyMOL</h3>
+          <p>Structure Display</p>
+        </div>
+        <div class="research-item reveal reveal-delay-8">
+          <div class="research-icon">C</div>
+          <h3>Chimera</h3>
+          <p>Molecular Graphics</p>
         </div>
       </div>
     </div>
@@ -524,7 +565,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeGallery();
       if (e.key === 'ArrowLeft') navigateModal(-1);
-      if (e.keyListener' ArrowRight') navigateModal(1);
+      if (e.key === 'ArrowRight') navigateModal(1);
     });
 
     document.getElementById('gallery-modal').addEventListener('click', (e) => {

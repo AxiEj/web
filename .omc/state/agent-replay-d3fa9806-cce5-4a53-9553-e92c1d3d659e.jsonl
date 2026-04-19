@@ -1,0 +1,16 @@
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrawork"}
+{"t":0,"agent":"system","event":"mode_change","mode_from":"none","mode_to":"ultrawork"}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"ultrawork"}
+{"t":0,"agent":"aee4f3f","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a9711f4","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a3c6312","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a4f6b7b","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a467efe","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a4f6b7b","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":267325}
+{"t":0,"agent":"a467efe","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":391806}
+{"t":0,"agent":"a9711f4","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":409658}
+{"t":0,"agent":"aee4f3f","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":449004}
+{"t":0,"agent":"a3c6312","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":513318}
+{"t":0,"agent":"ae5ee59","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"autopilot"}
+{"t":0,"agent":"system","event":"mode_change","mode_from":"none","mode_to":"autopilot"}

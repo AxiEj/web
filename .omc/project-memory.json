@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1776587777435,
+  "projectRoot": "/home/axie/web",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "images": {
+      "path": "images",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1776587777427,
+      "keyFiles": [
+        "avatar.jpg",
+        "favicon.jpg",
+        "mvbg-kuromi.png"
+      ]
+    },
+    "maple": {
+      "path": "maple",
+      "purpose": null,
+      "fileCount": 28,
+      "lastAccessed": 1776587777431,
+      "keyFiles": [
+        "CHANGES.md",
+        "CHANGES.md:Zone.Identifier",
+        "CLAUDE.md",
+        "CLAUDE.md:Zone.Identifier",
+        "CONTRIBUTING.md"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "golden-style.css",
+      "accessCount": 102,
+      "lastAccessed": 1776595498163,
+      "type": "file"
+    },
+    {
+      "path": "golden-index.html",
+      "accessCount": 22,
+      "lastAccessed": 1776593024133,
+      "type": "file"
+    },
+    {
+      "path": "style.css",
+      "accessCount": 12,
+      "lastAccessed": 1776595931614,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 7,
+      "lastAccessed": 1776595789895,
+      "type": "file"
+    },
+    {
+      "path": "apple-style.css",
+      "accessCount": 2,
+      "lastAccessed": 1776588537061,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1776587824786,
+      "type": "directory"
+    },
+    {
+      "path": "main.js",
+      "accessCount": 1,
+      "lastAccessed": 1776587853818,
+      "type": "file"
+    },
+    {
+      "path": "apple-index.html",
+      "accessCount": 1,
+      "lastAccessed": 1776587935431,
+      "type": "file"
+    },
+    {
+      "path": "apple-app.js",
+      "accessCount": 1,
+      "lastAccessed": 1776588028342,
+      "type": "file"
+    },
+    {
+      "path": "zen-style.css",
+      "accessCount": 1,
+      "lastAccessed": 1776588627118,
+      "type": "file"
+    },
+    {
+      "path": "zen-index.html",
+      "accessCount": 1,
+      "lastAccessed": 1776588682491,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
