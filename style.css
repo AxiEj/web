@@ -1095,6 +1095,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 0;
 }
 
+/* Section 黄金比例参考线装饰 */
+.content-section .golden-section-lines {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.25;
+  color: var(--gold);
+}
+
+.golden-section-lines.top-left,
+.golden-section-lines.bottom-right,
+.golden-section-lines.top-right,
+.golden-section-lines.bottom-left {
+  width: 100px;
+  height: 100px;
+}
+
+.golden-section-lines svg {
+  width: 100%;
+  height: 100%;
+}
+
 /* Section顶部渐变边框 */
 .content-section::after {
   content: '';
@@ -1346,7 +1368,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-size: 60px 60px;
 }
 
-/* Section 浮动装饰点 */
+/* Section 浮动装饰点 - 增强版 */
 .floating-decorations {
   position: absolute;
   inset: 0;
@@ -1356,31 +1378,124 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .float-dot {
   position: absolute;
-  width: 4px;
-  height: 4px;
   background: var(--gold);
-  border-radius: 50%;
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
-.float-dot.dot-1 { top: 20%; left: 8%; animation: floatDecor 15s ease-in-out infinite; }
-.float-dot.dot-2 { top: 60%; left: 92%; animation: floatDecor 18s ease-in-out infinite 2s; }
-.float-dot.dot-3 { top: 80%; left: 15%; animation: floatDecor 12s ease-in-out infinite 4s; }
-.float-dot.dot-4 { top: 30%; right: 10%; animation: floatDecor 16s ease-in-out infinite 1s; }
-.float-dot.dot-5 { top: 70%; right: 5%; animation: floatDecor 14s ease-in-out infinite 3s; }
-.float-dot.dot-6 { top: 50%; left: 5%; animation: floatDecor 17s ease-in-out infinite 2.5s; }
-.float-dot.dot-7 { top: 15%; left: 85%; animation: floatDecor 13s ease-in-out infinite 0.5s; }
-.float-dot.dot-8 { top: 85%; right: 15%; animation: floatDecor 19s ease-in-out infinite 1.5s; }
-.float-dot.dot-9 { top: 40%; left: 90%; animation: floatDecor 11s ease-in-out infinite 3.5s; }
-.float-dot.dot-10 { top: 25%; left: 10%; animation: floatDecor 15s ease-in-out infinite 2s; }
-.float-dot.dot-11 { top: 75%; right: 8%; animation: floatDecor 18s ease-in-out infinite 4s; }
-.float-dot.dot-12 { top: 50%; left: 88%; animation: floatDecor 14s ease-in-out infinite 1s; }
+/* 圆形点 - 增大尺寸 */
+.float-dot.dot-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* 菱形 - 增大尺寸 */
+.float-dot.dot-diamond {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+}
+
+/* 圆环 - 增大尺寸 */
+.float-dot.dot-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  opacity: 0.4;
+}
+
+/* 短线装饰 - 增大尺寸 */
+.float-dot.dot-line {
+  width: 30px;
+  height: 2px;
+  border-radius: 0;
+  transform: rotate(-45deg);
+}
+
+.float-dot.dot-1 { top: 15%; left: 8%; width: 5px; height: 5px; border-radius: 50%; animation: floatDecor 15s ease-in-out infinite; }
+.float-dot.dot-2 { top: 55%; left: 90%; width: 8px; height: 8px; transform: rotate(45deg); animation: floatDecor 18s ease-in-out infinite 2s; }
+.float-dot.dot-3 { top: 75%; left: 12%; width: 14px; height: 14px; border-radius: 50%; background: transparent; border: 1.5px solid var(--gold); animation: floatDecor 12s ease-in-out infinite 4s; }
+.float-dot.dot-4 { top: 25%; right: 10%; width: 30px; height: 2px; transform: rotate(-30deg); animation: floatDecor 16s ease-in-out infinite 1s; }
+.float-dot.dot-5 { top: 65%; right: 5%; width: 6px; height: 6px; border-radius: 50%; animation: floatDecor 14s ease-in-out infinite 3s; }
+.float-dot.dot-6 { top: 45%; left: 5%; width: 8px; height: 8px; transform: rotate(45deg); animation: floatDecor 17s ease-in-out infinite 2.5s; }
+.float-dot.dot-7 { top: 12%; left: 82%; width: 12px; height: 12px; border-radius: 50%; background: transparent; border: 1px solid var(--gold); animation: floatDecor 13s ease-in-out infinite 0.5s; }
+.float-dot.dot-8 { top: 80%; right: 12%; width: 25px; height: 2px; transform: rotate(-60deg); animation: floatDecor 19s ease-in-out infinite 1.5s; }
+.float-dot.dot-9 { top: 35%; left: 88%; width: 5px; height: 5px; border-radius: 50%; animation: floatDecor 11s ease-in-out infinite 3.5s; }
+.float-dot.dot-10 { top: 20%; left: 8%; width: 8px; height: 8px; transform: rotate(45deg); animation: floatDecor 15s ease-in-out infinite 2s; }
+.float-dot.dot-11 { top: 70%; right: 6%; width: 14px; height: 14px; border-radius: 50%; background: transparent; border: 1.5px solid var(--gold); animation: floatDecor 18s ease-in-out infinite 4s; }
+.float-dot.dot-12 { top: 45%; left: 85%; width: 28px; height: 2px; transform: rotate(-15deg); animation: floatDecor 14s ease-in-out infinite 1s; }
+
+/* 额外装饰元素 - 三角形 */
+.floating-decorations::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 14px solid var(--gold);
+  opacity: 0.08;
+  top: 30%;
+  left: 15%;
+  animation: floatDecor 20s ease-in-out infinite 1s;
+}
+
+/* 额外装饰元素 - 反向三角形 */
+.floating-decorations::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid var(--gold);
+  opacity: 0.06;
+  bottom: 35%;
+  right: 10%;
+  animation: floatDecor 22s ease-in-out infinite 3s;
+}
 
 @keyframes floatDecor {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
-  33% { transform: translate(20px, -25px) scale(1.3); opacity: 0.25; }
-  66% { transform: translate(-15px, -15px) scale(0.9); opacity: 0.1; }
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.15; }
+  33% { transform: translate(20px, -25px) rotate(15deg) scale(1.3); opacity: 0.25; }
+  66% { transform: translate(-15px, -15px) rotate(-10deg) scale(0.9); opacity: 0.1; }
 }
+
+/* 额外浮动元素 - 网格交叉点 */
+.extra-decoration {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.extra-decoration::before,
+.extra-decoration::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  opacity: 0.18;
+}
+
+.extra-decoration::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.extra-decoration::after {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.extra-decoration.pos-1 { top: 20%; right: 20%; }
+.extra-decoration.pos-2 { top: 60%; left: 25%; }
+.extra-decoration.pos-3 { bottom: 25%; right: 30%; }
 
 /* Reveal Animation */
 .reveal {
