@@ -2361,7 +2361,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* 精致Footer顶部分隔线 */
 .site-footer {
-  background: var(--ink-deep);
+  background: var(--paper-warm);
   padding: var(--space-xl) var(--space-lg);
   position: relative;
 }
@@ -2376,9 +2376,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 1px;
   background: linear-gradient(90deg,
     transparent,
-    rgba(196, 163, 90, 0.15) 15%,
-    rgba(196, 163, 90, 0.4) 50%,
-    rgba(196, 163, 90, 0.15) 85%,
+    rgba(196, 163, 90, 0.08) 15%,
+    rgba(196, 163, 90, 0.2) 50%,
+    rgba(196, 163, 90, 0.08) 85%,
     transparent
   );
 }
@@ -2393,9 +2393,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 1px;
   background: linear-gradient(90deg,
     transparent,
-    rgba(196, 163, 90, 0.25) 20%,
-    rgba(196, 163, 90, 0.5) 50%,
-    rgba(196, 163, 90, 0.25) 80%,
+    rgba(196, 163, 90, 0.12) 20%,
+    rgba(196, 163, 90, 0.25) 50%,
+    rgba(196, 163, 90, 0.12) 80%,
     transparent
   );
 }
@@ -2412,15 +2412,37 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .copyright,
 .footer-note {
   font-size: 11px;
-  color: rgba(250, 249, 247, 0.3);
+  color: #000000;
   letter-spacing: 0.08em;
 }
 
 .footer-divider {
   width: 40px;
   height: 1px;
-  background: var(--gold);
-  opacity: 0.5;
+  background: var(--ink-ghost);
+  opacity: 0.8;
+}
+
+.icp-info {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icp-info a {
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.icp-info a:hover {
+  color: var(--gold-dark);
+}
+
+.icp-divider {
+  color: #333333;
 }
 
 /* ============================================================
