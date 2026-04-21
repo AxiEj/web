@@ -3807,11 +3807,20 @@ a:focus-visible {
   -webkit-user-drag: none;
   touch-action: none;
   transform-origin: center center;
+  will-change: transform;
+  /* 只有在非触摸交互时才有过渡效果 */
   transition:
     transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.28s ease,
     filter 0.28s ease;
   filter: saturate(1.04) contrast(1.01);
+}
+
+/* 触摸拖拽时移除所有过渡效果，实现原生般丝滑 */
+#gallery-img.no-transition,
+#gallery-img.is-dragging,
+#gallery-img.is-pinch-zoom {
+  transition: none !important;
 }
 
 .modal-nav-btn {
@@ -4278,6 +4287,22 @@ body.reduced-motion *::after {
     margin: 0 auto;
   }
 
+  /* Contact section centering */
+  .contact-section .section-header {
+    text-align: center;
+    width: 100%;
+  }
+
+  .contact-section .section-title {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-section .section-eyebrow {
+    display: block;
+    text-align: center;
+  }
+
   .contact-item::after {
     display: none !important;
   }
@@ -4461,6 +4486,22 @@ body.reduced-motion *::after {
 
   .contact-item {
     padding: 20px 28px;
+  }
+
+  /* Contact section centering */
+  .contact-section .section-header {
+    text-align: center;
+    width: 100%;
+  }
+
+  .contact-section .section-title {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-section .section-eyebrow {
+    display: block;
+    text-align: center;
   }
 
   .golden-spiral,

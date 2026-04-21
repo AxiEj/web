@@ -966,8 +966,14 @@
       if (!img || !viewport) return;
 
       img.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${currentZoom})`;
+
+      // Add/remove classes for smooth CSS transitions
+      img.classList.toggle('is-dragging', isDragging);
+      img.classList.toggle('is-pinch-zoom', isPinching);
+
       viewport.classList.toggle('is-dragging', isDragging);
       viewport.classList.toggle('is-pinching', isPinching);
+
       const cursor = isDragging ? 'grabbing' : 'grab';
       viewport.style.cursor = cursor;
       img.style.cursor = cursor;
