@@ -660,6 +660,77 @@
 
   <!-- Gallery Data -->
   <script>
+    // ============================================================
+    // DEVICE DETECTION & MOBILE OPTIMIZATION
+    // ============================================================
+
+    // Mobile pinch zoom settings
+    const PINCH_ZOOM = {
+      MIN: 1,
+      MAX: 10,
+      SENSITIVITY: 1.5,
+      ANCHOR_ZOOM_THRESHOLD: 1.1
+    };
+
+    // UI timing settings
+    const UI_HIDE_DELAY = 1800;
+
+    const DeviceUtils = {
+      isMobile: () => window.innerWidth <= 768,
+      isTouchDevice: () => 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+      isReducedMotion: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+
+      init() {
+        document.body.classList.add(this.isMobile() ? 'is-mobile' : 'is-desktop');
+        document.body.classList.add(this.isTouchDevice() ? 'is-touch' : 'is-pointer');
+
+        if (this.isReducedMotion()) {
+          document.body.classList.add('reduced-motion');
+        }
+
+        if (this.isMobile()) {
+          this.optimizeMobilePerformance();
+        }
+
+        window.addEventListener('orientationchange', () => {
+          setTimeout(() => this.handleOrientationChange(), 100);
+        });
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => this.handleResize(), 150);
+        });
+      },
+
+      optimizeMobilePerformance() {
+        document.body.style.setProperty('--parallax-enabled', '0');
+        this.reducedObserverThreshold = 0.3;
+      },
+
+      handleOrientationChange() {
+        const wasMobile = document.body.classList.contains('is-mobile');
+        const isNowMobile = this.isMobile();
+
+        if (wasMobile !== isNowMobile) {
+          document.body.classList.toggle('is-mobile', isNowMobile);
+          document.body.classList.toggle('is-desktop', !isNowMobile);
+        }
+      },
+
+      handleResize() {
+        const wasMobile = document.body.classList.contains('is-mobile');
+        const isNowMobile = this.isMobile();
+
+        if (wasMobile !== isNowMobile) {
+          document.body.classList.toggle('is-mobile', isNowMobile);
+          document.body.classList.toggle('is-desktop', !isNowMobile);
+        }
+      }
+    };
+
+    DeviceUtils.init();
+
     const galleryData = [
       {
         id: "what-can-i-say",
@@ -737,11 +808,7 @@
     let currentAlbumImages = [];
 
     // Zoom & Pan state
-    const MIN_ZOOM = 1;
-    const MAX_ZOOM = 10;
-    const UI_HIDE_DELAY = 1800;
-
-    let currentZoom = 1;
+    let currentZoom = PINCH_ZOOM.MIN;
     let panX = 0;
     let panY = 0;
     let isDragging = false;
@@ -754,6 +821,9 @@
     let pinchStartZoom = 1;
     let pinchAnchor = { x: 0, y: 0 };
     let uiHideTimer = null;
+
+    // RAF for smooth pinch updates
+    let rafId = null;
 
     function initGallery() {
       const grid = document.getElementById('gallery-grid');
@@ -904,7 +974,7 @@
     }
 
     function resetZoom() {
-      currentZoom = MIN_ZOOM;
+      currentZoom = PINCH_ZOOM.MIN;
       panX = 0;
       panY = 0;
       isDragging = false;
@@ -971,7 +1041,7 @@
 
       const midpoint = getMidpoint(first, second);
       const nextDistance = Math.max(getDistance(first, second), 1);
-      const nextZoom = clamp(pinchStartZoom * (nextDistance / pinchStartDistance), MIN_ZOOM, MAX_ZOOM);
+      const nextZoom = clamp(pinchStartZoom * (nextDistance / pinchStartDistance), PINCH_ZOOM.MIN, PINCH_ZOOM.MAX);
       const { x: centerX, y: centerY } = getViewportCenter();
 
       currentZoom = nextZoom;
@@ -982,7 +1052,7 @@
 
     // Zoom toward the pointer so the pixel under the cursor stays anchored.
     function zoomAt(mouseX, mouseY, newZoom) {
-      const clampedZoom = clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+      const clampedZoom = clamp(newZoom, PINCH_ZOOM.MIN, PINCH_ZOOM.MAX);
       if (Math.abs(clampedZoom - currentZoom) < 0.001) return;
 
       const { x: centerX, y: centerY } = getViewportCenter();
@@ -1004,24 +1074,35 @@
     }
 
     function observeReveal() {
+      const threshold = DeviceUtils.isMobile() ? 0.1 : 0.15;
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, entry.target.dataset.revealDelay || 0);
           }
         });
       }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: threshold,
+        rootMargin: DeviceUtils.isMobile() ? '0px 0px -30px 0px' : '0px 0px -50px 0px'
       });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade, .reveal-glow').forEach(el => {
+        observer.observe(el);
+      });
+
       document.querySelectorAll('.section-header').forEach(el => observer.observe(el));
     }
 
     function handleNavScroll() {
       const nav = document.getElementById('main-nav');
-      if (window.scrollY > 50) {
+      if (!nav) return;
+
+      const scrollThreshold = DeviceUtils.isMobile() ? 30 : 50;
+
+      if (window.scrollY > scrollThreshold) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
@@ -1029,8 +1110,37 @@
     }
 
     function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('open');
+      const navLinks = document.querySelector('.nav-links');
+      if (!navLinks) return;
+
+      navLinks.classList.toggle('open');
+
+      if (navLinks.classList.contains('open') && DeviceUtils.isMobile()) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
+
+    function setupMobileMenuLinks() {
+      if (!DeviceUtils.isMobile()) return;
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          if (link.getAttribute('href')?.startsWith('#')) {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks?.classList.contains('open')) {
+              setTimeout(() => {
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+              }, 100);
+            }
+          }
+        });
+      });
+    }
+
+    setupMobileMenuLinks();
 
     // MAPLE opens in new tab
 
@@ -1125,6 +1235,42 @@
       }
     });
 
+    // Swipe gesture for mobile gallery navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
+
+    modalViewport.addEventListener('touchstart', (e) => {
+      if (!galleryModal.classList.contains('open')) return;
+      if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
+    }, { passive: true });
+
+    modalViewport.addEventListener('touchend', (e) => {
+      if (!galleryModal.classList.contains('open')) return;
+      if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }
+    }, { passive: true });
+
+    function handleSwipe() {
+      if (currentZoom > 1.1) return;
+
+      const swipeDistance = touchEndX - touchStartX;
+
+      if (Math.abs(swipeDistance) > SWIPE_THRESHOLD) {
+        if (swipeDistance > 0) {
+          navigateModal(-1);
+        } else {
+          navigateModal(1);
+        }
+        touchStartX = 0;
+        touchEndX = 0;
+      }
+    }
+
     // Mouse wheel zoom
     modalViewport.addEventListener('wheel', (e) => {
       if (!galleryModal.classList.contains('open')) return;
@@ -1137,7 +1283,7 @@
     // Double-click to zoom in/out
     modalViewport.addEventListener('dblclick', (e) => {
       if (!galleryModal.classList.contains('open')) return;
-      if (currentZoom > MIN_ZOOM + 0.01) {
+      if (currentZoom > PINCH_ZOOM.MIN + 0.01) {
         zoomTo(1);  // Reset
       } else {
         zoomAt(e.clientX, e.clientY, 2.5);
