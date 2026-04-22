@@ -1878,86 +1878,53 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 
 .interests-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 20px;
+  flex-wrap: nowrap;
 }
 
 .interest-card {
-  background: rgba(250, 249, 247, 0.85);
-  border: 1px solid var(--paper-line);
-  border-radius: 12px;
+  flex: 0 0 280px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
   padding: 0;
-  text-align: left;
-  transition: all var(--duration-normal) var(--ease-smooth);
-  position: relative;
-  overflow: hidden;
-  min-height: 0;
-}
-
-.interest-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-  transform: scaleX(0);
-  transition: transform var(--duration-normal) var(--ease-out);
-}
-
-.interest-card:hover::before {
-  transform: scaleX(1);
-}
-
-.interest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-gold-soft);
-  border-color: var(--gold-muted);
+  text-align: center;
 }
 
 .interest-icon {
-  font-size: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 .interest-title {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--ink-black);
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
   margin-bottom: 4px;
-  display: block;
 }
 
 .interest-subtitle {
   font-size: 12px;
-  color: var(--ink-ghost);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0;
-  display: block;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 12px;
 }
 
 .interest-count {
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-ghost);
+  color: #bbb;
+  margin-bottom: 12px;
 }
 
 .interest-summary {
   list-style: none;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 24px 20px 20px;
+  padding: 16px;
 }
 
 .interest-summary::-webkit-details-marker {
@@ -1965,112 +1932,71 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .interest-summary-main {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  min-width: 0;
   flex: 1;
 }
 
 .interest-heading {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .interest-summary-side {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  flex-shrink: 0;
+  justify-content: center;
+  padding-top: 12px;
 }
 
 .interest-toggle-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid rgba(196, 163, 90, 0.28);
-  background: rgba(196, 163, 90, 0.08);
-  color: var(--ink-black);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all var(--duration-micro) var(--ease-smooth);
+  display: none;
 }
 
-.interest-toggle-text::after {
-  content: '▾';
-  font-size: 10px;
-  transition: transform var(--duration-normal) var(--ease-smooth);
+.interest-card > summary::after {
+  content: '▼';
+  color: #ccc;
+  font-size: 14px;
+  display: block;
 }
 
-.interest-card[open] .interest-toggle-text::after {
-  transform: rotate(180deg);
-}
-
-.interest-card:hover .interest-toggle-text {
-  background: rgba(196, 163, 90, 0.18);
-  border-color: var(--gold);
+.interest-card[open] > summary::after {
+  display: none;
 }
 
 .interest-panel {
-  padding: 0 20px 20px;
-  border-top: 1px solid rgba(196, 163, 90, 0.14);
+  padding: 8px 16px 16px;
 }
 
 .interest-list-scroll {
-  max-height: 280px;
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(196, 163, 90, 0.45) transparent;
-}
-
-.interest-list-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.interest-list-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.interest-list-scroll::-webkit-scrollbar-thumb {
-  background: rgba(196, 163, 90, 0.35);
-  border-radius: 999px;
+  overflow: visible;
+  max-height: none;
 }
 
 .interest-list {
   list-style: none;
   margin: 0;
-  padding: 14px 0 0;
+  padding: 8px 0 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
   text-align: left;
 }
 
-.interest-list.bilingual {
-  gap: 10px;
+.interest-list li {
+  padding: 6px 0;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+  border-bottom: 1px solid #f5f5f5;
 }
 
-.interest-list li {
-  position: relative;
-  padding: 8px 10px 8px 22px;
-  border-radius: 10px;
-  background: rgba(196, 163, 90, 0.07);
-  color: var(--ink-light);
-  line-height: 1.5;
-  font-size: 13px;
+.interest-list li:last-child {
+  border-bottom: none;
 }
 
 .interest-list li::before {
-  content: '✦';
-  position: absolute;
-  left: 9px;
-  top: 8px;
-  color: var(--gold-dark);
-  font-size: 11px;
+  content: '·';
+  color: #ddd;
+  margin-right: 6px;
 }
 
 .interest-zh,
@@ -2079,15 +2005,55 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .interest-zh {
-  color: var(--ink-black);
+  color: #333;
   font-weight: 500;
-  margin-bottom: 2px;
 }
 
 .interest-en {
-  color: var(--ink-muted);
+  color: #999;
   font-size: 12px;
-  line-height: 1.45;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .interests-section .interests-grid {
+    display: block;
+    padding: 0 16px;
+    width: 100%;
+  }
+
+  .interests-section .interest-card {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .interests-section .interest-card * {
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
+
+  .interests-section .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .interests-section .reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .interests-section .interest-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+  }
 }
 
 /* Tag Cloud - 标签云 */
