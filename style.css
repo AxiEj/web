@@ -1874,6 +1874,262 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
+   INTERESTS SECTIONS - 自我陈述板块
+   ============================================================ */
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.interest-card {
+  background: rgba(250, 249, 247, 0.85);
+  border: 1px solid var(--paper-line);
+  border-radius: 12px;
+  padding: 0;
+  text-align: left;
+  transition: all var(--duration-normal) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.interest-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  transform: scaleX(0);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.interest-card:hover::before {
+  transform: scaleX(1);
+}
+
+.interest-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-gold-soft);
+  border-color: var(--gold-muted);
+}
+
+.interest-icon {
+  font-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.interest-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink-black);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.interest-subtitle {
+  font-size: 12px;
+  color: var(--ink-ghost);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  display: block;
+}
+
+.interest-count {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-ghost);
+}
+
+.interest-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 20px 20px;
+}
+
+.interest-summary::-webkit-details-marker {
+  display: none;
+}
+
+.interest-summary-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+  flex: 1;
+}
+
+.interest-heading {
+  min-width: 0;
+}
+
+.interest-summary-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.interest-toggle-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(196, 163, 90, 0.28);
+  background: rgba(196, 163, 90, 0.08);
+  color: var(--ink-black);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all var(--duration-micro) var(--ease-smooth);
+}
+
+.interest-toggle-text::after {
+  content: '▾';
+  font-size: 10px;
+  transition: transform var(--duration-normal) var(--ease-smooth);
+}
+
+.interest-card[open] .interest-toggle-text::after {
+  transform: rotate(180deg);
+}
+
+.interest-card:hover .interest-toggle-text {
+  background: rgba(196, 163, 90, 0.18);
+  border-color: var(--gold);
+}
+
+.interest-panel {
+  padding: 0 20px 20px;
+  border-top: 1px solid rgba(196, 163, 90, 0.14);
+}
+
+.interest-list-scroll {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196, 163, 90, 0.45) transparent;
+}
+
+.interest-list-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.interest-list-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.interest-list-scroll::-webkit-scrollbar-thumb {
+  background: rgba(196, 163, 90, 0.35);
+  border-radius: 999px;
+}
+
+.interest-list {
+  list-style: none;
+  margin: 0;
+  padding: 14px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.interest-list.bilingual {
+  gap: 10px;
+}
+
+.interest-list li {
+  position: relative;
+  padding: 8px 10px 8px 22px;
+  border-radius: 10px;
+  background: rgba(196, 163, 90, 0.07);
+  color: var(--ink-light);
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.interest-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  color: var(--gold-dark);
+  font-size: 11px;
+}
+
+.interest-zh,
+.interest-en {
+  display: block;
+}
+
+.interest-zh {
+  color: var(--ink-black);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.interest-en {
+  color: var(--ink-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* Tag Cloud - 标签云 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.tag {
+  background: rgba(196, 163, 90, 0.1);
+  border: 1px solid var(--gold-muted);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--ink-light);
+  transition: all var(--duration-micro) var(--ease-smooth);
+}
+
+.tag:hover {
+  background: var(--gold-muted);
+  color: var(--ink-black);
+  border-color: var(--gold);
+}
+
+.tag.empty {
+  font-style: italic;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.tag.empty::before {
+  content: '[';
+}
+
+.tag.empty::after {
+  content: ']';
+}
+
+/* ============================================================
    EDUCATION TIMELINE - 优雅时间线
    ============================================================ */
 
@@ -2684,6 +2940,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .contact-item:not(:last-child)::after {
     display: none;
   }
+
+  .interests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -2736,6 +2996,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .research-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .interest-summary-side {
+    width: 100%;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2745,6 +3019,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .research-grid {
     grid-template-columns: 1fr;
+  }
+
+  .interest-list-scroll {
+    max-height: 190px;
   }
 }
 
