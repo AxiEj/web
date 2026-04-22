@@ -2998,6 +2998,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
 
   .interests-grid {
+    display: grid;
     grid-template-columns: 1fr;
   }
 
@@ -3022,7 +3023,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
 
   .interest-list-scroll {
-    max-height: 190px;
+    max-height: none;
+    overflow: visible;
   }
 }
 
