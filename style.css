@@ -2351,6 +2351,71 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 20px;
 }
 
+.research-principle {
+  max-width: 760px;
+  margin: 0 auto 22px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(250, 249, 247, 0.92)),
+    radial-gradient(circle at 12% 0%, rgba(196, 163, 90, 0.16), transparent 38%);
+  border: 1px solid rgba(196, 163, 90, 0.24);
+  box-shadow:
+    0 12px 36px rgba(196, 163, 90, 0.08),
+    var(--inner-shadow);
+}
+
+.research-principle::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+}
+
+.research-principle-icon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-muted);
+  border-radius: 50%;
+  background: rgba(196, 163, 90, 0.08);
+  box-shadow: inset 0 0 18px rgba(196, 163, 90, 0.08);
+}
+
+.research-principle-icon svg {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+
+.research-principle-copy h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+  color: var(--ink-black);
+}
+
+.research-principle-copy p {
+  max-width: 560px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
 .research-item {
   text-align: center;
   padding: var(--space-xl) var(--space-lg);
@@ -2967,6 +3032,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .research-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .research-principle {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 18px;
+  }
+
+  .research-principle-copy p {
+    max-width: 100%;
   }
 
   .interests-grid {
