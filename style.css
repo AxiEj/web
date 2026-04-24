@@ -2346,8 +2346,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .research-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
   padding: 20px;
 }
 
@@ -2410,6 +2410,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 400;
   color: var(--gold);
   position: relative;
+}
+
+.research-icon svg {
+  width: 40px;
+  height: 40px;
+  display: block;
 }
 
 .research-icon::after {
