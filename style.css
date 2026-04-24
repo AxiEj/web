@@ -4931,3 +4931,223 @@ body.reduced-motion *::after {
     --space-5xl: calc(120px * var(--phi));
   }
 }
+
+/* ============================================================
+   AESTHETIC REFINEMENT PASS - editorial polish
+   ============================================================ */
+
+/* Softer reading rhythm: the previous justified copy created uneven rivers. */
+.about-text {
+  text-align: start;
+  text-justify: auto;
+  letter-spacing: 0.012em;
+  line-height: 1.92;
+}
+
+.about-text p {
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Photo wall: make the gallery feel like curated prints, not raw thumbnails. */
+.gallery-grid {
+  gap: clamp(18px, 2vw, 28px);
+  padding-inline: clamp(12px, 2vw, 28px);
+}
+
+.gallery-item {
+  padding: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 243, 239, 0.94)),
+    var(--paper);
+  border: 1px solid rgba(196, 163, 90, 0.16);
+  box-shadow:
+    0 14px 38px rgba(26, 24, 22, 0.055),
+    0 2px 8px rgba(196, 163, 90, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.gallery-item::before {
+  inset: 8px;
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(26, 24, 22, 0.04);
+}
+
+.gallery-item:hover::before {
+  border-color: rgba(196, 163, 90, 0.82);
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px) scale(1.018);
+  box-shadow:
+    0 26px 62px rgba(26, 24, 22, 0.11),
+    0 12px 28px rgba(196, 163, 90, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.gallery-item img {
+  filter: grayscale(18%) saturate(0.96) contrast(1.01);
+  border: 1px solid rgba(26, 24, 22, 0.05);
+}
+
+.gallery-item:hover img {
+  filter: grayscale(0%) saturate(1.04) contrast(1.02);
+}
+
+.gallery-overlay {
+  inset: 8px;
+  background:
+    linear-gradient(to top, rgba(15, 14, 13, 0.84) 0%, rgba(15, 14, 13, 0.22) 52%, transparent 100%);
+}
+
+/* AI tools: preserve the gold-paper language while making cards feel intentional. */
+.research-principle {
+  max-width: 820px;
+  border-color: rgba(196, 163, 90, 0.28);
+}
+
+.research-principle-copy p {
+  text-transform: none;
+  letter-spacing: 0.035em;
+  color: var(--ink-muted);
+}
+
+.research-item {
+  min-height: 212px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(250, 249, 247, 0.96)),
+    var(--paper);
+  border-color: rgba(196, 163, 90, 0.14);
+}
+
+.research-icon {
+  isolation: isolate;
+}
+
+.research-icon::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 163, 90, 0.13), transparent 68%);
+  opacity: 0.82;
+}
+
+/* Contact: subtle cards improve legibility on the dark field without losing restraint. */
+.contact-grid {
+  flex-wrap: wrap;
+  gap: clamp(18px, 4vw, 52px);
+}
+
+.contact-item {
+  min-width: 220px;
+  padding: 18px 28px;
+  border: 1px solid rgba(196, 163, 90, 0.12);
+  background:
+    linear-gradient(180deg, rgba(250, 249, 247, 0.045), rgba(196, 163, 90, 0.018));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.contact-item:not(:last-child)::after {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .section-title {
+    gap: 12px;
+    white-space: nowrap;
+    font-size: clamp(30px, 8.8vw, 38px);
+  }
+
+  .title-decoration {
+    width: clamp(28px, 12vw, 48px);
+  }
+
+  .gallery-item {
+    padding: 5px;
+  }
+
+  .gallery-item::before,
+  .gallery-overlay {
+    inset: 5px;
+  }
+
+  .research-principle {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    gap: 8px;
+    font-size: 31px;
+  }
+
+  .title-decoration {
+    width: 22px;
+  }
+
+  .section-header.visible .title-decoration {
+    width: 22px;
+  }
+
+  .research-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .research-item {
+    min-height: 152px;
+    padding: 18px 10px;
+  }
+
+  .research-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .research-icon svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .research-item:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 6px);
+    min-width: 140px;
+  }
+
+  .contact-item {
+    width: min(100%, 320px);
+    max-width: 320px;
+    padding: 18px 16px;
+  }
+
+  .contact-link {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .section-title {
+    gap: 8px;
+    font-size: 29px;
+  }
+
+  .title-decoration {
+    width: 18px;
+  }
+
+  .section-header.visible .title-decoration {
+    width: 18px;
+  }
+}
