@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五一劳动节 · 2026 · 致敬每一位劳动者</title>
+<meta name="description" content="五一劳动节 2026 纪念特刊：致敬每一位劳动者。">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Serif+Display:ital@0;1&family=Long+Cang&family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C8102E;
+    --red-deep:#8E0A20;
+    --cream:#F2E8D0;
+    --cream-dark:#E5D8B5;
+    --ink:#161413;
+    --gold:#E8B923;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--cream);color:var(--ink);font-family:'Noto Serif SC',serif;overflow-x:hidden;}
+
+  /* Paper grain overlay */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;opacity:.6;
+  }
+
+  /* Top marquee */
+  .marquee{
+    background:var(--ink);color:var(--cream);
+    border-bottom:3px solid var(--red);
+    overflow:hidden;white-space:nowrap;
+    font-family:'Archivo Black',sans-serif;
+    text-transform:uppercase;letter-spacing:.15em;
+    font-size:14px;padding:10px 0;
+  }
+  .marquee-track{display:inline-block;animation:slide 38s linear infinite;}
+  .marquee span{margin:0 28px;}
+  .marquee .star{color:var(--red);}
+  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* Header */
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 40px;border-bottom:1px solid var(--ink);
+  }
+  .logo{font-family:'Archivo Black',sans-serif;letter-spacing:.05em;font-size:13px;}
+  .logo b{color:var(--red);}
+  .meta{display:flex;gap:32px;font-size:12px;font-family:'Archivo Black',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
+  .meta div span{display:block;font-family:'Noto Serif SC';font-weight:400;font-size:10px;opacity:.6;letter-spacing:.05em;margin-top:2px;}
+  .site-return{
+    padding:14px 40px 0;
+    font-family:'Archivo Black',sans-serif;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .site-return a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--red);
+    border-bottom:1px solid currentColor;
+    text-decoration:none;
+    padding-bottom:3px;
+  }
+  .site-return a:hover{color:var(--red-deep);}
+
+  /* Hero */
+  .hero{
+    position:relative;padding:60px 40px 80px;
+    border-bottom:3px double var(--ink);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:40px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero-left{text-align:right;}
+  .kicker{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--red);margin-bottom:14px;
+  }
+  .hero-left p{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;line-height:1.5;}
+  .hero-left .rule{width:60px;height:2px;background:var(--ink);margin:16px 0 16px auto;}
+
+  .hero-center{text-align:center;position:relative;}
+  .big-num{
+    font-family:'ZCOOL QingKe HuangYou',serif;
+    font-size:clamp(140px,22vw,320px);
+    line-height:.85;color:var(--red);
+    letter-spacing:-.04em;
+    text-shadow:6px 6px 0 var(--ink);
+    transform:rotate(-2deg);
+    display:inline-block;
+  }
+  .hero-center .sub{
+    font-family:'Long Cang',cursive;
+    font-size:48px;color:var(--ink);
+    margin-top:28px;letter-spacing:.3em;padding-left:.3em;
+  }
+  .hero-center .en{
+    font-family:'Archivo Black',sans-serif;
+    font-size:14px;letter-spacing:.4em;margin-top:18px;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:8px 0;display:inline-block;min-width:280px;
+  }
+
+  .hero-right{position:relative;}
+  .date-stamp{
+    border:3px solid var(--red);padding:18px;
+    transform:rotate(4deg);background:var(--cream);
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .date-stamp .day{
+    font-family:'Archivo Black',sans-serif;font-size:84px;line-height:.9;color:var(--red);
+  }
+  .date-stamp .mo{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:.2em;}
+  .date-stamp .yr{font-family:'DM Serif Display',serif;font-size:32px;margin-top:6px;}
+  .date-stamp .lab{
+    font-size:10px;letter-spacing:.25em;text-transform:uppercase;
+    margin-top:10px;border-top:1px dashed var(--ink);padding-top:8px;
+    font-family:'Archivo Black',sans-serif;
+  }
+
+  /* Sun rays in background */
+  .rays{
+    position:absolute;top:50%;left:50%;width:1200px;height:1200px;
+    transform:translate(-50%,-50%);z-index:1;opacity:.08;pointer-events:none;
+  }
+
+  /* Banner strip */
+  .strip{
+    background:var(--red);color:var(--cream);
+    font-family:'Archivo Black',sans-serif;
+    text-transform:uppercase;letter-spacing:.3em;
+    font-size:13px;padding:14px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:3px solid var(--ink);
+  }
+  .strip .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;display:inline-block;margin:0 12px;vertical-align:middle;}
+
+  /* Quote */
+  .quote{
+    padding:90px 40px;text-align:center;position:relative;
+    border-bottom:1px solid var(--ink);
+  }
+  .quote::before{
+    content:"";position:absolute;top:30px;left:50%;transform:translateX(-50%);
+    width:40px;height:40px;background:var(--red);border-radius:50%;
+  }
+  .quote blockquote{
+    font-family:'DM Serif Display',serif;font-style:italic;
+    font-size:clamp(28px,4vw,48px);line-height:1.4;max-width:900px;margin:0 auto;
+  }
+  .quote blockquote .accent{color:var(--red);font-style:normal;font-family:'ZCOOL QingKe HuangYou';}
+  .quote cite{
+    display:block;margin-top:30px;font-style:normal;font-size:12px;
+    font-family:'Archivo Black',sans-serif;letter-spacing:.3em;text-transform:uppercase;
+  }
+
+  /* Tribute grid */
+  .tribute{padding:80px 40px;border-bottom:3px double var(--ink);}
+  .tribute-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:50px;
+  }
+  .tribute-head h2{
+    font-family:'ZCOOL QingKe HuangYou';font-size:64px;letter-spacing:.05em;
+  }
+  .tribute-head .num{
+    font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:.3em;
+  }
+  .tribute-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--ink);border-left:1px solid var(--ink);
+  }
+  .card{
+    border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:30px 24px;position:relative;background:var(--cream);
+    transition:background .3s,color .3s;
+    min-height:240px;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card:hover{background:var(--red);color:var(--cream);}
+  .card:hover .card-num{color:var(--cream);border-color:var(--cream);}
+  .card-num{
+    font-family:'Archivo Black',sans-serif;font-size:11px;
+    color:var(--red);border:1px solid var(--ink);padding:3px 8px;
+    display:inline-block;letter-spacing:.2em;align-self:flex-start;
+  }
+  .card-icon{font-size:42px;margin:18px 0;font-family:'ZCOOL QingKe HuangYou';}
+  .card-title{font-family:'ZCOOL QingKe HuangYou';font-size:26px;margin-bottom:6px;}
+  .card-en{font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.25em;text-transform:uppercase;opacity:.7;}
+  .card-desc{font-size:13px;line-height:1.6;margin-top:14px;}
+
+  /* History */
+  .history{
+    display:grid;grid-template-columns:1fr 2fr;gap:60px;
+    padding:80px 40px;border-bottom:1px solid var(--ink);
+    background:var(--cream-dark);
+  }
+  .history h3{
+    font-family:'ZCOOL QingKe HuangYou';font-size:48px;line-height:1;
+  }
+  .history h3 .yr{display:block;color:var(--red);font-size:96px;font-family:'Archivo Black';letter-spacing:-.03em;}
+  .history-body{font-size:15px;line-height:1.9;}
+  .history-body p{margin-bottom:18px;text-indent:2em;}
+  .history-body p:first-child::first-letter{
+    font-family:'DM Serif Display';font-size:64px;float:left;line-height:.85;
+    padding:6px 12px 0 0;color:var(--red);
+  }
+  .history-body p:first-child{text-indent:0;}
+
+  /* Numbers */
+  .numbers{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-bottom:3px double var(--ink);
+  }
+  .stat{
+    padding:50px 30px;text-align:center;border-right:1px solid var(--ink);
+    background:var(--ink);color:var(--cream);
+  }
+  .stat:last-child{border-right:none;}
+  .stat:nth-child(2){background:var(--red);}
+  .stat:nth-child(3){background:var(--cream);color:var(--ink);}
+  .stat .v{font-family:'Archivo Black',sans-serif;font-size:64px;line-height:1;letter-spacing:-.02em;}
+  .stat .l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:10px;font-family:'Archivo Black';}
+  .stat .zh{font-family:'Noto Serif SC';font-weight:700;font-size:13px;margin-top:6px;letter-spacing:.1em;}
+
+  /* Closing */
+  .closing{
+    padding:120px 40px;text-align:center;background:var(--ink);color:var(--cream);
+    position:relative;overflow:hidden;
+  }
+  .closing::before{
+    content:"";position:absolute;top:50%;left:50%;
+    width:800px;height:800px;border:2px solid var(--red);border-radius:50%;
+    transform:translate(-50%,-50%);opacity:.3;
+  }
+  .closing::after{
+    content:"";position:absolute;top:50%;left:50%;
+    width:500px;height:500px;border:2px solid var(--red);border-radius:50%;
+    transform:translate(-50%,-50%);opacity:.5;
+  }
+  .closing-content{position:relative;z-index:2;}
+  .closing h4{
+    font-family:'ZCOOL QingKe HuangYou';
+    font-size:clamp(50px,8vw,120px);line-height:1;
+    color:var(--red);letter-spacing:.05em;
+  }
+  .closing h4 span{color:var(--gold);}
+  .closing p{
+    font-family:'Long Cang';font-size:42px;
+    margin-top:30px;letter-spacing:.2em;
+  }
+  .closing .tag{
+    font-family:'Archivo Black',sans-serif;font-size:12px;
+    letter-spacing:.4em;margin-top:40px;border-top:1px solid var(--cream);
+    border-bottom:1px solid var(--cream);padding:10px 0;
+    display:inline-block;min-width:300px;
+  }
+
+  footer{
+    padding:24px 40px;display:flex;justify-content:space-between;
+    font-family:'Archivo Black';font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;background:var(--cream);
+  }
+  footer .red{color:var(--red);}
+
+  /* Animations */
+  .reveal{opacity:0;transform:translateY(30px);transition:all 1s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero-left{text-align:center;}.hero-left .rule{margin:16px auto;}
+    .tribute-grid{grid-template-columns:repeat(2,1fr);}
+    .history{grid-template-columns:1fr;gap:30px;padding:60px 24px;}
+    .numbers{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .meta{display:none;}
+    header,.strip,.tribute,.quote,.closing{padding-left:24px;padding-right:24px;}
+    .tribute-head{flex-direction:column;align-items:flex-start;gap:10px;}
+    .tribute-head h2{font-size:42px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>★ Labor Day 2026</span><span class="star">●</span>
+    <span>劳动最光荣</span><span class="star">●</span>
+    <span>致敬每一位劳动者</span><span class="star">●</span>
+    <span>International Workers' Day</span><span class="star">●</span>
+    <span>幸福都是奋斗出来的</span><span class="star">●</span>
+    <span>May 1st · 五一</span><span class="star">●</span>
+    <span>★ Labor Day 2026</span><span class="star">●</span>
+    <span>劳动最光荣</span><span class="star">●</span>
+    <span>致敬每一位劳动者</span><span class="star">●</span>
+    <span>International Workers' Day</span><span class="star">●</span>
+    <span>幸福都是奋斗出来的</span><span class="star">●</span>
+    <span>May 1st · 五一</span><span class="star">●</span>
+  </div>
+</div>
+
+<div class="site-return">
+  <a href="index.html" aria-label="Back to Jiahao Xie homepage">← Back to JX Home</a>
+</div>
+
+<header>
+  <div class="logo"><b>★</b> 劳动节 / WORKERS' DAY · EST.1886</div>
+  <div class="meta">
+    <div>EDITION №.140<span>第一四〇届</span></div>
+    <div>VOL · MMXXVI<span>2026</span></div>
+    <div>FREE PRESS<span>纪念特刊</span></div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <svg class="rays" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+    <g fill="none" stroke="#C8102E" stroke-width=".4">
+      <circle cx="100" cy="100" r="20"/>
+      <circle cx="100" cy="100" r="40"/>
+      <circle cx="100" cy="100" r="60"/>
+      <circle cx="100" cy="100" r="80"/>
+    </g>
+    <g stroke="#161413" stroke-width=".5">
+      <line x1="100" y1="0" x2="100" y2="200"/>
+      <line x1="0" y1="100" x2="200" y2="100"/>
+      <line x1="29" y1="29" x2="171" y2="171"/>
+      <line x1="171" y1="29" x2="29" y2="171"/>
+      <line x1="50" y1="0" x2="150" y2="200"/>
+      <line x1="150" y1="0" x2="50" y2="200"/>
+      <line x1="0" y1="50" x2="200" y2="150"/>
+      <line x1="0" y1="150" x2="200" y2="150" transform="rotate(180 100 100)"/>
+    </g>
+  </svg>
+
+  <div class="hero-grid">
+    <div class="hero-left reveal">
+      <div class="kicker">2026 · Spring Edition</div>
+      <p>"凡是劳动的人，<br>都是值得被歌颂的人。"</p>
+      <div class="rule"></div>
+      <div style="font-size:11px;letter-spacing:.2em;font-family:'Archivo Black';">— A TRIBUTE TO EVERY WORKER —</div>
+    </div>
+
+    <div class="hero-center reveal">
+      <div class="big-num">五一</div>
+      <div class="sub">国际劳动节</div>
+      <div class="en">★ INTERNATIONAL · LABOUR · DAY ★</div>
+    </div>
+
+    <div class="hero-right reveal">
+      <div class="date-stamp">
+        <div class="day">01</div>
+        <div class="mo">MAY · 五月</div>
+        <div class="yr">2026</div>
+        <div class="lab">Friday · 星期五</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Strip -->
+<div class="strip">
+  <span>★ 劳动创造美好生活</span>
+  <span><span class="dot"></span>WORK · BUILDS · THE · WORLD<span class="dot"></span></span>
+  <span>致敬奋斗者 ★</span>
+</div>
+
+<!-- Quote -->
+<section class="quote reveal">
+  <blockquote>
+    "世界上一切成果的取得，<br>都是<span class="accent">劳动</span>和<span class="accent">智慧</span>创造的。"
+  </blockquote>
+  <cite>— 谨以此页 · 献给每一双勤劳的手 —</cite>
+</section>
+
+<!-- Tribute grid -->
+<section class="tribute">
+  <div class="tribute-head reveal">
+    <h2>致敬每一位劳动者</h2>
+    <div class="num">№. 01 / TRIBUTES</div>
+  </div>
+
+  <div class="tribute-grid">
+    <div class="card reveal">
+      <span class="card-num">01 / 工</span>
+      <div>
+        <div class="card-icon">⚒</div>
+        <div class="card-title">建造者</div>
+        <div class="card-en">The Builders</div>
+      </div>
+      <div class="card-desc">他们用钢筋与汗水，托起一座座城市的天际线。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">02 / 农</span>
+      <div>
+        <div class="card-icon">🌾</div>
+        <div class="card-title">耕耘者</div>
+        <div class="card-en">The Farmers</div>
+      </div>
+      <div class="card-desc">面朝黄土背朝天，把春种秋收变成饭桌上的香气。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">03 / 医</span>
+      <div>
+        <div class="card-icon">✚</div>
+        <div class="card-title">守护者</div>
+        <div class="card-en">The Healers</div>
+      </div>
+      <div class="card-desc">在每一个深夜与清晨，为陌生人点亮一盏灯。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">04 / 师</span>
+      <div>
+        <div class="card-icon">✎</div>
+        <div class="card-title">引路人</div>
+        <div class="card-en">The Teachers</div>
+      </div>
+      <div class="card-desc">把知识写进无数人的命运里，培育下一代的星光。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">05 / 运</span>
+      <div>
+        <div class="card-icon">⌗</div>
+        <div class="card-title">奔走者</div>
+        <div class="card-en">The Couriers</div>
+      </div>
+      <div class="card-desc">穿梭于风雨与街巷，把世界的距离一公里一公里缩短。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">06 / 研</span>
+      <div>
+        <div class="card-icon">⚛</div>
+        <div class="card-title">求索者</div>
+        <div class="card-en">The Researchers</div>
+      </div>
+      <div class="card-desc">在实验室与代码间，把不可能一点点写成历史。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">07 / 净</span>
+      <div>
+        <div class="card-icon">❋</div>
+        <div class="card-title">清洁者</div>
+        <div class="card-en">The Cleaners</div>
+      </div>
+      <div class="card-desc">天还未亮，就让整座城市干净地醒来。</div>
+    </div>
+
+    <div class="card reveal">
+      <span class="card-num">08 / 你</span>
+      <div>
+        <div class="card-icon">★</div>
+        <div class="card-title">每一个你</div>
+        <div class="card-en">All Of Us</div>
+      </div>
+      <div class="card-desc">屏幕前，正在认真生活、努力前行的你——也是这页的主角。</div>
+    </div>
+  </div>
+</section>
+
+<!-- History -->
+<section class="history">
+  <div class="reveal">
+    <div class="kicker" style="margin-bottom:20px;">№. 02 / ORIGIN</div>
+    <h3>节日<br>由来<span class="yr">1886</span></h3>
+  </div>
+  <div class="history-body reveal">
+    <p>一八八六年五月一日，美国芝加哥的二十余万工人走上街头，为争取八小时工作制而举行大规模罢工与游行。这场运动以鲜血换来了今天我们习以为常的劳动权利。</p>
+    <p>三年后，第二国际在巴黎召开代表大会，决定将每年的五月一日定为国际劳动节，以纪念工人阶级的团结与抗争。</p>
+    <p>从此，这一天属于全世界所有劳动者——无论职业、无论身份，每一份认真付出的努力，都值得在这一天被看见、被尊重、被歌颂。</p>
+  </div>
+</section>
+
+<!-- Numbers -->
+<section class="numbers">
+  <div class="stat reveal">
+    <div class="v">140</div>
+    <div class="l">Years</div>
+    <div class="zh">百四十载传承</div>
+  </div>
+  <div class="stat reveal">
+    <div class="v">8</div>
+    <div class="l">Hours</div>
+    <div class="zh">八小时工作制</div>
+  </div>
+  <div class="stat reveal">
+    <div class="v">80+</div>
+    <div class="l">Countries</div>
+    <div class="zh">八十余国共庆</div>
+  </div>
+  <div class="stat reveal">
+    <div class="v">∞</div>
+    <div class="l">Workers</div>
+    <div class="zh">无数劳动者</div>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="closing">
+  <div class="closing-content reveal">
+    <h4>劳动<span>·</span>光荣</h4>
+    <p>愿每一份付出，都被温柔以待</p>
+    <div class="tag">★ HAPPY · LABOUR · DAY · 2026 ★</div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 · <span class="red">★</span> · MAY DAY EDITION</div>
+  <div>致敬 / SALUTE / 1886 — 2026 · <a href="index.html" style="color:inherit;">JX HOME</a></div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), i*60);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

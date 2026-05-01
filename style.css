@@ -1517,6 +1517,104 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ============================================================
+   SEASONAL FEATURE - MAY DAY
+   ============================================================ */
+
+.mayday-feature-section {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(200, 16, 46, 0.08), transparent 28%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+}
+
+.mayday-feature-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(200, 16, 46, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(250, 249, 247, 0.84) 100%),
+    linear-gradient(90deg, rgba(200, 16, 46, 0.08), rgba(196, 163, 90, 0.08));
+  box-shadow: var(--shadow-gold-soft);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.mayday-feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(200, 16, 46, 0.16);
+  pointer-events: none;
+}
+
+.mayday-feature-card::after {
+  content: '五一';
+  position: absolute;
+  right: clamp(18px, 4vw, 48px);
+  bottom: -0.28em;
+  font-family: var(--font-display);
+  font-size: clamp(76px, 18vw, 180px);
+  line-height: 1;
+  color: rgba(200, 16, 46, 0.07);
+  pointer-events: none;
+}
+
+.mayday-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 16, 46, 0.32);
+  box-shadow: var(--shadow-gold-medium);
+}
+
+.mayday-feature-kicker,
+.mayday-feature-title,
+.mayday-feature-copy,
+.mayday-feature-cta {
+  position: relative;
+  z-index: 1;
+}
+
+.mayday-feature-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #c8102e;
+}
+
+.mayday-feature-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 76px);
+  line-height: 1.08;
+  color: var(--ink-black);
+}
+
+.mayday-feature-copy {
+  max-width: 620px;
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+
+.mayday-feature-cta {
+  width: fit-content;
+  margin-top: var(--space-sm);
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8102e;
+  color: #c8102e;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
    ABOUT
    ============================================================ */
 
