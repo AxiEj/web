@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>谢佳豪 · 简历</title>
+<meta name="description" content="谢佳豪 / Jiahao Xie academic resume and CV" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    /* Academic theme */
+    --paper: #f6f1e7;
+    --paper-2: #efe7d6;
+    --ink: #1a1f2c;
+    --ink-2: #3a4254;
+    --ink-3: #6b7287;
+    --rule: #d6cdb8;
+    --accent: #2d4a6f;
+    --accent-2: #8a3324;
+    --resume-page-zoom: 1.25;
+    --serif: "Noto Serif SC", "Source Serif 4", "Songti SC", serif;
+    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  [data-theme="dark"] {
+    --paper: #11151c;
+    --paper-2: #161c25;
+    --ink: #ece6d8;
+    --ink-2: #b8b2a4;
+    --ink-3: #7d8294;
+    --rule: #2a3140;
+    --accent: #8aaed1;
+    --accent-2: #d97a5e;
+  }
+  [data-theme="minimal"] {
+    --paper: #ffffff;
+    --paper-2: #f6f6f4;
+    --ink: #14141a;
+    --ink-2: #44444c;
+    --ink-3: #82828a;
+    --rule: #e8e6e1;
+    --accent: #14141a;
+    --accent-2: #b8553f;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  .page-wrap {
+    width: calc(100% / var(--resume-page-zoom));
+    min-height: 100vh;
+    min-height: calc(100vh / var(--resume-page-zoom));
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    zoom: var(--resume-page-zoom);
+  }
+  .resume-nav {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .resume-nav a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    padding-bottom: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .resume-nav a:hover,
+  .resume-nav a:focus-visible {
+    color: var(--accent-2);
+    border-color: var(--accent-2);
+    outline: none;
+  }
+  .sheet {
+    width: 100%;
+    max-width: 1080px;
+    background: var(--paper);
+    position: relative;
+  }
+  [data-theme="minimal"] .sheet {
+    box-shadow: 0 1px 0 var(--rule), 0 30px 80px -40px rgba(20,20,30,0.18);
+    padding: 64px 72px;
+  }
+
+  /* ===== Header ===== */
+  .hdr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+  .hdr .name {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .hdr .name .en {
+    font-family: "Source Serif 4", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.42em;
+    color: var(--ink-3);
+    margin-left: 14px;
+    letter-spacing: 0.04em;
+  }
+  .hdr .role {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink-2);
+    font-weight: 400;
+  }
+  .hdr .role .accent { color: var(--accent-2); font-style: italic; }
+  .hdr .meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .hdr .meta .v { color: var(--ink); text-transform: none; letter-spacing: 0; font-weight: 500; }
+
+  /* ===== Two-col grid ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+  }
+  @media (max-width: 1025px) {
+    .grid { grid-template-columns: 1fr; gap: 32px; }
+    .hdr { grid-template-columns: 1fr; }
+    .hdr .meta { text-align: left; }
+    .hdr .name { font-size: 44px; }
+  }
+
+  /* ===== Section ===== */
+  .sec { margin-bottom: 40px; }
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-label::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .sec-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 18px;
+    line-height: 1.2;
+  }
+
+  /* ===== Sidebar ===== */
+  .side .block { margin-bottom: 28px; }
+  .side h4 {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .side .row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rule);
+    color: var(--ink-2);
+  }
+  .side .row:last-child { border-bottom: 0; }
+  .side .row .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    padding-top: 2px;
+  }
+  .side .row .v { color: var(--ink); word-break: break-all; }
+  .side .row .v a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--accent-2);
+    line-height: 1;
+  }
+  .stat .lbl { font-size: 12px; color: var(--ink-2); }
+
+  .pillbar { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 4px 9px;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    color: var(--ink-2);
+    background: var(--paper-2);
+    letter-spacing: 0.04em;
+  }
+  .pill.lit { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* skill bars */
+  .bar { margin-bottom: 12px; }
+  .bar .top {
+    display: flex; justify-content: space-between;
+    font-size: 12.5px; color: var(--ink-2);
+    margin-bottom: 5px;
+  }
+  .bar .top .skill { color: var(--ink); font-weight: 500; }
+  .bar .top .lvl { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.1em; }
+  .bar .track {
+    height: 4px; background: var(--paper-2);
+    border-radius: 100px; overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+  .bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 100px;
+    transform-origin: left;
+  }
+
+  /* ===== Main column ===== */
+  .lead {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    border-left: 2px solid var(--accent-2);
+    padding: 4px 0 4px 18px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .lead em { color: var(--ink); font-weight: 500; font-style: italic; }
+
+  /* timeline */
+  .tl { position: relative; padding-left: 22px; }
+  .tl::before {
+    content: ""; position: absolute; left: 4px; top: 8px; bottom: 4px;
+    width: 1px; background: var(--rule);
+  }
+  .tl-item { position: relative; margin-bottom: 26px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -22px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1.5px solid var(--accent);
+  }
+  .tl-item.live::before { background: var(--accent-2); border-color: var(--accent-2); box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent-2) 18%, transparent); }
+  .tl-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .tl-head .t {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .tl-head .t .sub { color: var(--ink-3); font-weight: 400; font-size: 14px; margin-left: 8px; }
+  .tl-head .when {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+  }
+  .tl-body { font-size: 13.5px; color: var(--ink-2); line-height: 1.65; }
+  .tl-body ul { margin: 6px 0 0; padding-left: 18px; }
+  .tl-body li { margin-bottom: 3px; }
+  .tl-body li::marker { color: var(--accent); }
+
+  /* skill blocks (main col) */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 750px) { .skill-grid { grid-template-columns: 1fr; } }
+  .skill-card {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 18px 18px 16px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    position: absolute;
+    top: 14px; right: 14px;
+  }
+  .skill-card h3 {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .skill-card .tag {
+    font-size: 11px;
+    color: var(--accent-2);
+    font-style: italic;
+    margin-bottom: 10px;
+    font-family: var(--serif);
+  }
+  .skill-card ul { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+  .skill-card ul li { margin-bottom: 2px; }
+  .skill-card ul li::marker { color: var(--accent); font-size: 0.85em; }
+
+  /* publication card */
+  .pub {
+    border-top: 1px solid var(--rule);
+    padding: 18px 0 16px;
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    gap: 18px;
+    align-items: start;
+  }
+  .pub:last-child { border-bottom: 1px solid var(--rule); }
+  .pub .yr {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+  .pub .yr .role-tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .pub .body .title {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .pub .body .venue {
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .pub .body .venue strong { color: var(--ink); font-weight: 600; }
+  .pub .if {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--accent-2);
+    border: 1px solid var(--accent-2);
+    padding: 4px 8px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  /* Awards: 2-col compact list */
+  .award-grid {
+    column-count: 2;
+    column-gap: 28px;
+  }
+  @media (max-width: 750px) { .award-grid { column-count: 1; } }
+  .award {
+    break-inside: avoid;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 12.5px;
+    align-items: baseline;
+  }
+  .award .d {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.05em;
+  }
+  .award .t { color: var(--ink); }
+  .award .t .scope {
+    font-size: 9.5px;
+    background: var(--accent);
+    color: #fff;
+    padding: 1px 5px;
+    margin-left: 6px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    vertical-align: 1px;
+  }
+  .award .t .scope.prov { background: var(--accent-2); }
+  .award .t .scope.nat { background: #1a1f2c; }
+  [data-theme="dark"] .award .t .scope.nat { background: #d97a5e; color: #11151c; }
+
+  /* signature block */
+  .sig {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .sig .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+  .sig .stamp {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .sig .stamp .seal {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border: 1.5px solid var(--accent-2);
+    color: var(--accent-2);
+    border-radius: 50%;
+    margin-bottom: 8px;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    transform: rotate(-6deg);
+    letter-spacing: 0.1em;
+  }
+
+  /* nameplate corner */
+  .corner {
+    position: absolute;
+    top: 0; right: 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    text-transform: uppercase;
+  }
+
+  @media print {
+    .resume-nav { display: none; }
+    .page-wrap {
+      width: 100%;
+      min-height: auto;
+      padding: 0;
+      zoom: 1;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+
+
+
+
+
+const { useState, useEffect } = React;
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "theme": "academic",
+  "showSeal": true,
+  "accent": "#2d4a6f",
+  "accent2": "#8a3324",
+  "lead": "临床医学本科在读。本科阶段在课业之外自学 计算化学 与 生物信息 方法，并在校内课题组参与少量湿实验。仍在打基础，希望进入相关方向继续学习。"
+} /*EDITMODE-END*/;
+
+function App() {
+  const [tweaks, setTweak] = window.useTweaks ? window.useTweaks(TWEAKS) : [TWEAKS, () => {}];
+
+  useEffect(() => {
+    document.body.dataset.theme = tweaks.theme === 'academic' ? '' : tweaks.theme;
+    document.documentElement.style.setProperty('--accent', tweaks.accent);
+    document.documentElement.style.setProperty('--accent-2', tweaks.accent2);
+  }, [tweaks.theme, tweaks.accent, tweaks.accent2]);
+
+  return (
+    <>
+      <div className="page-wrap">
+        <nav className="resume-nav" aria-label="Resume navigation">
+          <a href="index.html">← Back to Site</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <article className="sheet">
+          <span className="corner">CV / 2026</span>
+
+          {/* Header */}
+          <header className="hdr">
+            <div>
+              <h1 className="name">谢佳豪<span className="en">Xie Jiahao</span></h1>
+              <div className="role">
+                临床医学（五年制）· 本科大三在读 · 大连医科大学
+                <br />
+                <span style={{ fontSize: 13.5, color: 'var(--ink-3)' }}>对 计算化学 / 天然药物化学 / 药物设计 方向感兴趣，仍在学习中</span>
+              </div>
+            </div>
+            <div className="meta">
+              <div>Phone <span className="v">156 2785 8628</span></div>
+              <div>Mail <span className="v">15627858628@163.com</span></div>
+              <div>Edu <span className="v">xjhdl@dmu.edu.cn</span></div>
+              <div>ORCID <span className="v"><a href="https://orcid.org/0009-0004-2387-7021" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px dotted var(--accent)' }}>0009-0004-2387-7021</a></span></div>
+              <div>Site <span className="v"><a href="https://axiejohn.com/" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px dotted var(--accent)' }}>axiejohn.com</a></span></div>
+            </div>
+          </header>
+
+          <div className="grid">
+            {/* ===== Sidebar ===== */}
+            <aside className="side">
+              <div className="sec">
+                <div className="sec-label">Profile</div>
+                <div className="block">
+                  <h4>大连医科大学</h4>
+                  <div className="row"><span className="k">Major</span><span className="v">临床医学（五年制）</span></div>
+                  <div className="row"><span className="k">Year</span><span className="v">本科 大三</span></div>
+                  <div className="row"><span className="k">GPA</span><span className="v">平均分 87 ／ 年级前 10%</span></div>
+                  <div className="row"><span className="k">Eng</span><span className="v">CET-6 · 525</span></div>
+                </div>
+              </div>
+
+              <div className="sec">
+                <div className="sec-label">Output</div>
+                <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.75 }}>
+                  参与发表 <strong style={{ color: 'var(--ink)' }}>2 篇 SCI</strong>（共一第二作者 / 第四作者，均非第一作者）；
+                  作为<strong style={{ color: 'var(--ink)' }}>参与者</strong>署名 <strong style={{ color: 'var(--ink)' }}>1 项实用新型专利</strong>。
+                </div>
+              </div>
+
+              <div className="sec">
+                <div className="sec-label">Tools / 接触过</div>
+                <div style={{ fontSize: 11, color: 'var(--ink-3)', marginBottom: 8, fontStyle: 'italic', lineHeight: 1.5 }}>列出曾使用过的工具，熟练度仍在积累</div>
+                <div className="pillbar" style={{ marginBottom: 10 }}>
+                  {["Gromacs", "OpenMM", "ORCA", "Gaussian", "MM/PBSA", "伞状抽样", "FEP", "构象搜索"].map((t) =>
+                  <span key={t} className="pill lit">{t}</span>
+                  )}
+                </div>
+                <div className="pillbar" style={{ marginBottom: 10 }}>
+                  {["分子对接", "网络药理学", "孟德尔随机化", "WGCNA", "R", "Python"].map((t) =>
+                  <span key={t} className="pill">{t}</span>
+                  )}
+                </div>
+                <div className="pillbar" style={{ marginBottom: 10 }}>
+                  {["细胞培养", "RNA 提取", "qPCR"].map((t) =>
+                  <span key={t} className="pill">{t}</span>
+                  )}
+                </div>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 9.5, color: 'var(--ink-3)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '10px 0 6px' }}>AI Coding</div>
+                <div className="pillbar">
+                  {[
+                  { name: "Claude Code", color: "#D97757", path: "M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z" },
+                  { name: "Codex", color: "#000", path: "M8.086.457a6.105 6.105 0 013.046-.415c1.333.153 2.521.72 3.564 1.7a.117.117 0 00.107.029c1.408-.346 2.762-.224 4.061.366l.063.03.154.076c1.357.703 2.33 1.77 2.918 3.198.278.679.418 1.388.421 2.126a5.655 5.655 0 01-.18 1.631.167.167 0 00.04.155 5.982 5.982 0 011.578 2.891c.385 1.901-.01 3.615-1.183 5.14l-.182.22a6.063 6.063 0 01-2.934 1.851.162.162 0 00-.108.102c-.255.736-.511 1.364-.987 1.992-1.199 1.582-2.962 2.462-4.948 2.451-1.583-.008-2.986-.587-4.21-1.736a.145.145 0 00-.14-.032c-.518.167-1.04.191-1.604.185a5.924 5.924 0 01-2.595-.622 6.058 6.058 0 01-2.146-1.781c-.203-.269-.404-.522-.551-.821a7.74 7.74 0 01-.495-1.283 6.11 6.11 0 01-.017-3.064.166.166 0 00.008-.074.115.115 0 00-.037-.064 5.958 5.958 0 01-1.38-2.202 5.196 5.196 0 01-.333-1.589 6.915 6.915 0 01.188-2.132c.45-1.484 1.309-2.648 2.577-3.493.282-.188.55-.334.802-.438.286-.12.573-.22.861-.304a.129.129 0 00.087-.087A6.016 6.016 0 015.635 2.31C6.315 1.464 7.132.846 8.086.457zm-.804 7.85a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zm5.446 6.24a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z" },
+                  { name: "DeepSeek", color: "#4D6BFE", path: "M23.748 4.482c-.254-.124-.364.113-.512.234-.051.039-.094.09-.137.136-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.156-.708-.311-.955-.65-.172-.241-.219-.51-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.093.172.187.129.323-.082.28-.18.552-.266.833-.055.179-.137.217-.329.14a5.526 5.526 0 01-1.736-1.18c-.857-.828-1.631-1.742-2.597-2.458a11.365 11.365 0 00-.689-.471c-.985-.957.13-1.743.388-1.836.27-.098.093-.432-.779-.428-.872.004-1.67.295-2.687.684a3.055 3.055 0 01-.465.137 9.597 9.597 0 00-2.883-.102c-1.885.21-3.39 1.102-4.497 2.623C.082 8.606-.231 10.684.152 12.85c.403 2.284 1.569 4.175 3.36 5.653 1.858 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.133-.284 4.994-1.86.47.234.962.327 1.78.397.63.059 1.236-.03 1.705-.128.735-.156.684-.837.419-.961-2.155-1.004-1.682-.595-2.113-.926 1.096-1.296 2.746-2.642 3.392-7.003.05-.347.007-.565 0-.845-.004-.17.035-.237.23-.256a4.173 4.173 0 001.545-.475c1.396-.763 1.96-2.015 2.093-3.517.02-.23-.004-.467-.247-.588zM11.581 18c-2.089-1.642-3.102-2.183-3.52-2.16-.392.024-.321.471-.235.763.09.288.207.486.371.739.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.167-1.361-.802-2.5-1.86-3.301-3.307-.774-1.393-1.224-2.887-1.298-4.482-.02-.386.093-.522.477-.592a4.696 4.696 0 011.529-.039c2.132.312 3.946 1.265 5.468 2.774.868.86 1.525 1.887 2.202 2.891.72 1.066 1.494 2.082 2.48 2.914.348.292.625.514.891.677-.802.09-2.14.11-3.054-.614zm1-6.44a.306.306 0 01.415-.287.302.302 0 01.2.288.306.306 0 01-.31.307.303.303 0 01-.304-.308zm3.11 1.596c-.2.081-.399.151-.59.16a1.245 1.245 0 01-.798-.254c-.274-.23-.47-.358-.552-.758a1.73 1.73 0 01.016-.588c.07-.327-.008-.537-.239-.727-.187-.156-.426-.199-.688-.199a.559.559 0 01-.254-.078c-.11-.054-.2-.19-.114-.358.028-.054.16-.186.192-.21.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.391.451.462.576.685.914.176.265.336.537.445.848.067.195-.019.354-.25.452z" }
+                  ].map((t) =>
+                  <span key={t.name} className="pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill={t.color} fillRule="evenodd" style={{ flexShrink: 0 }}>
+                      <path d={t.path} clipRule="evenodd" />
+                    </svg>
+                    {t.name}
+                  </span>
+                  )}
+                </div>
+              </div>
+
+            </aside>
+
+            {/* ===== Main Column ===== */}
+            <main>
+              <p className="lead">{tweaks.lead}</p>
+
+              {/* Interest */}
+              <div className="sec">
+                <div className="sec-label">Interest · 感兴趣的方向</div>
+                <div style={{ padding: '16px 18px', border: '1px solid var(--rule)', background: 'var(--paper-2)' }}>
+                  <div style={{ fontSize: 13.5, color: 'var(--ink-2)', lineHeight: 1.7 }}>
+                    希望进入 <strong style={{ color: 'var(--ink)' }}>天然药物化学</strong> 或 <strong style={{ color: 'var(--ink)' }}>计算辅助药物设计</strong> 相关的课题组学习。
+                    本科阶段在尝试把分子模拟、对接等方法用在感兴趣的体系上，离能独立产出还有距离，希望有机会跟随老师系统训练。
+                  </div>
+                </div>
+              </div>
+
+              {/* Research Skills */}
+              <div className="sec">
+                <div className="sec-label">Skills · 接触过的方法</div>
+                <h2 className="sec-title">本科阶段自学与练习的内容</h2>
+                <p style={{ fontSize: 13, color: 'var(--ink-3)', fontStyle: 'italic', marginTop: -6, marginBottom: 18, lineHeight: 1.6 }}>
+
+                </p>
+                <div className="skill-grid">
+                  <div className="skill-card">
+                    <span className="num">01</span>
+                    <h3>分子动力学模拟</h3>
+                    <div className="tag"></div>
+                    <ul>
+                      <li>Gromacs：可独立完成蛋白-配体体系全流程</li>
+                      <li>结合自由能：MM/PBSA、伞状抽样、FEP 均实操过</li>
+                      <li><strong style={{ color: 'var(--ink)' }}>膜蛋白体系</strong></li>
+                      <li>对 AIMD、增强采样等方法了解，未深入实操</li>
+                    </ul>
+                  </div>
+                  <div className="skill-card">
+                    <span className="num">02</span>
+                    <h3>量子化学计算</h3>
+                    <div className="tag"></div>
+                    <ul>
+                      <li>ORCA / Gaussian 常规体系计算</li>
+                      <li> <strong style={{ color: 'var(--ink)' }}>构象搜索</strong></li>
+                      <li>DFT 与过渡态搜索仍在学习</li>
+                      <li>计算化学公社、卢天老师课程持续跟进</li>
+                    </ul>
+                  </div>
+                  <div className="skill-card">
+                    <span className="num">03</span>
+                    <h3>多平台 / 特殊体系</h3>
+                    <div className="tag"></div>
+                    <ul>
+                      <li>因体系需要，用 OpenMM 处理过 Gromacs 不支持的力场</li>
+                      <li>四点水模型等场景做过尝试</li>
+                    </ul>
+                  </div>
+                  <div className="skill-card">
+                    <span className="num">04</span>
+                    <h3>药物设计 / 生信</h3>
+                    <div className="tag"></div>
+                    <ul>
+                      <li>分子对接、网络药理学、孟德尔随机化</li>
+                      <li>WGCNA、药物靶点提取（做过到这个深度）</li>
+                      <li>机器学习在生物医学数据中的入门应用</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wet lab */}
+              <div className="sec">
+                <div className="sec-label">科研经历</div>
+                <div className="tl">
+                  <div className="tl-item live">
+                    <div className="tl-head">
+                      <div className="t">University of Pittsburgh · Remote Internship <span className="sub">Dept. of Pharmaceutical Sciences, School of Pharmacy</span></div>
+                      <div className="when">2025 – Present</div>
+                    </div>
+                    <div className="tl-body">
+                      Self-secured remote internship in computational chemistry and computer-aided drug design.
+                      <ul>
+                        <li>Supervised by <strong style={{ color: 'var(--ink)' }}>PhD Xujian Wang</strong> (under <strong style={{ color: 'var(--ink)' }}>Prof. Junmei Wang</strong>'s group).</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="tl-item">
+                    <div className="tl-head">
+                      <div className="t">王玉林 副教授 课题组 <span className="sub">中科院大连化物所 · 药学方向</span></div>
+                      <div className="when">2024 – 至今</div>
+                    </div>
+                    <div className="tl-body">
+                      跟随 <strong style={{ color: 'var(--ink)' }}>王玉林 副教授</strong> 参与课题组工作。
+                    </div>
+                  </div>
+
+                  <div className="tl-item">
+                    <div className="tl-head">
+                      <div className="t">张峰 课题组 <span className="sub">大医附二院 · 胃肠外科</span></div>
+                      <div className="when">2024 – 至今</div>
+                    </div>
+                    <div className="tl-body">
+                      由 <strong style={{ color: 'var(--ink)' }}>王梓安</strong>、<strong style={{ color: 'var(--ink)' }}>张晓陶</strong> 师兄指导，参与课题组的 Letter 与综述写作并以作者身份署名。
+                    </div>
+                  </div>
+
+                  <div className="tl-item">
+                    <div className="tl-head">
+                      <div className="t">王亮 副教授 课题组 <span className="sub">大连医科大学 实验动物中心（SPF 级）</span></div>
+                      <div className="when">2023 – 至今</div>
+                    </div>
+                    <div className="tl-body">
+                      研究方向：胃肠肿瘤的发病机制与治疗。按所作工作量从多到少：
+                      <ul>
+                        <li><strong style={{ color: 'var(--ink)' }}>主要：生信分析</strong>——课题组中负责计算 / 生信向的部分</li>
+                        <li><strong style={{ color: 'var(--ink)' }}>其次：细胞培养与 qPCR</strong>，能独立完成基本流程</li>
+                        <li><strong style={{ color: 'var(--ink)' }}>偶尔：动物实验</strong>——参与过几次饲养与杀鼠取材，上手经验仅限于此</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Publications */}
+              <div className="sec">
+                <div className="sec-label">Publications · 已发表论文</div>
+                <h2 className="sec-title">Reviews & Letters & Research <span style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--ink-3)', letterSpacing: '0.05em', fontWeight: 400 }}></span></h2>
+                <p style={{ fontSize: 12.5, color: 'var(--ink-3)', fontStyle: 'italic', marginTop: -6, marginBottom: 14, lineHeight: 1.6 }}>
+                  共 7 篇：2 篇 综述 (Review)、1 篇 纯生信 Research、4 篇 致编辑信 (Letter)。
+                  与 <a href="https://orcid.org/0009-0004-2387-7021" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px dotted var(--accent)' }}>ORCID 0009-0004-2387-7021</a> 同步。
+                </p>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2026.03</span><span className="role-tag">3rd Author</span></div>
+                  <div className="body">
+                    <div className="title">Host–gut microbiota interactions in health and disease: mechanisms and intervention strategies</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      Yu Han; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Guangdi Yang; Monong Su; Siqi Wang; Mengxin Yang; Huiyang Yu; Minghua Li; Liang Wang et al.
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Review · 综述</strong> · <strong>Frontiers in Microbiology</strong> · IF 4.5 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fmicb.2026.1785607</span></div>
+                  </div>
+                  <div className="if">IF 4.5 / Q1</div>
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2025.09</span><span className="role-tag">2nd Author</span></div>
+                  <div className="body">
+                    <div className="title">Mechanism by which porcine transmissible gastroenteritis virus disrupts host innate immunity</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Qindan Li; Yiheng Liu; Xiaotao Zhang; Ergen Mi; Liang Wang; Lingyu Wang; Feng Zhang
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Review · 综述</strong> · <strong>Frontiers in Immunology</strong> · IF 5.9 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fimmu.2025.1675572</span></div>
+                  </div>
+                  <div className="if">IF 5.9 / Q1</div>
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2024.09</span><span className="role-tag">4th Author</span></div>
+                  <div className="body">
+                    <div className="title">Combining network pharmacology, machine learning, molecular docking and molecular dynamic to explore the mechanism of Chufeng Qingpi decoction in treating schistosomiasis</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      Minglu Liu; Yuxin Wang; Wen Deng; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Yanyao He; Liang Wang; Jianbin Zhang; Ming Cui
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>纯生信 · Bioinformatics</strong> · <strong>Frontiers in Cellular and Infection Microbiology</strong> · IF 4.8 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fcimb.2024.1453529</span></div>
+                  </div>
+                  <div className="if">IF 4.8 / Q1</div>
+                </div>
+
+                <div style={{ borderTop: '1px dashed var(--rule)', marginTop: 18, paddingTop: 14, marginBottom: 6, fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--ink-3)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  Letters to the Editor · 致编辑信
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2026.04</span><span className="role-tag">3rd Author</span></div>
+                  <div className="body">
+                    <div className="title">Letter to the Editor on: "Feasibility of robotic liver resection compared with laparoscopic and open liver resection for hepatocellular carcinoma: a network meta-analysis"</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      Yiheng Liu; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Feng Zhang
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004790</span></div>
+                  </div>
+                  <div className="if">IF 10.1 / Q1</div>
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2026.02</span><span className="role-tag">Co-1st</span></div>
+                  <div className="body">
+                    <div className="title">Letter to the editor: clinical translation of senolytic immunotherapy: critical considerations for SenoVax™ and beyond</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Zian Wang; Liang Wang; Ming Cui
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07820-z</span></div>
+                  </div>
+                  <div className="if">IF 6.1 / Q1</div>
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2026.02</span><span className="role-tag">3rd Author</span></div>
+                  <div className="body">
+                    <div className="title">Letter regarding "HOXA9 drives lymphatic metastasis by activating the c-MYC–glycolysis–lactate axis in gastric cancer"</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      Xiaotao Zhang; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Feng Zhang
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07822-x</span></div>
+                  </div>
+                  <div className="if">IF 6.1 / Q1</div>
+                </div>
+
+                <div className="pub">
+                  <div className="yr"><span style={{ display: 'block', whiteSpace: 'nowrap' }}>2026.01</span><span className="role-tag">Co-1st</span></div>
+                  <div className="body">
+                    <div className="title">A critical methodological consideration in machine learning for predicting gallbladder cancer metastasis</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
+                      <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Zian Wang; Xiaotao Zhang; Feng Zhang
+                    </div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004923</span></div>
+                  </div>
+                  <div className="if">IF 10.1 / Q1</div>
+                </div>
+              </div>
+
+              {/* Patents & competitions */}
+              <div className="sec">
+                <div className="sec-label">Patents &amp; Competitions</div>
+                <div className="award-grid">
+                  <div className="award"><span className="d">Patent</span><span className="t">《一种啮齿动物睡眠干扰与记录的装置》<span className="scope nat">实用新型 · 参与者</span></span></div>
+                  <div className="award"><span className="d">2024</span><span className="t">CULSC 第十届全国大学生生命科学竞赛（创新创业类）<span className="scope nat">国家二等奖 · 参与者</span></span></div>
+                  <div className="award"><span className="d">2024</span><span className="t">中国国际大学生创新大赛 · 校赛二等奖</span></div>
+                  <div className="award"><span className="d">2024</span><span className="t">大连医科大学第十二届「挑战杯」校赛三等奖</span></div>
+                  <div className="award"><span className="d">2025</span><span className="t">大医附一院 · 职业生涯规划大赛 成长赛道二等奖</span></div>
+                </div>
+              </div>
+
+              {/* Honors */}
+              <div className="sec">
+                <div className="sec-label">Honors &amp; Scholarships · 荣誉奖学金</div>
+                <div className="award-grid">
+                  <div className="award"><span className="d">2023.10</span><span className="t">「外研社·国才杯」「理解当代中国」全国大学生外语能力大赛 · 英语组阅读 一等奖<span className="scope">校级</span></span></div>
+                  <div className="award"><span className="d">2024.04</span><span className="t">综评二等奖学金</span></div>
+                  <div className="award"><span className="d">2024.04</span><span className="t">枫叶杯演讲比赛 二等奖<span className="scope">校级</span></span></div>
+                  <div className="award"><span className="d">2024.07</span><span className="t">词达人省赛 三等奖<span className="scope prov">省级</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">大商奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">综评二等奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">学习优秀二等奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">文明修身奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">社会工作奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">文体活动奖学金</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">优良学风先进个人</span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">优秀学生干部</span></div>
+                </div>
+              </div>
+
+              {/* Self */}
+              <div className="sec">
+                <div className="sec-label">Self · 自我评价</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+                  <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--accent)', background: 'var(--paper-2)' }}>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>做过计算+湿实验</div>
+                    <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
+                      本科阶段同时接触了计算（分子模拟 / 生信）和湿实验（细胞 / 动物 / qPCR）。
+                    </div>
+                  </div>
+                  <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--accent-2)', background: 'var(--paper-2)' }}>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>对计算化学和天然药物化学有热情</div>
+                    <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
+                      自学计算化学公社、卢天老师课程，常常感觉「有力发不出」——
+                      希望能在老师指导下系统训练，把感兴趣的方法真正用起来。
+                    </div>
+                  </div>
+                  <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--ink-3)', background: 'var(--paper-2)', gridColumn: '1 / -1' }}>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>理性、不怕被指正</div>
+                    <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
+                      喜欢辩论但不为面子辩护，错了就认；老师指出问题时把它当成最快的学习路径，而不是被冒犯。
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Signature */}
+              <div className="sig">
+                <div className="quote">
+                  「目前能做的事还有限，希望能在老师指导下，把感兴趣的方法慢慢做扎实。」
+                </div>
+                <div className="stamp">
+                  {tweaks.showSeal && <div className="seal">XJH</div>}
+                  <div>谢佳豪 / Xie Jiahao</div>
+                  <div>Dalian Medical Univ.</div>
+                  <div><a href="https://axiejohn.com/" style={{ color: 'inherit', textDecoration: 'none' }}>axiejohn.com</a></div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </article>
+      </div>
+
+      {window.TweaksPanel && <window.TweaksPanel title="Tweaks">
+          <window.TweakSection title="Theme">
+            <window.TweakSelect
+            label="Style"
+            value={tweaks.theme}
+            onChange={(v) => setTweak('theme', v)}
+            options={[
+            { label: '学术经典 (Academic)', value: 'academic' },
+            { label: '极简白卡 (Minimal)', value: 'minimal' },
+            { label: '暗色专业 (Dark)', value: 'dark' }]
+            } />
+          
+            <window.TweakColor label="主色 Accent" value={tweaks.accent} onChange={(v) => setTweak('accent', v)} />
+            <window.TweakColor label="强调色 Accent 2" value={tweaks.accent2} onChange={(v) => setTweak('accent2', v)} />
+            <window.TweakToggle label="显示印章" value={tweaks.showSeal} onChange={(v) => setTweak('showSeal', v)} />
+          </window.TweakSection>
+          <window.TweakSection title="Lead Statement">
+            <window.TweakText label="开篇陈述" value={tweaks.lead} onChange={(v) => setTweak('lead', v)} multiline />
+          </window.TweakSection>
+        </window.TweaksPanel>
+      }
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

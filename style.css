@@ -904,6 +904,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* 按钮组 */
 .hero-cta {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
   justify-content: center;
   opacity: 0;
@@ -1515,6 +1516,105 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================================
+   RESUME FEATURE - ACADEMIC CV
+   ============================================================ */
+
+.resume-feature-section {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(45, 74, 111, 0.08), transparent 30%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+}
+
+.resume-feature-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(45, 74, 111, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(250, 249, 247, 0.86) 100%),
+    linear-gradient(90deg, rgba(45, 74, 111, 0.08), rgba(196, 163, 90, 0.08));
+  box-shadow: var(--shadow-gold-soft);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.resume-feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(45, 74, 111, 0.16);
+  pointer-events: none;
+}
+
+.resume-feature-card::after {
+  content: 'CV';
+  position: absolute;
+  right: clamp(18px, 4vw, 48px);
+  bottom: -0.25em;
+  font-family: var(--font-display);
+  font-size: clamp(86px, 18vw, 190px);
+  font-style: italic;
+  line-height: 1;
+  color: rgba(45, 74, 111, 0.07);
+  pointer-events: none;
+}
+
+.resume-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45, 74, 111, 0.34);
+  box-shadow: var(--shadow-gold-medium);
+}
+
+.resume-feature-kicker,
+.resume-feature-title,
+.resume-feature-copy,
+.resume-feature-cta {
+  position: relative;
+  z-index: 1;
+}
+
+.resume-feature-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #2d4a6f;
+}
+
+.resume-feature-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 76px);
+  line-height: 1.08;
+  color: var(--ink-black);
+}
+
+.resume-feature-copy {
+  max-width: 620px;
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+
+.resume-feature-cta {
+  width: fit-content;
+  margin-top: var(--space-sm);
+  padding-bottom: 4px;
+  border-bottom: 1px solid #2d4a6f;
+  color: #2d4a6f;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
 /* ============================================================
    SEASONAL FEATURE - MAY DAY
