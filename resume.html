@@ -87,6 +87,11 @@
     text-transform: uppercase;
     color: var(--ink-3);
   }
+  .resume-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
   .resume-nav a {
     color: var(--accent);
     text-decoration: none;
@@ -94,8 +99,21 @@
     padding-bottom: 3px;
     transition: color 0.2s ease, border-color 0.2s ease;
   }
+  .lang-toggle {
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    padding: 5px 9px 4px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
   .resume-nav a:hover,
-  .resume-nav a:focus-visible {
+  .resume-nav a:focus-visible,
+  .lang-toggle:hover,
+  .lang-toggle:focus-visible {
     color: var(--accent-2);
     border-color: var(--accent-2);
     outline: none;
@@ -457,8 +475,12 @@
     vertical-align: 1px;
   }
   .award .t .scope.prov { background: var(--accent-2); }
-  .award .t .scope.nat { background: #1a1f2c; }
-  [data-theme="dark"] .award .t .scope.nat { background: #d97a5e; color: #11151c; }
+  .award .t .scope.nat { background: #3f6196; }
+  .award .t .scope.patent { background: #6b5a8e; }
+  .award .t .scope.cert { background: #67778c; }
+  [data-theme="dark"] .award .t .scope.nat { background: #9eb8e8; color: #11151c; }
+  [data-theme="dark"] .award .t .scope.patent { background: #c6aedf; color: #11151c; }
+  [data-theme="dark"] .award .t .scope.cert { background: #a9b6c6; color: #11151c; }
 
   /* signature block */
   .sig {
@@ -504,6 +526,8 @@
     letter-spacing: 0.1em;
   }
 
+  .self-grid { grid-template-columns: 1fr 1fr; }
+
   /* nameplate corner */
   .corner {
     position: absolute;
@@ -516,6 +540,194 @@
     border: 1px solid var(--rule);
     background: var(--paper-2);
     text-transform: uppercase;
+  }
+
+  /* ===== Mobile resume layout ===== */
+  @media (max-width: 760px) {
+    :root { --resume-page-zoom: 1; }
+
+    body { overflow-x: hidden; }
+
+    .page-wrap {
+      width: 100%;
+      min-height: auto;
+      margin: 0;
+      padding: 28px 18px 64px;
+      align-items: stretch;
+      justify-content: flex-start;
+      zoom: 1;
+    }
+
+    .resume-nav {
+      max-width: none;
+      margin-bottom: 28px;
+      gap: 12px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    .resume-nav-actions { gap: 10px; }
+    .lang-toggle { font-size: 9.5px; padding: 4px 7px 3px; letter-spacing: 0.08em; }
+
+    .sheet {
+      max-width: none;
+      width: 100%;
+      overflow: visible;
+    }
+
+    [data-theme="minimal"] .sheet { padding: 28px 22px; }
+
+    .corner {
+      position: static;
+      display: inline-flex;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 0 22px;
+      padding: 5px 10px;
+    }
+
+    .hdr {
+      display: block;
+      padding-bottom: 24px;
+      margin-bottom: 30px;
+      gap: 0;
+    }
+
+    .hdr .name {
+      font-size: clamp(42px, 17vw, 56px);
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .hdr .name .en {
+      display: block;
+      margin: 8px 0 0;
+      font-size: 0.52em;
+      line-height: 1.05;
+    }
+
+    .hdr .role {
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .hdr .role span { line-height: 1.7; }
+
+    .hdr .meta {
+      margin-top: 24px;
+      text-align: left;
+      font-size: 10.5px;
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+    }
+
+    .hdr .meta div {
+      display: grid;
+      grid-template-columns: 62px minmax(0, 1fr);
+      column-gap: 10px;
+      align-items: baseline;
+    }
+
+    .hdr .meta .v,
+    .hdr .meta a,
+    .pub .body,
+    .pub .body .title,
+    .pub .body .venue,
+    .tl-head .t,
+    .tl-body,
+    .award .t {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 34px;
+    }
+
+    .sec { margin-bottom: 34px; }
+    .sec-label { font-size: 10px; letter-spacing: 0.14em; }
+    .sec-title { font-size: 22px; }
+
+    .side .row {
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .pill { font-size: 10px; padding: 4px 8px; }
+
+    .lead {
+      font-size: 16px;
+      line-height: 1.75;
+      padding-left: 16px;
+      margin-bottom: 28px;
+    }
+
+    .skill-card { padding: 17px 16px 15px; }
+
+    .tl { padding-left: 20px; }
+    .tl-item::before { left: -20px; }
+    .tl-head { display: block; }
+    .tl-head .t { font-size: 16.5px; line-height: 1.45; }
+    .tl-head .t .sub {
+      display: block;
+      margin: 4px 0 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .tl-head .when { display: block; margin-top: 6px; }
+
+    .pub {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      padding: 17px 0;
+    }
+    .pub .yr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .pub .yr .role-tag {
+      display: inline;
+      margin-top: 0;
+    }
+    .pub .if {
+      justify-self: start;
+      margin-top: 4px;
+      white-space: normal;
+    }
+
+    .award-grid { column-count: 1; }
+    .award {
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 10px;
+    }
+    .award .t .scope {
+      display: inline-block;
+      margin: 4px 0 0;
+    }
+
+    .self-grid { grid-template-columns: minmax(0, 1fr); }
+
+    .sig {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+    }
+    .sig .stamp { text-align: left; }
+  }
+
+  @media (max-width: 420px) {
+    .page-wrap { padding: 24px 16px 56px; }
+    .resume-nav { font-size: 9.5px; letter-spacing: 0.08em; }
+    .resume-nav-actions { gap: 8px; }
+    .lang-toggle { font-size: 9px; padding-inline: 6px; }
+    .hdr .name { font-size: clamp(38px, 16vw, 48px); }
+    .hdr .meta div { grid-template-columns: 58px minmax(0, 1fr); }
+    .side .row, .award { grid-template-columns: 58px minmax(0, 1fr); }
   }
 
   @media print {
@@ -551,6 +763,24 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
 
 function App() {
   const [tweaks, setTweak] = window.useTweaks ? window.useTweaks(TWEAKS) : [TWEAKS, () => {}];
+  const [lang, setLang] = useState(() => {
+    const requestedLang = new URLSearchParams(window.location.search).get('lang');
+    if (requestedLang === 'en' || requestedLang === 'zh') return requestedLang;
+    return window.localStorage?.getItem('resume-lang') || 'zh';
+  });
+  const isEn = lang === 'en';
+  const leadText = isEn
+    ? "I am a third-year undergraduate in Clinical Medicine. Beyond coursework, I have been self-learning computational chemistry and bioinformatics methods, while also participating in limited wet-lab work in campus research groups. I am still building foundations and hope to continue learning in related directions."
+    : tweaks.lead;
+  const toolsPrimary = isEn
+    ? ["Gromacs", "OpenMM", "ORCA", "Gaussian", "MM/PBSA", "Umbrella Sampling", "FEP", "Conformational Search"]
+    : ["Gromacs", "OpenMM", "ORCA", "Gaussian", "MM/PBSA", "伞状抽样", "FEP", "构象搜索"];
+  const toolsSecondary = isEn
+    ? ["Molecular Docking", "Network Pharmacology", "Mendelian Randomization", "WGCNA", "R", "Python"]
+    : ["分子对接", "网络药理学", "孟德尔随机化", "WGCNA", "R", "Python"];
+  const wetTools = isEn
+    ? ["Cell Culture", "RNA Extraction", "qPCR"]
+    : ["细胞培养", "RNA 提取", "qPCR"];
 
   useEffect(() => {
     document.body.dataset.theme = tweaks.theme === 'academic' ? '' : tweaks.theme;
@@ -558,12 +788,27 @@ function App() {
     document.documentElement.style.setProperty('--accent-2', tweaks.accent2);
   }, [tweaks.theme, tweaks.accent, tweaks.accent2]);
 
+  useEffect(() => {
+    document.documentElement.lang = isEn ? 'en' : 'zh-CN';
+    document.title = isEn ? 'Jiahao Xie · Academic CV' : '谢佳豪 · 简历';
+    window.localStorage?.setItem('resume-lang', lang);
+  }, [isEn, lang]);
+
   return (
     <>
       <div className="page-wrap">
         <nav className="resume-nav" aria-label="Resume navigation">
-          <a href="index.html">← Back to Site</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="index.html">{isEn ? '← Back to Site' : '← 返回首页'}</a>
+          <div className="resume-nav-actions">
+            <a href="index.html#contact">{isEn ? 'Contact' : '联系'}</a>
+            <button
+              type="button"
+              className="lang-toggle"
+              onClick={() => setLang(isEn ? 'zh' : 'en')}
+              aria-label={isEn ? 'Switch to Chinese CV' : '切换到英文简历'}>
+              {isEn ? 'Chinese' : 'English'}
+            </button>
+          </div>
         </nav>
         <article className="sheet">
           <span className="corner">CV / 2026</span>
@@ -571,11 +816,15 @@ function App() {
           {/* Header */}
           <header className="hdr">
             <div>
-              <h1 className="name">谢佳豪<span className="en">Xie Jiahao</span></h1>
+              <h1 className="name">
+                {isEn ? 'Jiahao Xie' : <>谢佳豪<span className="en">Xie Jiahao</span></>}
+              </h1>
               <div className="role">
-                临床医学（五年制）· 本科大三在读 · 大连医科大学
+                {isEn ? 'Clinical Medicine (Five-year Program) · Third-year Undergraduate · Dalian Medical University' : '临床医学（五年制）· 本科大三在读 · 大连医科大学'}
                 <br />
-                <span style={{ fontSize: 13.5, color: 'var(--ink-3)' }}>对 计算化学 / 天然药物化学 / 药物设计 方向感兴趣，仍在学习中</span>
+                <span style={{ fontSize: 13.5, color: 'var(--ink-3)' }}>
+                  {isEn ? 'Interested in computational chemistry / natural products chemistry / drug design; still building foundations' : '对 计算化学 / 天然药物化学 / 药物设计 方向感兴趣，仍在学习中'}
+                </span>
               </div>
             </div>
             <div className="meta">
@@ -593,10 +842,10 @@ function App() {
               <div className="sec">
                 <div className="sec-label">Profile</div>
                 <div className="block">
-                  <h4>大连医科大学</h4>
-                  <div className="row"><span className="k">Major</span><span className="v">临床医学（五年制）</span></div>
-                  <div className="row"><span className="k">Year</span><span className="v">本科 大三</span></div>
-                  <div className="row"><span className="k">GPA</span><span className="v">平均分 87 ／ 年级前 10%</span></div>
+                  <h4>{isEn ? 'Dalian Medical University' : '大连医科大学'}</h4>
+                  <div className="row"><span className="k">Major</span><span className="v">{isEn ? 'Clinical Medicine (Five-year Program)' : '临床医学（五年制）'}</span></div>
+                  <div className="row"><span className="k">Year</span><span className="v">{isEn ? 'Third-year Undergraduate' : '本科 大三'}</span></div>
+                  <div className="row"><span className="k">GPA</span><span className="v">{isEn ? 'Average score 87 / Top 10% in cohort' : '平均分 87 ／ 年级前 10%'}</span></div>
                   <div className="row"><span className="k">Eng</span><span className="v">CET-6 · 525</span></div>
                 </div>
               </div>
@@ -604,26 +853,30 @@ function App() {
               <div className="sec">
                 <div className="sec-label">Output</div>
                 <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.75 }}>
-                  参与发表 <strong style={{ color: 'var(--ink)' }}>2 篇 SCI</strong>（共一第二作者 / 第四作者，均非第一作者）；
-                  作为<strong style={{ color: 'var(--ink)' }}>参与者</strong>署名 <strong style={{ color: 'var(--ink)' }}>1 项实用新型专利</strong>。
+                  {isEn ? (
+                    <>Publication, patent, competition, and honor records are listed below with venue and award details.</>
+                  ) : (
+                    <>参与发表 <strong style={{ color: 'var(--ink)' }}>2 篇 SCI</strong>（共一第二作者 / 第四作者，均非第一作者）；
+                    作为<strong style={{ color: 'var(--ink)' }}>参与者</strong>署名 <strong style={{ color: 'var(--ink)' }}>1 项实用新型专利</strong>。</>
+                  )}
                 </div>
               </div>
 
               <div className="sec">
-                <div className="sec-label">Tools / 接触过</div>
-                <div style={{ fontSize: 11, color: 'var(--ink-3)', marginBottom: 8, fontStyle: 'italic', lineHeight: 1.5 }}>列出曾使用过的工具，熟练度仍在积累</div>
+                <div className="sec-label">{isEn ? 'Tools / Exposure' : 'Tools / 接触过'}</div>
+                <div style={{ fontSize: 11, color: 'var(--ink-3)', marginBottom: 8, fontStyle: 'italic', lineHeight: 1.5 }}>{isEn ? 'Tools I have used; proficiency is still developing.' : '列出曾使用过的工具，熟练度仍在积累'}</div>
                 <div className="pillbar" style={{ marginBottom: 10 }}>
-                  {["Gromacs", "OpenMM", "ORCA", "Gaussian", "MM/PBSA", "伞状抽样", "FEP", "构象搜索"].map((t) =>
+                  {toolsPrimary.map((t) =>
                   <span key={t} className="pill lit">{t}</span>
                   )}
                 </div>
                 <div className="pillbar" style={{ marginBottom: 10 }}>
-                  {["分子对接", "网络药理学", "孟德尔随机化", "WGCNA", "R", "Python"].map((t) =>
+                  {toolsSecondary.map((t) =>
                   <span key={t} className="pill">{t}</span>
                   )}
                 </div>
                 <div className="pillbar" style={{ marginBottom: 10 }}>
-                  {["细胞培养", "RNA 提取", "qPCR"].map((t) =>
+                  {wetTools.map((t) =>
                   <span key={t} className="pill">{t}</span>
                   )}
                 </div>
@@ -648,66 +901,70 @@ function App() {
 
             {/* ===== Main Column ===== */}
             <main>
-              <p className="lead">{tweaks.lead}</p>
+              <p className="lead">{leadText}</p>
 
               {/* Interest */}
               <div className="sec">
-                <div className="sec-label">Interest · 感兴趣的方向</div>
+                <div className="sec-label">{isEn ? 'Interest' : 'Interest · 感兴趣的方向'}</div>
                 <div style={{ padding: '16px 18px', border: '1px solid var(--rule)', background: 'var(--paper-2)' }}>
                   <div style={{ fontSize: 13.5, color: 'var(--ink-2)', lineHeight: 1.7 }}>
-                    希望进入 <strong style={{ color: 'var(--ink)' }}>天然药物化学</strong> 或 <strong style={{ color: 'var(--ink)' }}>计算辅助药物设计</strong> 相关的课题组学习。
-                    本科阶段在尝试把分子模拟、对接等方法用在感兴趣的体系上，离能独立产出还有距离，希望有机会跟随老师系统训练。
+                    {isEn ? (
+                      <>I hope to join a research group related to <strong style={{ color: 'var(--ink)' }}>natural products chemistry</strong> or <strong style={{ color: 'var(--ink)' }}>computer-aided drug design</strong>. During my undergraduate study, I have been trying molecular simulation and docking methods on systems that interest me. I am still far from independent output and hope to receive systematic training under faculty guidance.</>
+                    ) : (
+                      <>希望进入 <strong style={{ color: 'var(--ink)' }}>天然药物化学</strong> 或 <strong style={{ color: 'var(--ink)' }}>计算辅助药物设计</strong> 相关的课题组学习。
+                      本科阶段在尝试把分子模拟、对接等方法用在感兴趣的体系上，离能独立产出还有距离，希望有机会跟随老师系统训练。</>
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* Research Skills */}
               <div className="sec">
-                <div className="sec-label">Skills · 接触过的方法</div>
-                <h2 className="sec-title">本科阶段自学与练习的内容</h2>
+                <div className="sec-label">{isEn ? 'Skills / Methods Exposure' : 'Skills · 接触过的方法'}</div>
+                <h2 className="sec-title">{isEn ? 'Self-learning and methods actually used during undergraduate study' : '本科阶段自学与实际使用到的内容'}</h2>
                 <p style={{ fontSize: 13, color: 'var(--ink-3)', fontStyle: 'italic', marginTop: -6, marginBottom: 18, lineHeight: 1.6 }}>
 
                 </p>
                 <div className="skill-grid">
                   <div className="skill-card">
                     <span className="num">01</span>
-                    <h3>分子动力学模拟</h3>
+                    <h3>{isEn ? 'Molecular Dynamics Simulations' : '分子动力学模拟'}</h3>
                     <div className="tag"></div>
                     <ul>
-                      <li>Gromacs：可独立完成蛋白-配体体系全流程</li>
-                      <li>结合自由能：MM/PBSA、伞状抽样、FEP 均实操过</li>
-                      <li><strong style={{ color: 'var(--ink)' }}>膜蛋白体系</strong></li>
-                      <li>对 AIMD、增强采样等方法了解，未深入实操</li>
+                      <li>{isEn ? 'Gromacs: able to complete a protein-ligand workflow independently' : 'Gromacs：可独立完成蛋白-配体体系全流程'}</li>
+                      <li>{isEn ? 'Binding free energy: hands-on practice with MM/PBSA, umbrella sampling, and FEP' : '结合自由能：MM/PBSA、伞状抽样、FEP 均实操过'}</li>
+                      <li><strong style={{ color: 'var(--ink)' }}>{isEn ? 'Membrane protein systems' : '膜蛋白体系'}</strong></li>
+                      <li>{isEn ? 'Aware of AIMD and enhanced sampling methods' : '对 AIMD、增强采样等方法了解'}</li>
                     </ul>
                   </div>
                   <div className="skill-card">
                     <span className="num">02</span>
-                    <h3>量子化学计算</h3>
+                    <h3>{isEn ? 'Quantum Chemistry Calculations' : '量子化学计算'}</h3>
                     <div className="tag"></div>
                     <ul>
-                      <li>ORCA / Gaussian 常规体系计算</li>
-                      <li> <strong style={{ color: 'var(--ink)' }}>构象搜索</strong></li>
-                      <li>DFT 与过渡态搜索仍在学习</li>
-                      <li>计算化学公社、卢天老师课程持续跟进</li>
+                      <li>{isEn ? 'Routine calculations with ORCA / Gaussian' : 'ORCA / Gaussian 常规体系计算'}</li>
+                      <li><strong style={{ color: 'var(--ink)' }}>{isEn ? 'Conformational search' : '构象搜索'}</strong></li>
+                      <li>{isEn ? 'Still learning DFT and transition-state search' : 'DFT 与过渡态搜索仍在学习'}</li>
+                      <li>{isEn ? 'Computational chemistry community resources and Prof. Tian Lu’s courses' : '计算化学公社、卢天老师课程'}</li>
                     </ul>
                   </div>
                   <div className="skill-card">
                     <span className="num">03</span>
-                    <h3>多平台 / 特殊体系</h3>
+                    <h3>{isEn ? 'Multiple Platforms / Special Systems' : '多平台 / 特殊体系'}</h3>
                     <div className="tag"></div>
                     <ul>
-                      <li>因体系需要，用 OpenMM 处理过 Gromacs 不支持的力场</li>
-                      <li>四点水模型等场景做过尝试</li>
+                      <li>{isEn ? 'Used OpenMM for force fields not supported by Gromacs when required by the system' : '因体系需要，用 OpenMM 处理过 Gromacs 不支持的力场'}</li>
+                      <li>{isEn ? 'Tried scenarios such as four-site water models' : '四点水模型等场景做过尝试'}</li>
                     </ul>
                   </div>
                   <div className="skill-card">
                     <span className="num">04</span>
-                    <h3>药物设计 / 生信</h3>
+                    <h3>{isEn ? 'Drug Design / Bioinformatics' : '药物设计 / 生信'}</h3>
                     <div className="tag"></div>
                     <ul>
-                      <li>分子对接、网络药理学、孟德尔随机化</li>
-                      <li>WGCNA、药物靶点提取（做过到这个深度）</li>
-                      <li>机器学习在生物医学数据中的入门应用</li>
+                      <li>{isEn ? 'Molecular docking, network pharmacology, and Mendelian randomization' : '分子对接、网络药理学、孟德尔随机化'}</li>
+                      <li>{isEn ? 'WGCNA and drug target extraction' : 'WGCNA、药物靶点提取'}</li>
+                      <li>{isEn ? 'Introductory application of machine learning to biomedical data' : '机器学习在生物医学数据中的入门应用'}</li>
                     </ul>
                   </div>
                 </div>
@@ -715,7 +972,7 @@ function App() {
 
               {/* Wet lab */}
               <div className="sec">
-                <div className="sec-label">科研经历</div>
+                <div className="sec-label">{isEn ? 'Research Experience' : '科研经历'}</div>
                 <div className="tl">
                   <div className="tl-item live">
                     <div className="tl-head">
@@ -732,35 +989,35 @@ function App() {
 
                   <div className="tl-item">
                     <div className="tl-head">
-                      <div className="t">王玉林 副教授 课题组 <span className="sub">中科院大连化物所 · 药学方向</span></div>
-                      <div className="when">2024 – 至今</div>
+                      <div className="t">{isEn ? "Associate Prof. Yulin Wang's Group" : '王玉林 副教授 课题组'} <span className="sub">{isEn ? 'Dalian Institute of Chemical Physics, Chinese Academy of Sciences · Pharmaceutical Sciences' : '中科院大连化物所 · 药学方向'}</span></div>
+                      <div className="when">{isEn ? '2024 – Present' : '2024 – 至今'}</div>
                     </div>
                     <div className="tl-body">
-                      跟随 <strong style={{ color: 'var(--ink)' }}>王玉林 副教授</strong> 参与课题组工作。
+                      {isEn ? <>Participating in group work under <strong style={{ color: 'var(--ink)' }}>Associate Prof. Yulin Wang</strong>.</> : <>跟随 <strong style={{ color: 'var(--ink)' }}>王玉林 副教授</strong> 参与课题组工作。</>}
                     </div>
                   </div>
 
                   <div className="tl-item">
                     <div className="tl-head">
-                      <div className="t">张峰 课题组 <span className="sub">大医附二院 · 胃肠外科</span></div>
-                      <div className="when">2024 – 至今</div>
+                      <div className="t">{isEn ? "Feng Zhang's Group" : '张峰 课题组'} <span className="sub">{isEn ? 'Second Affiliated Hospital of Dalian Medical University · Gastrointestinal Surgery' : '大医附二院 · 胃肠外科'}</span></div>
+                      <div className="when">{isEn ? '2024 – Present' : '2024 – 至今'}</div>
                     </div>
                     <div className="tl-body">
-                      由 <strong style={{ color: 'var(--ink)' }}>王梓安</strong>、<strong style={{ color: 'var(--ink)' }}>张晓陶</strong> 师兄指导，参与课题组的 Letter 与综述写作并以作者身份署名。
+                      {isEn ? <>Guided by <strong style={{ color: 'var(--ink)' }}>Zian Wang</strong> and <strong style={{ color: 'var(--ink)' }}>Xiaotao Zhang</strong>; participated in Letter and review writing in the group.</> : <>由 <strong style={{ color: 'var(--ink)' }}>王梓安</strong>、<strong style={{ color: 'var(--ink)' }}>张晓陶</strong> 师兄指导，参与课题组的 Letter 与综述写作并以作者身份署名。</>}
                     </div>
                   </div>
 
                   <div className="tl-item">
                     <div className="tl-head">
-                      <div className="t">王亮 副教授 课题组 <span className="sub">大连医科大学 实验动物中心（SPF 级）</span></div>
-                      <div className="when">2023 – 至今</div>
+                      <div className="t">{isEn ? "Associate Prof. Liang Wang's Group" : '王亮 副教授 课题组'} <span className="sub">{isEn ? 'Dalian Medical University Laboratory Animal Center (SPF Level)' : '大连医科大学 实验动物中心（SPF 级）'}</span></div>
+                      <div className="when">{isEn ? '2023 – Present' : '2023 – 至今'}</div>
                     </div>
                     <div className="tl-body">
-                      研究方向：胃肠肿瘤的发病机制与治疗。按所作工作量从多到少：
+                      {isEn ? 'Research focus: pathogenesis and treatment of gastrointestinal tumors. Work involvement, from more to less:' : '研究方向：胃肠肿瘤的发病机制与治疗。按所作工作量从多到少：'}
                       <ul>
-                        <li><strong style={{ color: 'var(--ink)' }}>主要：生信分析</strong>——课题组中负责计算 / 生信向的部分</li>
-                        <li><strong style={{ color: 'var(--ink)' }}>其次：细胞培养与 qPCR</strong>，能独立完成基本流程</li>
-                        <li><strong style={{ color: 'var(--ink)' }}>偶尔：动物实验</strong>——参与过几次饲养与杀鼠取材，上手经验仅限于此</li>
+                        <li><strong style={{ color: 'var(--ink)' }}>{isEn ? 'Mainly: bioinformatics analysis' : '主要：生信分析'}</strong>{isEn ? ' — responsible for the computational / bioinformatics part in the group' : '——课题组中负责计算 / 生信向的部分'}</li>
+                        <li><strong style={{ color: 'var(--ink)' }}>{isEn ? 'Secondarily: cell culture and qPCR' : '其次：细胞培养与 qPCR'}</strong>{isEn ? ', able to complete basic workflows independently' : '，能独立完成基本流程'}</li>
+                        <li><strong style={{ color: 'var(--ink)' }}>{isEn ? 'Occasionally: animal experiments' : '偶尔：动物实验'}</strong>{isEn ? ' — participated a few times in husbandry and sample collection' : '——参与过几次饲养与杀鼠取材'}</li>
                       </ul>
                     </div>
                   </div>
@@ -769,11 +1026,11 @@ function App() {
 
               {/* Publications */}
               <div className="sec">
-                <div className="sec-label">Publications · 已发表论文</div>
+                <div className="sec-label">{isEn ? 'Publications' : 'Publications · 已发表论文'}</div>
                 <h2 className="sec-title">Reviews & Letters & Research <span style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--ink-3)', letterSpacing: '0.05em', fontWeight: 400 }}></span></h2>
                 <p style={{ fontSize: 12.5, color: 'var(--ink-3)', fontStyle: 'italic', marginTop: -6, marginBottom: 14, lineHeight: 1.6 }}>
-                  共 7 篇：2 篇 综述 (Review)、1 篇 纯生信 Research、4 篇 致编辑信 (Letter)。
-                  与 <a href="https://orcid.org/0009-0004-2387-7021" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px dotted var(--accent)' }}>ORCID 0009-0004-2387-7021</a> 同步。
+                  {isEn ? 'Seven items listed: 2 reviews, 1 bioinformatics research article, and 4 letters. Synced with ' : '共 7 篇：2 篇 综述 (Review)、1 篇 纯生信 Research、4 篇 致编辑信 (Letter)。与 '}
+                  <a href="https://orcid.org/0009-0004-2387-7021" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px dotted var(--accent)' }}>ORCID 0009-0004-2387-7021</a>{isEn ? '.' : ' 同步。'}
                 </p>
 
                 <div className="pub">
@@ -783,7 +1040,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       Yu Han; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Guangdi Yang; Monong Su; Siqi Wang; Mengxin Yang; Huiyang Yu; Minghua Li; Liang Wang et al.
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Review · 综述</strong> · <strong>Frontiers in Microbiology</strong> · IF 4.5 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fmicb.2026.1785607</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Review' : 'Review · 综述'}</strong> · <strong>Frontiers in Microbiology</strong> · IF 4.5 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fmicb.2026.1785607</span></div>
                   </div>
                   <div className="if">IF 4.5 / Q1</div>
                 </div>
@@ -795,7 +1052,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Qindan Li; Yiheng Liu; Xiaotao Zhang; Ergen Mi; Liang Wang; Lingyu Wang; Feng Zhang
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Review · 综述</strong> · <strong>Frontiers in Immunology</strong> · IF 5.9 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fimmu.2025.1675572</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Review' : 'Review · 综述'}</strong> · <strong>Frontiers in Immunology</strong> · IF 5.9 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fimmu.2025.1675572</span></div>
                   </div>
                   <div className="if">IF 5.9 / Q1</div>
                 </div>
@@ -807,13 +1064,13 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       Minglu Liu; Yuxin Wang; Wen Deng; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Yanyao He; Liang Wang; Jianbin Zhang; Ming Cui
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>纯生信 · Bioinformatics</strong> · <strong>Frontiers in Cellular and Infection Microbiology</strong> · IF 4.8 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fcimb.2024.1453529</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Bioinformatics' : '纯生信 · Bioinformatics'}</strong> · <strong>Frontiers in Cellular and Infection Microbiology</strong> · IF 4.8 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.3389/fcimb.2024.1453529</span></div>
                   </div>
                   <div className="if">IF 4.8 / Q1</div>
                 </div>
 
                 <div style={{ borderTop: '1px dashed var(--rule)', marginTop: 18, paddingTop: 14, marginBottom: 6, fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--ink-3)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  Letters to the Editor · 致编辑信
+                  {isEn ? 'Letters to the Editor' : 'Letters to the Editor · 致编辑信'}
                 </div>
 
                 <div className="pub">
@@ -823,7 +1080,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       Yiheng Liu; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Feng Zhang
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004790</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Letter' : 'Letter · 致编辑信'}</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004790</span></div>
                   </div>
                   <div className="if">IF 10.1 / Q1</div>
                 </div>
@@ -835,7 +1092,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Zian Wang; Liang Wang; Ming Cui
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07820-z</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Letter' : 'Letter · 致编辑信'}</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07820-z</span></div>
                   </div>
                   <div className="if">IF 6.1 / Q1</div>
                 </div>
@@ -847,7 +1104,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       Xiaotao Zhang; Zian Wang; <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Feng Zhang
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07822-x</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Letter' : 'Letter · 致编辑信'}</strong> · <strong>Journal of Translational Medicine</strong> · IF 6.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1186/s12967-026-07822-x</span></div>
                   </div>
                   <div className="if">IF 6.1 / Q1</div>
                 </div>
@@ -859,7 +1116,7 @@ function App() {
                     <div style={{ fontSize: 11.5, color: 'var(--ink-3)', margin: '2px 0 6px', lineHeight: 1.65 }}>
                       <strong style={{ color: 'var(--ink)' }}>Jiahao Xie</strong>; Zian Wang; Xiaotao Zhang; Feng Zhang
                     </div>
-                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>Letter · 致编辑信</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004923</span></div>
+                    <div className="venue"><strong style={{ color: 'var(--accent-2)' }}>{isEn ? 'Letter' : 'Letter · 致编辑信'}</strong> · <strong>International Journal of Surgery</strong> · IF 10.1 · Q1 · <span style={{ fontFamily: 'var(--mono)', fontSize: 11 }}>10.1097/JS9.0000000000004923</span></div>
                   </div>
                   <div className="if">IF 10.1 / Q1</div>
                 </div>
@@ -867,56 +1124,64 @@ function App() {
 
               {/* Patents & competitions */}
               <div className="sec">
-                <div className="sec-label">Patents &amp; Competitions</div>
+                <div className="sec-label">{isEn ? 'Patents & Competitions' : 'Patents & Competitions'}</div>
                 <div className="award-grid">
-                  <div className="award"><span className="d">Patent</span><span className="t">《一种啮齿动物睡眠干扰与记录的装置》<span className="scope nat">实用新型 · 参与者</span></span></div>
-                  <div className="award"><span className="d">2024</span><span className="t">CULSC 第十届全国大学生生命科学竞赛（创新创业类）<span className="scope nat">国家二等奖 · 参与者</span></span></div>
-                  <div className="award"><span className="d">2024</span><span className="t">中国国际大学生创新大赛 · 校赛二等奖</span></div>
-                  <div className="award"><span className="d">2024</span><span className="t">大连医科大学第十二届「挑战杯」校赛三等奖</span></div>
-                  <div className="award"><span className="d">2025</span><span className="t">大医附一院 · 职业生涯规划大赛 成长赛道二等奖</span></div>
+                  <div className="award"><span className="d">Patent</span><span className="t">{isEn ? 'A device for rodent sleep interference and recording' : '《一种啮齿动物睡眠干扰与记录的装置》'}<span className="scope patent">{isEn ? 'Utility Model · Participant' : '实用新型 · 参与者'}</span></span></div>
+                  <div className="award"><span className="d">2025.10</span><span className="t">{isEn ? 'CULSC 10th National Undergraduate Life Science Contest (Innovation & Entrepreneurship)' : 'CULSC 第十届全国大学生生命科学竞赛（创新创业类）'}<span className="scope nat">{isEn ? 'National Second Prize · Participant' : '国家二等奖 · 参与者'}</span></span></div>
+                  <div className="award"><span className="d">2024.11</span><span className="t">{isEn ? 'China International College Students’ Innovation Competition · University Second Prize' : '中国国际大学生创新大赛（2024）校内选拔赛 二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025.06</span><span className="t">{isEn ? 'College Students’ Innovation & Entrepreneurship Competition · University Third Prize' : '大创校赛 三等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024</span><span className="t">{isEn ? '12th “Challenge Cup” at Dalian Medical University · University Third Prize' : '大连医科大学第十二届「挑战杯」校赛三等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025</span><span className="t">{isEn ? 'First Affiliated Hospital of DMU Career Planning Competition · Growth Track Second Prize' : '大医附一院 · 职业生涯规划大赛 成长赛道二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025.11</span><span className="t">{isEn ? 'DMU Career Planning Competition, University Semifinal · Second Prize' : '大连医科大学职业生涯规划大赛校赛复赛 二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
                 </div>
               </div>
 
               {/* Honors */}
               <div className="sec">
-                <div className="sec-label">Honors &amp; Scholarships · 荣誉奖学金</div>
+                <div className="sec-label">{isEn ? 'Honors, Scholarships & Certificates' : 'Honors, Scholarships & Certificates · 荣誉奖学金与证书'}</div>
                 <div className="award-grid">
-                  <div className="award"><span className="d">2023.10</span><span className="t">「外研社·国才杯」「理解当代中国」全国大学生外语能力大赛 · 英语组阅读 一等奖<span className="scope">校级</span></span></div>
-                  <div className="award"><span className="d">2024.04</span><span className="t">综评二等奖学金</span></div>
-                  <div className="award"><span className="d">2024.04</span><span className="t">枫叶杯演讲比赛 二等奖<span className="scope">校级</span></span></div>
-                  <div className="award"><span className="d">2024.07</span><span className="t">词达人省赛 三等奖<span className="scope prov">省级</span></span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">大商奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">综评二等奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">学习优秀二等奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">文明修身奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">社会工作奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">文体活动奖学金</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">优良学风先进个人</span></div>
-                  <div className="award"><span className="d">2024.10</span><span className="t">优秀学生干部</span></div>
+                  <div className="award"><span className="d">2023.10</span><span className="t">{isEn ? '“FLTRP · Guocai Cup” Understanding Contemporary China National College English Contest · Reading, Second Prize' : '「外研社·国才杯」「理解当代中国」全国大学生外语能力大赛 · 英语组阅读 二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.04</span><span className="t">{isEn ? 'Comprehensive Evaluation Scholarship, Second Prize' : '综评二等奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.04</span><span className="t">{isEn ? 'Maple Cup Speech Contest, Second Prize' : '枫叶杯演讲比赛 二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024</span><span className="t">{isEn ? 'Ci Daren University Contest, Second Prize' : '词达人校赛 二等奖'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.07</span><span className="t">{isEn ? 'Ci Daren Provincial Contest, Third Prize' : '词达人省赛 三等奖'}<span className="scope prov">{isEn ? 'Provincial' : '省级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Dashang Scholarship' : '大商奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Comprehensive Evaluation Scholarship, Second Prize' : '综评二等奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Academic Excellence Scholarship, Second Prize' : '学习优秀二等奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Civic Cultivation Scholarship' : '文明修身奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Social Work Scholarship' : '社会工作奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Cultural and Sports Activities Scholarship' : '文体活动奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Advanced Individual for Excellent Academic Atmosphere' : '优良学风先进个人'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.10</span><span className="t">{isEn ? 'Outstanding Student Cadre' : '优秀学生干部'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2024.11</span><span className="t">{isEn ? 'Medical English Test System (Level 4), Passed' : '医学英语水平考试（四级）通过'}<span className="scope cert">{isEn ? 'Certificate' : '证书'}</span></span></div>
+                  <div className="award"><span className="d">2025.12</span><span className="t">{isEn ? 'Academic Excellence Scholarship, Second Prize · 2024–2025 Academic Year' : '2024–2025学年 学习优秀二等奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025.12</span><span className="t">{isEn ? 'Comprehensive Quality Scholarship, Third Prize · 2024–2025 Academic Year' : '2024–2025学年 综合素质三等奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025.12</span><span className="t">{isEn ? 'Innovation & Entrepreneurship Scholarship · 2024–2025 Academic Year' : '2024–2025学年 创新创业奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
+                  <div className="award"><span className="d">2025.12</span><span className="t">{isEn ? 'Civic Cultivation Scholarship · 2024–2025 Academic Year' : '2024–2025学年 文明修身奖学金'}<span className="scope">{isEn ? 'University' : '校级'}</span></span></div>
                 </div>
               </div>
 
               {/* Self */}
               <div className="sec">
-                <div className="sec-label">Self · 自我评价</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+                <div className="sec-label">{isEn ? 'Self Assessment' : 'Self · 自我评价'}</div>
+                <div className="self-grid" style={{ display: 'grid', gap: 18 }}>
                   <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--accent)', background: 'var(--paper-2)' }}>
-                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>做过计算+湿实验</div>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{isEn ? 'Experience in both computational and wet-lab work' : '做过计算+湿实验'}</div>
                     <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
-                      本科阶段同时接触了计算（分子模拟 / 生信）和湿实验（细胞 / 动物 / qPCR）。
+                      {isEn ? 'During undergraduate study, I have been exposed to computational work (molecular simulation / bioinformatics) and wet-lab work (cells / animals / qPCR).' : '本科阶段同时接触了计算（分子模拟 / 生信）和湿实验（细胞 / 动物 / qPCR）。'}
                     </div>
                   </div>
                   <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--accent-2)', background: 'var(--paper-2)' }}>
-                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>对计算化学和天然药物化学有热情</div>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{isEn ? 'Passionate about computational chemistry and natural products chemistry' : '对计算化学和天然药物化学有热情'}</div>
                     <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
-                      自学计算化学公社、卢天老师课程，常常感觉「有力发不出」——
-                      希望能在老师指导下系统训练，把感兴趣的方法真正用起来。
+                      {isEn ? 'I have been self-learning through computational chemistry community resources and Prof. Tian Lu’s courses. I often feel that I need better training to turn interest into effective work, and I hope to learn systematically under faculty guidance.' : <>自学计算化学公社、卢天老师课程，常常感觉「有力发不出」——
+                      希望能在老师指导下系统训练，把感兴趣的方法真正用起来。</>}
                     </div>
                   </div>
                   <div style={{ padding: '16px 18px', borderLeft: '2px solid var(--ink-3)', background: 'var(--paper-2)', gridColumn: '1 / -1' }}>
-                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>理性、不怕被指正</div>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{isEn ? 'Rational and open to correction' : '理性、不怕被指正'}</div>
                     <div style={{ fontSize: 12.5, color: 'var(--ink-2)', lineHeight: 1.65 }}>
-                      喜欢辩论但不为面子辩护，错了就认；老师指出问题时把它当成最快的学习路径，而不是被冒犯。
+                      {isEn ? 'I like discussion, but I do not defend ideas for the sake of face. When I am wrong, I accept it; when teachers point out problems, I treat that as the fastest learning path rather than an offense.' : '喜欢辩论但不为面子辩护，错了就认；老师指出问题时把它当成最快的学习路径，而不是被冒犯。'}
                     </div>
                   </div>
                 </div>
@@ -925,11 +1190,11 @@ function App() {
               {/* Signature */}
               <div className="sig">
                 <div className="quote">
-                  「目前能做的事还有限，希望能在老师指导下，把感兴趣的方法慢慢做扎实。」
+                  {isEn ? '“What I can do now is still limited; I hope to gradually make the methods I care about more solid under faculty guidance.”' : '「目前能做的事还有限，希望能在老师指导下，把感兴趣的方法慢慢做扎实。」'}
                 </div>
                 <div className="stamp">
                   {tweaks.showSeal && <div className="seal">XJH</div>}
-                  <div>谢佳豪 / Xie Jiahao</div>
+                  <div>{isEn ? 'Jiahao Xie' : '谢佳豪 / Xie Jiahao'}</div>
                   <div>Dalian Medical Univ.</div>
                   <div><a href="https://axiejohn.com/" style={{ color: 'inherit', textDecoration: 'none' }}>axiejohn.com</a></div>
                 </div>
