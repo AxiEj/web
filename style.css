@@ -345,6 +345,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: 12px;
 }
 
+.nav-link-limited {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid rgba(184, 84, 106, 0.24);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(245, 216, 204, 0.36)),
+    radial-gradient(circle at 85% 25%, rgba(184, 84, 106, 0.16), transparent 45%);
+  color: #9d3f55;
+  box-shadow: 0 10px 26px rgba(184, 84, 106, 0.10);
+}
+
+.nav-link-limited::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: #b8546a;
+  box-shadow: 0 0 0 4px rgba(184, 84, 106, 0.12);
+}
+
+.nav-link-limited:hover {
+  color: #6b1f2c;
+  border-color: rgba(184, 84, 106, 0.42);
+}
+
 .maple-link {
   font-size: 11px;
   font-weight: 500;
@@ -1708,6 +1737,105 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding-bottom: 4px;
   border-bottom: 1px solid #c8102e;
   color: #c8102e;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   SEASONAL FEATURE - MOTHER'S DAY
+   ============================================================ */
+
+.mothersday-feature-section {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(184, 84, 106, 0.10), transparent 30%),
+    radial-gradient(circle at 18% 78%, rgba(160, 122, 58, 0.08), transparent 32%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+}
+
+.mothersday-feature-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(184, 84, 106, 0.20);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(250, 249, 247, 0.84) 100%),
+    linear-gradient(90deg, rgba(184, 84, 106, 0.10), rgba(160, 122, 58, 0.08));
+  box-shadow: var(--shadow-gold-soft);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.mothersday-feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(184, 84, 106, 0.16);
+  pointer-events: none;
+}
+
+.mothersday-feature-card::after {
+  content: '母亲节';
+  position: absolute;
+  right: clamp(18px, 4vw, 48px);
+  bottom: -0.25em;
+  font-family: var(--font-display);
+  font-size: clamp(62px, 15vw, 150px);
+  line-height: 1;
+  color: rgba(184, 84, 106, 0.07);
+  pointer-events: none;
+}
+
+.mothersday-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 84, 106, 0.34);
+  box-shadow: var(--shadow-gold-medium);
+}
+
+.mothersday-feature-kicker,
+.mothersday-feature-title,
+.mothersday-feature-copy,
+.mothersday-feature-cta {
+  position: relative;
+  z-index: 1;
+}
+
+.mothersday-feature-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #b8546a;
+}
+
+.mothersday-feature-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 76px);
+  line-height: 1.08;
+  color: var(--ink-black);
+}
+
+.mothersday-feature-copy {
+  max-width: 620px;
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+
+.mothersday-feature-cta {
+  width: fit-content;
+  margin-top: var(--space-sm);
+  padding-bottom: 4px;
+  border-bottom: 1px solid #b8546a;
+  color: #b8546a;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;

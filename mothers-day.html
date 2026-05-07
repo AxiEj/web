@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>致母亲 · 二〇二六母亲节特辑</title>
+<meta name="description" content="二〇二六母亲节特辑：致那个把我们托举到光里的人。">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f3e9d6;
+  --bg-warm: #ecdcc1;
+  --ink: #2a1810;
+  --wine: #6b1f2c;
+  --wine-deep: #4a1620;
+  --rose: #b8546a;
+  --blush: #e8b5a8;
+  --gold: #a07a3a;
+  --soft: #f5d8cc;
+  --line: rgba(74, 22, 32, 0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Serif SC', serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  position: relative;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Paper texture & atmospheric overlays */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(184, 84, 106, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(160, 122, 58, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(232, 181, 168, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.15 0 0 0 0 0.1 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+main { position: relative; z-index: 2; }
+
+/* === NAVIGATION === */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.8rem 5vw;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  color: var(--wine);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.nav-mark {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-style: normal;
+  font-size: 1.6rem;
+  color: var(--wine);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-mark:hover {
+  color: var(--rose);
+}
+.nav-issue {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.nav-issue span:first-child {
+  border-right: 1px solid var(--line);
+  padding-right: 2rem;
+}
+@media (max-width: 700px) {
+  .nav-issue span:first-child { display: none; }
+}
+
+/* === HERO === */
+.hero {
+  padding: 5rem 5vw 8rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr 0.7fr;
+  gap: 2rem;
+  align-items: end;
+  min-height: 70vh;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+.hero-side-left, .hero-side-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+
+.hero-vertical {
+  writing-mode: vertical-rl;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.5em;
+  font-size: 0.78rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin-bottom: 2rem;
+}
+
+.hero-side-left { align-items: flex-start; }
+.hero-side-right { align-items: flex-end; }
+
+.hero-flower {
+  width: 180px;
+  height: 180px;
+  opacity: 0.85;
+  animation: drift 8s ease-in-out infinite;
+}
+
+@media (max-width: 900px) {
+  .hero-flower { width: 120px; height: 120px; }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.hero-title {
+  text-align: center;
+  position: relative;
+}
+
+.hero-edition {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--rose);
+  letter-spacing: 0.35em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-edition::before, .hero-edition::after {
+  content: '—';
+  margin: 0 1.2rem;
+  opacity: 0.5;
+}
+
+.hero-headline {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2.8rem, 7.5vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--wine-deep);
+  letter-spacing: 0.04em;
+}
+
+.hero-headline .em {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-weight: 400;
+  color: var(--rose);
+  display: inline-block;
+}
+
+.hero-headline .div {
+  display: block;
+  margin: 0.3em 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.32em;
+  letter-spacing: 0.6em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.hero-sub {
+  margin-top: 3rem;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  opacity: 0.75;
+  line-height: 2;
+}
+
+.hero-date {
+  margin-top: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  color: var(--wine);
+  text-transform: uppercase;
+}
+
+.hero-date::before {
+  content: '✦';
+  margin-right: 1rem;
+  color: var(--rose);
+}
+.hero-date::after {
+  content: '✦';
+  margin-left: 1rem;
+  color: var(--rose);
+}
+
+/* Reveal animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+.delay-4 { animation-delay: 1.1s; }
+.delay-5 { animation-delay: 1.4s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ORIGIN STORY === */
+.story {
+  padding: 6rem 5vw;
+  background: var(--bg-warm);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.story-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+}
+
+@media (max-width: 800px) {
+  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+.story-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: var(--rose);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.story-section-title {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--wine-deep);
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+}
+
+.story-section-title em {
+  font-style: normal;
+  color: var(--rose);
+}
+
+.story-meta {
+  margin-top: 3rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.story-meta strong {
+  display: block;
+  font-style: normal;
+  color: var(--wine);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.1em;
+}
+
+.story-body {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink);
+  position: relative;
+}
+
+.story-body p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.story-body p:first-child::first-letter {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 4.5rem;
+  float: left;
+  line-height: 0.85;
+  margin: 0.1em 0.15em -0.05em 0;
+  color: var(--wine);
+  font-weight: normal;
+}
+
+.pullquote {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--wine);
+  border-left: 3px solid var(--rose);
+  padding: 1rem 0 1rem 1.8rem;
+  margin: 2.5rem 0;
+  font-style: normal;
+}
+
+.pullquote::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  line-height: 0;
+  margin-right: 0.3rem;
+  color: var(--rose);
+  vertical-align: -0.3em;
+}
+
+/* === CARNATION SECTION === */
+.carnations {
+  padding: 7rem 5vw;
+  text-align: center;
+  position: relative;
+}
+
+.section-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--rose);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--wine-deep);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  max-width: 580px;
+  margin: 0 auto 5rem;
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--ink);
+  opacity: 0.75;
+  letter-spacing: 0.05em;
+}
+
+.carnation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .carnation-grid { grid-template-columns: 1fr; gap: 4rem; }
+}
+
+.carnation-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.carnation-card:hover {
+  transform: translateY(-8px);
+}
+
+.carnation-card svg {
+  width: 140px;
+  height: 140px;
+  transition: transform 0.6s ease;
+}
+
+.carnation-card:hover svg {
+  transform: scale(1.08) rotate(-5deg);
+}
+
+.carnation-name {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.8rem;
+  color: var(--wine);
+  margin: 1.5rem 0 0.5rem;
+  letter-spacing: 0.15em;
+}
+
+.carnation-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.carnation-desc {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--ink);
+  opacity: 0.8;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* === POEM SECTION === */
+.poem {
+  padding: 8rem 5vw;
+  background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 100%);
+  color: var(--soft);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.poem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.3'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+.poem-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--blush);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.poem-title {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--soft);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.2em;
+  position: relative;
+}
+
+.poem-author {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--blush);
+  letter-spacing: 0.3em;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.poem-body {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  line-height: 2.4;
+  letter-spacing: 0.25em;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.poem-body p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+.poem-body.in-view p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poem-body p:nth-child(1) { transition-delay: 0.1s; }
+.poem-body p:nth-child(2) { transition-delay: 0.4s; }
+.poem-body p:nth-child(3) { transition-delay: 0.7s; }
+.poem-body p:nth-child(4) { transition-delay: 1.0s; }
+
+.poem-body p.highlight {
+  color: var(--blush);
+}
+
+/* === LETTER WRITER === */
+.letter {
+  padding: 7rem 5vw;
+  position: relative;
+}
+
+.letter-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.letter-intro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.letter-form {
+  background: linear-gradient(180deg, #fdf6e8 0%, #f5e6d0 100%);
+  padding: 4rem 4rem 3rem;
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 30px 60px -20px rgba(74, 22, 32, 0.25),
+    0 10px 20px -5px rgba(74, 22, 32, 0.15);
+  border: 1px solid rgba(160, 122, 58, 0.2);
+}
+
+@media (max-width: 600px) {
+  .letter-form { padding: 2.5rem 1.8rem; }
+}
+
+.letter-form::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(160, 122, 58, 0.25);
+  pointer-events: none;
+}
+
+.letter-form::after {
+  content: '✦';
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--rose);
+  opacity: 0.6;
+}
+
+.letter-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+  font-family: 'ZCOOL XiaoWei', serif;
+}
+
+.letter-row label {
+  font-size: 1.3rem;
+  color: var(--wine);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.letter-row input,
+.letter-row textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(107, 31, 44, 0.35);
+  padding: 0.5rem 0.3rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.05rem;
+  color: var(--wine-deep);
+  outline: none;
+  width: 100%;
+  resize: none;
+  line-height: 1.9;
+}
+
+.letter-row input:focus,
+.letter-row textarea:focus {
+  border-bottom-color: var(--rose);
+  background: rgba(232, 181, 168, 0.1);
+}
+
+.letter-row textarea {
+  min-height: 140px;
+  border-bottom: none;
+  background-image: linear-gradient(transparent calc(1.9em - 1px), rgba(107, 31, 44, 0.2) calc(1.9em - 1px), rgba(107, 31, 44, 0.2) 1.9em, transparent 1.9em);
+  background-size: 100% 1.9em;
+  line-height: 1.9em;
+  padding: 0.2em 0.3rem;
+}
+
+.letter-textarea-row {
+  grid-template-columns: 1fr;
+}
+
+.letter-textarea-row label {
+  margin-bottom: 0.5rem;
+}
+
+.letter-row.letter-sign {
+  justify-content: end;
+  grid-template-columns: auto auto;
+  margin-top: 1rem;
+}
+
+.letter-row.letter-sign input {
+  border-bottom-color: rgba(107, 31, 44, 0.3);
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.2rem;
+  color: var(--wine);
+  text-align: right;
+  min-width: 180px;
+}
+
+.letter-actions {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  background: var(--wine);
+  color: var(--soft);
+  padding: 1.1rem 2.8rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.btn:hover {
+  background: var(--wine-deep);
+  letter-spacing: 0.4em;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--wine);
+  border: 1px solid var(--wine);
+  margin-left: 1rem;
+}
+
+.btn-secondary:hover {
+  background: var(--wine);
+  color: var(--soft);
+}
+
+.letter-message {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.1rem;
+  color: var(--rose);
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  min-height: 1.5em;
+}
+
+.letter-message.visible { opacity: 1; }
+
+/* === FOOTER === */
+.footer {
+  padding: 5rem 5vw 3rem;
+  background: var(--wine-deep);
+  color: var(--soft);
+  text-align: center;
+  position: relative;
+}
+
+.footer-mark {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 2.5rem;
+  color: var(--blush);
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.footer-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  font-size: 0.9rem;
+  color: var(--blush);
+  opacity: 0.8;
+  margin-bottom: 2.5rem;
+}
+
+.footer-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--blush);
+  margin: 0 auto 2.5rem;
+  opacity: 0.4;
+}
+
+.footer-meta {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+.footer-home {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--blush);
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0.78;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.footer-home:hover {
+  opacity: 1;
+  letter-spacing: 0.32em;
+}
+
+/* Floating petals decoration */
+.petal {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- NAVIGATION -->
+  <nav class="nav fade-up">
+    <a class="nav-mark" href="index.html" aria-label="返回 Jiahao Xie 首页">致 · 母</a>
+    <div class="nav-issue">
+      <span>VOL. 1 · ISSUE V</span>
+      <span>MAY · MMXXVI</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+
+      <div class="hero-side-left">
+        <div class="hero-vertical fade-up delay-2">— Anna Jarvis · 1908 —</div>
+        <svg class="hero-flower fade-up delay-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="petal1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f5d8cc"/>
+              <stop offset="60%" stop-color="#d99b9b"/>
+              <stop offset="100%" stop-color="#b8546a"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <!-- Stem -->
+            <path d="M 0 30 Q -3 60 0 90" stroke="#5a6a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Leaves -->
+            <path d="M 0 60 Q -15 55 -25 65 Q -18 70 0 65 Z" fill="#7a8a4a" opacity="0.85"/>
+            <path d="M 0 75 Q 12 72 22 80 Q 14 84 0 80 Z" fill="#7a8a4a" opacity="0.85"/>
+            <!-- Outer ruffled petals -->
+            <g>
+              <ellipse cx="0" cy="-25" rx="38" ry="32" fill="url(#petal1)" opacity="0.55" transform="rotate(-15)"/>
+              <ellipse cx="0" cy="-25" rx="36" ry="30" fill="url(#petal1)" opacity="0.55" transform="rotate(15)"/>
+              <ellipse cx="0" cy="-25" rx="34" ry="28" fill="url(#petal1)" opacity="0.7" transform="rotate(-30)"/>
+              <ellipse cx="0" cy="-25" rx="32" ry="26" fill="url(#petal1)" opacity="0.7" transform="rotate(30)"/>
+              <ellipse cx="0" cy="-22" rx="30" ry="24" fill="url(#petal1)" opacity="0.85" transform="rotate(0)"/>
+              <ellipse cx="0" cy="-20" rx="26" ry="20" fill="url(#petal1)" opacity="0.95" transform="rotate(-10)"/>
+              <ellipse cx="0" cy="-18" rx="22" ry="17" fill="url(#petal1)" opacity="1" transform="rotate(10)"/>
+            </g>
+            <!-- Center detail -->
+            <circle cx="0" cy="-20" r="6" fill="#6b1f2c" opacity="0.6"/>
+            <circle cx="0" cy="-21" r="3" fill="#4a1620" opacity="0.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-title">
+        <div class="hero-edition fade-up">A LETTER TO MOTHER</div>
+        <h1 class="hero-headline fade-up delay-1">
+          致 那个把我
+          <br>
+          <span class="em">托举到光里</span>
+          <br>
+          的人
+          <span class="div">In honor of her</span>
+        </h1>
+        <p class="hero-sub fade-up delay-3">
+          她是我们最早听见的声音<br>
+          也是最长的回声
+        </p>
+        <div class="hero-date fade-up delay-4">FIVE · TEN · TWO THOUSAND TWENTY-SIX</div>
+      </div>
+
+      <div class="hero-side-right">
+        <svg class="hero-flower fade-up delay-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="animation-delay: -2s;">
+          <defs>
+            <radialGradient id="petal2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fdf6e8"/>
+              <stop offset="60%" stop-color="#f5d8cc"/>
+              <stop offset="100%" stop-color="#d99b9b"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <path d="M 0 30 Q 3 60 0 90" stroke="#5a6a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 0 65 Q 15 60 25 70 Q 18 75 0 70 Z" fill="#7a8a4a" opacity="0.85"/>
+            <g>
+              <ellipse cx="0" cy="-25" rx="38" ry="32" fill="url(#petal2)" opacity="0.55" transform="rotate(20)"/>
+              <ellipse cx="0" cy="-25" rx="36" ry="30" fill="url(#petal2)" opacity="0.55" transform="rotate(-20)"/>
+              <ellipse cx="0" cy="-25" rx="34" ry="28" fill="url(#petal2)" opacity="0.7" transform="rotate(35)"/>
+              <ellipse cx="0" cy="-25" rx="32" ry="26" fill="url(#petal2)" opacity="0.7" transform="rotate(-35)"/>
+              <ellipse cx="0" cy="-22" rx="30" ry="24" fill="url(#petal2)" opacity="0.85"/>
+              <ellipse cx="0" cy="-20" rx="26" ry="20" fill="url(#petal2)" opacity="0.95" transform="rotate(8)"/>
+              <ellipse cx="0" cy="-18" rx="22" ry="17" fill="url(#petal2)" opacity="1" transform="rotate(-8)"/>
+            </g>
+            <circle cx="0" cy="-20" r="6" fill="#a07a3a" opacity="0.5"/>
+          </g>
+        </svg>
+        <div class="hero-vertical fade-up delay-2" style="margin-top: 2rem; align-self: flex-end;">— Carnation · 康 乃 馨 —</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="story">
+    <div class="story-grid">
+
+      <div class="story-aside">
+        <div class="story-label">Feature 01 · 缘起</div>
+        <h2 class="story-section-title">一位<em>女儿</em><br>替母亲<br>留下的<em>节日</em></h2>
+        <div class="story-meta">
+          <strong>Anna Jarvis</strong>
+          1864 — 1948<br>
+          West Virginia, U.S.A.
+        </div>
+      </div>
+
+      <div class="story-body">
+        <p>母亲节的故事,从一个未竟的心愿开始。十九世纪中期,美国西弗吉尼亚州的安·里维斯·贾维斯组织起"母亲日工作俱乐部",在战火与贫病中照顾妇孺、推动和解。她在主日学课上说过一句话:愿有一天,有人为天下的母亲设立一个节日。</p>
+
+        <p>1905年,她离开了人世。女儿安娜继承了那句话,也继承了那份决心。三年后,她在母亲生前所在的小镇教堂办起第一场母亲节纪念仪式,分发母亲生前最爱的康乃馨。</p>
+
+        <div class="pullquote">愿这一天,属于<br>每一位被遗忘的母亲。</div>
+
+        <p>她写了无数封信,一封一封寄给国会议员、报社主编、教会长老。1914年,威尔逊总统签署决议,正式把每年五月的第二个星期日定为母亲节。</p>
+
+        <p>讽刺的是,当节日被花店、糖果商、贺卡公司簇拥着走向商业化,安娜本人愤怒地反对。她说,这背离了节日最初的纯粹。她为之倾尽家产打官司,最终在贫困和孤独中离世——身边没有自己的子女,只有那个由她一手促成、却已不属于她的节日。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CARNATION SYMBOLISM -->
+  <section class="carnations">
+    <div class="section-eyebrow">Feature 02 · 花 语</div>
+    <h2 class="section-title">三 种 康 乃 馨</h2>
+    <p class="section-desc">不同颜色的康乃馨承载着不同的心意,这是安娜·贾维斯留给世人的一种温柔的暗号——花,替我们说出难以启齿的话。</p>
+
+    <div class="carnation-grid">
+
+      <div class="carnation-card">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="red" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#d99b9b"/>
+              <stop offset="60%" stop-color="#b8546a"/>
+              <stop offset="100%" stop-color="#6b1f2c"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <path d="M 0 30 Q -3 60 0 90" stroke="#5a6a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 0 60 Q -15 55 -25 65 Q -18 70 0 65 Z" fill="#7a8a4a" opacity="0.85"/>
+            <path d="M 0 75 Q 12 72 22 80 Q 14 84 0 80 Z" fill="#7a8a4a" opacity="0.85"/>
+            <ellipse cx="0" cy="-25" rx="38" ry="32" fill="url(#red)" opacity="0.55" transform="rotate(-15)"/>
+            <ellipse cx="0" cy="-25" rx="36" ry="30" fill="url(#red)" opacity="0.55" transform="rotate(15)"/>
+            <ellipse cx="0" cy="-25" rx="34" ry="28" fill="url(#red)" opacity="0.7" transform="rotate(-30)"/>
+            <ellipse cx="0" cy="-25" rx="32" ry="26" fill="url(#red)" opacity="0.7" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-22" rx="30" ry="24" fill="url(#red)" opacity="0.85"/>
+            <ellipse cx="0" cy="-20" rx="26" ry="20" fill="url(#red)" opacity="0.95" transform="rotate(-10)"/>
+            <ellipse cx="0" cy="-18" rx="22" ry="17" fill="url(#red)" opacity="1" transform="rotate(10)"/>
+            <circle cx="0" cy="-20" r="5" fill="#4a1620" opacity="0.7"/>
+          </g>
+        </svg>
+        <h3 class="carnation-name">深红色</h3>
+        <div class="carnation-en">Deep Red</div>
+        <p class="carnation-desc">献给在身边的母亲。<br>表达深切的爱、感恩,<br>与一句迟到的"我懂你"。</p>
+      </div>
+
+      <div class="carnation-card">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="pink" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fdf6e8"/>
+              <stop offset="60%" stop-color="#f5d8cc"/>
+              <stop offset="100%" stop-color="#d99b9b"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <path d="M 0 30 Q -3 60 0 90" stroke="#5a6a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 0 60 Q -15 55 -25 65 Q -18 70 0 65 Z" fill="#7a8a4a" opacity="0.85"/>
+            <path d="M 0 75 Q 12 72 22 80 Q 14 84 0 80 Z" fill="#7a8a4a" opacity="0.85"/>
+            <ellipse cx="0" cy="-25" rx="38" ry="32" fill="url(#pink)" opacity="0.55" transform="rotate(-15)"/>
+            <ellipse cx="0" cy="-25" rx="36" ry="30" fill="url(#pink)" opacity="0.55" transform="rotate(15)"/>
+            <ellipse cx="0" cy="-25" rx="34" ry="28" fill="url(#pink)" opacity="0.7" transform="rotate(-30)"/>
+            <ellipse cx="0" cy="-25" rx="32" ry="26" fill="url(#pink)" opacity="0.7" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-22" rx="30" ry="24" fill="url(#pink)" opacity="0.85"/>
+            <ellipse cx="0" cy="-20" rx="26" ry="20" fill="url(#pink)" opacity="0.95" transform="rotate(-10)"/>
+            <ellipse cx="0" cy="-18" rx="22" ry="17" fill="url(#pink)" opacity="1" transform="rotate(10)"/>
+            <circle cx="0" cy="-20" r="5" fill="#b8546a" opacity="0.6"/>
+          </g>
+        </svg>
+        <h3 class="carnation-name">粉红色</h3>
+        <div class="carnation-en">Soft Pink</div>
+        <p class="carnation-desc">为母亲永恒的爱而盛开。<br>它说:你的爱不曾减少,<br>只是被时间悄悄藏好。</p>
+      </div>
+
+      <div class="carnation-card">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="white" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fdfaf2"/>
+              <stop offset="60%" stop-color="#f0e8d8"/>
+              <stop offset="100%" stop-color="#c8bfa8"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <path d="M 0 30 Q -3 60 0 90" stroke="#5a6a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 0 60 Q -15 55 -25 65 Q -18 70 0 65 Z" fill="#7a8a4a" opacity="0.85"/>
+            <path d="M 0 75 Q 12 72 22 80 Q 14 84 0 80 Z" fill="#7a8a4a" opacity="0.85"/>
+            <ellipse cx="0" cy="-25" rx="38" ry="32" fill="url(#white)" opacity="0.55" transform="rotate(-15)"/>
+            <ellipse cx="0" cy="-25" rx="36" ry="30" fill="url(#white)" opacity="0.55" transform="rotate(15)"/>
+            <ellipse cx="0" cy="-25" rx="34" ry="28" fill="url(#white)" opacity="0.7" transform="rotate(-30)"/>
+            <ellipse cx="0" cy="-25" rx="32" ry="26" fill="url(#white)" opacity="0.7" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-22" rx="30" ry="24" fill="url(#white)" opacity="0.85"/>
+            <ellipse cx="0" cy="-20" rx="26" ry="20" fill="url(#white)" opacity="0.95" transform="rotate(-10)"/>
+            <ellipse cx="0" cy="-18" rx="22" ry="17" fill="url(#white)" opacity="1" transform="rotate(10)"/>
+            <circle cx="0" cy="-20" r="5" fill="#a07a3a" opacity="0.4"/>
+          </g>
+        </svg>
+        <h3 class="carnation-name">白色</h3>
+        <div class="carnation-en">Pure White</div>
+        <p class="carnation-desc">献给已在天上的母亲。<br>纯净、纯真,<br>是没有说出口的告别。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POEM SECTION -->
+  <section class="poem">
+    <div class="poem-eyebrow">Feature 03 · 古 诗 一 首</div>
+    <h2 class="poem-title">游 子 吟</h2>
+    <div class="poem-author">— Meng Jiao · 唐 · 孟 郊 —</div>
+    <div class="poem-body" id="poem-body">
+      <p>慈母手中线,游子身上衣。</p>
+      <p>临行密密缝,意恐迟迟归。</p>
+      <p class="highlight">谁言寸草心,</p>
+      <p class="highlight">报得三春晖。</p>
+    </div>
+  </section>
+
+  <!-- LETTER WRITER -->
+  <section class="letter">
+    <div class="letter-container">
+
+      <div class="letter-intro">
+        <div class="section-eyebrow">Feature 04 · 写 一 封 信</div>
+        <h2 class="section-title">写给妈妈的话</h2>
+        <p class="section-desc">那些当面说不出口的,可以写下来。<br>这是你的私人空间——只在这一刻,只在这一页。</p>
+      </div>
+
+      <div class="letter-form" id="letterForm">
+        <div class="letter-row">
+          <label>致</label>
+          <input type="text" id="letterTo" placeholder="亲爱的妈妈" maxlength="40">
+        </div>
+
+        <div class="letter-row letter-textarea-row">
+          <label>正文</label>
+          <textarea id="letterBody" placeholder="妈,有些话攒了很久。&#10;最近的天气你还好吗？我常常想起你做的那道菜……" maxlength="600"></textarea>
+        </div>
+
+        <div class="letter-row letter-sign">
+          <label>署名</label>
+          <input type="text" id="letterFrom" placeholder="爱你的孩子" maxlength="20">
+        </div>
+
+        <div class="letter-actions">
+          <button class="btn" onclick="saveLetter()">封 存 这 封 信</button>
+          <button class="btn btn-secondary" onclick="clearLetter()">重 写</button>
+        </div>
+
+        <div class="letter-message" id="letterMsg"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-mark">致 · 母</div>
+    <div class="footer-line">— With love, always —</div>
+    <div class="footer-divider"></div>
+    <div class="footer-meta">A LETTER TO MOTHER · MMXXVI · MAY THE TENTH</div>
+    <a class="footer-home" href="index.html">JX Home</a>
+  </footer>
+
+</main>
+
+<script>
+// === Letter functionality ===
+function saveLetter() {
+  const to = document.getElementById('letterTo').value.trim();
+  const body = document.getElementById('letterBody').value.trim();
+  const from = document.getElementById('letterFrom').value.trim();
+  const msg = document.getElementById('letterMsg');
+
+  if (!body) {
+    msg.textContent = '请先写下你想说的话 ✦';
+    msg.classList.add('visible');
+    setTimeout(() => msg.classList.remove('visible'), 2500);
+    return;
+  }
+
+  msg.textContent = '✦ 这封信已被悄悄收下,愿它替你说出心里的话 ✦';
+  msg.classList.add('visible');
+
+  // Soft scroll/celebration effect
+  spawnPetals();
+}
+
+function clearLetter() {
+  document.getElementById('letterTo').value = '';
+  document.getElementById('letterBody').value = '';
+  document.getElementById('letterFrom').value = '';
+  document.getElementById('letterMsg').classList.remove('visible');
+}
+
+// === Falling petals on letter save ===
+function spawnPetals() {
+  const colors = ['#b8546a', '#d99b9b', '#f5d8cc', '#e8b5a8'];
+  for (let i = 0; i < 24; i++) {
+    setTimeout(() => {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.top = '-30px';
+      petal.style.position = 'fixed';
+      petal.style.zIndex = '999';
+      petal.style.animation = `fall ${4 + Math.random() * 4}s linear forwards`;
+      const size = 12 + Math.random() * 16;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      petal.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="9" ry="6" fill="${color}" opacity="0.85" transform="rotate(${Math.random() * 360} 10 10)"/></svg>`;
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 9000);
+    }, i * 80);
+  }
+}
+
+// === Poem fade-in on scroll ===
+const poemObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+  });
+}, { threshold: 0.4 });
+
+const poemEl = document.getElementById('poem-body');
+if (poemEl) poemObserver.observe(poemEl);
+
+// === Section reveal on scroll ===
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.story-grid > *, .carnation-card, .letter-form, .letter-intro').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = `opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1) ${i * 0.1}s, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1) ${i * 0.1}s`;
+  sectionObserver.observe(el);
+});
+</script>
+
+</body>
+</html>
