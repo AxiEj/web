@@ -75,12 +75,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function highlightCoordinateLine(line) {
-    var match = line.match(/^(\s*)([A-Z][a-z]?)(\s+[-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?(?:\s+[-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?){2,})(.*)$/);
+    var match = line.match(/^(\s*)([A-Z][a-z]?)((?:\s+[-+]?\d*\.\d+(?:[Ee][-+]?\d+)?){3,})(.*)$/);
     if (!match) return null;
     return escapeHtml(match[1]) +
       '<span class="atom">' + escapeHtml(match[2]) + '</span>' +
       escapeHtml(match[3]).replace(/([-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?)/g, '<span class="number">$1</span>') +
       escapeHtml(match[4]);
+  }
+
+  function highlightScanLine(line) {
+    var match = line.match(/^(\s*)(S)((?:\s+[-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?){3,})(.*)$/);
+    if (!match) return null;
+    var nums = match[3].match(/\s+[-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?/g) || [];
+    var n = nums.length;
+    if (n < 4 || n > 6) return null;
+    var atomCount = n - 2;
+    var out = escapeHtml(match[1]) + '<span class="directive">' + escapeHtml(match[2]) + '</span>';
+    nums.forEach(function (chunk, i) {
+      var parts = chunk.match(/^(\s+)([-+]?\d*\.?\d+(?:[Ee][-+]?\d+)?)$/);
+      if (!parts) return;
+      var cls = i < atomCount ? 'atom-idx' : (i === atomCount ? 'step-size' : 'n-steps');
+      out += escapeHtml(parts[1]) + '<span class="' + cls + '">' + escapeHtml(parts[2]) + '</span>';
+    });
+    return out + escapeHtml(match[4]);
   }
 
   function highlightMapleLine(line) {
@@ -105,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<span class="filename">' + escapeHtml(fileRef[4]) + '</span>';
     }
 
-    return highlightCoordinateLine(line) || escapeHtml(line);
+    return highlightCoordinateLine(line) || highlightScanLine(line) || escapeHtml(line);
   }
 
   document.querySelectorAll('pre code').forEach(function (code) {

@@ -46,58 +46,79 @@
       <h2 id="ml-potentials">Supported ML Potentials</h2>
       <p>MAPLE supports a wide range of machine learning interatomic potentials. Each model offers different trade-offs between speed, accuracy, and element coverage.</p>
 
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-tag">ANI Family</div>
-          <h3>ANI-2x</h3>
-          <p>General-purpose neural network potential supporting H, C, N, O, S, F, Cl. Trained on DFT data with active learning.</p>
+      <section class="ml-family-section" id="uma-family">
+        <h3>UMA &mdash; Universal Model</h3>
+        <div class="card-grid">
+          <a class="card" href="setup/model_uma.html">
+            <div class="card-tag">Universal</div>
+            <h3>UMA</h3>
+            <p>Universal Machine-learning Architecture from Meta. A foundation model covering broad chemical space with a single unified potential &mdash; the most general-purpose ML potential in MAPLE.</p>
+          </a>
         </div>
-        <div class="card">
-          <div class="card-tag">ANI Family</div>
-          <h3>ANI-1x</h3>
-          <p>Neural network potential for organic molecules containing H, C, N, and O. Trained on the ANI-1x data set.</p>
+      </section>
+
+      <section class="ml-family-section" id="ani-family">
+        <h3>ANI Family</h3>
+        <div class="card-grid">
+          <a class="card" href="setup/model_ani.html">
+            <div class="card-tag">ANI Family</div>
+            <h3>ANI-2x</h3>
+            <p>General-purpose neural network potential supporting H, C, N, O, S, F, Cl. Trained on DFT data with active learning.</p>
+          </a>
+          <a class="card" href="setup/model_ani.html">
+            <div class="card-tag">ANI Family</div>
+            <h3>ANI-1x</h3>
+            <p>Neural network potential for organic molecules containing H, C, N, and O. Trained on the ANI-1x data set.</p>
+          </a>
+          <a class="card" href="setup/model_ani.html">
+            <div class="card-tag">ANI Family</div>
+            <h3>ANI-1ccx</h3>
+            <p>Coupled-cluster accuracy neural network potential for H, C, N, O molecules. Transfer-learned from ANI-1x to CCSD(T)/CBS data.</p>
+          </a>
+          <a class="card" href="setup/model_ani.html">
+            <div class="card-tag">ANI Family</div>
+            <h3>ANI-1xnr</h3>
+            <p>Non-reactive variant of ANI-1x optimized for stable molecular geometries and vibrational properties.</p>
+          </a>
         </div>
-        <div class="card">
-          <div class="card-tag">ANI Family</div>
-          <h3>ANI-1ccx</h3>
-          <p>Coupled-cluster accuracy neural network potential for H, C, N, O molecules. Transfer-learned from ANI-1x to CCSD(T)/CBS data.</p>
+      </section>
+
+      <section class="ml-family-section" id="aimnet-family">
+        <h3>AIMNet Family</h3>
+        <div class="card-grid">
+          <a class="card" href="setup/model_aimnet.html">
+            <div class="card-tag">AIMNet</div>
+            <h3>AIMNet2</h3>
+            <p>Atoms-in-Molecules network potential with broad element coverage and high accuracy for organic and drug-like molecules.</p>
+          </a>
+          <a class="card" href="setup/model_aimnet.html">
+            <div class="card-tag">AIMNet</div>
+            <h3>AIMNet2-NSE</h3>
+            <p>AIMNet2 variant with non-stoichiometric energy corrections for improved thermochemical accuracy.</p>
+          </a>
         </div>
-        <div class="card">
-          <div class="card-tag">ANI Family</div>
-          <h3>ANI-1xnr</h3>
-          <p>Non-reactive variant of ANI-1x optimized for stable molecular geometries and vibrational properties.</p>
+      </section>
+
+      <section class="ml-family-section" id="mace-family">
+        <h3>MACE Family</h3>
+        <div class="card-grid">
+          <a class="card" href="setup/model_mace.html">
+            <div class="card-tag">MACE</div>
+            <h3>MACE-OFF23 (s/m/l)</h3>
+            <p>Equivariant message-passing potentials for organic molecules. Available in small, medium, and large variants balancing speed and accuracy.</p>
+          </a>
+          <a class="card" href="setup/model_mace.html">
+            <div class="card-tag">MACE</div>
+            <h3>MACE-OMol</h3>
+            <p>MACE potential trained on the OMol25 data set for broad organic molecular coverage with high accuracy.</p>
+          </a>
+          <a class="card" href="setup/model_mace.html">
+            <div class="card-tag">MACE</div>
+            <h3>EGRET</h3>
+            <p>Equivariant graph neural network potential designed for reactive and non-reactive molecular simulations.</p>
+          </a>
         </div>
-        <div class="card">
-          <div class="card-tag">AIMNet</div>
-          <h3>AIMNet2</h3>
-          <p>Atoms-in-Molecules network potential with broad element coverage and high accuracy for organic and drug-like molecules.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">AIMNet</div>
-          <h3>AIMNet2-NSE</h3>
-          <p>AIMNet2 variant with non-stoichiometric energy corrections for improved thermochemical accuracy.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">MACE</div>
-          <h3>MACE-OFF23 (s/m/l)</h3>
-          <p>Equivariant message-passing potentials for organic molecules. Available in small, medium, and large variants balancing speed and accuracy.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">MACE</div>
-          <h3>MACE-OMol</h3>
-          <p>MACE potential trained on the OMol25 data set for broad organic molecular coverage with high accuracy.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Equivariant</div>
-          <h3>EGRET</h3>
-          <p>Equivariant graph neural network potential designed for reactive and non-reactive molecular simulations.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Universal</div>
-          <h3>UMA</h3>
-          <p>Universal Machine-learning Architecture from Meta. A foundation model covering broad chemical space with a single unified potential.</p>
-        </div>
-      </div>
+      </section>
 
       <h2 id="capabilities">Computational Capabilities</h2>
       <p>MAPLE provides a comprehensive suite of computational chemistry methods, all driven by machine learning potentials for fast evaluation on GPU hardware.</p>
