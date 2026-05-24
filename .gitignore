@@ -1,3 +1,9 @@
 *:Zone.Identifier
 .gstack/
 .omx/
+**/.git
+**/.omx/
+**/.omc/
+**/.claude/
+**/.pytest_cache/
+**/__pycache__/

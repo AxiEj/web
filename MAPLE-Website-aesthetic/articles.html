@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles &amp; News — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="tutorials/installation.html">Documentation</a></li>
+          <li><a href="articles.html" class="active">Articles &amp; News</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Articles &amp; News</h1>
+    <p class="subtitle">Publications and release updates for the MAPLE project.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <div class="section-header">
+        <h2 id="maple-papers">MAPLE Publications</h2>
+        <p>Papers describing the MAPLE framework and its applications.</p>
+      </div>
+
+      <div class="card-grid">
+        <a class="card" id="paper-maple" href="https://doi.org/10.1039/D6SC01279E" target="_blank" rel="noopener noreferrer">
+          <div class="card-tag">Framework &mdash; April 30, 2026 &middot; Chemical Science</div>
+          <h3>MAPLE: A Machine-Learning Force-Field-Native Platform for Automated Reaction Modeling and Enzyme Design</h3>
+          <p>Presents MAPLE as an MLFF-native molecular modeling platform with a tailored software framework and parallelized algorithms for large-scale, versatile reaction modeling and enzyme design.</p>
+          <p class="mt-1 card-cta">Read in Chemical Science &rarr;</p>
+        </a>
+      </div>
+
+      <div class="section-header mt-3">
+        <h2 id="news">News &amp; Updates</h2>
+        <p>Release announcements and project updates. See all releases on <a href="https://github.com/ClickFF/MAPLE/releases" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+
+      <div class="card-grid">
+        <a class="card" id="v0-1-3" href="https://github.com/ClickFF/MAPLE/releases/tag/v.0.1.3" target="_blank" rel="noopener noreferrer">
+          <div class="card-tag">Release &mdash; April 1, 2026</div>
+          <h3>MAPLE v0.1.3</h3>
+          <p>Expanded MD workflows with NVT/NPT support, GROMACS-style MDP configuration, restart/trajectory improvements, task-aware UMA sizing, MACEPol integration, and IRC/debug cleanup.</p>
+          <p class="mt-1 card-cta">Release notes on GitHub &rarr;</p>
+        </a>
+
+        <a class="card" id="v0-1-1" href="https://github.com/ClickFF/MAPLE/releases/tag/v.0.1.1" target="_blank" rel="noopener noreferrer">
+          <div class="card-tag">Release &mdash; February 7, 2026</div>
+          <h3>MAPLE v0.1.1</h3>
+          <p>Added AutoNEB with adaptive image insertion, NVE molecular dynamics, SDCG optimizer with GDIIS acceleration, new IRC integrators (EulerPC, HPC, LQA), rigid scan mode, and input/parser improvements.</p>
+          <p class="mt-1 card-cta">Release notes on GitHub &rarr;</p>
+        </a>
+
+        <a class="card" id="v0-1-0" href="https://github.com/ClickFF/MAPLE/releases/tag/v.0.1.0" target="_blank" rel="noopener noreferrer">
+          <div class="card-tag">Release &mdash; December 31, 2025</div>
+          <h3>MAPLE v0.1.0</h3>
+          <p>First public release with frequency analysis, broad ML potential support (ANI, AIMNet2, MACE-OFF23, UMA), geometry optimization, transition state search, IRC, PES scan, solvation, constraints, GPU acceleration, and D4 dispersion.</p>
+          <p class="mt-1 card-cta">Release notes on GitHub &rarr;</p>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About MAPLE — Machine-learning Potential for Landscape Exploration</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html" class="active">About</a></li>
+          <li><a href="tutorials/installation.html">Documentation</a></li>
+          <li><a href="articles.html">Articles &amp; News</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>About MAPLE</h1>
+    <p class="subtitle">A fast, GPU-accelerated computational chemistry toolkit powered by machine learning potentials for molecular modeling and quantum chemical calculations.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <h2 id="what-is-maple">What is MAPLE?</h2>
+      <p>MAPLE (Machine-learning Potential for Landscape Exploration) is a computational chemistry software package designed for molecular modeling and quantum chemical calculations. It provides a unified computational environment suitable for research at different theoretical levels, from small molecules to complex reaction networks.</p>
+      <p>MAPLE leverages modern machine learning potentials to achieve near-DFT accuracy at a fraction of the computational cost of traditional quantum mechanical methods. Its modular design allows users to perform a wide variety of calculations within a consistent framework, with flexible control over computational parameters and accuracy requirements.</p>
+      <p>All energy values in MAPLE are expressed in <strong>Hartree</strong>, and all distances are expressed in <strong>Angstroms</strong>.</p>
+
+      <h2 id="ml-potentials">Supported ML Potentials</h2>
+      <p>MAPLE supports a wide range of machine learning interatomic potentials. Each model offers different trade-offs between speed, accuracy, and element coverage.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">ANI Family</div>
+          <h3>ANI-2x</h3>
+          <p>General-purpose neural network potential supporting H, C, N, O, S, F, Cl. Trained on DFT data with active learning.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">ANI Family</div>
+          <h3>ANI-1x</h3>
+          <p>Neural network potential for organic molecules containing H, C, N, and O. Trained on the ANI-1x data set.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">ANI Family</div>
+          <h3>ANI-1ccx</h3>
+          <p>Coupled-cluster accuracy neural network potential for H, C, N, O molecules. Transfer-learned from ANI-1x to CCSD(T)/CBS data.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">ANI Family</div>
+          <h3>ANI-1xnr</h3>
+          <p>Non-reactive variant of ANI-1x optimized for stable molecular geometries and vibrational properties.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">AIMNet</div>
+          <h3>AIMNet2</h3>
+          <p>Atoms-in-Molecules network potential with broad element coverage and high accuracy for organic and drug-like molecules.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">AIMNet</div>
+          <h3>AIMNet2-NSE</h3>
+          <p>AIMNet2 variant with non-stoichiometric energy corrections for improved thermochemical accuracy.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">MACE</div>
+          <h3>MACE-OFF23 (s/m/l)</h3>
+          <p>Equivariant message-passing potentials for organic molecules. Available in small, medium, and large variants balancing speed and accuracy.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">MACE</div>
+          <h3>MACE-OMol</h3>
+          <p>MACE potential trained on the OMol25 data set for broad organic molecular coverage with high accuracy.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Equivariant</div>
+          <h3>EGRET</h3>
+          <p>Equivariant graph neural network potential designed for reactive and non-reactive molecular simulations.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Universal</div>
+          <h3>UMA</h3>
+          <p>Universal Machine-learning Architecture from Meta. A foundation model covering broad chemical space with a single unified potential.</p>
+        </div>
+      </div>
+
+      <h2 id="capabilities">Computational Capabilities</h2>
+      <p>MAPLE provides a comprehensive suite of computational chemistry methods, all driven by machine learning potentials for fast evaluation on GPU hardware.</p>
+
+      <h3 id="task-types">Supported Task Types</h3>
+      <div class="card-grid">
+        <a class="card" href="tasks/singlepoint.html">
+          <div class="card-tag">sp</div>
+          <h3>Single Point</h3>
+          <p>Compute molecular energies and properties at fixed geometries.</p>
+        </a>
+        <a class="card" href="tasks/frequency.html">
+          <div class="card-tag">freq</div>
+          <h3>Frequency</h3>
+          <p>Normal mode analysis, RRHO thermochemistry, and IR spectra via mass-weighted Hessian diagonalization.</p>
+        </a>
+        <a class="card" href="tasks/opt/optimization.html">
+          <div class="card-tag">opt</div>
+          <h3>Optimization</h3>
+          <p>Locate equilibrium geometries with L-BFGS, RFO, steepest descent, conjugate gradient, DIIS, or bracketing L-BFGS.</p>
+        </a>
+        <a class="card" href="tasks/ts/ts.html">
+          <div class="card-tag">ts</div>
+          <h3>Transition State</h3>
+          <p>Saddle point search via NEB, CI-NEB, P-RFO, Dimer, Growing String, or AutoNEB methods.</p>
+        </a>
+        <a class="card" href="tasks/scan/scan.html">
+          <div class="card-tag">scan</div>
+          <h3>PES Scan</h3>
+          <p>1D, 2D, or 3D relaxed or rigid scans along chosen internal coordinates.</p>
+        </a>
+        <a class="card" href="tasks/irc/irc.html">
+          <div class="card-tag">irc</div>
+          <h3>IRC</h3>
+          <p>Intrinsic reaction coordinate with GS, LQA, HPC, and EulerPC integrators.</p>
+        </a>
+      </div>
+
+      <h3 id="additional-features">Additional Features</h3>
+      <div class="card-grid">
+        <a class="card" href="functions/solvent.html">
+          <div class="card-tag">Function</div>
+          <h3>Solvation</h3>
+          <p>GBSA implicit solvation and explicit solvent models with DFT-D4 dispersion corrections.</p>
+        </a>
+        <a class="card" href="functions/constrain.html">
+          <div class="card-tag">Function</div>
+          <h3>Constraints</h3>
+          <p>Fix atoms, bonds, angles, and dihedral angles during optimization and scanning.</p>
+        </a>
+        <div class="card">
+          <div class="card-tag">Runtime</div>
+          <h3>GPU Acceleration</h3>
+          <p>Full CUDA support for ML potential evaluation, providing orders of magnitude speedup over traditional QM methods.</p>
+        </div>
+        <a class="card" href="setup/models.html#d4-dispersion">
+          <div class="card-tag">Correction</div>
+          <h3>D4 Dispersion</h3>
+          <p>DFT-D4 dispersion correction available as a global option for any calculation.</p>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

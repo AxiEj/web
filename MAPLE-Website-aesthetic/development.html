@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Development &amp; Releases — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="tutorials/installation.html">Documentation</a></li>
+          <li><a href="articles.html">Articles &amp; News</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="development.html" class="active">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Development &amp; Releases</h1>
+    <p class="subtitle">Track the evolution of MAPLE through release notes, changelogs, and development milestones.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <h2 id="changelog">Changelog</h2>
+      <p>The five most recent development versions are listed below.</p>
+      <p><a href="https://github.com/ClickFF/MAPLE/releases" target="_blank" rel="noopener noreferrer" class="btn btn-primary">All Releases on GitHub &rarr;</a></p>
+
+      <h3 id="v0-1-3">Version 0.1.3 <span class="text-muted">&mdash; April 1, 2026</span></h3>
+      <p>April monthly update with expanded MD workflows, better model integration, and release-line cleanup.</p>
+      <ul>
+        <li><strong>Expanded MD workflow</strong> &mdash; Added experimental NVT and NPT support with Langevin and V-rescale thermostats, Berendsen and C-rescale barostats, and improved thermodynamic logging.</li>
+        <li><strong>GROMACS-style MDP support</strong> &mdash; MD jobs can now be configured through <code>.mdp</code> files and generated from the CLI with <code>maple md</code>.</li>
+        <li><strong>Restart and trajectory improvements</strong> &mdash; Added <code>rst_file</code>-based restart handling, RNG state persistence, <code>final.xyz</code> export, and binary DCD trajectory output.</li>
+        <li><strong>PBC and file-handling cleanup</strong> &mdash; Improved relative-path handling for XYZ / XYZTRAJ inputs and cleaner restart resolution from output directories.</li>
+        <li><strong>UMA and MACEPol updates</strong> &mdash; Added task-aware UMA sizing, broader fallback checkpoint support, and MACEPol integration with new examples.</li>
+        <li><strong>IRC and debug fixes</strong> &mdash; Merged parser stabilization, inline-coordinate fixes, and general IRC-related cleanup from the enhance branch.</li>
+      </ul>
+
+      <h3 id="v0-1-1">Version 0.1.1 <span class="text-muted">&mdash; February 7, 2026</span></h3>
+      <p>February monthly update introducing new reaction-path and optimization capabilities.</p>
+      <ul>
+        <li><strong>AutoNEB</strong> &mdash; Added tree-based automated NEB with adaptive image insertion, branch splitting, and final global MEP refinement.</li>
+        <li><strong>NVE molecular dynamics</strong> &mdash; Introduced Velocity Verlet dynamics in the microcanonical ensemble with Maxwell-Boltzmann initialization and trajectory logging.</li>
+        <li><strong>SDCG optimizer</strong> &mdash; Added phased steepest-descent plus conjugate-gradient optimization with GDIIS acceleration.</li>
+        <li><strong>New IRC integrators</strong> &mdash; Added EulerPC, HPC, and LQA methods in addition to GS.</li>
+        <li><strong>Rigid scan mode</strong> &mdash; Added rigid-body scan support with fragment detection from bond connectivity.</li>
+        <li><strong>Input and parser improvements</strong> &mdash; Added trajectory single-point workflows, charge/multiplicity inline input, and centralized parameter handling.</li>
+      </ul>
+
+      <h3 id="v0-1-0">Version 0.1.0 <span class="text-muted">&mdash; December 31, 2025</span></h3>
+      <p>Initial public release of MAPLE with core computational chemistry capabilities.</p>
+      <ul>
+        <li><strong>Frequency analysis</strong> &mdash; Normal mode analysis with mass-weighted Hessian diagonalization, RRHO thermochemistry corrections, and IR spectrum generation.</li>
+        <li><strong>ML potential support</strong> &mdash; ANI-2x, ANI-1x, ANI-1ccx, ANI-1xnr, AIMNet2, AIMNet2-NSE, MACE-OFF23 (s/m/l), and UMA.</li>
+        <li><strong>Geometry optimization</strong> &mdash; L-BFGS, RFO, steepest descent, conjugate gradient, DIIS, and bracketing L-BFGS methods.</li>
+        <li><strong>Transition state search</strong> &mdash; NEB, CI-NEB, P-RFO, Dimer, and Growing String methods.</li>
+        <li><strong>IRC</strong> &mdash; Intrinsic reaction coordinate with GS, LQA, HPC, and EulerPC integrators.</li>
+        <li><strong>PES scan</strong> &mdash; 1D, 2D, and 3D relaxed or rigid scans along bonds, angles, and dihedrals.</li>
+        <li><strong>Solvation</strong> &mdash; GBSA implicit solvation and explicit solvent models.</li>
+        <li><strong>Constraints</strong> &mdash; Fix atoms, bonds, angles, and dihedral angles during optimization.</li>
+        <li><strong>GPU acceleration</strong> &mdash; Full CUDA support for all ML potential evaluations.</li>
+        <li><strong>D4 dispersion</strong> &mdash; Optional DFT-D4 dispersion correction for all calculation types.</li>
+      </ul>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

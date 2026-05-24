@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRC: Local Quadratic Approximation (LQA) - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="icon" href="../../favicon.ico">
+  <style>
+    .irc-result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .irc-result-card {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid #e6e8ee;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+
+    .irc-result-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      background: #f8f9fb;
+    }
+
+    .irc-result-card figcaption {
+      padding: 0.85rem 1rem 1rem;
+      color: #5a5c63;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .irc-result-card strong {
+      color: #1a1a2e;
+    }
+
+    .irc-structures {
+      margin: 1.5rem 0;
+    }
+
+    .irc-structure-item {
+      border: 1px solid #e6e8ee;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .irc-structure-item + .irc-structure-item {
+      margin-top: 0.9rem;
+    }
+
+    .irc-structure-item summary {
+      position: relative;
+      list-style: none;
+      cursor: pointer;
+      padding: 1.25rem 3.75rem 1.25rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      user-select: none;
+    }
+
+    .irc-structure-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .irc-structure-item summary::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 1.4rem;
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid #7b8190;
+      border-bottom: 2px solid #7b8190;
+      transform: translateY(-65%) rotate(45deg);
+      transition: transform 0.2s ease;
+    }
+
+    .irc-structure-item[open] summary::after {
+      transform: translateY(-35%) rotate(-135deg);
+    }
+
+    .irc-structure-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      border-top: 1px solid #eef1f5;
+    }
+
+    .irc-structure-code {
+      position: relative;
+      margin: 0;
+      padding: 1.25rem 1.25rem 1.35rem;
+      border: 1px solid #d8dde6;
+      border-radius: 0;
+      background: #f7f8fa;
+    }
+
+    .irc-structure-code code {
+      display: block;
+      white-space: pre;
+    }
+
+    .irc-structure-copy {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: #6b7280;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .irc-structure-copy:hover {
+      background: #eceff4;
+      color: #1a1a2e;
+    }
+
+    .irc-structure-copy.copied {
+      color: #2563eb;
+    }
+
+    @media (max-width: 52em) {
+      .irc-result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .irc-structure-item summary {
+        padding-left: 1rem;
+        padding-right: 3.25rem;
+      }
+
+      .irc-structure-body {
+        padding: 1rem;
+      }
+
+      .irc-structure-code {
+        padding: 1rem 1rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../tutorials/installation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles &amp; News</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> ML Models</span>
+              <ul class="children">
+                <li><a href="../../setup/models.html">Overview</a></li>
+                <li><a href="../../setup/model_uma.html">UMA</a></li>
+                <li><a href="../../setup/model_ani.html">ANI</a></li>
+                <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                <li><a href="../../setup/model_mace.html">MACE</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                    <li><a href="../opt/opt_cg.html">CG</a></li>
+                    <li><a href="../opt/opt_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../scan/scan_rfo.html">RFO</a></li>
+                    <li><a href="../scan/scan_sd.html">SD</a></li>
+                    <li><a href="../scan/scan_cg.html">CG</a></li>
+                    <li><a href="../scan/scan_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="irc_gs.html">GS</a></li>
+                    <li><a href="irc_lqa.html" class="active">LQA</a></li>
+                    <li><a href="irc_hpc.html">HPC</a></li>
+                    <li><a href="irc_eulerpc.html">EulerPC</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../tasks/singlepoint.html">Tasks</a></li>
+          <li><a href="irc.html">IRC</a></li>
+          <li aria-current="page">LQA</li>
+        </ol>
+      </nav>
+
+      <article>
+        <h1>IRC: Local Quadratic Approximation (LQA)</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The Local Quadratic Approximation (LQA) method is an IRC integration algorithm that approximates the potential energy surface locally by a second-order expansion in mass-weighted coordinates. the LQA method solves the differential equation of motion analytically on this quadratic surface using the eigenvalues and eigenvectors of the mass-weighted Hessian. This allows the path to "curve" correctly within a single step. On smooth, well-behaved potential energy surfaces, LQA can be more efficient than GS because the local quadratic model often captures the nearby curvature reasonably well.</p>
+
+        <h2 id="algorithm">Algorithm</h2>
+        <p>At each IRC step, the LQA method proceeds as follows:</p>
+        <ol>
+          <li>Construct a local quadratic model of the potential energy surface in mass-weighted coordinates using the current gradient and Hessian.</li>
+          <li>Integrate the steepest-descent path on this quadratic surface to obtain the next IRC point.</li>
+          <li>Evaluate the gradient at the new point for the next integration step.</li>
+        </ol>
+        <p>The Hessian is updated between steps using BFGS/Bofill update formulas to avoid expensive full Hessian recomputations at every IRC point.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <p>The complete <code>LQAParams</code> dataclass:</p>
+        <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>target_mode</code></td>
+              <td>int</td>
+              <td>1</td>
+              <td>Index of the imaginary mode to follow.</td>
+            </tr>
+            <tr>
+              <td><code>step_length_bohr</code></td>
+              <td>float</td>
+              <td>0.10</td>
+              <td>Step length along the IRC path in Bohr.</td>
+            </tr>
+            <tr>
+              <td><code>max_steps</code></td>
+              <td>int</td>
+              <td>50</td>
+              <td>Maximum IRC steps per direction.</td>
+            </tr>
+            <tr>
+              <td><code>euler_n</code></td>
+              <td>int</td>
+              <td>5000</td>
+              <td>Number of Euler integration sub-steps per IRC step.</td>
+            </tr>
+            <tr>
+              <td><code>hessian_recalc</code></td>
+              <td>int</td>
+              <td>None</td>
+              <td>Recalculate Hessian every N steps.</td>
+            </tr>
+            <tr>
+              <td><code>hessian_update</code></td>
+              <td>str</td>
+              <td><code>bofill</code></td>
+              <td>Hessian update: <code>"bfgs"</code> or <code>"bofill"</code>.</td>
+            </tr>
+            <tr>
+              <td><code>f_max_th</code></td>
+              <td>float</td>
+              <td>2e-3</td>
+              <td>Max force convergence threshold.</td>
+            </tr>
+            <tr>
+              <td><code>f_rms_th</code></td>
+              <td>float</td>
+              <td>5e-4</td>
+              <td>RMS force convergence threshold.</td>
+            </tr>
+            <tr>
+              <td><code>print_each</code></td>
+              <td>bool</td>
+              <td>True</td>
+              <td>Print details at each IRC point.</td>
+            </tr>
+            <tr>
+              <td><code>write_traj</code></td>
+              <td>bool</td>
+              <td>True</td>
+              <td>Write trajectory XYZ files.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2 id="example">Example: Isomerization reaction</h2>
+        <p>In this example, we will perform the classic isomerization calculation case of the HCN -> HNC. The TS structure is derived via the PRFO method. To speed up the calculation, a larger step size of 0.15 was used.</p>
+
+        <h3 id="input-example">Input Example</h3>
+        <pre><code>#model=aimnet2nse
+#irc(method=lqa,step_length_bohr=0.15)
+#device=gpu0
+
+XYZ  0  1  /path/to/transition_state.xyz</code></pre>
+
+        <h3 id="example-visuals">Output Visualization</h3>
+        <p>After a brief wait for the calculation to complete, we can visualize the reaction path and the energy profile along the reaction coordinate.</p>
+        <div class="irc-result-grid">
+          <figure class="irc-result-card">
+            <img src="../../assets/images/irc/lqa.gif" alt="LQA IRC animation">
+            <figcaption><strong>Trajectory:</strong> Simplified view of the reaction path</figcaption>
+          </figure>
+          <figure class="irc-result-card">
+            <img src="../../assets/images/irc/lqa.png" alt="LQA IRC graph">
+            <figcaption><strong>Graph: </strong> Energy trend along the IRC path</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="structures">Ref Structure</h3>
+        <div class="irc-structures">
+          <details class="irc-structure-item">
+            <summary>Transition State</summary>
+            <div class="irc-structure-body">
+              <pre class="irc-structure-code"><button class="irc-structure-copy" type="button" aria-label="Copy XYZ" data-copy-target="lqa-structure-ts-guess">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button><code id="lqa-structure-ts-guess">3
+Iteration 6  Energy = -93.3911999898
+C   0.4147189982  0.0090611094 -0.5547979606
+N   0.0319422836 -0.0048546467  0.5850722629
+H   1.3836904902 -0.1619564366  0.2436923366</code></pre>
+            </div>
+          </details>
+        </div>
+
+        <h2 id="comparison-with-gs">Comparison with GS</h2>
+        <p>The LQA and GS methods differ primarily in how they determine each IRC step:</p>
+        <ul>
+          <li><strong>GS</strong> uses a pivot-step followed by constrained optimization on a hypersphere. It does not rely on the quadratic approximation for the step direction, making it more robust on surfaces where the quadratic model breaks down.</li>
+          <li><strong>LQA</strong> uses the full quadratic model (gradient + Hessian) to analytically predict the next point, which can be faster when the quadratic approximation is accurate.</li>
+        </ul>
+        <p>In practice, LQA tends to be faster on smooth, harmonic-like surfaces, while GS is more robust for highly anharmonic or strongly curved reaction paths. If LQA has convergence difficulties, switching to <a href="irc_gs.html">GS</a> or <a href="irc_hpc.html">HPC</a> is recommended.</p>
+
+        <nav class="page-nav">
+          <a href="irc_gs.html">&larr; Previous: GS</a>
+          <a href="irc_hpc.html">Next: HPC &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc"><div class="toc-sticky"><h3>On this page</h3><ul></ul></div></aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.irc-structure-copy').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var targetId = button.getAttribute('data-copy-target');
+        var target = targetId ? document.getElementById(targetId) : null;
+        if (!target) return;
+
+        navigator.clipboard.writeText(target.textContent).then(function () {
+          button.classList.add('copied');
+          setTimeout(function () {
+            button.classList.remove('copied');
+          }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Point Energy - MAPLE</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="icon" href="../favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../index.html"><img src="../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../general.html">About</a></li>
+          <li><a href="../tutorials/installation.html">Documentation</a></li>
+          <li><a href="../articles.html">Articles &amp; News</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../development.html">Development</a></li>
+          <li><a href="../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../tutorials/installation.html">Installation</a></li>
+                <li><a href="../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../setup/settings.html">Settings</a></li>
+                <li><a href="../setup/coordinates.html">Coordinates</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> ML Models</span>
+              <ul class="children">
+                <li><a href="../setup/models.html">Overview</a></li>
+                <li><a href="../setup/model_uma.html">UMA</a></li>
+                <li><a href="../setup/model_ani.html">ANI</a></li>
+                <li><a href="../setup/model_aimnet.html">AIMNet2</a></li>
+                <li><a href="../setup/model_mace.html">MACE</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../tasks/singlepoint.html" class="active">Single Point</a></li>
+                <li><a href="../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/opt/opt_sd.html">SD</a></li>
+                    <li><a href="../tasks/opt/opt_cg.html">CG</a></li>
+                    <li><a href="../tasks/opt/opt_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../tasks/ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../tasks/ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../tasks/ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../tasks/ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/scan/scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/scan/scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../tasks/scan/scan_rfo.html">RFO</a></li>
+                    <li><a href="../tasks/scan/scan_sd.html">SD</a></li>
+                    <li><a href="../tasks/scan/scan_cg.html">CG</a></li>
+                    <li><a href="../tasks/scan/scan_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../tasks/irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../tasks/irc/irc_gs.html">GS</a></li>
+                    <li><a href="../tasks/irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../tasks/irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../tasks/irc/irc_eulerpc.html">EulerPC</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../functions/solvent.html">Solvation</a></li>
+                <li><a href="../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Tasks</span>
+        <span class="separator">/</span>
+        <span class="current">Single Point</span>
+      </nav>
+
+      <article>
+        <h1>Single Point Energy</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>A single point (SP) calculation evaluates a fixed molecular geometry without moving any atoms. MAPLE always reports the parsed coordinates, charge/multiplicity metadata, and electronic energy; <code>verbose=1</code> adds per-atom gradients.</p>
+        <p>This is the simplest and fastest task type available in MAPLE, making it the foundation upon which more complex workflows are built.</p>
+
+        <h2 id="usage">Usage</h2>
+        <p>The single point task is invoked by including the <code>#sp</code> header command in the input file. No method or convergence parameters are used because there is no iterative procedure.</p>
+        <pre><code>#sp</code></pre>
+        <p>Use the optional <code>verbose</code> parameter when you need gradients. MAPLE accepts only <code>verbose=0</code> and <code>verbose=1</code>; <code>verbose=2</code> is rejected, and the older spelling <code>verbosity</code> is not valid for SP jobs.</p>
+
+        <div class="admonition tip">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+            Tip
+          </div>
+          <div class="admonition-body">
+            <p>SP is the default task type. If no job type is specified in the input file (i.e., no <code>#sp</code>, <code>#opt</code>, <code>#freq</code>, etc.), MAPLE will automatically perform a single point energy calculation.</p>
+          </div>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>Checked-in MAPLE example: <code>example/sp/sp3.inp</code>. It requests <code>verbose=1</code> so the output includes charge/multiplicity, energy, and gradients.</p>
+        <pre><code>#model=ANI-2x
+#sp(verbose=1)
+
+C       0.65365800      1.02013500      0.25040200
+C      -0.95129600     -1.02931400      0.57474200
+C       1.95888600     -0.93622000      0.00515500
+N       0.79077500     -0.14946600     -0.38846900
+N      -0.42242100      1.80163100      0.01564100
+O      -1.87211100     -0.71447900     -0.39360600
+H      -1.49152400     -0.99165700     -1.23718800
+H       1.93501500      1.43895500     -0.76274600
+H       1.14080200      1.20947000      1.20910000
+H      -1.06000700      1.56870100     -0.72483100
+H      -0.64277300      2.56184400      0.62878400
+H      -1.22475800     -0.59467400      1.53295400
+H      -0.61313000     -2.06366600      0.60833500
+H       1.61854500     -1.95264400      0.20633800
+H       2.67877500     -0.97401900     -0.81539800
+H       2.47397200     -0.55869000      0.89670300</code></pre>
+        <p>Run it from the MAPLE source tree with <code>maple example/sp/sp3.inp</code>. The same example has a D4 variant at <code>example/sp/sp3_d4.inp</code>.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <p>The single point task accepts the following parameter:</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td>0</td>
+                <td>Output verbosity level. 0 = coordinates, charge/multiplicity, and energy; 1 = verbose=0 output plus gradients. No force-printing verbosity level is exposed.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="output">Output</h2>
+        <p>The output file from a single point calculation always contains parsed coordinates, charge/multiplicity metadata, and the total energy in Hartree (Eh). Gradients depend on <code>verbose</code>:</p>
+        <ul>
+          <li><code>verbose=0</code> -- parsed coordinates, charge/multiplicity, and energy.</li>
+          <li><code>verbose=1</code> -- <code>verbose=0</code> output plus per-atom gradients in Hartree/Angstrom.</li>
+        </ul>
+        <p>Complete example output from <code>example/sp/sp3.out</code>:</p>
+        <pre><code>**********************************************************************
+*                                                                    *
+*                        M   A   P   L   E                           *
+*                                                                    *
+*      MAchine-learning Potential for Landscape Exploration          *
+*                                                                    *
+*                                                                    *
+*      © 2025 University of Pittsburgh. All rights reserved.         *
+*      Licensed under CC BY 4.0 for academic use.                    *
+*                                                                    *
+*      Principal Developer:  Xujian Wang                             *
+*                                                                    *
+**********************************************************************
+
+
+Parsing # commands...
+Global parameter: model = ANI-2x
+Task set to 'sp'
+Parsed configuration:
+----------------------------------------
+Task: sp
+model          : ani2x
+verbose        : 1
+
+                             Coordinates
+**********************************************************************
+
+Group 1 (inline)
+--------------------
+1    C              0.653658             1.020135             0.250402
+2    C             -0.951296            -1.029314             0.574742
+3    C              1.958886            -0.936220             0.005155
+4    N              0.790775            -0.149466            -0.388469
+5    N             -0.422421             1.801631             0.015641
+6    O             -1.872111            -0.714479            -0.393606
+7    H             -1.491524            -0.991657            -1.237188
+8    H              1.935015             1.438955            -0.762746
+9    H              1.140802             1.209470             1.209100
+10   H             -1.060007             1.568701            -0.724831
+11   H             -0.642773             2.561844             0.628784
+12   H             -1.224758            -0.594674             1.532954
+13   H             -0.613130            -2.063666             0.608335
+14   H              1.618545            -1.952644             0.206338
+15   H              2.678775            -0.974019            -0.815398
+16   H              2.473972            -0.558690             0.896703
+
+Charge: 0, Multiplicity: 1
+Energy: -304.7642932897 Hartree
+
+Gradients (Hartree/Angstrom):
+  Gradient = -Force
+  Atom  El        Gx              Gy              Gz
+  1    C      -0.10266493      0.02860843      0.11792911
+  2    C      -0.08336351     -0.02371526      0.04541698
+  3    C       0.03426485     -0.01383988      0.00515845
+  4    N       0.10547175      0.05071949     -0.09252290
+  5    N       0.00947110     -0.01377346      0.00264503
+  6    O       0.02184403      0.00224924     -0.00525583
+  7    H      -0.00991479     -0.00544633      0.00266360
+  8    H       0.03686071     -0.03305264     -0.05529496
+  9    H      -0.01167883     -0.00082533     -0.01351971
+  10   H       0.00696653      0.00887080     -0.00033596
+  11   H       0.00424815     -0.00923034     -0.00473377
+  12   H      -0.00369785     -0.00480554      0.00827175
+  13   H       0.00377101      0.00490504     -0.00487071
+  14   H      -0.00491144      0.00881686     -0.00243353
+  15   H      -0.00285685      0.00055546      0.00761027
+  16   H      -0.00380990     -0.00003653     -0.01072782
+
+
+
+Program started: 2026-05-24 11:56:03
+
+======================================================================
+                      TIMING SUMMARY
+======================================================================
+Input Reading.......................................   0.001 s  (   0.2 %)
+  Settings Parsing....................................   0.000 s  (  16.7 %)
+  Coordinate Section Parsing..........................   0.000 s  (  22.8 %)
+  Post-Processing Expansion...........................   0.000 s  (   0.3 %)
+MLP Initialization..................................   0.119 s  (  25.7 %)
+Job Dispatching.....................................   0.342 s  (  74.0 %)
+  Single Point Energy Calculation.....................   0.342 s  (  99.8 %)
+======================================================================
+Total wall time: 0.462 s
+Total CPU time: 0.729 s
+======================================================================
+
+Program ended: 2026-05-24 11:56:03
+TOTAL RUN TIME: 0 days 0 hours 0 minutes 0 seconds 462 msec
+</code></pre>
+        <p>The energy value represents the total electronic energy of the system at the given geometry as predicted by the specified ML potential.</p>
+
+        <h2 id="use-cases">Use Cases</h2>
+        <p>Single point calculations are useful in a variety of scenarios:</p>
+        <ul>
+          <li><strong>Benchmarking</strong> -- comparing energies from different ML models or against reference DFT/ab initio values for the same geometry.</li>
+          <li><strong>Energy comparisons</strong> -- evaluating relative energies of conformers, isomers, or reaction intermediates at their respective geometries.</li>
+          <li><strong>Post-optimization checks</strong> -- verifying the energy at an optimized geometry using a different or higher-level model than was used during optimization.</li>
+          <li><strong>Gradient analysis</strong> -- use <code>verbose=1</code> to inspect whether a structure is close to a stationary point.</li>
+          <li><strong>Workflow building blocks</strong> -- SP calculations serve as the fundamental energy/force evaluation used internally by optimization, frequency, TS search, and other iterative tasks.</li>
+        </ul>
+
+        <nav class="page-nav">
+          <a href="../setup/models.html">&larr; Prev: ML Models</a>
+          <a class="next" href="../tasks/frequency.html">Next: Frequency &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc">
+      <div class="toc-sticky">
+        <h3>On this page</h3>
+        <ul></ul>
+      </div>
+    </aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PES Scan: SD - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="icon" href="../../favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../tutorials/installation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles &amp; News</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> ML Models</span>
+              <ul class="children">
+                <li><a href="../../setup/models.html">Overview</a></li>
+                <li><a href="../../setup/model_uma.html">UMA</a></li>
+                <li><a href="../../setup/model_ani.html">ANI</a></li>
+                <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                <li><a href="../../setup/model_mace.html">MACE</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                    <li><a href="../opt/opt_cg.html">CG</a></li>
+                    <li><a href="../opt/opt_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="scan_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="scan_rfo.html">RFO</a></li>
+                    <li><a href="scan_sd.html" class="active">SD</a></li>
+                    <li><a href="scan_cg.html">CG</a></li>
+                    <li><a href="scan_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                    <li><a href="../irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../irc/irc_eulerpc.html">EulerPC</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../tasks/singlepoint.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="scan.html">PES Scan</a>
+          <span class="separator">/</span>
+          <span class="current">SD</span>
+        </nav>
+
+        <h1>PES Scan with SD Optimization</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>Steepest Descent (SD) is available for relaxed PES scans through <code>#scan(method=sd)</code>. It reuses the SD-only mode of MAPLE's SD/CG optimizer family at every scan point.</p>
+        <p>SD is robust for distorted geometries and high-force regions, but it usually converges more slowly near a minimum. It is most useful as a stabilizing scan optimizer for rough starting structures or problematic scan points.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <p>Per-point SD settings reuse the same controls as <a href="../opt/opt_sd.html"><code>#opt(method=sd)</code></a>. With <code>method=sd</code> the CG phase is disabled at each scan point; the scan driver keeps per-point optimizer verbosity quiet.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>max_step</code></td>
+                <td>float</td>
+                <td><code>0.2</code></td>
+                <td>Maximum step length in Angstrom.</td>
+              </tr>
+              <tr>
+                <td><code>max_iter</code></td>
+                <td>int</td>
+                <td><code>256</code></td>
+                <td>Maximum SD iterations per scan point.</td>
+              </tr>
+              <tr>
+                <td><code>sd_max_iter</code></td>
+                <td>int</td>
+                <td><code>50</code></td>
+                <td>Maximum SD iterations before stopping (when used as a standalone method).</td>
+              </tr>
+              <tr>
+                <td><code>diis_enabled</code></td>
+                <td>bool</td>
+                <td><code>True</code></td>
+                <td>Enable DIIS extrapolation acceleration.</td>
+              </tr>
+              <tr>
+                <td><code>diis_store_every</code></td>
+                <td>int</td>
+                <td><code>5</code></td>
+                <td>Store a DIIS snapshot every N steps.</td>
+              </tr>
+              <tr>
+                <td><code>diis_min_snapshots</code></td>
+                <td>int</td>
+                <td><code>3</code></td>
+                <td>Minimum snapshots required before DIIS extrapolation is attempted.</td>
+              </tr>
+              <tr>
+                <td><code>diis_memory</code></td>
+                <td>int</td>
+                <td><code>6</code></td>
+                <td>Maximum number of DIIS snapshots stored.</td>
+              </tr>
+              <tr>
+                <td><code>verbose</code></td>
+                <td>int</td>
+                <td><code>0</code> in scans</td>
+                <td>Per-point optimizer verbosity. Scan keeps this low so the scan log stays readable.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>Checked-in MAPLE example: <code>example/scan/sd/dimethyl_peroxide_torsion.inp</code>. This is the relaxed dimethyl peroxide torsion scan shown in the visualization below:</p>
+        <pre><code>#model=aimnet2nse
+#scan(method=sd,mode=relaxed)
+#device=gpu0
+
+C     -0.38846526    -0.54120852     0.47889724
+O     -0.43299775    -0.36385918    -0.93087360
+O      0.57946000     0.64373500    -1.22768354
+C      1.45974812     0.03203524    -2.16138925
+H      0.59947954    -0.89956469     0.78229810
+H     -1.13763115    -1.28584057     0.75935167
+H     -0.61851510     0.40189440     0.98297169
+H      2.23953829     0.75053877    -2.42607962
+H      1.92682619    -0.85102187    -1.71579499
+H      0.91182580    -0.24730864    -3.06593618
+
+S 1 2 3 4 5.0 72</code></pre>
+        <p>The final <code>S</code> line is a dihedral scan: four atom indices followed by a 5.0 degree step and 72 increments, producing 73 scan points including the initial geometry.</p>
+
+        <h2 id="visualization">Scan Visualization</h2>
+        <p>The animation below pairs the generated scan geometries with the energy profile for a relaxed dimethyl peroxide torsion scan using SD.</p>
+        <figure class="doc-figure" style="max-width:720px;margin:1.75rem auto;">
+          <img src="../../assets/images/scan/sd/dimethyl_peroxide_torsion_scan_visual_lab_traj_energy.gif" alt="SD dimethyl peroxide torsion scan animation with energy profile">
+          <figcaption>Fig. 1 — Dimethyl peroxide torsion relaxed scan (SD)</figcaption>
+        </figure>
+
+        <h2 id="when-to-use">When to Use SD Scans</h2>
+        <ul>
+          <li><strong>Severely distorted scan geometries:</strong> When early scan points have large steric clashes or unreasonable bond lengths, SD rapidly reduces the worst per-point forces without requiring Hessian information.</li>
+          <li><strong>Robust pre-relaxation:</strong> A short SD scan can stabilise structures before switching to <a href="scan_lbfgs.html">L-BFGS</a>, <a href="scan_cg.html">CG</a>, or <a href="scan_sdcg.html">SD/CG</a>.</li>
+          <li><strong>Avoid for large production grids:</strong> SD's slow convergence near the minimum makes it inefficient when a faster optimizer would converge reliably.</li>
+        </ul>
+
+        <div class="admonition note">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Note
+          </div>
+          <div class="admonition-body">
+            <p>Pure SD is rarely the best choice for a complete scan. Consider <a href="scan_sdcg.html">SD/CG</a> to automatically transition to conjugate gradient once large initial forces have been reduced.</p>
+          </div>
+        </div>
+
+        <nav class="page-nav">
+          <a href="scan_rfo.html">&larr; Previous: Scan RFO</a>
+          <a class="next" href="scan_cg.html">Next: Scan CG &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc"><div class="toc-sticky"><h3>On this page</h3><ul></ul></div></aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

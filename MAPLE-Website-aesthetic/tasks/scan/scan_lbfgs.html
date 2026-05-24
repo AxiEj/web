@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PES Scan: L-BFGS - MAPLE</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="icon" href="../../favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="../../index.html"><img src="../../assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="../../index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../general.html">About</a></li>
+          <li><a href="../../tutorials/installation.html">Documentation</a></li>
+          <li><a href="../../articles.html">Articles &amp; News</a></li>
+          <li><a href="../../downloads.html">Downloads</a></li>
+          <li><a href="../../development.html">Development</a></li>
+          <li><a href="../../issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-brand">
+          <img src="../../assets/images/logo.jpg" alt="MAPLE">
+          <span>MAPLE Docs</span>
+        </div>
+        <div class="sidebar-tree">
+          <ul>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Getting Started</span>
+              <ul class="children">
+                <li><a href="../../tutorials/installation.html">Installation</a></li>
+                <li><a href="../../tutorials/quickstart.html">Quick Start</a></li>
+                <li><a href="../../tutorials/input_output.html">Input &amp; Output</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Input Setup</span>
+              <ul class="children">
+                <li><a href="../../setup/settings.html">Settings</a></li>
+                <li><a href="../../setup/coordinates.html">Coordinates</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> ML Models</span>
+              <ul class="children">
+                <li><a href="../../setup/models.html">Overview</a></li>
+                <li><a href="../../setup/model_uma.html">UMA</a></li>
+                <li><a href="../../setup/model_ani.html">ANI</a></li>
+                <li><a href="../../setup/model_aimnet.html">AIMNet2</a></li>
+                <li><a href="../../setup/model_mace.html">MACE</a></li>
+              </ul>
+            </li>
+            <li class="open">
+              <span class="tree-section"><span class="chevron"></span> Tasks</span>
+              <ul class="children">
+                <li><a href="../../tasks/singlepoint.html">Single Point</a></li>
+                <li><a href="../../tasks/frequency.html">Frequency</a></li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../opt/optimization.html">Optimization</a></span>
+                  <ul class="children">
+                    <li><a href="../opt/opt_lbfgs.html">L-BFGS</a></li>
+                    <li><a href="../opt/opt_rfo.html">RFO</a></li>
+                    <li><a href="../opt/opt_sd.html">SD</a></li>
+                    <li><a href="../opt/opt_cg.html">CG</a></li>
+                    <li><a href="../opt/opt_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../ts/ts.html">Transition State</a></span>
+                  <ul class="children">
+                    <li><a href="../ts/ts_prfo.html">P-RFO</a></li>
+                    <li><a href="../ts/ts_neb.html">NEB</a></li>
+                    <li><a href="../ts/ts_dimmer.html">Dimer</a></li>
+                    <li><a href="../ts/ts_string.html">String/GSM</a></li>
+                    <li><a href="../ts/ts_autoneb.html">AutoNEB</a></li>
+                  </ul>
+                </li>
+                <li class="open">
+                  <span class="tree-label"><span class="chevron"></span> <a href="scan.html">PES Scan</a></span>
+                  <ul class="children">
+                    <li><a href="scan_lbfgs.html" class="active">L-BFGS</a></li>
+                    <li><a href="scan_rfo.html">RFO</a></li>
+                    <li><a href="scan_sd.html">SD</a></li>
+                    <li><a href="scan_cg.html">CG</a></li>
+                    <li><a href="scan_sdcg.html">SD/CG</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="tree-label"><span class="chevron"></span> <a href="../irc/irc.html">IRC</a></span>
+                  <ul class="children">
+                    <li><a href="../irc/irc_gs.html">GS</a></li>
+                    <li><a href="../irc/irc_lqa.html">LQA</a></li>
+                    <li><a href="../irc/irc_hpc.html">HPC</a></li>
+                    <li><a href="../irc/irc_eulerpc.html">EulerPC</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span class="tree-section"><span class="chevron"></span> Functions</span>
+              <ul class="children">
+                <li><a href="../../functions/solvent.html">Solvation</a></li>
+                <li><a href="../../functions/constrain.html">Constraints</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../tasks/singlepoint.html">Tasks</a>
+          <span class="separator">/</span>
+          <a href="scan.html">PES Scan</a>
+          <span class="separator">/</span>
+          <span class="current">L-BFGS</span>
+        </nav>
+
+        <h1>PES Scan with L-BFGS Optimization</h1>
+
+        <h2 id="overview">Overview</h2>
+        <p>The L-BFGS (Limited-memory Broyden&ndash;Fletcher&ndash;Goldfarb&ndash;Shanno) method is the default geometry optimizer used in relaxed PES scans. At each scan point, after the scanned internal coordinates are constrained to their target values, L-BFGS optimizes all remaining degrees of freedom to find the nearest local minimum on the constrained surface.</p>
+        <p>L-BFGS builds a low-rank approximation to the inverse Hessian from a short history of past displacements and gradient changes, enabling efficient convergence without storing or inverting the full Hessian matrix. This makes it well suited for systems of any size, from small molecules to large biomolecular fragments.</p>
+
+        <h2 id="parameters">Parameters</h2>
+        <p>Relaxed scans use the same L-BFGS optimizer as <code>#opt(method=lbfgs)</code>. The requested internal coordinates are fixed at each scan point while the remaining geometry is relaxed.</p>
+        <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>memory</code></td>
+              <td>int</td>
+              <td><code>5</code></td>
+              <td>Number of previous steps retained for the approximate inverse Hessian.</td>
+            </tr>
+            <tr>
+              <td><code>curvature</code></td>
+              <td>float</td>
+              <td><code>70.0</code></td>
+              <td>Initial diagonal Hessian estimate before optimization history is accumulated.</td>
+            </tr>
+            <tr>
+              <td><code>max_step</code></td>
+              <td>float</td>
+              <td><code>0.2</code></td>
+              <td>Maximum allowed atomic displacement per step (Angstroms).</td>
+            </tr>
+            <tr>
+              <td><code>max_iter</code></td>
+              <td>int</td>
+              <td><code>256</code></td>
+              <td>Maximum number of L-BFGS iterations per scan point.</td>
+            </tr>
+            <tr>
+              <td><code>verbose</code></td>
+              <td>int</td>
+              <td><code>0</code> in scans</td>
+              <td>Output verbosity level. Scan sets this internally to suppress per-point optimizer detail and keep the scan log readable.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="admonition note">
+          <div class="admonition-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Note
+          </div>
+          <div class="admonition-body">
+            <p>Because relaxed scans use the same L-BFGS optimizer as geometry optimization, L-BFGS parameter names match the <a href="../opt/opt_lbfgs.html">optimization L-BFGS</a> page. Use <code>level</code> on <code>#scan</code> for the shared convergence preset; scan output keeps per-point optimizer verbosity quiet by design.</p>
+          </div>
+        </div>
+
+        <h2 id="input-example">Input Example</h2>
+        <p>Checked-in MAPLE example: <code>example/scan/lbfgs/ethanol_torsion.inp</code>. This is the relaxed ethanol torsion scan shown in the visualization below:</p>
+        <pre><code>#model=aimnet2nse
+#scan(method=lbfgs,mode=relaxed)
+#device=gpu0
+
+C       0.00000000    0.00000000    0.00000000
+C       1.52000000    0.00000000    0.00000000
+O       2.07000000    1.21000000    0.00000000
+H       2.94000000    1.20000000    0.00000000
+H      -0.54000000    0.94000000    0.00000000
+H      -0.54000000   -0.47000000    0.81400000
+H      -0.54000000   -0.47000000   -0.81400000
+H       1.92000000   -0.52000000    0.89000000
+H       1.92000000   -0.52000000   -0.89000000
+
+S 1 2 3 4 5.0 72</code></pre>
+        <p>The final <code>S</code> line is a dihedral scan: four atom indices followed by a 5.0 degree step and 72 increments, producing 73 scan points including the initial geometry.</p>
+
+        <h2 id="visualization">Scan Visualization</h2>
+        <p>The animation below pairs the generated scan geometries with the energy profile for a relaxed ethanol torsion scan using L-BFGS.</p>
+        <figure class="doc-figure" style="max-width:720px;margin:1.75rem auto;">
+          <img src="../../assets/images/scan/lbfgs/ethanol_torsion_scan_visual_lab_traj_energy.gif" alt="L-BFGS ethanol torsion scan animation with energy profile">
+          <figcaption>Fig. 1 — Ethanol torsion relaxed scan (L-BFGS)</figcaption>
+        </figure>
+
+        <h2 id="when-to-use">When to Use</h2>
+        <p>L-BFGS is the recommended default method for relaxed PES scans. Use it when:</p>
+        <ul>
+          <li>You need a general-purpose relaxed scan with reliable convergence.</li>
+          <li>The system is well-behaved and does not exhibit strong anharmonicity or near-degenerate states at the scan points.</li>
+          <li>You want efficient optimization without explicit Hessian computation at each scan point.</li>
+        </ul>
+        <p>If L-BFGS has difficulty converging at certain scan points (for example, near transition states or in flat regions of the PES), consider reducing the scan step size, tightening the convergence level, or switching the relaxed scan to <a href="scan_rfo.html"><code>method=rfo</code></a>.</p>
+
+        <nav class="page-nav">
+          <a href="scan.html">&larr; Previous: PES Scan</a>
+          <a class="next" href="scan_rfo.html">Next: Scan RFO &rarr;</a>
+        </nav>
+      </article>
+    </main>
+
+    <aside class="toc"><div class="toc-sticky"><h3>On this page</h3><ul></ul></div></aside>
+  </div>
+  <div class="sidebar-overlay"></div>
+  <footer><p>&copy; 2026, MAPLE development team.</p></footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

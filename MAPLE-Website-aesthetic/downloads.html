@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads — MAPLE</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container">
+      <div class="brand">
+        <a href="index.html"><img src="assets/images/logo.jpg" alt="MAPLE Logo"></a>
+        <a href="index.html">MAPLE</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="general.html">About</a></li>
+          <li><a href="tutorials/installation.html">Documentation</a></li>
+          <li><a href="articles.html">Articles &amp; News</a></li>
+          <li><a href="downloads.html" class="active">Downloads</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="issues.html">Report Issue</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>Downloads</h1>
+    <p class="subtitle">MAPLE is free for academic and research use. Grab the source from GitHub, then follow the installation guide to get running.</p>
+  </div>
+
+  <div class="page-body">
+    <article>
+      <h2 id="source-code">Source Code</h2>
+      <p>MAPLE is hosted on GitHub. Clone the public source repository for the published code line (see the <a href="#license">license terms</a> below).</p>
+      <p><a href="https://github.com/ClickFF/MAPLE" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Source Code on GitHub &rarr;</a></p>
+      <pre><code>git clone https://github.com/ClickFF/MAPLE.git</code></pre>
+      <p><strong>Documentation note:</strong> The SCAN method pages are synchronized with the MAPLE <code>debug/OPT</code> development snapshot verified at commit <code>85a39ca</code>. The public upstream link may lag until those changes are merged.</p>
+
+      <h2 id="installation">Installation</h2>
+      <p>Follow the step-by-step guide to set up Python, PyTorch, and the ML potential dependencies.</p>
+      <p><a href="tutorials/installation.html" class="btn btn-primary">Installation Guide &rarr;</a></p>
+
+      <h2 id="license">License</h2>
+      <p>MAPLE is distributed under a modified BSD 3-Clause license with a non-commercial restriction:</p>
+      <ul>
+        <li><strong>Academic &amp; research use</strong>: free under Creative Commons Attribution (CC BY) in addition to BSD 3-Clause redistribution terms.</li>
+        <li><strong>Commercial use</strong>: prohibited without explicit written permission from the copyright holder (University of Pittsburgh).</li>
+      </ul>
+      <p>This is <strong>not a standard BSD 3-Clause license</strong> and is not OSI-approved "open source". See the <a href="https://github.com/ClickFF/MAPLE/blob/HEAD/LICENSE" target="_blank" rel="noopener noreferrer">full LICENSE on GitHub</a> for complete terms.</p>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2026, MAPLE development team.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
