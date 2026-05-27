@@ -240,6 +240,22 @@ pip install -e .</code></pre>
                     <li><strong>Other</strong>: <code>egret</code>, <code>uma</code></li>
                 </ul>
 
+                <h2 id="tips-for-users-in-china">Tips for Users in China</h2>
+
+                <div class="admonition tip">
+                    <div class="admonition-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 4 12.9V17H8v-2.1A7 7 0 0 1 12 2z"/></svg>
+                        Faster package and model downloads
+                    </div>
+                    <div class="admonition-body">
+                        <p>If PyPI downloads are slow, append the Tsinghua PyPI mirror to MAPLE and dependency installation commands with <code>-i</code>:</p>
+                        <pre><code>pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install fairchem-core -i https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+                        <p>If Hugging Face access is unstable, open the mirror at <a href="https://hf-mirror.com/Wayne7815/MAPLE_models/tree/main" target="_blank">https://hf-mirror.com/Wayne7815/MAPLE_models/tree/main</a>, download the required model files, and place them in:</p>
+                        <pre><code>maple/function/calculator/model/</code></pre>
+                    </div>
+                </div>
+
                 <h2 id="verify-installation">Verify Installation</h2>
 
                 <p>After installation, verify that MAPLE is correctly set up by running:</p>
