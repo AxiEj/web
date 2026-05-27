@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<title>肿瘤标志物分类学习游戏</title>
+<style>
+:root{
+  --font-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --bg:#ffffff;--bg-2:#f5f5f4;--bg-3:#ececeb;
+  --text:#1a1a1a;--text-2:#525252;--text-3:#8a8a8a;
+  --border:#ececea;--border-2:#d4d4d2;
+  --primary:#1a1a1a;--primary-text:#ffffff;
+  --ok-bg:#e8f5ec;--ok-bd:#bcdfc6;--ok-tx:#1f6b3a;--ok-solid:#2e9e58;
+  --no-bg:#fdeceb;--no-bd:#f3c2bf;--no-tx:#b8362e;--no-solid:#d04a3f;
+  --wn-bg:#fef4e6;--wn-bd:#f3d59a;--wn-tx:#92621a;--wn-solid:#d4922a;
+  --in-bg:#eaf1fc;--in-bd:#b8d0f0;--in-tx:#1d4ed8;--in-solid:#3b82f6;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d0d0d;--bg-2:#1a1a1a;--bg-3:#262626;
+    --text:#f5f5f5;--text-2:#a1a1a1;--text-3:#737373;
+    --border:#262626;--border-2:#3d3d3d;
+    --primary:#f5f5f5;--primary-text:#0d0d0d;
+    --ok-bg:rgba(46,160,90,.16);--ok-bd:rgba(110,210,140,.32);--ok-tx:#6ed28c;--ok-solid:#39b06b;
+    --no-bg:rgba(200,70,60,.16);--no-bd:rgba(244,118,108,.32);--no-tx:#f4766c;--no-solid:#e25a4d;
+    --wn-bg:rgba(170,110,30,.18);--wn-bd:rgba(232,176,102,.32);--wn-tx:#e8b066;--wn-solid:#daa14a;
+    --in-bg:rgba(60,110,220,.16);--in-bd:rgba(120,160,240,.32);--in-tx:#86a8f2;--in-solid:#5a8cf0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+    --shadow-lg:0 12px 40px rgba(0,0,0,.5);
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--font-sans);font-size:15px;line-height:1.5;
+  color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px}
+
+.head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+h1.title{font-size:17px;font-weight:600;margin:0;letter-spacing:-.01em;color:var(--text)}
+.sub{font-size:12px;color:var(--text-3);letter-spacing:.04em}
+.back{font-size:12px;color:var(--text-3);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:color .15s var(--ease)}
+.back:hover{color:var(--text)}
+
+.scorebar{
+  display:flex;gap:8px;margin:14px 0 18px;
+}
+.score-pill{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--bg-2);border-radius:10px;padding:10px 12px;min-height:54px;
+}
+.score-pill .lbl{font-size:11px;color:var(--text-2);margin-bottom:3px}
+.score-pill .val{font-size:18px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.score-pill.streak .val{color:var(--wn-tx)}
+
+.tabs{display:inline-flex;gap:4px;background:var(--bg-2);padding:3px;border-radius:10px;margin-bottom:18px}
+.tab{
+  border:none;background:transparent;padding:7px 14px;
+  font-size:13px;color:var(--text-2);cursor:pointer;border-radius:7px;font-family:inherit;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:color .15s var(--ease),background .15s var(--ease);
+}
+.tab.on{background:var(--bg);color:var(--text);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+
+/* Cancer card */
+.cancer-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:14px;
+  padding:28px 20px;text-align:center;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.cancer-card.in{animation:cardIn .28s var(--ease-out)}
+@keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.badge-q{
+  display:inline-block;font-size:11px;color:var(--text-2);
+  background:var(--bg-2);padding:4px 10px;border-radius:20px;margin-bottom:12px;letter-spacing:.04em;
+}
+.cancer-name{font-size:22px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em;line-height:1.3}
+.cancer-hint{font-size:12.5px;color:var(--text-3);margin:0}
+
+/* Category legend */
+.cat-legend{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;
+}
+.cat-pill{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 12px;border-radius:10px;font-size:12.5px;border:1px solid;
+  font-variant-numeric:tabular-nums;
+}
+.cat-pill.p{background:var(--no-bg);border-color:var(--no-bd);color:var(--no-tx)}
+.cat-pill.s{background:var(--wn-bg);border-color:var(--wn-bd);color:var(--wn-tx)}
+.cat-pill.a{background:var(--in-bg);border-color:var(--in-bd);color:var(--in-tx)}
+.cat-pill .sym{font-weight:700;font-size:13px}
+.cat-pill .ct{background:rgba(255,255,255,.5);padding:1px 8px;border-radius:8px;font-weight:600;font-size:12px;min-width:24px;text-align:center}
+@media (prefers-color-scheme:dark){.cat-pill .ct{background:rgba(0,0,0,.25)}}
+
+/* Markers grid */
+.m-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:16px;
+}
+.m-chip{
+  position:relative;background:var(--bg);border:1px solid var(--border-2);border-radius:12px;
+  padding:14px 12px 10px;display:flex;flex-direction:column;gap:10px;
+  transition:border-color .2s var(--ease),background .2s var(--ease);
+}
+.m-chip.sel-p{background:var(--no-bg);border-color:var(--no-bd)}
+.m-chip.sel-s{background:var(--wn-bg);border-color:var(--wn-bd)}
+.m-chip.sel-a{background:var(--in-bg);border-color:var(--in-bd)}
+.m-chip.r-ok{background:var(--ok-bg);border-color:var(--ok-solid);box-shadow:0 0 0 1px var(--ok-solid) inset}
+.m-chip.r-no{background:var(--no-bg);border-color:var(--no-solid);box-shadow:0 0 0 1px var(--no-solid) inset}
+.m-chip.r-miss{background:var(--wn-bg);border-color:var(--wn-solid);border-style:dashed}
+
+.m-head{display:flex;flex-direction:column;gap:1px;padding-right:22px;min-height:36px}
+.m-name{font-size:14px;font-weight:600;line-height:1.2;letter-spacing:-.005em}
+.m-zh{font-size:11px;color:var(--text-3);line-height:1.3}
+
+.m-flag{
+  position:absolute;top:8px;right:8px;
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;line-height:1;
+}
+.m-flag.ok{background:var(--ok-solid)}
+.m-flag.no{background:var(--no-solid)}
+.m-flag.miss{background:var(--wn-solid)}
+
+.m-seg{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+}
+.m-seg-btn{
+  border:1px solid var(--border-2);background:var(--bg);
+  padding:8px 0;border-radius:7px;
+  font-size:12px;font-weight:500;color:var(--text-2);cursor:pointer;font-family:inherit;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  min-height:32px;
+  transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease),transform .1s var(--ease);
+}
+@media(hover:hover){.m-seg-btn:hover:not(:disabled){background:var(--bg-2)}}
+.m-seg-btn:active:not(:disabled){transform:scale(.95)}
+.m-seg-btn:disabled{cursor:default;opacity:.45}
+.m-seg-btn[data-cat="primary"].on{background:var(--no-solid);border-color:var(--no-solid);color:#fff}
+.m-seg-btn[data-cat="secondary"].on{background:var(--wn-solid);border-color:var(--wn-solid);color:#fff}
+.m-seg-btn[data-cat="alternative"].on{background:var(--in-solid);border-color:var(--in-solid);color:#fff}
+
+.m-miss-label{
+  position:absolute;bottom:8px;right:10px;
+  font-size:10px;font-weight:600;color:var(--wn-tx);
+  background:rgba(255,255,255,.6);padding:1px 6px;border-radius:6px;
+}
+@media (prefers-color-scheme:dark){.m-miss-label{background:rgba(0,0,0,.4)}}
+
+/* Result panel */
+.result{
+  border-radius:12px;padding:16px;margin-bottom:14px;
+  animation:slideIn .3s var(--ease-out);
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.result.ok{background:var(--ok-bg);color:var(--ok-tx)}
+.result.no{background:var(--no-bg);color:var(--no-tx)}
+.result-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:15px;font-weight:600}
+.result-ico{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.result.ok .result-ico{background:var(--ok-solid)}
+.result.no .result-ico{background:var(--no-solid)}
+
+.ans-list{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.ans-row{display:flex;gap:8px;align-items:flex-start}
+.ans-tag{
+  flex-shrink:0;font-size:11px;font-weight:600;padding:2px 8px;border-radius:5px;
+  min-width:38px;text-align:center;color:#fff;
+}
+.ans-tag.p{background:var(--no-solid)}
+.ans-tag.s{background:var(--wn-solid)}
+.ans-tag.a{background:var(--in-solid)}
+.ans-mk{color:var(--text);line-height:1.5}
+
+.expl{
+  margin-top:16px;padding-top:12px;border-top:1px solid var(--border);
+  color:var(--text);
+}
+.expl-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.expl-intro{font-size:13px;color:var(--text-2);margin-bottom:12px;line-height:1.65}
+.expl-mk{
+  background:var(--bg);border-radius:8px;padding:10px 12px;margin-bottom:8px;
+  border-left:3px solid;
+}
+.expl-mk.p{border-left-color:var(--no-solid)}
+.expl-mk.s{border-left-color:var(--wn-solid)}
+.expl-mk.a{border-left-color:var(--in-solid)}
+.expl-mk-head{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.expl-mk-name{font-size:13px;font-weight:600;color:var(--text)}
+.expl-mk-text{font-size:12.5px;color:var(--text-2);line-height:1.7}
+
+.actions{text-align:center;margin-top:6px}
+.btn-pri{
+  width:100%;padding:14px;background:var(--primary);color:var(--primary-text);
+  border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:opacity .15s var(--ease),transform .1s var(--ease);
+}
+.btn-pri:hover{opacity:.88}
+.btn-pri:active{transform:scale(.985)}
+.btn-pri:disabled{opacity:.4;cursor:default}
+
+/* Reference */
+.ref-hint{font-size:12px;color:var(--text-3);text-align:center;margin-bottom:14px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-row{
+  display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center;
+  padding:12px 14px;background:var(--bg-2);border-radius:10px;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:background .15s var(--ease),transform .1s var(--ease);
+}
+.ref-row:hover{background:var(--bg-3)}
+.ref-row:active{transform:scale(.99)}
+.ref-cancer{font-size:14px;font-weight:600;color:var(--text);line-height:1.3}
+.ref-mks{display:flex;flex-wrap:wrap;gap:5px}
+.mk-tag{
+  font-size:11px;font-weight:500;padding:3px 8px;border-radius:5px;
+  letter-spacing:.01em;display:inline-flex;align-items:center;gap:4px;
+}
+.mk-tag.p{background:var(--no-bg);color:var(--no-tx);border:1px solid var(--no-bd)}
+.mk-tag.s{background:var(--wn-bg);color:var(--wn-tx);border:1px solid var(--wn-bd)}
+.mk-tag.a{background:var(--in-bg);color:var(--in-tx);border:1px solid var(--in-bd)}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  display:flex;align-items:flex-end;justify-content:center;
+  z-index:100;padding:0;
+  animation:fadeIn .2s var(--ease-out);
+}
+@media(min-width:560px){.modal{align-items:center;padding:20px}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{
+  background:var(--bg);
+  border-radius:16px 16px 0 0;
+  padding:20px;width:100%;max-width:600px;max-height:88vh;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  box-shadow:var(--shadow-lg);
+  animation:slideUp .28s var(--ease-out);
+}
+@media(min-width:560px){.modal-card{border-radius:16px}}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.modal-title{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.modal-close{
+  background:var(--bg-2);border:none;color:var(--text-2);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1;
+  -webkit-tap-highlight-color:transparent;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s var(--ease);
+}
+.modal-close:hover{background:var(--bg-3)}
+
+.hidden{display:none!important}
+
+/* Mobile */
+@media(max-width:520px){
+  .wrap{padding:16px 14px}
+  h1.title{font-size:16px}
+  .cancer-card{padding:24px 16px}
+  .cancer-name{font-size:20px}
+  .m-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .m-chip{padding:12px 10px 8px}
+  .m-name{font-size:13.5px}
+  .m-zh{font-size:10.5px}
+  .m-seg-btn{font-size:11.5px;padding:7px 0}
+  .cat-pill{font-size:11.5px;padding:8px 10px}
+  .ref-row{grid-template-columns:1fr;gap:8px;padding:12px 14px}
+  .scorebar .score-pill{padding:8px 10px;min-height:48px}
+  .scorebar .val{font-size:16px}
+}
+@media(max-width:360px){
+  .m-grid{grid-template-columns:1fr}
+  .m-chip{padding:14px 14px 10px}
+  .m-name{font-size:14px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1 class="title">肿瘤标志物分类学习游戏</h1>
+    <span class="sub">14 癌种 · 17 标志物</span>
+    <a class="back" href="./" style="margin-left:auto">← 返回</a>
+  </div>
+
+  <div class="scorebar">
+    <div class="score-pill"><div class="lbl">得分</div><div class="val" id="score">0/0</div></div>
+    <div class="score-pill streak"><div class="lbl">连胜</div><div class="val" id="streak">0</div></div>
+    <div class="score-pill"><div class="lbl">剩余题</div><div class="val" id="remain">14</div></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-m="quiz" type="button">测验</button>
+    <button class="tab" data-m="ref" type="button">速查表</button>
+  </div>
+
+  <div id="quiz-view">
+    <div class="cancer-card in">
+      <div class="badge-q">为下面这种癌症选择对应的标志物</div>
+      <h2 class="cancer-name" id="cancer">—</h2>
+      <p class="cancer-hint">点击每个标志物下方的 首/次/备 进行分类，可不选</p>
+    </div>
+
+    <div class="cat-legend">
+      <div class="cat-pill p"><span><span class="sym">●</span> 首选</span><span class="ct" id="pc">0</span></div>
+      <div class="cat-pill s"><span><span class="sym">▲</span> 次选</span><span class="ct" id="sc">0</span></div>
+      <div class="cat-pill a"><span><span class="sym">☆</span> 备选</span><span class="ct" id="ac">0</span></div>
+    </div>
+
+    <div class="m-grid" id="grid"></div>
+
+    <div id="result" class="result hidden"></div>
+
+    <div class="actions">
+      <button id="submit" class="btn-pri" type="button">提交答案</button>
+      <button id="next" class="btn-pri hidden" type="button">下一题</button>
+    </div>
+  </div>
+
+  <div id="ref-view" class="hidden">
+    <p class="ref-hint">点击任意癌症查看每个标志物的生理机制详解</p>
+    <div class="ref-list" id="ref-list"></div>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title">—</div>
+      <button class="modal-close" id="modal-close" type="button" aria-label="关闭">×</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const markerNames={
+    'CEA':'癌胚抗原','AFP':'甲胎蛋白','CA19-9':'糖类抗原19-9','CA125':'糖类抗原125',
+    'CA15-3':'糖类抗原15-3','PSA':'前列腺特异抗原','HE4':'人附睾蛋白4',
+    'NSE':'神经元特异性烯醇化酶','SCCA':'鳞状细胞癌抗原','ProGRP':'胃泌素释放肽前体',
+    'hCG':'人绒毛膜促性腺激素','CYFRA21-1':'细胞角蛋白19片段','CA72-4':'糖类抗原72-4',
+    'PG':'胃蛋白酶原','CA242':'糖类抗原242','PIVKA-II':'异常凝血酶原','AFP-L3':'甲胎蛋白异质体'
+  };
+  const DATA={
+    '结肠癌':{primary:['CEA'],secondary:['CA19-9','CA242'],alternative:[]},
+    '胰腺癌':{primary:['CA19-9'],secondary:[],alternative:['CEA']},
+    '胃癌':{primary:['CA72-4'],secondary:['CEA','PG'],alternative:['CA125']},
+    '食管癌':{primary:['SCCA'],secondary:[],alternative:['CEA']},
+    '肝癌':{primary:['AFP'],secondary:['PIVKA-II','AFP-L3'],alternative:[]},
+    '胆管癌':{primary:['CA19-9'],secondary:[],alternative:[]},
+    '乳腺癌':{primary:['CA15-3'],secondary:['CEA'],alternative:[]},
+    '卵巢癌':{primary:['CA125','HE4'],secondary:[],alternative:[]},
+    '宫颈癌':{primary:[],secondary:['SCCA'],alternative:['CEA']},
+    '绒毛膜癌':{primary:['hCG'],secondary:[],alternative:[]},
+    'SCLC(小细胞肺癌)':{primary:['NSE','ProGRP'],secondary:[],alternative:[]},
+    'NSCLC(非小细胞肺癌)':{primary:[],secondary:['CEA','CYFRA21-1'],alternative:['CA125','SCCA']},
+    '生殖细胞肿瘤':{primary:['AFP','hCG'],secondary:[],alternative:['HE4']},
+    '前列腺癌':{primary:['PSA'],secondary:[],alternative:[]}
+  };
+  const EXPL={
+    '结肠癌':{intro:'结肠癌是消化道最常见的恶性肿瘤之一，起源于结肠黏膜上皮细胞。其标志物选择基于肿瘤细胞的胚胎性回归和糖蛋白异常表达。',markers:{
+      'CEA':'【首选】癌胚抗原(CEA)是一种糖蛋白，正常情况下仅在胎儿消化道上皮中高表达，出生后表达量极低。结肠癌细胞发生"胚胎性回归"，重新大量表达CEA并释放入血。CEA对结直肠癌的敏感性达40-70%，是最经典的结直肠癌标志物，尤其适用于术后监测和复发评估。',
+      'CA19-9':'【次选】CA19-9是一种唾液酸化的Lewis血型抗原，由消化道肿瘤细胞异常合成分泌。约20-40%的结肠癌患者CA19-9升高，与CEA联合检测可提高诊断敏感性。',
+      'CA242':'【次选】CA242与CA19-9结构相似，但特异性更高。它在结肠癌中的阳性率约为40-50%，且假阳性率较低，常与CA19-9联合用于消化道肿瘤的鉴别诊断。'}},
+    '胰腺癌':{intro:'胰腺癌恶性程度极高，早期诊断困难。胰腺导管上皮细胞癌变后会大量分泌特定糖类抗原。',markers:{
+      'CA19-9':'【首选】CA19-9是胰腺癌最重要的血清标志物，敏感性高达70-90%。胰腺癌细胞表面唾液酸转移酶活性异常增高，导致CA19-9大量合成并释放入血。CA19-9水平与肿瘤负荷相关，可用于疗效监测和预后评估。注意：Lewis抗原阴性者(约5-10%人群)即使患癌CA19-9也不升高。',
+      'CEA':'【备选】CEA在约30-60%的胰腺癌患者中升高，但特异性不如CA19-9。作为广谱消化道肿瘤标志物，CEA可与CA19-9联合检测以提高诊断效能。'}},
+    '胃癌':{intro:'胃癌的标志物选择综合考虑了肿瘤的黏液分泌特性、胃黏膜萎缩状态及消化道肿瘤的共同特征。',markers:{
+      'CA72-4':'【首选】CA72-4是一种高分子量糖蛋白，对胃癌的特异性较高(>95%)，尤其对黏液腺癌敏感。胃癌细胞异常表达TAG-72抗原，该抗原正常仅在胎儿组织中表达。CA72-4升高程度与肿瘤分期相关，是胃癌首选标志物。',
+      'CEA':'【次选】约20-30%胃癌患者CEA升高，虽然敏感性不如CA72-4，但联合检测可提高诊断率。CEA升高更常见于进展期胃癌和肝转移患者。',
+      'PG':'【次选】胃蛋白酶原(PG)分为PGI和PGII，由胃黏膜主细胞和黏液颈细胞分泌。胃癌前病变(萎缩性胃炎、肠化生)和早期胃癌时，PGI下降、PGI/PGII比值降低。PG检测有助于筛查胃癌高危人群，是日本广泛使用的胃癌筛查指标。',
+      'CA125':'【备选】部分胃癌(尤其是腹膜转移时)CA125升高，但特异性较差，仅作为辅助参考。'}},
+    '食管癌':{intro:'食管癌以鳞状细胞癌为主(约90%)，标志物选择主要针对鳞癌的特征性抗原表达。',markers:{
+      'SCCA':'【首选】鳞状细胞癌抗原(SCCA)是从宫颈鳞癌组织中分离的肿瘤相关抗原，存在于鳞状上皮细胞的细胞质中。食管鳞癌细胞大量表达并释放SCCA，血清SCCA水平与肿瘤分期、淋巴结转移密切相关，敏感性约40-60%。',
+      'CEA':'【备选】CEA在部分食管癌(尤其是腺癌)中升高，可作为鳞癌标志物的补充，但单独使用价值有限。'}},
+    '肝癌':{intro:'原发性肝细胞癌(HCC)具有独特的标志物谱，反映了肝细胞的胚胎性回归和凝血功能异常。',markers:{
+      'AFP':'【首选】甲胎蛋白(AFP)是肝癌最经典的标志物。AFP正常仅在胎儿肝脏和卵黄囊中大量合成，出生后迅速下降。肝癌细胞发生去分化，重新获得合成AFP的能力。约70%的HCC患者AFP升高，>400ng/mL高度提示肝癌。AFP还可用于肝癌高危人群筛查。',
+      'PIVKA-II':'【次选】异常凝血酶原(PIVKA-II)又称DCP，是维生素K缺乏或拮抗剂诱导的蛋白。肝癌细胞中γ-谷氨酰羧化酶功能异常，导致凝血酶原前体羧化不完全，产生PIVKA-II。约60-70%肝癌患者PIVKA-II升高，且与AFP互补——部分AFP阴性的肝癌PIVKA-II可阳性。',
+      'AFP-L3':'【次选】AFP-L3是AFP的岩藻糖基化异质体，由肝癌细胞特异性产生。正常肝细胞和良性肝病产生的AFP主要是AFP-L1，而肝癌细胞因岩藻糖转移酶活性增高，产生更多AFP-L3。AFP-L3占总AFP的比例>10%高度提示肝癌，特异性优于总AFP。'}},
+    '胆管癌':{intro:'胆管癌起源于胆管上皮细胞，与胰腺癌在胚胎发育上同源，因此共享相似的肿瘤标志物。',markers:{
+      'CA19-9':'【首选】CA19-9是胆管癌最重要的标志物，敏感性约50-90%。胆管癌细胞大量表达唾液酸Lewis抗原，CA19-9显著升高。CA19-9>100U/mL时诊断特异性较高，但需排除胆道梗阻等良性疾病导致的升高。CA19-9水平与肿瘤可切除性和预后相关。'}},
+    '乳腺癌':{intro:'乳腺癌的标志物选择基于乳腺上皮细胞的特异性抗原表达和上皮性肿瘤的共同特征。',markers:{
+      'CA15-3':'【首选】CA15-3是乳腺癌最特异的血清标志物，由乳腺癌细胞膜糖蛋白MUC1脱落形成。正常乳腺上皮也表达MUC1，但癌变后过度表达并异常糖基化，大量释放入血。CA15-3主要用于乳腺癌的疗效监测和复发监测，敏感性约60-80%，晚期和转移性乳腺癌升高更明显。',
+      'CEA':'【次选】约30-50%乳腺癌患者CEA升高，尤其是转移性乳腺癌。CEA与CA15-3联合检测可提高监测的敏感性，二者互为补充。'}},
+    '卵巢癌':{intro:'上皮性卵巢癌是最常见的卵巢恶性肿瘤，其标志物选择针对卵巢上皮和附睾上皮的特异性蛋白。',markers:{
+      'CA125':'【首选】CA125是上皮性卵巢癌最重要的标志物，由卵巢癌细胞大量分泌。CA125是一种高分子量糖蛋白，正常存在于苗勒管来源的上皮组织中。约80%的上皮性卵巢癌CA125升高，浆液性癌阳性率最高。CA125广泛用于卵巢癌的诊断、疗效监测和复发监测。',
+      'HE4':'【首选】人附睾蛋白4(HE4)是近年发现的卵巢癌新标志物。HE4正常在附睾、呼吸道上皮表达，卵巢癌(尤其是浆液性癌和子宫内膜样癌)异常高表达。HE4的优势在于：①子宫内膜异位症等良性疾病时不升高，特异性优于CA125；②早期卵巢癌敏感性可能优于CA125。HE4与CA125联合使用(ROMA指数)可提高诊断效能。'}},
+    '宫颈癌':{intro:'宫颈癌以鳞状细胞癌为主(约80-90%)，标志物选择针对鳞癌的特征性表达。',markers:{
+      'SCCA':'【次选】鳞状细胞癌抗原(SCCA)是宫颈鳞癌的重要标志物，最初就是从宫颈鳞癌组织中分离出来的。SCCA水平与肿瘤体积、浸润深度、淋巴结转移相关，可用于分期评估和疗效监测。敏感性约30-70%，分期越晚敏感性越高。',
+      'CEA':'【备选】CEA在部分宫颈癌(尤其是腺癌)中升高，作为辅助标志物使用。宫颈腺癌约占10-20%，此时CEA的价值高于SCCA。'}},
+    '绒毛膜癌':{intro:'绒毛膜癌是一种高度恶性的滋养细胞肿瘤，起源于胎盘滋养层细胞，具有分泌绒毛膜促性腺激素的特性。',markers:{
+      'hCG':'【首选】人绒毛膜促性腺激素(hCG)是绒毛膜癌的特异性标志物，也是最敏感的肿瘤标志物之一。滋养细胞(正常妊娠或肿瘤性)特异性分泌hCG，绒毛膜癌细胞保留并增强了这一功能。hCG水平与肿瘤负荷高度相关，可精确反映治疗效果。hCG降至正常是绒毛膜癌治愈的重要指标，监测hCG是治疗决策的关键依据。'}},
+    'SCLC(小细胞肺癌)':{intro:'小细胞肺癌(SCLC)具有神经内分泌分化特征，占肺癌的15-20%，恶性程度高，生长迅速。其标志物反映了神经内分泌细胞的特性。',markers:{
+      'NSE':'【首选】神经元特异性烯醇化酶(NSE)是糖酵解酶烯醇化酶的γ亚基，主要存在于神经元和神经内分泌细胞中。SCLC细胞具有神经内分泌分化特性，大量表达NSE。约60-80%的SCLC患者NSE升高，水平与肿瘤负荷和疾病范围相关，可用于疗效监测和预后判断。',
+      'ProGRP':'【首选】胃泌素释放肽前体(ProGRP)是SCLC最特异的标志物。胃泌素释放肽(GRP)是一种神经肽，参与神经内分泌调节，SCLC细胞大量分泌其稳定的前体ProGRP。ProGRP对SCLC的敏感性约60-80%，特异性>95%，优于NSE。ProGRP不受溶血影响，临床应用更方便。NSE和ProGRP联合检测可提高SCLC诊断的敏感性。'}},
+    'NSCLC(非小细胞肺癌)':{intro:'非小细胞肺癌(NSCLC)包括腺癌、鳞癌和大细胞癌，占肺癌的80-85%。不同病理类型有不同的标志物谱。',markers:{
+      'CEA':'【次选】CEA在肺腺癌中阳性率较高(50-70%)，与肿瘤分期和预后相关。肺腺癌细胞来源于支气管黏膜上皮，可重新表达胚胎性抗原CEA。CEA升高更常见于周围型肺癌和有转移的患者。',
+      'CYFRA21-1':'【次选】细胞角蛋白19片段(CYFRA21-1)是上皮细胞骨架蛋白角蛋白19的可溶性片段。肺癌细胞(尤其是鳞癌)快速增殖和死亡时释放CYFRA21-1入血。CYFRA21-1对肺鳞癌敏感性最高(60-80%)，对腺癌也有一定敏感性，是NSCLC综合性较好的标志物。',
+      'CA125':'【备选】部分NSCLC(尤其伴胸腔积液时)CA125升高，但特异性不高，仅作为辅助参考。',
+      'SCCA':'【备选】SCCA对肺鳞癌有一定敏感性(30-50%)，但不如CYFRA21-1，可与其他标志物联合使用以提高鳞癌的诊断率。'}},
+    '生殖细胞肿瘤':{intro:'生殖细胞肿瘤起源于原始生殖细胞，包括多种病理类型，其标志物反映了不同分化方向的细胞特性。',markers:{
+      'AFP':'【首选】AFP主要由卵黄囊瘤(内胚窦瘤)和含有卵黄囊成分的混合性生殖细胞肿瘤分泌。这些肿瘤细胞向卵黄囊方向分化，保留了胚胎期卵黄囊合成AFP的功能。单纯精原细胞瘤/无性细胞瘤AFP不升高，如升高提示含有非精原细胞瘤成分。',
+      'hCG':'【首选】hCG由绒毛膜癌和含有滋养层细胞成分的生殖细胞肿瘤分泌。约30-50%的精原细胞瘤也可轻度升高hCG(含有合体滋养细胞)。hCG显著升高提示绒毛膜癌成分或滋养细胞分化。AFP和hCG的组合模式有助于判断肿瘤的组织学类型和制定治疗方案。',
+      'HE4':'【备选】HE4在部分生殖细胞肿瘤中升高，可作为辅助标志物，但不如AFP和hCG重要。'}},
+    '前列腺癌':{intro:'前列腺癌是男性最常见的恶性肿瘤之一，前列腺上皮细胞特异性分泌的蛋白酶是其标志物选择的基础。',markers:{
+      'PSA':'【首选】前列腺特异抗原(PSA)是前列腺癌最重要且几乎唯一的血清标志物。PSA是一种丝氨酸蛋白酶，正常由前列腺上皮细胞特异性分泌到精液中，参与精液液化。正常情况下仅有微量PSA进入血液，但前列腺癌破坏了腺体结构，导致PSA大量入血。PSA敏感性极高，广泛用于前列腺癌筛查。PSA>4ng/mL需进一步检查，>10ng/mL前列腺癌可能性显著增加。游离PSA/总PSA比值(f/t PSA)有助于鉴别前列腺癌与良性前列腺增生：前列腺癌时f/t PSA降低(<0.16)。'}}
+  };
+
+  const MARKERS=['CEA','AFP','CA19-9','CA125','CA15-3','PSA','HE4','NSE','SCCA','ProGRP','hCG','CYFRA21-1','CA72-4','PG','CA242','PIVKA-II','AFP-L3'];
+  const CANCERS=Object.keys(DATA);
+  const CAT={primary:'p',secondary:'s',alternative:'a'};
+  const CAT_NAME={primary:'首选',secondary:'次选',alternative:'备选'};
+  const CAT_SYM={primary:'●',secondary:'▲',alternative:'☆'};
+  const $=id=>document.getElementById(id);
+
+  let cur='',sel={primary:[],secondary:[],alternative:[]},
+      score=0,total=0,streak=0,used=[],showing=false;
+
+  function pickCancer(){
+    const avail=CANCERS.filter(c=>!used.includes(c));
+    if(avail.length===0){used=[];return CANCERS[Math.floor(Math.random()*CANCERS.length)]}
+    return avail[Math.floor(Math.random()*avail.length)];
+  }
+
+  function pulseCard(){
+    const c=document.querySelector('.cancer-card');
+    c.classList.remove('in');void c.offsetWidth;c.classList.add('in');
+  }
+
+  function renderGrid(){
+    const g=$('grid');g.innerHTML='';
+    MARKERS.forEach(m=>{
+      const chip=document.createElement('div');
+      chip.className='m-chip';chip.id='c-'+m;
+      chip.innerHTML=`
+        <div class="m-head">
+          <div class="m-name">${m}</div>
+          <div class="m-zh">${markerNames[m]||''}</div>
+        </div>
+        <div class="m-seg">
+          <button class="m-seg-btn" data-cat="primary" type="button" title="首选">首</button>
+          <button class="m-seg-btn" data-cat="secondary" type="button" title="次选">次</button>
+          <button class="m-seg-btn" data-cat="alternative" type="button" title="备选">备</button>
+        </div>`;
+      chip.querySelectorAll('.m-seg-btn').forEach(b=>{
+        b.addEventListener('click',()=>toggle(m,b.dataset.cat));
+      });
+      g.appendChild(chip);
+    });
+  }
+
+  function toggle(m,cat){
+    if(showing)return;
+    ['primary','secondary','alternative'].forEach(k=>{
+      sel[k]=sel[k].filter(x=>x!==m);
+    });
+    const chip=$('c-'+m);
+    const wasOn=chip.dataset.cat===cat;
+    chip.classList.remove('sel-p','sel-s','sel-a');
+    chip.querySelectorAll('.m-seg-btn').forEach(b=>b.classList.remove('on'));
+    if(!wasOn){
+      sel[cat].push(m);
+      chip.classList.add('sel-'+CAT[cat]);
+      chip.querySelector(`.m-seg-btn[data-cat="${cat}"]`).classList.add('on');
+      chip.dataset.cat=cat;
+    }else{
+      chip.dataset.cat='';
+    }
+    updateCounts();
+  }
+
+  function updateCounts(){
+    $('pc').textContent=sel.primary.length;
+    $('sc').textContent=sel.secondary.length;
+    $('ac').textContent=sel.alternative.length;
+  }
+  function updateScore(){
+    $('score').textContent=`${score}/${total}`;
+    $('streak').textContent=`${streak}${streak>0?' 🔥':''}`;
+    $('remain').textContent=Math.max(0,CANCERS.length-used.length);
+  }
+
+  function nextQuestion(){
+    showing=false;
+    cur=pickCancer();used.push(cur);
+    sel={primary:[],secondary:[],alternative:[]};
+    $('cancer').textContent=cur;
+    $('result').classList.add('hidden');
+    $('submit').classList.remove('hidden');
+    $('next').classList.add('hidden');
+    renderGrid();
+    updateCounts();
+    updateScore();
+    pulseCard();
+  }
+
+  function categoryOf(cancer,m){
+    const d=DATA[cancer];
+    if(d.primary.includes(m))return 'primary';
+    if(d.secondary.includes(m))return 'secondary';
+    if(d.alternative.includes(m))return 'alternative';
+    return null;
+  }
+
+  function checkAnswer(){
+    showing=true;
+    const correct=DATA[cur];
+    const eqSet=(a,b)=>a.length===b.length&&a.every(x=>b.includes(x));
+    const ok=eqSet(correct.primary,sel.primary)
+          &&eqSet(correct.secondary,sel.secondary)
+          &&eqSet(correct.alternative,sel.alternative);
+    total++;
+    if(ok){score++;streak++}else{streak=0}
+    updateScore();
+
+    MARKERS.forEach(m=>{
+      const chip=$('c-'+m);
+      chip.classList.remove('r-ok','r-no','r-miss');
+      chip.querySelectorAll('.m-seg-btn').forEach(b=>b.disabled=true);
+      const correctCat=categoryOf(cur,m);
+      const pickedCat=chip.dataset.cat||'';
+      if(pickedCat&&pickedCat===correctCat){
+        chip.classList.add('r-ok');
+        chip.insertAdjacentHTML('beforeend','<div class="m-flag ok">✓</div>');
+      }else if(pickedCat&&pickedCat!==correctCat){
+        chip.classList.add('r-no');
+        chip.insertAdjacentHTML('beforeend','<div class="m-flag no">✗</div>');
+        if(correctCat){
+          chip.insertAdjacentHTML('beforeend',`<div class="m-miss-label">应: ${CAT_NAME[correctCat]}</div>`);
+        }
+      }else if(!pickedCat&&correctCat){
+        chip.classList.add('r-miss');
+        chip.insertAdjacentHTML('beforeend','<div class="m-flag miss">!</div>');
+        chip.insertAdjacentHTML('beforeend',`<div class="m-miss-label">应: ${CAT_NAME[correctCat]}</div>`);
+      }
+    });
+
+    const res=$('result');
+    res.className='result '+(ok?'ok':'no');
+    res.classList.remove('hidden');
+    const fmtList=cat=>correct[cat].length?correct[cat].map(m=>`${m}(${markerNames[m]||''})`).join('，'):'无';
+    let html=`
+      <div class="result-head">
+        <div class="result-ico">${ok?'✓':'✗'}</div>
+        <div>${ok?'完全正确':'还需努力'}</div>
+      </div>
+      <div class="ans-list">
+        <div class="ans-row"><span class="ans-tag p">首选</span><span class="ans-mk">${fmtList('primary')}</span></div>
+        <div class="ans-row"><span class="ans-tag s">次选</span><span class="ans-mk">${fmtList('secondary')}</span></div>
+        <div class="ans-row"><span class="ans-tag a">备选</span><span class="ans-mk">${fmtList('alternative')}</span></div>
+      </div>`;
+    if(!ok)html+=explHTML(cur);
+    res.innerHTML=html;
+
+    $('submit').classList.add('hidden');
+    $('next').classList.remove('hidden');
+    if(window.matchMedia('(hover:hover)').matches)$('next').focus({preventScroll:true});
+  }
+
+  function explHTML(cancer){
+    const ex=EXPL[cancer];if(!ex)return '';
+    const d=DATA[cancer];
+    const all=[...d.primary,...d.secondary,...d.alternative];
+    let h=`<div class="expl"><div class="expl-title">📚 为什么选这些标志物？</div><div class="expl-intro">${ex.intro}</div>`;
+    all.forEach(m=>{
+      const cat=categoryOf(cancer,m);
+      const t=ex.markers&&ex.markers[m];
+      if(t)h+=`<div class="expl-mk ${CAT[cat]}"><div class="expl-mk-head"><span class="expl-mk-name">${m}(${markerNames[m]||''})</span><span class="ans-tag ${CAT[cat]}">${CAT_NAME[cat]}</span></div><div class="expl-mk-text">${t}</div></div>`;
+    });
+    return h+'</div>';
+  }
+
+  function renderRef(){
+    const list=$('ref-list');
+    list.innerHTML=CANCERS.map(c=>{
+      const d=DATA[c];
+      const tags=[
+        ...d.primary.map(m=>`<span class="mk-tag p">${m}<span style="opacity:.7">●</span></span>`),
+        ...d.secondary.map(m=>`<span class="mk-tag s">${m}<span style="opacity:.7">▲</span></span>`),
+        ...d.alternative.map(m=>`<span class="mk-tag a">${m}<span style="opacity:.7">☆</span></span>`)
+      ].join('');
+      return `<div class="ref-row" data-c="${c}"><div class="ref-cancer">${c}</div><div class="ref-mks">${tags}</div></div>`;
+    }).join('');
+    list.querySelectorAll('.ref-row').forEach(r=>{
+      r.addEventListener('click',()=>showDetail(r.dataset.c));
+    });
+  }
+
+  function showDetail(cancer){
+    $('modal-title').textContent=cancer;
+    const d=DATA[cancer];const ex=EXPL[cancer];
+    const fmtList=cat=>d[cat].length?d[cat].map(m=>`${m}(${markerNames[m]||''})`).join('，'):'无';
+    let h=`<div class="ans-list" style="margin-bottom:14px">
+      <div class="ans-row"><span class="ans-tag p">首选</span><span class="ans-mk">${fmtList('primary')}</span></div>
+      <div class="ans-row"><span class="ans-tag s">次选</span><span class="ans-mk">${fmtList('secondary')}</span></div>
+      <div class="ans-row"><span class="ans-tag a">备选</span><span class="ans-mk">${fmtList('alternative')}</span></div>
+    </div>`;
+    if(ex){
+      h+=`<div class="expl-intro">${ex.intro}</div>`;
+      [...d.primary,...d.secondary,...d.alternative].forEach(m=>{
+        const cat=categoryOf(cancer,m);
+        const t=ex.markers&&ex.markers[m];
+        if(t)h+=`<div class="expl-mk ${CAT[cat]}"><div class="expl-mk-head"><span class="expl-mk-name">${m}(${markerNames[m]||''})</span><span class="ans-tag ${CAT[cat]}">${CAT_NAME[cat]}</span></div><div class="expl-mk-text">${t}</div></div>`;
+      });
+    }
+    $('modal-body').innerHTML=h;
+    $('modal').classList.remove('hidden');
+  }
+
+  function closeModal(){$('modal').classList.add('hidden')}
+
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      const isQ=t.dataset.m==='quiz';
+      $('quiz-view').classList.toggle('hidden',!isQ);
+      $('ref-view').classList.toggle('hidden',isQ);
+      if(!isQ&&!$('ref-list').children.length)renderRef();
+    });
+  });
+  $('submit').addEventListener('click',checkAnswer);
+  $('next').addEventListener('click',nextQuestion);
+  $('modal-close').addEventListener('click',closeModal);
+  $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});
+  document.addEventListener('keydown',e=>{
+    if(!$('modal').classList.contains('hidden')&&e.key==='Escape'){closeModal();return}
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(!$('quiz-view').classList.contains('hidden')){
+      if(!showing&&e.key==='Enter'){e.preventDefault();checkAnswer()}
+      else if(showing&&(e.key==='Enter'||e.key===' ')){e.preventDefault();nextQuestion()}
+    }
+  });
+
+  renderRef();
+  nextQuestion();
+})();
+</script>
+</body>
+</html>
