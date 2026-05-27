@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<title>中国法定传染病分类闯关 · 2025 新版</title>
+<style>
+:root{
+  --font-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --bg:#ffffff;--bg-2:#f5f5f4;--bg-3:#ececeb;
+  --text:#1a1a1a;--text-2:#525252;--text-3:#8a8a8a;
+  --border:#ececea;--border-2:#d4d4d2;
+  --primary:#1a1a1a;--primary-text:#ffffff;
+  --ok-bg:#e8f5ec;--ok-bd:#bcdfc6;--ok-tx:#1f6b3a;
+  --no-bg:#fdeceb;--no-bd:#f3c2bf;--no-tx:#b8362e;
+  --wn-bg:#fef4e6;--wn-bd:#f3d59a;--wn-tx:#92621a;
+  --in-bg:#eaf1fc;--in-bd:#b8d0f0;--in-tx:#1d4ed8;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d0d0d;--bg-2:#1a1a1a;--bg-3:#262626;
+    --text:#f5f5f5;--text-2:#a1a1a1;--text-3:#737373;
+    --border:#262626;--border-2:#3d3d3d;
+    --primary:#f5f5f5;--primary-text:#0d0d0d;
+    --ok-bg:rgba(46,160,90,.16);--ok-bd:rgba(110,210,140,.32);--ok-tx:#6ed28c;
+    --no-bg:rgba(200,70,60,.16);--no-bd:rgba(244,118,108,.32);--no-tx:#f4766c;
+    --wn-bg:rgba(170,110,30,.18);--wn-bd:rgba(232,176,102,.32);--wn-tx:#e8b066;
+    --in-bg:rgba(60,110,220,.16);--in-bd:rgba(120,160,240,.32);--in-tx:#86a8f2;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);font-size:15px;line-height:1.5;
+  color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px}
+h1.title{font-size:17px;font-weight:600;margin:0 0 18px;letter-spacing:-.01em;color:var(--text)}
+
+.cg{color:var(--text)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.cg-tabs{display:inline-flex;gap:4px;background:var(--bg-2);padding:3px;border-radius:10px;margin-bottom:18px}
+.cg-tab{
+  border:none;background:transparent;padding:7px 14px;
+  font-size:13px;color:var(--text-2);cursor:pointer;border-radius:7px;font-family:inherit;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:color .15s var(--ease),background .15s var(--ease);
+}
+.cg-tab.on{background:var(--bg);color:var(--text);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+
+.cg-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.cg-s{background:var(--bg-2);padding:12px 10px;border-radius:10px;text-align:center}
+.cg-s-l{font-size:11px;color:var(--text-2);margin-bottom:3px}
+.cg-s-v{font-size:18px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+
+.cg-prog{display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.cg-bar{height:3px;background:var(--bg-3);border-radius:2px;overflow:hidden;margin-bottom:14px}
+.cg-fill{height:100%;background:var(--text);transition:width .4s var(--ease-out)}
+
+.cg-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:14px;
+  padding:36px 20px;text-align:center;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.cg-card.in{animation:cardIn .28s var(--ease-out)}
+@keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.cg-name{font-size:22px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em;line-height:1.3}
+.cg-hint{font-size:13px;color:var(--text-3);margin:0}
+
+.cg-cho{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.cg-b{
+  padding:18px 8px;border:1px solid var(--border-2);border-radius:10px;
+  background:var(--bg);cursor:pointer;font-size:15px;font-weight:500;
+  color:var(--text);font-family:inherit;min-height:56px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:background .15s var(--ease),transform .1s var(--ease),border-color .15s var(--ease),opacity .15s var(--ease);
+}
+@media(hover:hover){.cg-b:hover:not(:disabled){background:var(--bg-2);border-color:var(--text-3)}}
+.cg-b:active:not(:disabled){transform:scale(.97);background:var(--bg-2)}
+.cg-b:disabled{cursor:default;opacity:.5}
+.cg-b.ok{background:var(--ok-bg);border-color:var(--ok-bd);color:var(--ok-tx);opacity:1;animation:pop .38s var(--ease-out)}
+.cg-b.no{background:var(--no-bg);border-color:var(--no-bd);color:var(--no-tx);opacity:1;animation:shake .35s var(--ease)}
+@keyframes pop{0%{transform:scale(.94)}55%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}22%,66%{transform:translateX(-4px)}44%,88%{transform:translateX(4px)}}
+
+.cg-fb{
+  padding:12px 14px;border-radius:10px;font-size:13.5px;
+  margin-bottom:12px;line-height:1.55;animation:fbIn .22s var(--ease-out);
+}
+@keyframes fbIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.cg-fb.ok{background:var(--ok-bg);color:var(--ok-tx)}
+.cg-fb.no{background:var(--no-bg);color:var(--no-tx)}
+
+.cg-next,.cg-rb{
+  width:100%;padding:14px;background:var(--primary);color:var(--primary-text);
+  border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:opacity .15s var(--ease),transform .1s var(--ease);
+}
+.cg-next:hover,.cg-rb:hover{opacity:.88}
+.cg-next:active,.cg-rb:active{transform:scale(.985)}
+.cg-rb{width:auto;padding:12px 32px}
+
+.cg-sec{margin-bottom:20px}
+.cg-sh{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.cg-st{font-size:15px;font-weight:600}
+.cg-sc{font-size:12px;color:var(--text-2);margin-left:auto;text-align:right}
+.cg-p{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:5px;letter-spacing:.02em;flex-shrink:0}
+.cg-p.A{background:var(--no-bg);color:var(--no-tx)}
+.cg-p.B{background:var(--wn-bg);color:var(--wn-tx)}
+.cg-p.C{background:var(--in-bg);color:var(--in-tx)}
+
+.cg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px}
+.cg-it{
+  padding:9px 11px;background:var(--bg-2);border-radius:8px;font-size:13px;
+  display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0;
+}
+.cg-it-n{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cg-it.star::after{content:'★';color:var(--wn-tx);font-size:11px;flex-shrink:0}
+
+.cg-res{text-align:center;padding:8px 0 4px}
+.cg-rn{font-size:52px;font-weight:600;line-height:1;margin-bottom:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cg-rl{font-size:13px;color:var(--text-2);margin-bottom:18px}
+
+.cg-mb{
+  background:var(--bg-2);border-radius:10px;padding:12px 14px;margin-bottom:18px;
+  text-align:left;max-height:min(50vh,320px);overflow-y:auto;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+}
+.cg-mh{font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text-2)}
+.cg-m{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;gap:8px}
+.cg-m:last-child{border-bottom:none}
+.cg-m-r{display:flex;gap:6px;align-items:center;flex-shrink:0;font-size:11px;color:var(--text-2)}
+
+.cg-h{display:none!important}
+
+.cg-kb{font-size:11px;color:var(--text-3);text-align:center;margin-top:10px;font-variant-numeric:tabular-nums}
+.cg-kb kbd{
+  display:inline-block;padding:1px 5px;border:1px solid var(--border-2);
+  border-bottom-width:2px;border-radius:4px;font-size:10.5px;
+  font-family:inherit;background:var(--bg);color:var(--text-2);margin:0 1px;
+}
+@media(hover:none){.cg-kb{display:none}}
+
+@media(max-width:480px){
+  .wrap{padding:16px 14px}
+  h1.title{font-size:16px;margin-bottom:14px}
+  .cg-card{padding:30px 16px;margin-bottom:12px}
+  .cg-name{font-size:20px}
+  .cg-stats{grid-template-columns:repeat(2,1fr)}
+  .cg-b{padding:16px 6px;font-size:14px;min-height:52px}
+  .cg-rn{font-size:44px}
+  .cg-grid{grid-template-columns:1fr 1fr;gap:5px}
+  .cg-it{font-size:12.5px;padding:8px 10px}
+  .cg-sc{font-size:11px}
+}
+@media(max-width:360px){
+  .cg-b{font-size:13px;padding:14px 4px;min-height:48px}
+  .cg-cho{gap:8px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 class="title">中国法定传染病分类闯关 · 2025 新版</h1>
+
+<div class="cg">
+  <div class="cg-tabs" role="tablist">
+    <button class="cg-tab on" data-m="quiz" type="button">闯关模式</button>
+    <button class="cg-tab" data-m="table" type="button">速查表</button>
+  </div>
+
+  <div id="qv">
+    <div class="cg-stats">
+      <div class="cg-s"><div class="cg-s-l">总数</div><div class="cg-s-v">40</div></div>
+      <div class="cg-s"><div class="cg-s-l">甲类</div><div class="cg-s-v">2</div></div>
+      <div class="cg-s"><div class="cg-s-l">乙类</div><div class="cg-s-v">27</div></div>
+      <div class="cg-s"><div class="cg-s-l">丙类</div><div class="cg-s-v">11</div></div>
+    </div>
+
+    <div id="qg">
+      <div class="cg-prog"><span id="pt">第 1 / 40 题</span><span id="st">正确 0 · 错误 0</span></div>
+      <div class="cg-bar"><div class="cg-fill" id="pb" style="width:0%"></div></div>
+      <div class="cg-card in"><p class="cg-name" id="dn">—</p><p class="cg-hint" id="dh">—</p></div>
+      <div class="cg-cho">
+        <button class="cg-b" data-c="A" type="button">甲类</button>
+        <button class="cg-b" data-c="B" type="button">乙类</button>
+        <button class="cg-b" data-c="C" type="button">丙类</button>
+      </div>
+      <div class="cg-fb cg-h" id="fb"></div>
+      <button class="cg-next cg-h" id="nb" type="button">下一题</button>
+      <div class="cg-kb"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 选答 · <kbd>Enter</kbd> 下一题</div>
+    </div>
+
+    <div id="qr" class="cg-h">
+      <div class="cg-res"><div class="cg-rn" id="fs">0/40</div><div class="cg-rl" id="fl">完成!</div></div>
+      <div class="cg-stats">
+        <div class="cg-s"><div class="cg-s-l">甲类</div><div class="cg-s-v" id="rA">0/2</div></div>
+        <div class="cg-s"><div class="cg-s-l">乙类</div><div class="cg-s-v" id="rB">0/27</div></div>
+        <div class="cg-s"><div class="cg-s-l">丙类</div><div class="cg-s-v" id="rC">0/11</div></div>
+        <div class="cg-s"><div class="cg-s-l">用时</div><div class="cg-s-v" id="rT">—</div></div>
+      </div>
+      <div id="mbox" class="cg-mb cg-h"><div class="cg-mh">错题回顾</div><div id="ml"></div></div>
+      <div style="text-align:center"><button class="cg-rb" id="rb" type="button">再来一次</button></div>
+    </div>
+  </div>
+
+  <div id="tv" class="cg-h">
+    <div class="cg-sec">
+      <div class="cg-sh"><span class="cg-p A">甲类</span><span class="cg-st">强制管理</span><span class="cg-sc">2 种 · 2 小时上报</span></div>
+      <div class="cg-grid" id="lA"></div>
+    </div>
+    <div class="cg-sec">
+      <div class="cg-sh"><span class="cg-p B">乙类</span><span class="cg-st">严格管理</span><span class="cg-sc">27 种 · ★ 乙类甲管</span></div>
+      <div class="cg-grid" id="lB"></div>
+    </div>
+    <div class="cg-sec">
+      <div class="cg-sh"><span class="cg-p C">丙类</span><span class="cg-st">监测管理</span><span class="cg-sc">11 种</span></div>
+      <div class="cg-grid" id="lC"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  const D=[
+    {n:'鼠疫',c:'A',h:'烈性传染病 · 鼠传播'},
+    {n:'霍乱',c:'A',h:'烈性传染病 · 水源传播'},
+    {n:'新型冠状病毒感染',c:'B',h:'2025 新法正式入法'},
+    {n:'传染性非典型肺炎',c:'B',s:1,h:'SARS · 乙类甲管'},
+    {n:'艾滋病',c:'B',h:'HIV 感染'},
+    {n:'病毒性肝炎',c:'B',h:'甲乙丙丁戊五型'},
+    {n:'脊髓灰质炎',c:'B',s:1,h:'小儿麻痹 · 乙类甲管'},
+    {n:'人感染新亚型流感',c:'B',s:1,h:'H5N1+H7N9 合并 · 乙类甲管'},
+    {n:'麻疹',c:'B',h:'急性出疹性 · 呼吸道'},
+    {n:'流行性出血热',c:'B',h:'肾综合征出血热 · 汉坦病毒'},
+    {n:'狂犬病',c:'B',h:'几乎 100% 致死率'},
+    {n:'流行性乙型脑炎',c:'B',h:'乙脑 · 蚊媒 · 夏秋'},
+    {n:'登革热',c:'B',h:'蚊媒 · 伊蚊'},
+    {n:'猴痘',c:'B',h:'2023.09 纳入'},
+    {n:'炭疽',c:'B',s:1,h:'其中肺炭疽 · 乙类甲管'},
+    {n:'细菌性和阿米巴性痢疾',c:'B',h:'肠道传染病'},
+    {n:'肺结核',c:'B',h:'结核分枝杆菌'},
+    {n:'伤寒和副伤寒',c:'B',h:'沙门菌 · 肠道'},
+    {n:'流行性脑脊髓膜炎',c:'B',h:'流脑 · 脑膜炎奈瑟菌'},
+    {n:'百日咳',c:'B',h:'痉挛性咳嗽 · 百日咳鲍特菌'},
+    {n:'白喉',c:'B',h:'白喉杆菌 · 假膜'},
+    {n:'新生儿破伤风',c:'B',h:'脐带感染'},
+    {n:'猩红热',c:'B',h:'A 群链球菌'},
+    {n:'布鲁氏菌病',c:'B',h:'布病 · 人畜共患'},
+    {n:'淋病',c:'B',h:'淋球菌 · 性传播'},
+    {n:'梅毒',c:'B',h:'梅毒螺旋体 · 性传播'},
+    {n:'钩端螺旋体病',c:'B',h:'钩体病 · 鼠尿污染'},
+    {n:'血吸虫病',c:'B',h:'日本血吸虫 · 钉螺'},
+    {n:'疟疾',c:'B',h:'疟原虫 · 按蚊'},
+    {n:'流行性感冒',c:'C',h:'季节性流感'},
+    {n:'流行性腮腺炎',c:'C',h:'腮腺炎病毒'},
+    {n:'风疹',c:'C',h:'风疹病毒 · 孕期致畸'},
+    {n:'急性出血性结膜炎',c:'C',h:'俗称红眼病'},
+    {n:'麻风病',c:'C',h:'麻风分枝杆菌 · 慢性'},
+    {n:'流行性和地方性斑疹伤寒',c:'C',h:'立克次体'},
+    {n:'黑热病',c:'C',h:'利什曼原虫 · 白蛉'},
+    {n:'包虫病',c:'C',h:'棘球蚴 · 人畜共患'},
+    {n:'丝虫病',c:'C',h:'丝虫 · 蚊媒'},
+    {n:'手足口病',c:'C',h:'肠道病毒 71 等'},
+    {n:'感染性腹泻病',c:'C',h:'除甲类霍乱、乙类痢疾/伤寒之外'}
+  ];
+  const CN={A:'甲类',B:'乙类',C:'丙类'};
+  const TOTAL=D.length;
+  let order=[],idx=0,correct=0,answers=[],answered=false,startTime=0;
+  const $=id=>document.getElementById(id);
+
+  const shuffle=a=>{const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r};
+
+  function start(){
+    order=shuffle(D);idx=0;correct=0;answers=[];startTime=Date.now();
+    $('qg').classList.remove('cg-h');
+    $('qr').classList.add('cg-h');
+    render();
+  }
+
+  function pulseCard(){
+    const c=document.querySelector('.cg-card');
+    c.classList.remove('in');
+    void c.offsetWidth;
+    c.classList.add('in');
+  }
+
+  function render(){
+    answered=false;
+    const d=order[idx];
+    $('dn').textContent=d.n;
+    $('dh').textContent=d.h;
+    $('pt').textContent=`第 ${idx+1} / ${TOTAL} 题`;
+    $('st').textContent=`正确 ${correct} · 错误 ${idx-correct}`;
+    $('pb').style.width=`${(idx/TOTAL)*100}%`;
+    document.querySelectorAll('.cg-b').forEach(b=>{b.disabled=false;b.className='cg-b'});
+    $('fb').classList.add('cg-h');
+    $('nb').classList.add('cg-h');
+    pulseCard();
+  }
+
+  function answer(cat){
+    if(answered)return;
+    answered=true;
+    const d=order[idx];
+    const ok=cat===d.c;
+    if(ok)correct++;
+    answers.push({n:d.n,picked:cat,correct:d.c,ok,s:d.s});
+    document.querySelectorAll('.cg-b').forEach(b=>{
+      b.disabled=true;
+      const bc=b.dataset.c;
+      if(bc===d.c)b.classList.add('ok');
+      else if(bc===cat&&!ok)b.classList.add('no');
+    });
+    const fb=$('fb');
+    fb.classList.remove('cg-h');
+    fb.className=ok?'cg-fb ok':'cg-fb no';
+    fb.innerHTML=ok
+      ?`<strong>正确。</strong>${d.n} 属于 <strong>${CN[d.c]}</strong>${d.s?' (乙类甲管 ★)':''} — ${d.h}`
+      :`<strong>不对。</strong>你选了 ${CN[cat]}，正确是 <strong>${CN[d.c]}</strong>${d.s?' (乙类甲管 ★)':''} — ${d.h}`;
+    $('st').textContent=`正确 ${correct} · 错误 ${idx+1-correct}`;
+    $('pb').style.width=`${((idx+1)/TOTAL)*100}%`;
+    const nb=$('nb');
+    nb.classList.remove('cg-h');
+    nb.textContent=idx===TOTAL-1?'查看结果':'下一题';
+    // focus next so Enter advances; skip on touch to avoid scroll-jump
+    if(window.matchMedia('(hover:hover)').matches) nb.focus({preventScroll:true});
+  }
+
+  function next(){
+    idx++;
+    if(idx>=TOTAL)showResults();
+    else render();
+  }
+
+  function showResults(){
+    $('qg').classList.add('cg-h');
+    $('qr').classList.remove('cg-h');
+    $('fs').textContent=`${correct}/${TOTAL}`;
+    const pct=Math.round((correct/TOTAL)*100);
+    let msg='';
+    if(pct===100)msg='满分 — 教科书级表现';
+    else if(pct>=90)msg='出色 — 临考状态良好';
+    else if(pct>=75)msg='基础扎实 — 错题重点复习';
+    else if(pct>=60)msg='需要加强 — 建议对照速查表';
+    else msg='需要系统复习 — 先过一遍速查表';
+    $('fl').textContent=`${msg} · ${pct}%`;
+    const s={A:{ok:0,t:0},B:{ok:0,t:0},C:{ok:0,t:0}};
+    answers.forEach(a=>{s[a.correct].t++;if(a.ok)s[a.correct].ok++});
+    $('rA').textContent=`${s.A.ok}/${s.A.t}`;
+    $('rB').textContent=`${s.B.ok}/${s.B.t}`;
+    $('rC').textContent=`${s.C.ok}/${s.C.t}`;
+    const sec=Math.round((Date.now()-startTime)/1000);
+    $('rT').textContent=sec<60?`${sec}秒`:`${Math.floor(sec/60)}分${sec%60}秒`;
+    const wr=answers.filter(a=>!a.ok);
+    const mb=$('mbox');
+    if(wr.length>0){
+      mb.classList.remove('cg-h');
+      $('ml').innerHTML=wr.map(m=>`<div class="cg-m"><span>${m.n}${m.s?' ★':''}</span><span class="cg-m-r"><span class="cg-p ${m.picked}">你选 ${CN[m.picked]}</span><span>→</span><span class="cg-p ${m.correct}">${CN[m.correct]}</span></span></div>`).join('');
+    }else{
+      mb.classList.add('cg-h');
+    }
+    if(window.matchMedia('(hover:hover)').matches) $('rb').focus({preventScroll:true});
+  }
+
+  function renderTable(){
+    const g={A:[],B:[],C:[]};
+    D.forEach(d=>g[d.c].push(d));
+    ['A','B','C'].forEach(cat=>{
+      $('l'+cat).innerHTML=g[cat].map(d=>`<div class="cg-it${d.s?' star':''}"><span class="cg-it-n" title="${d.h}">${d.n}</span></div>`).join('');
+    });
+  }
+
+  document.querySelectorAll('.cg-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.cg-tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      const isQ=t.dataset.m==='quiz';
+      $('qv').classList.toggle('cg-h',!isQ);
+      $('tv').classList.toggle('cg-h',isQ);
+    });
+  });
+  document.querySelectorAll('.cg-b').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.c)));
+  $('nb').addEventListener('click',next);
+  $('rb').addEventListener('click',start);
+
+  // Keyboard shortcuts: 1/2/3 to answer, Enter to advance / restart
+  document.addEventListener('keydown',e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    const inQuiz=!$('qg').classList.contains('cg-h');
+    const inRes=!$('qr').classList.contains('cg-h');
+    if(inQuiz){
+      if(!answered&&(e.key==='1'||e.key==='2'||e.key==='3')){
+        e.preventDefault();
+        answer(['A','B','C'][+e.key-1]);
+      }else if(answered&&(e.key==='Enter'||e.key===' ')){
+        e.preventDefault();next();
+      }
+    }else if(inRes&&(e.key==='Enter'||e.key===' ')){
+      e.preventDefault();start();
+    }
+  });
+
+  renderTable();
+  start();
+})();
+</script>
+</body>
+</html>
