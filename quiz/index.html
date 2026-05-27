@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f0e0d" media="(prefers-color-scheme: dark)">
+<title>Quizzes · Jiahao Xie</title>
+<meta name="description" content="临床医学小测试合集 — 自学随手考。">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+:root{
+  --ink-deep:#0f0e0d;--ink-black:#1a1816;--ink-light:#3d3833;--ink-muted:#6b6560;--ink-ghost:#9a9590;
+  --paper:#faf9f7;--paper-warm:#f5f3ef;--paper-dark:#ebe8e2;--paper-line:#e8e5df;
+  --gold:#c4a35a;--gold-light:#d4b86a;--gold-dark:#a88a45;--gold-muted:rgba(196,163,90,.15);
+  --font-serif:"Playfair Display","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --font-body:"Inter",-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink-deep:#f5f3ef;--ink-black:#ebe8e2;--ink-light:#c8c2b8;--ink-muted:#8a8580;--ink-ghost:#5a5550;
+    --paper:#0f0e0d;--paper-warm:#1a1816;--paper-dark:#262320;--paper-line:#2f2c28;
+    --gold:#d4b86a;--gold-light:#e8d59a;--gold-dark:#b8944a;--gold-muted:rgba(212,184,106,.18);
+  }
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);font-size:16px;line-height:1.6;
+  color:var(--ink-black);background:var(--paper);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.wrap{max-width:720px;margin:0 auto;padding:48px 24px 64px}
+
+.back{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--ink-muted);text-decoration:none;
+  margin-bottom:32px;letter-spacing:.02em;
+  -webkit-tap-highlight-color:transparent;
+  transition:color .2s var(--ease-out);
+}
+.back:hover{color:var(--ink-deep)}
+.back::before{content:"←";font-size:14px}
+
+.head{margin-bottom:48px;border-bottom:1px solid var(--paper-line);padding-bottom:32px}
+.kicker{
+  display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-dark);font-weight:500;margin-bottom:14px;
+}
+h1{
+  font-family:var(--font-serif);font-weight:500;
+  font-size:clamp(36px,6vw,52px);line-height:1.1;letter-spacing:-.01em;
+  color:var(--ink-deep);margin-bottom:14px;
+}
+.lede{font-size:16px;color:var(--ink-muted);max-width:54ch;line-height:1.65}
+
+.list{display:flex;flex-direction:column;gap:18px}
+
+.card{
+  display:block;position:relative;
+  background:var(--paper-warm);
+  border:1px solid var(--paper-line);border-radius:14px;
+  padding:28px 28px 26px;text-decoration:none;color:inherit;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .35s var(--ease-out),border-color .25s var(--ease-out),box-shadow .25s var(--ease-out),background .25s var(--ease-out);
+}
+@media(hover:hover){
+  .card:hover{
+    transform:translateY(-2px);
+    border-color:var(--gold);
+    box-shadow:0 6px 24px rgba(196,163,90,.12),0 1px 3px rgba(0,0,0,.04);
+    background:var(--paper);
+  }
+  .card:hover .cta{color:var(--gold-dark);transform:translateX(4px)}
+  .card:hover .title{color:var(--ink-deep)}
+}
+.card:active{transform:translateY(0)}
+
+.card-kicker{
+  display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-dark);font-weight:600;margin-bottom:10px;
+}
+.title{
+  font-family:var(--font-serif);font-weight:500;
+  font-size:26px;line-height:1.2;letter-spacing:-.005em;
+  color:var(--ink-black);margin-bottom:10px;
+  transition:color .25s var(--ease-out);
+}
+.title small{font-size:13px;color:var(--ink-ghost);font-weight:400;letter-spacing:0;margin-left:6px;font-family:var(--font-body)}
+.copy{font-size:14.5px;color:var(--ink-muted);line-height:1.65;margin-bottom:18px}
+
+.meta{
+  display:flex;gap:14px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--ink-ghost);letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;
+}
+.meta span{display:inline-flex;align-items:center;gap:4px}
+.meta span::before{content:"·";color:var(--gold);margin-right:2px;font-weight:600}
+.meta span:first-child::before{display:none;margin:0}
+
+.cta{
+  display:inline-block;margin-top:16px;
+  font-size:13px;color:var(--ink-light);font-weight:500;letter-spacing:.02em;
+  transition:color .25s var(--ease-out),transform .25s var(--ease-out);
+}
+
+.foot{
+  margin-top:56px;padding-top:24px;border-top:1px solid var(--paper-line);
+  font-size:12px;color:var(--ink-ghost);text-align:center;line-height:1.7;
+}
+.foot a{color:var(--ink-muted);text-decoration:none;border-bottom:1px dotted var(--ink-ghost)}
+.foot a:hover{color:var(--gold-dark);border-bottom-color:var(--gold)}
+
+@media(max-width:560px){
+  .wrap{padding:32px 20px 48px}
+  .head{margin-bottom:36px;padding-bottom:24px}
+  .card{padding:22px 20px 20px}
+  .title{font-size:22px}
+  .copy{font-size:14px}
+  .list{gap:14px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    transition-duration:.001ms!important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="back">Back to site</a>
+
+  <header class="head">
+    <span class="kicker">Clinical Medicine · 自学小测试</span>
+    <h1>Quizzes</h1>
+    <p class="lede">大三临床学习路上随手搭的几个小测验，配速查表，手机端友好。打开就用，无需登录。</p>
+  </header>
+
+  <div class="list">
+    <a class="card" href="infectious_disease_classification_game_2025.html">
+      <span class="card-kicker">公共卫生 · Public Health</span>
+      <div class="title">中国法定传染病分类闯关 <small>2025 新版</small></div>
+      <p class="copy">40 种法定传染病随机抽题，三类速辨（甲 / 乙 / 丙），含 4 种乙类甲管标记；自带速查表与错题回顾。</p>
+      <div class="meta"><span>40 道题</span><span>2 / 27 / 11 分布</span><span>键盘 1 2 3 选答</span></div>
+      <span class="cta">Open quiz →</span>
+    </a>
+
+    <a class="card" href="tumor-marker-game2025.html">
+      <span class="card-kicker">诊断学 · Tumor Biomarkers</span>
+      <div class="title">肿瘤标志物分类学习游戏</div>
+      <p class="copy">14 种常见癌症 × 17 个肿瘤标志物，按首选 / 次选 / 备选分类作答；答错给出每个标志物的生理机制详解。</p>
+      <div class="meta"><span>14 癌种</span><span>17 标志物</span><span>含机制讲解</span></div>
+      <span class="cta">Open quiz →</span>
+    </a>
+  </div>
+
+  <footer class="foot">
+    数据来源 · 大连医科大学第一临床学院教学整理 · 仅供学习<br>
+    <a href="../">Jiahao Xie</a> · <a href="https://github.com/AxiEj" target="_blank" rel="noopener">@AxiEj</a>
+  </footer>
+</div>
+</body>
+</html>
