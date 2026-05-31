@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吴翰 · 5.31 生日快乐</title>
+<meta name="description" content="祝吴翰 5.31 今日生日快乐：蓝黑电光、少年漫画张力、热血出航风格生日页。">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root{
+    --bg:#02040b;
+    --ink:#070910;
+    --panel:#0a1020;
+    --line:#dce8ff;
+    --muted:#9fb0d2;
+    --white:#f7fbff;
+    --blue:#1268ff;
+    --cyan:#46d9ff;
+    --red:#e63131;
+    --gold:#ffd37a;
+    --shadow-blue:0 0 22px rgba(29,113,255,.85),0 0 54px rgba(39,202,255,.35);
+    --shadow-red:0 0 22px rgba(230,49,49,.65),0 0 48px rgba(255,161,70,.22);
+    --font-display:"Arial Black","Impact","Noto Serif SC","Microsoft YaHei",sans-serif;
+    --font-body:"Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--bg);}
+  body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--white);
+    font-family:var(--font-body);
+    background:
+      radial-gradient(circle at 72% 12%, rgba(18,104,255,.28), transparent 30%),
+      radial-gradient(circle at 90% 66%, rgba(230,49,49,.18), transparent 26%),
+      linear-gradient(180deg,#02040b 0%,#050711 48%,#010207 100%);
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:.24;mix-blend-mode:screen;
+    background-image:
+      repeating-linear-gradient(105deg, transparent 0 12px, rgba(255,255,255,.045) 13px, transparent 14px),
+      radial-gradient(circle at center, transparent 0 44%, rgba(255,255,255,.1) 45%, transparent 46%);
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .scanline{
+    position:fixed;inset:0;z-index:49;pointer-events:none;opacity:.09;
+    background:repeating-linear-gradient(180deg, transparent 0 3px, rgba(255,255,255,.22) 4px);
+    mix-blend-mode:soft-light;
+  }
+  .progress{
+    position:fixed;left:0;top:0;height:3px;width:0;z-index:120;
+    background:linear-gradient(90deg,var(--cyan),var(--blue),var(--red));
+    box-shadow:var(--shadow-blue);
+  }
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:110;
+    height:70px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(16px,4vw,62px);
+    background:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.58));
+    border-bottom:1px solid rgba(70,217,255,.38);
+    backdrop-filter:blur(14px);
+  }
+  .brand{display:flex;align-items:center;gap:13px;font-weight:900;letter-spacing:.06em;}
+  .brand .mark{
+    width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.2),rgba(18,104,255,.06));
+    border:1px solid rgba(255,255,255,.6);box-shadow:var(--shadow-blue);
+    transform:rotate(-9deg);
+  }
+  .brand strong{font-family:var(--font-display);font-size:clamp(20px,2vw,31px);text-shadow:3px 3px 0 #000,0 0 18px rgba(70,217,255,.8);}
+  .brand span:last-child{font-size:13px;color:#b8dcff;border-left:1px solid rgba(255,255,255,.3);padding-left:13px;}
+  .nav-links{display:flex;align-items:center;gap:clamp(14px,3vw,70px);font-weight:800;color:#d7e2f8;}
+  .nav-links a{position:relative;padding:25px 0 21px;text-shadow:0 0 12px rgba(70,217,255,.35);}
+  .nav-links a::after{content:"";position:absolute;left:50%;right:50%;bottom:0;height:3px;background:var(--cyan);box-shadow:var(--shadow-blue);transition:.28s ease;}
+  .nav-links a:hover::after,.nav-links a.active::after{left:0;right:0;}
+  .nav-icons{display:flex;gap:17px;color:#e9f3ff;font-size:22px;opacity:.9;}
+
+  .hero{
+    position:relative;min-height:100svh;isolation:isolate;overflow:hidden;
+    padding:110px clamp(18px,5vw,112px) 34px;
+    display:grid;grid-template-rows:1fr auto;align-items:center;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:-4;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.2) contrast(1.06);}
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(90deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.02) 35%,rgba(0,0,0,.34) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.06) 0%,rgba(1,4,12,.14) 55%,rgba(1,4,12,.95) 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:auto -8vw 11vh -8vw;height:28vh;z-index:-1;
+    background:linear-gradient(90deg,transparent,rgba(18,104,255,.5),rgba(70,217,255,.15),transparent);
+    filter:blur(18px);transform:skewY(-4deg);
+  }
+  .lightning{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+  .lightning i{position:absolute;height:2px;width:42vw;background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),transparent);box-shadow:var(--shadow-blue);transform:rotate(-18deg);animation:flash 4.6s infinite both;opacity:.0;}
+  .lightning i:nth-child(1){top:24%;left:14%;animation-delay:.4s;}
+  .lightning i:nth-child(2){top:48%;left:50%;width:30vw;animation-delay:1.8s;}
+  .lightning i:nth-child(3){top:75%;left:22%;width:54vw;animation-delay:3s;}
+  @keyframes flash{0%,78%,100%{opacity:0;transform:translateX(-40px) rotate(-18deg);}80%,84%{opacity:1;transform:translateX(30px) rotate(-18deg);}86%{opacity:.25;}}
+
+  .hero-copy{max-width:min(760px,54vw);position:relative;z-index:2;margin-top:3vh;}
+  .kicker{display:flex;align-items:center;gap:12px;margin-bottom:17px;color:#b8d9ff;font-weight:900;letter-spacing:.22em;text-transform:uppercase;}
+  .kicker::before{content:"";width:64px;height:2px;background:var(--cyan);box-shadow:var(--shadow-blue);}
+  .title{
+    font-family:var(--font-display);
+    font-size:clamp(62px,10vw,158px);
+    line-height:.86;letter-spacing:-.06em;
+    text-transform:uppercase;
+    text-shadow:5px 5px 0 #000,10px 10px 0 rgba(18,104,255,.65),0 0 34px rgba(70,217,255,.68);
+  }
+  .title .name{display:inline-block;color:#fff;filter:drop-shadow(0 0 10px rgba(255,255,255,.34));}
+  .title .happy{
+    display:inline-block;margin-top:7px;
+    color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.95);
+    background:linear-gradient(180deg,#fff 0%,#78dfff 42%,#1268ff 78%,#061242 100%);
+    -webkit-background-clip:text;background-clip:text;
+  }
+  .date-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin:18px 0 14px;font-weight:900;}
+  .date{font-family:var(--font-display);font-size:clamp(36px,5vw,76px);color:#8ecfff;text-shadow:3px 3px 0 #000,var(--shadow-blue);letter-spacing:.06em;}
+  .today{font-size:clamp(21px,2.6vw,42px);font-weight:1000;text-shadow:2px 2px 0 #000;}
+  .tagline{font-size:clamp(17px,1.8vw,28px);font-weight:800;color:#b7c9e9;line-height:1.55;text-shadow:0 2px 0 #000;max-width:720px;}
+  .handwrite{margin-top:8px;font-size:clamp(21px,2.8vw,40px);font-weight:900;color:#247aff;text-shadow:0 0 16px rgba(36,122,255,.9),2px 2px 0 #000;transform:rotate(-1.4deg);}
+  .chips{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 28px;}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(130,190,255,.55);background:rgba(3,10,26,.74);padding:9px 14px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);font-weight:900;color:#dbeeff;box-shadow:inset 0 0 22px rgba(18,104,255,.18);}
+  .cta-row{display:flex;align-items:center;gap:17px;flex-wrap:wrap;}
+  .manga-btn{
+    position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    min-width:292px;padding:18px 30px;
+    font-size:clamp(20px,2.3vw,32px);font-family:var(--font-display);letter-spacing:.05em;
+    color:white;background:linear-gradient(180deg,#1f7dff,#06399e 55%,#041a55);
+    border:2px solid rgba(214,234,255,.92);box-shadow:var(--shadow-blue),inset 0 0 22px rgba(255,255,255,.16),8px 8px 0 rgba(0,0,0,.8);
+    transform:skewX(-8deg);overflow:hidden;cursor:pointer;
+  }
+  .manga-btn span{transform:skewX(8deg);}
+  .manga-btn::before{content:"";position:absolute;inset:5px;border:1px dashed rgba(255,255,255,.54);}
+  .manga-btn::after{content:"";position:absolute;inset:-40% auto -40% -28%;width:28%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:rotate(18deg);animation:sheen 3.4s infinite;}
+  @keyframes sheen{0%,58%{left:-35%;}82%,100%{left:118%;}}
+  .sub-cta{font-weight:800;color:#b9c8e9;text-shadow:0 0 12px #000;}
+  .bubble{
+    position:absolute;z-index:3;max-width:190px;padding:18px 18px 20px;color:#060910;background:#f8fbff;border:3px solid #060910;border-radius:50% 44% 48% 42%;box-shadow:7px 7px 0 rgba(0,0,0,.75);font-weight:1000;line-height:1.45;transform:rotate(-4deg);
+  }
+  .bubble::after{content:"";position:absolute;right:18px;bottom:-18px;border-width:18px 8px 0 18px;border-style:solid;border-color:#f8fbff transparent transparent transparent;filter:drop-shadow(3px 3px 0 #05070c);}
+  .bubble.left{left:18px;top:31vh;}
+  .bubble.right{right:clamp(12px,3vw,62px);top:18vh;transform:rotate(4deg);}
+
+  .hero-cards{position:relative;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;max-width:1500px;margin-inline:auto;width:100%;}
+  .hero-card{
+    position:relative;min-height:172px;border:1px solid rgba(197,221,255,.72);border-radius:14px;overflow:hidden;background:#081226;
+    box-shadow:0 14px 36px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.1);
+    transform:skewX(-2.5deg);transition:transform .28s ease,box-shadow .28s ease;
+  }
+  .hero-card:hover{transform:translateY(-6px) skewX(-2.5deg);box-shadow:0 18px 44px rgba(0,0,0,.75),var(--shadow-blue);}
+  .hero-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.06);}
+  .hero-card::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.86),rgba(0,0,0,.25) 58%,rgba(0,0,0,.62));z-index:1;}
+  .hero-card .content{position:relative;z-index:2;height:100%;padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;transform:skewX(2.5deg);}
+  .num{font-family:var(--font-display);font-size:24px;color:#3e86ff;text-shadow:var(--shadow-blue);font-style:italic;}
+  .hero-card h3{font-family:var(--font-display);font-size:clamp(28px,3vw,42px);line-height:1;text-shadow:4px 4px 0 #000;}
+  .hero-card p{color:#d2d9e8;font-weight:700;line-height:1.45;}
+  .round-icon{position:absolute;right:18px;bottom:18px;z-index:3;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid #fff;background:rgba(0,0,0,.58);font-size:24px;box-shadow:var(--shadow-blue);}
+
+  .win-panel-wrap{
+    position:relative;z-index:5;max-width:1180px;margin:28px auto 0;
+    background:#fff;border:3px solid #050505;box-shadow:10px 10px 0 #050505;
+    transform:none;overflow:hidden;
+  }
+  .win-panel-wrap img{width:100%;height:auto;display:block;filter:contrast(1.06) grayscale(1);}
+  .win-speech{
+    position:absolute;left:85.0%;top:43.6%;transform:translate(-50%,-50%);
+    display:block;writing-mode:vertical-rl;text-orientation:upright;
+    color:#0a0a0a;font-family:var(--font-display);font-size:clamp(20px,2.5vw,45px);font-weight:1000;letter-spacing:.08em;line-height:1.05;
+    text-align:center;text-shadow:none;pointer-events:none;
+  }
+
+  section{position:relative;overflow:hidden;}
+  .manga-page{
+    padding:clamp(54px,7vw,108px) clamp(18px,5vw,96px);
+    background:#f7f5ef;color:#080808;border-top:4px solid #050505;
+  }
+  .manga-page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+    background-image:radial-gradient(#111 1px,transparent 1.4px);
+    background-size:12px 12px;mix-blend-mode:multiply;
+  }
+  .manga-page.alt{background:#fff;}
+  .manga-page.final{padding-bottom:clamp(70px,9vw,132px);}
+  .manga-inner{position:relative;z-index:2;max-width:1240px;margin:0 auto;}
+  .manga-head{
+    display:flex;align-items:end;justify-content:space-between;gap:18px;
+    border-bottom:3px solid #050505;padding-bottom:14px;margin-bottom:30px;
+  }
+  .manga-kicker{
+    font-family:var(--font-display);font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#050505;opacity:.72;margin-bottom:8px;
+  }
+  .manga-title{
+    font-family:var(--font-display);font-size:clamp(38px,6vw,78px);line-height:.95;
+    letter-spacing:-.05em;color:#050505;text-shadow:none;
+  }
+  .manga-title span{color:#fff;-webkit-text-stroke:1.6px #050505;text-shadow:none;}
+  .manga-stamp{
+    flex:none;border:3px solid #050505;background:#fff;padding:10px 16px;
+    font-family:var(--font-display);font-size:clamp(18px,2.5vw,34px);line-height:1;
+    box-shadow:6px 6px 0 #050505;transform:rotate(2deg);
+  }
+  .manga-lead{
+    margin:26px auto 0;max-width:900px;text-align:center;
+    font-family:var(--font-display);font-size:clamp(28px,5vw,72px);line-height:1.05;
+    color:#050505;
+  }
+  .manga-lead small{
+    display:block;margin-top:12px;font-family:var(--font-body);font-size:clamp(15px,2vw,22px);
+    font-weight:900;letter-spacing:.16em;
+  }
+  .manga-plates{display:grid;grid-template-columns:1fr;gap:30px;}
+  .wide-ink-frame,.portrait-ink-frame{
+    position:relative;background:#fff;border:4px solid #050505;box-shadow:10px 10px 0 #050505;overflow:hidden;
+  }
+  .wide-ink-frame img,.portrait-ink-frame img{width:100%;display:block;filter:grayscale(1) contrast(1.04);}
+  .wide-ink-frame figcaption,.portrait-ink-frame figcaption{
+    position:absolute;left:18px;bottom:18px;background:#fff;border:3px solid #050505;
+    padding:8px 14px;font-family:var(--font-display);font-size:clamp(24px,4vw,54px);line-height:.95;
+    box-shadow:5px 5px 0 #050505;color:#050505;
+  }
+  .wide-ink-frame:nth-child(even){transform:translateX(18px);}
+  .character-plates{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:34px;}
+  .portrait-ink-frame figcaption{font-size:clamp(22px,3vw,44px);}
+  .minimal-panels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ink-panel{
+    min-height:230px;background:#fff;border:3px solid #050505;padding:24px;
+    box-shadow:8px 8px 0 #050505;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .ink-panel:nth-child(2){transform:translateY(16px);}
+  .ink-panel .num{
+    color:#050505;text-shadow:none;font-family:var(--font-display);font-size:24px;font-style:italic;
+  }
+  .ink-panel h3{
+    font-family:var(--font-display);font-size:clamp(30px,4vw,58px);line-height:1;
+    color:#050505;text-shadow:none;margin:24px 0 10px;
+  }
+  .ink-panel p{font-weight:1000;font-size:clamp(16px,2vw,22px);color:#050505;}
+  .ink-panel.screentone{
+    background-image:radial-gradient(#050505 1.1px,transparent 1.6px);
+    background-size:10px 10px;background-color:#fff;
+  }
+  .ink-panel.screentone > *{display:inline-block;background:#fff;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:.05em .12em;}
+  .final-manga{
+    max-width:900px;margin:0 auto;text-align:center;background:#fff;border:4px solid #050505;
+    padding:clamp(30px,6vw,72px);box-shadow:12px 12px 0 #050505;
+  }
+  .final-manga h2{
+    font-family:var(--font-display);font-size:clamp(44px,8vw,112px);line-height:.92;color:#050505;text-shadow:none;
+  }
+  .final-manga p{
+    margin-top:18px;font-family:var(--font-display);font-size:clamp(24px,4vw,54px);font-weight:1000;color:#050505;
+  }
+  .final-line{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:24px;color:#050505;font-weight:1000;letter-spacing:.18em;text-transform:uppercase;}
+  .star{color:#050505;text-shadow:none;}
+  .burst{position:fixed;left:var(--x);top:var(--y);width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:130;box-shadow:0 0 0 2px var(--cyan),0 0 24px var(--cyan);animation:burst .7s ease-out forwards;}
+  @keyframes burst{to{transform:scale(26);opacity:0;}}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:none;}
+  @media (max-width:1100px){
+    .nav-links{display:none;}.nav-icons{font-size:18px;}.hero{padding-top:92px;}.hero-copy{max-width:74vw;}.bubble{display:none;}.hero-cards,.minimal-panels,.character-plates{grid-template-columns:1fr;}.hero-card{min-height:210px;}.ink-panel:nth-child(2){transform:none;}.win-panel-wrap{margin-top:20px;}.win-speech{left:85.0%;top:43.6%;font-size:clamp(15px,5vw,30px);}
+  }
+  @media (max-width:680px){
+    .brand span:last-child,.nav-icons{display:none;}.nav{height:62px;padding-inline:14px;}.brand .mark{width:36px;height:36px;}.hero{min-height:auto;padding:84px 16px 30px;}.hero-bg img{object-position:58% top;}.hero-copy{max-width:100%;padding-top:34vh;}.title{font-size:clamp(54px,18vw,92px);}.title .happy{-webkit-text-stroke:1px rgba(255,255,255,.95);}.date-row{gap:12px;}.chip{font-size:13px;padding:8px 10px;}.manga-btn{min-width:100%;font-size:24px;}.hero-cards{gap:14px;}.manga-page{padding-inline:16px;padding-block:58px;}.manga-head{display:block;}.manga-stamp{display:inline-block;margin-top:14px;}.win-panel-wrap{border-width:2px;box-shadow:6px 6px 0 #050505;}.minimal-panels,.character-plates{gap:16px;}.wide-ink-frame:nth-child(even){transform:none;}.wide-ink-frame,.portrait-ink-frame{box-shadow:6px 6px 0 #050505;border-width:3px;}.ink-panel{min-height:190px;}.final-manga{box-shadow:7px 7px 0 #050505;}
+  }
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="scanline" aria-hidden="true"></div>
+<nav class="nav" aria-label="吴翰生日页导航">
+  <a class="brand" href="#top" aria-label="回到生日页顶部">
+    <span class="mark">☠</span>
+    <strong>吴翰</strong>
+    <span>生日快乐</span>
+  </a>
+  <div class="nav-links">
+    <a href="#top" class="active">首页</a>
+    <a href="#blessing">祝福</a>
+    <a href="#moments">高光</a>
+    <a href="#future">未来</a>
+  </div>
+  <div class="nav-icons" aria-hidden="true"><span>♬</span><span>⚓</span></div>
+</nav>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <picture class="hero-bg" aria-hidden="true">
+      <img src="images/wuhan-birthday/hero-reference-style.webp" alt="">
+    </picture>
+    <div class="lightning" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="bubble left">会赢哦</div>
+    <div class="bubble right">会赢哦</div>
+
+    <div class="hero-copy reveal visible">
+      <div class="kicker">Birthday Limited · 2026</div>
+      <h1 class="title" id="hero-title"><span class="name">吴翰，</span><br><span class="happy">生日快乐！</span></h1>
+      <div class="date-row"><span class="date">5.31</span><span class="today">今日主角</span></div>
+      <p class="tagline">生日快乐</p>
+      <p class="handwrite">会赢哦</p>
+      <div class="chips" aria-label="生日关键词">
+        <span class="chip">🔥 热血</span>
+        <span class="chip">♛ 最强</span>
+        <span class="chip">⚓ 出航</span>
+        <span class="chip">生日限定</span>
+      </div>
+      <div class="cta-row">
+        <button class="manga-btn" id="burstBtn" type="button"><span>开篇 ⚓</span></button>
+        <span class="sub-cta">生日限定</span>
+      </div>
+    </div>
+
+    <div class="hero-cards" aria-label="吴翰生日关键词卡片">
+      <article class="hero-card reveal">
+        <img src="images/wuhan-birthday/card-sorcerer.webp" alt="蓝黑电光的白发蒙眼漫画术师风格插画">
+        <div class="content"><span class="num">01</span><div><h3>致敬</h3><p>二点五条悟老师向你致敬。</p></div></div><span class="round-icon">✦</span>
+      </article>
+      <article class="hero-card reveal">
+        <img src="images/wuhan-birthday/card-birthday.webp" alt="五根蜡烛的黑金漫画生日蛋糕插画">
+        <div class="content"><span class="num">02</span><div><h3>生日限定</h3><p>5.31 开场。</p></div></div><span class="round-icon">♛</span>
+      </article>
+      <article class="hero-card reveal">
+        <img src="images/wuhan-birthday/card-pirate.webp" alt="红金海上冒险漫画插画">
+        <div class="content"><span class="num">03</span><div><h3>乘风出航</h3><p>出航。向前。</p></div></div><span class="round-icon">⚓</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="manga-page" id="blessing" aria-labelledby="blessing-title">
+    <div class="manga-inner">
+      <header class="manga-head reveal">
+        <div>
+          <div class="manga-kicker">Quiet Manga Panel</div>
+          <h2 class="manga-title" id="blessing-title">一格 <span>就够</span></h2>
+        </div>
+        <div class="manga-stamp">5.31</div>
+      </header>
+      <figure class="win-panel-wrap reveal" aria-label="会赢哦高清漫画分镜">
+        <img src="images/wuhan-birthday/win-panel.webp" alt="黑白高清漫画分镜，白发蒙眼角色侧脸与空白对白气泡">
+        <figcaption class="win-speech">会赢哦</figcaption>
+      </figure>
+      <p class="manga-lead reveal">吴翰，生日快乐。</p>
+    </div>
+  </section>
+
+  <section class="manga-page alt" id="moments" aria-labelledby="moments-title">
+    <div class="manga-inner">
+      <header class="manga-head reveal">
+        <div>
+          <div class="manga-kicker">Black & White Manga</div>
+          <h2 class="manga-title" id="moments-title">海贼王 <span>盘龙</span></h2>
+        </div>
+        
+      </header>
+      <div class="manga-plates">
+        <figure class="wide-ink-frame reveal">
+          <img src="images/wuhan-birthday/pirate-manga.webp" alt="黑白漫画海贼冒险风格：草帽少年背影、海浪、帆船和罗盘">
+          <figcaption>海贼王</figcaption>
+        </figure>
+        <figure class="wide-ink-frame reveal">
+          <img src="images/wuhan-birthday/panlong-manga.webp" alt="黑白漫画盘龙风格：东方巨龙盘绕山峰与月亮">
+          <figcaption>盘龙</figcaption>
+        </figure>
+      </div>
+      <div class="character-plates">
+        <figure class="portrait-ink-frame reveal">
+          <img src="images/wuhan-birthday/figure-ice-manga.webp" alt="黑白漫画角色插画：高速战斗姿态">
+        </figure>
+        <figure class="portrait-ink-frame reveal">
+          <img src="images/wuhan-birthday/figure-flame-manga.webp" alt="黑白漫画角色插画：白发战斗者气场">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="manga-page final" id="future" aria-labelledby="future-title">
+    <div class="manga-inner">
+      <div class="final-manga reveal">
+        <div class="manga-kicker">Final Panel</div>
+        <h2 id="future-title">会赢哦</h2>
+        <p>吴翰 · 生日快乐</p>
+        <div class="final-line"><span class="star">✦</span><span>WU HAN · 5.31 · WIN</span><span class="star">✦</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const progress = document.getElementById('progress');
+  const navLinks = [...document.querySelectorAll('.nav-links a')];
+  const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const revealItems = [...document.querySelectorAll('.reveal')];
+
+  function updateProgress(){
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = `${max <= 0 ? 0 : (scrollY / max) * 100}%`;
+  }
+  function updateActive(){
+    let current = '#top';
+    for (const section of sections){
+      if (scrollY >= section.offsetTop - 160) current = `#${section.id || 'top'}`;
+    }
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === current));
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  revealItems.forEach(item => observer.observe(item));
+
+  document.addEventListener('scroll', () => { updateProgress(); updateActive(); }, {passive:true});
+  addEventListener('resize', updateProgress);
+  updateProgress(); updateActive();
+
+  document.getElementById('burstBtn').addEventListener('click', event => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX || rect.left + rect.width / 2;
+    const y = event.clientY || rect.top + rect.height / 2;
+    for (let i = 0; i < 5; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'burst';
+      dot.style.setProperty('--x', `${x + (Math.random() - .5) * 90}px`);
+      dot.style.setProperty('--y', `${y + (Math.random() - .5) * 48}px`);
+      dot.style.animationDelay = `${i * 45}ms`;
+      document.body.appendChild(dot);
+      dot.addEventListener('animationend', () => dot.remove(), {once:true});
+    }
+  });
+})();
+</script>
+</body>
+</html>
