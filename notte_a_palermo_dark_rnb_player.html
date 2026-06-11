@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notte a Palermo · 巴勒莫之夜 | Jiahao Xie</title>
+<meta name="description" content="原创 F 小调暗黑意式 R&B 纯音乐:钢琴、大提琴、弦乐与合唱采样,加合成 808 鼓与超低音。交互式网页播放器。">
+<meta name="theme-color" content="#0e0d0b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<style>
+:root{
+  --bg:#0e0d0b;
+  --text:#ece7dd;
+  --gold:#e8d6ae;
+  --amber:#ba7517;
+  --amber-soft:rgba(186,117,23,.16);
+  --color-background-primary:#171614;
+  --color-border-tertiary:#2e2c28;
+  --border-radius-lg:14px;
+  --color-text-secondary:#a59d8e;
+  --color-text-tertiary:#6f695f;
+  --font-sans:'Inter','PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --font-display:'Cormorant Garamond','Playfair Display','Noto Serif SC',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  color:var(--text);
+  font-family:var(--font-sans);
+  background:
+    radial-gradient(120% 60% at 50% -8%, rgba(186,117,23,.13), transparent 60%),
+    radial-gradient(90% 55% at 88% 112%, rgba(61,42,16,.38), transparent 62%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:"";
+  position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.11;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+a{color:inherit}
+main{
+  width:100%;max-width:680px;margin:0 auto;flex:1;
+  display:flex;flex-direction:column;justify-content:center;gap:26px;
+  padding:28px 20px 36px;
+}
+.back{
+  align-self:flex-start;
+  font-size:13px;letter-spacing:.05em;
+  color:var(--color-text-secondary);text-decoration:none;
+  padding:6px 0;transition:color .25s;
+}
+.back:hover{color:var(--gold)}
+header{display:grid;gap:10px}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--amber);white-space:nowrap;
+}
+.eyebrow::before,.eyebrow::after{content:"";height:1px;flex:0 0 26px}
+.eyebrow::before{background:linear-gradient(90deg,transparent,rgba(186,117,23,.7))}
+.eyebrow::after{background:linear-gradient(90deg,rgba(186,117,23,.7),transparent)}
+h1{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(40px,9vw,58px);line-height:1.04;letter-spacing:.01em;
+  color:var(--gold);
+}
+.sub{font-size:14px;letter-spacing:.12em;color:var(--color-text-secondary)}
+.note{font-size:12.5px;line-height:1.8;color:var(--color-text-tertiary)}
+footer{
+  padding:16px 20px 22px;text-align:center;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:#564f3e;
+}
+
+/* 播放器卡片细节 */
+#vwrap4{box-shadow:0 26px 64px -30px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.03)}
+#vwrap4 button{
+  appearance:none;-webkit-appearance:none;
+  flex-shrink:0;white-space:nowrap;
+  border:1px solid #3b372f;border-radius:999px;
+  background:linear-gradient(180deg,#2a2622,#1d1b18);
+  color:var(--gold);font:500 14px/1 var(--font-sans);
+  padding:10px 20px;cursor:pointer;
+  transition:border-color .25s,color .25s,box-shadow .25s;
+}
+#vwrap4 button:not(:disabled):hover{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
+#vwrap4 button:disabled{opacity:.5;cursor:default}
+#vwrap4 .ti{font-size:15px}
+#vwrap4 input[type="range"]{accent-color:var(--amber)}
+
+/* 手机端:窄屏时唱片与文字上下堆叠并居中 */
+@media (max-width:560px){
+  main{justify-content:flex-start;padding-top:18px;gap:22px}
+  #vwrap4>div{justify-content:center}
+  #vwrap4 p{text-align:center}
+  #vwrap4 div[style*="baseline"]{justify-content:center}
+}
+
+@media (prefers-reduced-motion:no-preference){
+  main>*{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  main>*:nth-child(2){animation-delay:.08s}
+  main>*:nth-child(3){animation-delay:.16s}
+  main>*:nth-child(4){animation-delay:.24s}
+  main>*:nth-child(5){animation-delay:.3s}
+  @keyframes rise{to{opacity:1;transform:none}}
+}
+
+/* —— 以下三条来自播放器片段原始样式 —— */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#rotor4{transform-box:fill-box;transform-origin:center;animation:vspin4 4.2s linear infinite;animation-play-state:paused}
+.playing #rotor4{animation-play-state:running}
+@keyframes vspin4{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">← 主页 · Home</a>
+  <header>
+    <p class="eyebrow">Original Music · Vol. I</p>
+    <h1>Notte a Palermo</h1>
+    <p class="sub">巴勒莫之夜 · 暗黑意式 R&amp;B · F 小调</p>
+  </header>
+<h2 class="sr-only">一个交互式音乐播放器,演奏一首原创的 F 小调暗黑意式 R&B 纯音乐:钢琴、大提琴、弦乐、人声合唱采样,加合成 808 鼓与超低音,风格参数取自分析结果。</h2>
+<div id="vwrap4" style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem;">
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <div style="flex: 0 0 auto;">
+      <svg width="148" height="148" viewBox="0 0 148 148" aria-hidden="true">
+        <g id="rotor4">
+          <circle cx="74" cy="74" r="70" fill="#1b1b1b" stroke="#333333" stroke-width="1"/>
+          <circle cx="74" cy="74" r="63" fill="none" stroke="#2f2f2f" stroke-width="1"/>
+          <circle cx="74" cy="74" r="56" fill="none" stroke="#2f2f2f" stroke-width="1"/>
+          <circle cx="74" cy="74" r="49" fill="none" stroke="#2f2f2f" stroke-width="1"/>
+          <circle cx="74" cy="74" r="42" fill="none" stroke="#2f2f2f" stroke-width="1"/>
+          <circle cx="74" cy="34" r="3" fill="#3d3d3d"/>
+        </g>
+        <circle cx="74" cy="74" r="27" fill="#3a2c14" stroke="#2a1f0d" stroke-width="1"/>
+        <text id="chordTxt4" x="74" y="79" text-anchor="middle" font-size="14" font-weight="500" fill="#e8d6ae" font-family="var(--font-sans)">—</text>
+      </svg>
+    </div>
+    <div style="flex: 1; min-width: 220px;">
+      <p style="font-size: 16px; font-weight: 500; margin: 0;">Notte a Palermo · 巴勒莫之夜</p>
+      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 2px 0 10px;">原创 · F 小调 · ♩= 88 · 钢琴 / 大提琴 / 弦乐 / 合唱采样 + 合成鼓与超低音</p>
+      <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;">
+        <span id="sectionTxt4" style="font-size: 13px; color: var(--color-text-secondary);">正在加载音色…</span>
+        <span id="barTxt4" style="font-size: 12px; color: var(--color-text-tertiary); font-family: var(--font-mono);"></span>
+      </div>
+      <canvas id="viz4" width="320" height="44" style="width: 100%; height: 44px; display: block; margin-bottom: 12px;"></canvas>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button id="playBtn4" disabled style="display: inline-flex; align-items: center; gap: 6px;"><i id="playIcon4" class="ti ti-player-play" aria-hidden="true"></i><span id="playLbl4">加载中</span></button>
+        <i class="ti ti-volume" style="font-size: 16px; color: var(--color-text-tertiary);" aria-hidden="true"></i>
+        <input id="vol4" type="range" min="0" max="100" value="80" step="1" style="flex: 1; max-width: 160px;" aria-label="音量">
+      </div>
+    </div>
+  </div>
+</div>
+  <p class="note">音色采样(钢琴 / 大提琴 / 弦乐 / 合唱)首次打开需联网加载,就绪后点击「播放」。乐曲为 32 小节循环结构,可随时暂停。</p>
+</main>
+<footer>JX · Notte a Palermo · MMXXVI</footer>
+<script>
+(function(){
+const $=function(id){return document.getElementById(id);};
+function fk(n){return n.replace('C#','Db').replace('F#','Gb').replace('G#','Ab').replace('D#','Eb').replace('A#','Bb');}
+const SEMI={C:0,Db:1,D:2,Eb:3,E:4,F:5,Gb:6,G:7,Ab:8,A:9,Bb:10,B:11};
+function nf(n){const m=n.match(/^([A-G][b#]?)(\d)$/);return 440*Math.pow(2,(SEMI[m[1]]+(parseInt(m[2])+1)*12-69)/12);}
+const BPM=88,BEAT=60/BPM,BAR=4*BEAT,ST=BEAT/4;
+const CH={
+Fm:{sub:'F1',pl:['F2','F3'],st:['F3','Ab3','C4'],pad:['F2','C3'],ch:['Ab3','C4'],l:'Fm'},
+Db:{sub:'Db2',pl:['Db2','Db3'],st:['F3','Ab3','Db4'],pad:['Db2','Ab2'],ch:['Ab3','Db4'],l:'D♭'},
+C7:{sub:'C2',pl:['C2','C3'],st:['E3','G3','Bb3'],pad:['C2','G2'],ch:['G3','Bb3'],l:'C7'},
+Bbm:{sub:'Bb1',pl:['Bb1','Bb2'],st:['F3','Bb3','Db4'],pad:['Bb2','F3'],ch:['Bb3','Db4'],l:'B♭m'},
+Gb:{sub:'Gb1',pl:['Gb2','Gb3'],st:['Gb3','Bb3','Db4'],pad:['Gb2','Db3'],ch:['Gb3','Bb3'],l:'G♭'}
+};
+const PA=['Fm','Fm','Db','C7','Fm','Db','Bbm','C7'];
+const PB=['Bbm','Gb','Fm','C7','Bbm','Gb','C7','C7'];
+const PK=['Fm','Fm','Gb','Gb','Fm','Fm','C7','C7'];
+const PROG=PA.concat(PB,PA,PK);
+const MA=[[0,0,'C3',1.5],[0,1.5,'Db3',0.5],[0,2,'C3',1],[0,3,'Ab2',1],[1,0,'F2',3],[1,3,'Ab2',1],[2,0,'Ab2',1],[2,1,'Bb2',1],[2,2,'C3',1],[2,3,'Db3',1],[3,0,'C3',1.5],[3,1.5,'Bb2',0.5],[3,2,'G2',1],[3,3,'E2',1],[4,0,'F2',2],[4,2,'C3',1],[4,3,'Db3',1],[5,0,'Db3',1.5],[5,1.5,'C3',0.5],[5,2,'Ab2',2],[6,0,'Bb2',1],[6,1,'Db3',1],[6,2,'F3',2],[7,0,'E3',1],[7,1,'Db3',1],[7,2,'C3',2]];
+const MB=[[0,0,'F3',1.5],[0,1.5,'Gb3',0.5],[0,2,'F3',1],[0,3,'Db3',1],[1,0,'Db3',2],[1,2,'Bb2',2],[2,0,'C3',1.5],[2,1.5,'Db3',0.5],[2,2,'C3',1],[2,3,'Ab2',1],[3,0,'G2',1],[3,1,'Bb2',1],[3,2,'G2',1],[3,3,'E2',1],[4,0,'F3',1],[4,1,'Db3',1],[4,2,'Bb2',2],[5,0,'Gb2',2],[5,2,'Bb2',1],[5,3,'Db3',1],[6,0,'C3',2],[6,2,'Db3',1],[6,3,'Bb2',1],[7,0,'C3',2],[7,2,'G2',2]];
+const MK=[[0,0,'F2',4],[1,0,'C3',4],[2,0,'Db3',2],[2,2,'Bb2',2],[3,0,'Gb2',4],[4,0,'F2',4],[5,0,'Ab2',2],[5,2,'G2',2],[6,0,'E2',4],[7,0,'G2',1.5],[7,1.5,'Bb2',1.5],[7,3,'Db3',1]];
+const FILL1=['C4','Db4','C4','Bb3','Ab3'],FILL2=['Bb3','Db4','Bb3','Ab3','Gb3'];
+const FILLS=[[1,2.5,FILL1],[5,2.5,FILL1],[9,2,FILL2],[26,1,FILL2],[30,1,FILL1]];
+const LOOP=32*BAR,INTRO_DUR=8*BAR;
+const SF='https://cdn.jsdelivr.net/gh/gleitz/midi-js-soundfonts/FluidR3_GM/';
+const INSTS={piano:'acoustic_grand_piano',cello:'cello',guitar:'acoustic_guitar_nylon',pad:'string_ensemble_1',choir:'choir_aahs'};
+const uniq=function(a){return Array.from(new Set(a));};
+const C_N=uniq(MA.concat(MB,MK).map(function(e){return e[2];}));
+const P_N=uniq(Object.keys(CH).reduce(function(a,k){return a.concat(CH[k].pl,CH[k].st);},[]));
+const G_N=uniq(FILL1.concat(FILL2));
+const S_N=uniq(Object.keys(CH).reduce(function(a,k){return a.concat(CH[k].pad);},[]).concat(MA.map(function(e){return e[2];})));
+const H_N=uniq(Object.keys(CH).reduce(function(a,k){return a.concat(CH[k].ch);},[]));
+const PLAN=[['piano',P_N],['cello',C_N],['guitar',G_N],['pad',S_N],['choir',H_N]];
+const BUF={piano:{},cello:{},guitar:{},pad:{},choir:{}};
+let ctx=null,master=null,an=null,NOISE=null,t0=0,nextLoop=0,playing=false,started=false,ready=false,loaded=0,fails=0,total=0;
+function graph(){
+ctx=new (window.AudioContext||window.webkitAudioContext)();
+master=ctx.createGain();master.gain.value=parseInt($('vol4').value)/100*0.9;
+const sum=ctx.createGain();
+const dry=ctx.createGain();dry.gain.value=0.84;
+const conv=ctx.createConvolver();
+const L=Math.floor(ctx.sampleRate*2.2),buf=ctx.createBuffer(2,L,ctx.sampleRate);
+for(let c=0;c<2;c++){const d=buf.getChannelData(c);for(let i=0;i<L;i++){d[i]=(Math.random()*2-1)*Math.pow(1-i/L,2.6);}}
+conv.buffer=buf;
+const wet=ctx.createGain();wet.gain.value=0.22;
+master.connect(dry);dry.connect(sum);master.connect(conv);conv.connect(wet);wet.connect(sum);
+const NL=ctx.sampleRate;NOISE=ctx.createBuffer(1,NL,ctx.sampleRate);
+const nd=NOISE.getChannelData(0);for(let i=0;i<NL;i++){nd[i]=Math.random()*2-1;}
+an=ctx.createAnalyser();an.fftSize=128;an.smoothingTimeConstant=0.84;
+const cp=ctx.createDynamicsCompressor();
+sum.connect(an);an.connect(cp);cp.connect(ctx.destination);
+}
+function playS(inst,note,t,vol,dur,atk,rel){
+const b=BUF[inst][note];if(!b){return;}
+const s=ctx.createBufferSource();s.buffer=b;
+const g=ctx.createGain();
+g.gain.setValueAtTime(0.0001,t);
+g.gain.exponentialRampToValueAtTime(vol,t+atk);
+g.gain.setTargetAtTime(0.0001,t+dur,rel);
+s.connect(g);g.connect(master);
+s.start(t);s.stop(t+dur+rel*5+0.25);
+}
+function kick(t,v){const o=ctx.createOscillator();o.type='sine';o.frequency.setValueAtTime(160,t);o.frequency.exponentialRampToValueAtTime(44,t+0.1);
+const g=ctx.createGain();g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.0001,t+0.24);
+o.connect(g);g.connect(master);o.start(t);o.stop(t+0.28);}
+function snare(t,v){const s=ctx.createBufferSource();s.buffer=NOISE;
+const f=ctx.createBiquadFilter();f.type='bandpass';f.frequency.value=1700;f.Q.value=0.9;
+const g=ctx.createGain();g.gain.setValueAtTime(v*0.8,t);g.gain.exponentialRampToValueAtTime(0.0001,t+0.16);
+s.connect(f);f.connect(g);g.connect(master);s.start(t);s.stop(t+0.2);
+const o=ctx.createOscillator();o.type='triangle';o.frequency.value=190;
+const g2=ctx.createGain();g2.gain.setValueAtTime(v*0.4,t);g2.gain.exponentialRampToValueAtTime(0.0001,t+0.08);
+o.connect(g2);g2.connect(master);o.start(t);o.stop(t+0.1);}
+function hat(t,v){const s=ctx.createBufferSource();s.buffer=NOISE;
+const f=ctx.createBiquadFilter();f.type='highpass';f.frequency.value=7500;
+const g=ctx.createGain();g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
+s.connect(f);f.connect(g);g.connect(master);s.start(t);s.stop(t+0.07);}
+function subN(note,t,durB,v){const f=nf(note);
+[[f,1],[f*2,0.35]].forEach(function(p){
+const o=ctx.createOscillator();o.type='sine';o.frequency.value=p[0];
+const g=ctx.createGain();g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(v*p[1],t+0.015);
+g.gain.setTargetAtTime(0.0001,t+durB*BEAT,0.08);
+o.connect(g);g.connect(master);o.start(t);o.stop(t+durB*BEAT+0.5);});}
+function drumsBar(t,mode,fill){
+if(mode==='k'){kick(t,0.7);return;}
+(mode==='c'?[0,7,10,14]:[0,7,10]).forEach(function(s){kick(t+s*ST,0.85);});
+[4,12].forEach(function(s){snare(t+s*ST,0.8);});
+if(mode==='a'){for(let s=0;s<16;s+=2){hat(t+s*ST,s%4===0?0.2:0.12);}}
+else{for(let s=0;s<16;s++){hat(t+s*ST,s%4===0?0.2:(s%2===0?0.13:0.07));}}
+if(fill){[12,13,14,15].forEach(function(s,n){snare(t+s*ST,0.3+n*0.14);});}
+}
+function pianoBar(t,c){
+c.pl.forEach(function(n){playS('piano',n,t,0.5,1.2,0.005,0.2);});
+[6,14].forEach(function(s){c.st.forEach(function(n,j){playS('piano',n,t+s*ST+j*0.012,0.3,0.3,0.004,0.08);});});
+}
+function pianoArp(t,c){
+const ns=[c.pl[1],c.st[0],c.st[1],c.st[2]],ord=[0,1,2,3,2,3,1,2];
+ord.forEach(function(k,i){playS('piano',ns[k],t+i*BEAT/2,0.27,0.55,0.005,0.25);});
+}
+function celloMel(ev,base,vol){ev.forEach(function(e){playS('cello',e[2],base+e[0]*BAR+e[1]*BEAT,vol,e[3]*BEAT,0.04,0.14);});}
+function padDouble(ev,base){ev.forEach(function(e){playS('pad',e[2],base+e[0]*BAR+e[1]*BEAT,0.17,e[3]*BEAT,0.15,0.25);});}
+function fillRun(t,arr){arr.forEach(function(n,k){playS('guitar',n,t+k*0.115,0.3,0.3,0.004,0.08);});}
+function loopBody(t){
+PROG.forEach(function(cn,i){const c=CH[cn],bt=t+i*BAR;
+const mode=i<8?'a':(i<16?'b':(i<24?'c':'k'));
+drumsBar(bt,mode,i===15);
+if(i<24){subN(c.sub,bt,1.6,0.55);subN(c.sub,bt+7*ST,0.7,0.45);subN(c.sub,bt+10*ST,1.2,0.5);}
+else{subN(c.sub,bt,3.9,0.5);}
+if(i<24){pianoBar(bt,c);}else{pianoArp(bt,c);}
+c.pad.forEach(function(n){playS('pad',n,bt,0.14,BAR*1.2,0.5,0.4);});
+if(i>=8&&i<24){c.ch.forEach(function(n){playS('choir',n,bt,0.16,BAR*1.25,0.6,0.5);});}
+});
+FILLS.forEach(function(f){fillRun(t+f[0]*BAR+f[1]*BEAT,f[2]);});
+celloMel(MA,t,0.68);celloMel(MB,t+8*BAR,0.68);
+celloMel(MA,t+16*BAR,0.68);padDouble(MA,t+16*BAR);
+celloMel(MK,t+24*BAR,0.6);
+}
+function intro(t){
+PA.forEach(function(cn,i){const c=CH[cn],bt=t+i*BAR;
+pianoArp(bt,c);
+c.pad.forEach(function(n){playS('pad',n,bt,0.1,BAR*1.2,0.6,0.4);});
+if(i>=4){subN(c.sub,bt,3.5,0.28);}
+if(i>=6){kick(bt,0.4);}
+});
+MA.filter(function(e){return e[0]<4;}).forEach(function(e){playS('cello',e[2],t+(4+e[0])*BAR+e[1]*BEAT,0.52,e[3]*BEAT,0.05,0.15);});
+}
+function upBtn(){if(!ready){$('playLbl4').textContent='加载音色 '+loaded+'/'+total;}}
+async function load(){
+const jobs=[];PLAN.forEach(function(p){p[1].forEach(function(n){jobs.push([p[0],n]);});});
+total=jobs.length;upBtn();
+await Promise.all(jobs.map(async function(j){
+try{const r=await fetch(SF+INSTS[j[0]]+'-mp3/'+fk(j[1])+'.mp3');
+const ab=await r.arrayBuffer();
+const b=await ctx.decodeAudioData(ab);
+BUF[j[0]][j[1]]=b;}catch(e){fails++;}
+loaded++;upBtn();
+}));
+if(fails>total*0.5){$('sectionTxt4').textContent='音色加载失败,请检查网络后重试';$('playLbl4').textContent='不可用';return;}
+ready=true;$('playBtn4').disabled=false;$('playLbl4').textContent='播放';$('sectionTxt4').textContent='音色就绪,可以开始';
+}
+function tick(){
+if(!ctx){return;}
+const now=ctx.currentTime;
+if(playing&&now>nextLoop-2){loopBody(nextLoop);nextLoop+=LOOP;}
+const pos=now-t0;if(pos<0){return;}
+if(pos<INTRO_DUR){const b=Math.floor(pos/BAR);
+$('sectionTxt4').textContent='序奏 · 钢琴与大提琴';$('chordTxt4').textContent=CH[PA[Math.min(b,7)]].l;$('barTxt4').textContent='序 '+(b+1)+'/8';}
+else{const lp=(pos-INTRO_DUR)%LOOP;const b=Math.floor(lp/BAR);
+$('sectionTxt4').textContent=b<8?'主歌 · 鼓点进入':(b<16?'副歌 · 合唱垫底':(b<24?'再现 · 全奏':'间奏 · 鼓点抽走'));
+$('chordTxt4').textContent=CH[PROG[b]].l;$('barTxt4').textContent=(b+1)+'/32';}
+}
+function draw(){
+const cv=$('viz4'),g2=cv.getContext('2d'),data=new Uint8Array(an.frequencyBinCount);
+(function fr(){requestAnimationFrame(fr);an.getByteFrequencyData(data);
+g2.clearRect(0,0,cv.width,cv.height);
+const n=24,w=cv.width/n;
+for(let i=0;i<n;i++){const v=data[Math.floor(i*1.2)]/255;const h=Math.max(2,v*cv.height*0.95);
+g2.fillStyle='rgba(186,117,23,'+(0.4+0.6*v).toFixed(2)+')';
+g2.fillRect(i*w+1.5,cv.height-h,w-3,h);}})();
+}
+async function toggle(){
+if(!ready){return;}
+if(!started){
+await ctx.resume();
+t0=ctx.currentTime+0.2;
+intro(t0);
+const ls=t0+INTRO_DUR;loopBody(ls);nextLoop=ls+LOOP;
+started=true;playing=true;
+setInterval(tick,120);draw();
+}else if(playing){await ctx.suspend();playing=false;}
+else{await ctx.resume();playing=true;}
+$('playIcon4').className=playing?'ti ti-player-pause':'ti ti-player-play';
+$('playLbl4').textContent=playing?'暂停':'播放';
+$('vwrap4').classList.toggle('playing',playing);
+}
+$('playBtn4').addEventListener('click',toggle);
+$('vol4').addEventListener('input',function(e){if(master){master.gain.value=parseInt(e.target.value)/100*0.9;}});
+graph();load();
+})();
+</script>
+</body>
+</html>
