@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>辛苦了，父亲们 · 2026父亲节</title>
+<style>
+  :root{
+    --night:#070D1A;
+    --ink:#0E1726;
+    --panel:rgba(14,24,44,.55);
+    --line:rgba(243,233,215,.14);
+    --paper:#F3E9D7;
+    --mist:#9FB0C8;
+    --amber:#F2A65A;
+    --amber-bright:#FFC97E;
+    --seal:#BE3B2A;
+    --serif:"Songti SC","STSong","SimSun","Noto Serif CJK SC","Source Han Serif SC",serif;
+    --kai:"Kaiti SC","STKaiti","KaiTi","FZKai-Z03S","Songti SC",serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif);
+    color:var(--paper);
+    background:var(--night);
+    overflow-x:hidden;
+    line-height:1.9;
+  }
+
+  /* ---------- 天色：黄昏与夜的两层背景 ---------- */
+  .sky,.sky-night,.stars{position:fixed;inset:0;pointer-events:none}
+  .sky{
+    z-index:-3;
+    background:linear-gradient(180deg,#22304F 0%,#3B3A60 38%,#7A5070 62%,#C97B4E 84%,#E8A35C 100%);
+  }
+  .sky-night{
+    z-index:-2;opacity:0;
+    background:linear-gradient(180deg,#04070F 0%,#0A1426 55%,#13223E 100%);
+    transition:opacity .2s linear;
+  }
+  .stars{z-index:-1;opacity:0}
+  .star{
+    position:absolute;border-radius:50%;
+    background:#EAF2FF;
+    animation:twinkle 3.6s ease-in-out infinite;
+  }
+  @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    position:relative;min-height:100vh;min-height:100svh;overflow:hidden;
+    background:
+      linear-gradient(180deg,rgba(4,7,15,.10) 0%,rgba(4,7,15,.06) 52%,rgba(4,7,15,.42) 100%),
+      linear-gradient(90deg,rgba(4,7,15,.18) 0%,rgba(4,7,15,0) 48%,rgba(4,7,15,.24) 100%),
+      url("images/fathers-day-2026/hero-bg.webp") center/cover no-repeat;
+  }
+  .hero-eyebrow{
+    position:absolute;top:5vh;left:7vw;
+    font-family:var(--sans);font-size:14.5px;letter-spacing:.32em;
+    color:var(--mist);
+  }
+  .vtitle{
+    position:absolute;top:11vh;right:7vw;
+    writing-mode:vertical-rl;
+  }
+  .vtitle .line{
+    display:block;
+    font-size:clamp(52px,9.5vmin,104px);
+    letter-spacing:.16em;
+    margin-block-end:.32em;
+    text-shadow:0 2px 24px rgba(0,0,0,.45);
+  }
+  .vtitle .line:nth-child(2){color:var(--amber-bright)}
+  .hero-sub{
+    position:absolute;left:7vw;bottom:17vh;max-width:60vw;
+  }
+  .hero-sub .kicker{
+    font-family:var(--sans);font-size:13.5px;letter-spacing:.3em;color:var(--mist);
+    margin-bottom:10px;
+  }
+  .hero-sub .words{
+    font-family:var(--kai);
+    font-size:clamp(22px,3vmin,28px);
+    letter-spacing:.12em;
+  }
+  .scroll-hint{
+    position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);
+    font-family:var(--sans);font-size:13px;letter-spacing:.28em;
+    color:rgba(243,233,215,.78);
+    animation:drift 2.6s ease-in-out infinite;
+    white-space:nowrap;
+  }
+  @keyframes drift{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* ---------- 章节通用 ---------- */
+  section{position:relative;padding:15vh 7vw}
+  .wrap{max-width:880px;margin:0 auto}
+  .wrap-wide{max-width:1080px;margin:0 auto}
+  .stage{
+    display:inline-block;
+    font-family:var(--sans);font-size:13.5px;letter-spacing:.34em;
+    color:var(--amber);
+    border:1px solid rgba(242,166,90,.45);
+    padding:7px 17px 7px 20px;border-radius:99px;
+    margin-bottom:26px;
+  }
+  h2{
+    font-size:clamp(34px,5vmin,48px);
+    letter-spacing:.1em;font-weight:600;
+    margin-bottom:34px;
+  }
+  p.body{
+    font-size:20px;color:#D9D2C2;
+    margin-bottom:1.4em;letter-spacing:.04em;
+    text-align:justify;
+  }
+  .pull{
+    font-family:var(--kai);
+    font-size:clamp(25px,3.8vmin,34px);
+    color:var(--amber-bright);
+    text-align:center;letter-spacing:.1em;
+    margin:0 auto 56px;max-width:680px;
+    line-height:2.1;
+  }
+  .pull::before,.pull::after{
+    content:"";display:block;width:46px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(242,166,90,.7),transparent);
+    margin:22px auto;
+  }
+
+  /* ---------- 翻译卡片 ---------- */
+  .cards{
+    display:grid;gap:20px;margin-top:44px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .flip{
+    perspective:1100px;background:none;border:none;padding:0;
+    cursor:pointer;height:248px;font-family:inherit;color:inherit;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .flip:focus-visible{outline:2px solid var(--amber);outline-offset:4px;border-radius:14px}
+  .flip-in{
+    display:block;
+    position:relative;width:100%;height:100%;
+    transform-style:preserve-3d;
+    transition:transform .7s cubic-bezier(.2,.7,.25,1);
+  }
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;border-radius:14px;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:24px 26px;text-align:center;
+  }
+  .face .tag{
+    font-family:var(--sans);font-size:13px;letter-spacing:.3em;
+    margin-bottom:16px;
+  }
+  .front{
+    background:var(--panel);border:1px solid var(--line);
+    backdrop-filter:blur(4px);
+    transition:border-color .3s ease;
+  }
+  .flip:hover .front{border-color:rgba(242,166,90,.5)}
+  .front .tag{color:var(--mist)}
+  .front .say{
+    font-family:var(--kai);font-size:29px;letter-spacing:.08em;line-height:1.75;
+  }
+  .front .hint{
+    position:absolute;bottom:16px;left:0;right:0;
+    font-family:var(--sans);
+    font-size:12px;letter-spacing:.24em;color:rgba(159,176,200,.6);
+  }
+  .back{
+    transform:rotateY(180deg);
+    background:linear-gradient(160deg,rgba(242,166,90,.16),rgba(190,59,42,.12));
+    border:1px solid rgba(242,166,90,.45);
+  }
+  .back .tag{color:var(--amber)}
+  .back .mean{
+    font-size:20px;line-height:1.9;color:#F4E8D2;letter-spacing:.05em;
+  }
+  .cards-note{
+    margin-top:24px;text-align:center;
+    font-family:var(--sans);font-size:14px;letter-spacing:.18em;color:var(--mist);
+  }
+
+  /* ---------- 时间线 ---------- */
+  .tl{margin-top:14px;position:relative;padding-left:26px}
+  .tl::before{
+    content:"";position:absolute;left:5px;top:14px;bottom:14px;width:1px;
+    background:linear-gradient(180deg,transparent,rgba(242,166,90,.5) 12%,rgba(242,166,90,.5) 88%,transparent);
+  }
+  .tl-item{position:relative;padding:0 0 48px 22px}
+  .tl-item:last-child{padding-bottom:6px}
+  .tl-item::before{
+    content:"";position:absolute;left:-25px;top:15px;width:9px;height:9px;
+    border-radius:50%;background:var(--amber);
+    box-shadow:0 0 0 4px rgba(242,166,90,.18);
+  }
+  .tl-year{
+    font-family:var(--kai);font-size:26px;color:var(--amber-bright);
+    letter-spacing:.22em;margin-bottom:4px;
+  }
+  .tl-place{
+    font-family:var(--sans);font-size:13px;letter-spacing:.3em;
+    color:var(--mist);margin-bottom:10px;
+  }
+  .tl-item p{font-size:19px;color:#D9D2C2;letter-spacing:.04em;text-align:justify;max-width:720px}
+  .tl-item strong{color:var(--paper);font-weight:600}
+
+  /* ---------- 灯下 ---------- */
+  .lamp-sec{text-align:center;padding-bottom:12vh}
+  .lamp-stage{position:relative;height:300px;margin:0 auto 8px;max-width:560px}
+  .lamp-glow{
+    position:absolute;left:50%;top:120px;transform:translateX(-50%);
+    width:480px;height:480px;max-width:96vw;
+    background:radial-gradient(circle,rgba(255,196,120,.34) 0%,rgba(255,176,96,.12) 42%,transparent 70%);
+    transition:opacity .8s ease;
+  }
+  .lamp{position:relative;display:block;margin:0 auto}
+  .lamp-copy{
+    font-family:var(--kai);
+    font-size:clamp(24px,3.4vmin,30px);
+    letter-spacing:.12em;margin-bottom:18px;
+  }
+  .lamp-copy2{
+    font-size:19.5px;color:#D9D2C2;max-width:640px;margin:0 auto 38px;
+    letter-spacing:.05em;
+  }
+  .count{
+    display:inline-block;font-family:var(--sans);
+    font-size:16px;letter-spacing:.22em;color:var(--amber-bright);
+    border:1px solid rgba(242,166,90,.5);border-radius:99px;
+    padding:11px 28px;margin-bottom:64px;
+    background:rgba(242,166,90,.08);
+  }
+
+  /* ---------- 留言卡 ---------- */
+  .note-zone{max-width:640px;margin:0 auto;text-align:left}
+  .note-label{
+    font-family:var(--sans);font-size:14.5px;letter-spacing:.26em;
+    color:var(--mist);margin-bottom:14px;text-align:center;
+  }
+  .note-input{
+    width:100%;resize:none;
+    background:rgba(14,24,44,.6);border:1px solid var(--line);
+    border-radius:12px;color:var(--paper);
+    font-family:var(--kai);font-size:20px;letter-spacing:.06em;
+    padding:16px 18px;line-height:1.8;
+    outline:none;transition:border-color .3s;
+  }
+  .note-input:focus{border-color:rgba(242,166,90,.6)}
+  .note-input::placeholder{color:rgba(159,176,200,.5)}
+  .note-card{
+    position:relative;margin:42px auto 28px;width:min(540px,100%);
+    background:linear-gradient(170deg,#FAEFD9,#F1E0BD);
+    color:#33271B;border-radius:8px;
+    padding:38px 36px 30px;
+    transform:rotate(-1.4deg);
+    box-shadow:0 24px 60px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.3);
+  }
+  .note-card::before{
+    content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    width:15px;height:15px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#E0604B,#9C2E1F);
+    box-shadow:0 3px 6px rgba(0,0,0,.35);
+  }
+  .note-card .to{
+    font-family:var(--sans);font-size:13px;letter-spacing:.3em;color:#8A6B40;
+    margin-bottom:14px;
+  }
+  .note-card .msg{
+    font-family:var(--kai);font-size:26px;line-height:2;letter-spacing:.06em;
+    min-height:104px;word-break:break-word;
+  }
+  .note-card .from{
+    margin-top:20px;text-align:right;
+    font-family:var(--sans);font-size:13px;letter-spacing:.2em;color:#8A6B40;
+  }
+  .save-btn{
+    display:block;margin:0 auto;
+    font-family:var(--sans);font-size:16px;letter-spacing:.2em;
+    color:#1B130A;background:linear-gradient(180deg,#FFC97E,#F2A65A);
+    border:none;border-radius:99px;padding:14px 38px;cursor:pointer;
+    box-shadow:0 8px 24px rgba(242,166,90,.35);
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .save-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(242,166,90,.45)}
+  .save-btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+
+  /* ---------- 页脚 ---------- */
+  footer{
+    text-align:center;padding:10vh 7vw 9vh;
+    border-top:1px solid rgba(243,233,215,.08);
+  }
+  footer .big{
+    font-family:var(--kai);font-size:clamp(26px,3.8vmin,36px);
+    letter-spacing:.18em;margin-bottom:18px;
+  }
+  footer .small{
+    font-family:var(--sans);font-size:14.5px;letter-spacing:.24em;
+    color:var(--mist);line-height:2.3;
+  }
+
+  /* ---------- 入场动效 ---------- */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media (max-width:980px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:680px){
+    section{padding:13vh 6.5vw}
+    .hero-sub{max-width:52vw;bottom:15vh}
+    .vtitle{right:6vw;top:9vh}
+    .cards{grid-template-columns:1fr}
+    .flip{height:232px}
+    .lamp-stage{height:260px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rv{opacity:1;transform:none;transition:none}
+    .scroll-hint,.star{animation:none}
+    .flip-in{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="sky" aria-hidden="true"></div>
+<div class="sky-night" id="skyNight" aria-hidden="true"></div>
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<!-- ============ 首屏：黄昏 ============ -->
+<header class="hero">
+  <div class="hero-eyebrow">二〇二六年六月二十一日 · 星期日</div>
+
+  <div class="vtitle" aria-label="辛苦了，父亲们">
+    <span class="line">辛苦了，</span>
+    <span class="line">父亲们。</span>
+  </div>
+
+  <div class="hero-sub">
+    <div class="kicker">父 亲 节 · FATHER'S DAY</div>
+    <div class="words">他做了很多，说得很少。</div>
+  </div>
+
+  <div class="scroll-hint">顺着暮色，往下走 ↓</div>
+</header>
+
+<!-- ============ 黄昏 · 他不说 ============ -->
+<section>
+  <div class="wrap">
+    <div class="stage rv">黄昏 · 一</div>
+    <h2 class="rv">他不说</h2>
+    <p class="pull rv">父爱如山——山不说话，<br>只是站在那里，替你挡了很多年的风。</p>
+    <p class="body rv">中国的父亲，大多不太会说爱。他们把「我爱你」藏进「吃了吗」，把拥抱换成转账，把想念托付给你妈——「你妈想你了。」其实想你的，是他。</p>
+    <p class="body rv">他用自行车驮过你的整个童年，肩膀给你当过全世界最高的瞭望台；深夜的校门口，他指间的烟明明灭灭。他做了很多，说出口的很少。</p>
+  </div>
+</section>
+
+<!-- ============ 入夜 · 翻译 ============ -->
+<section>
+  <div class="wrap-wide">
+    <div class="stage rv">入夜 · 二</div>
+    <h2 class="rv">他的话，需要翻译</h2>
+    <p class="body rv" style="max-width:680px">父亲们有一套自己的语言。听起来平平无奇，翻译过来，全是没说出口的爱。</p>
+
+    <div class="cards">
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「吃了吗？」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">我想你了，<br>只是不知道怎么开口。</span></span>
+        </span>
+      </button>
+
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「到了说一声。」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">你不报平安，<br>我睡不踏实。</span></span>
+        </span>
+      </button>
+
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「缺不缺钱？」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">别的忙我帮不上，<br>这个我还可以。</span></span>
+        </span>
+      </button>
+
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「多喝热水。」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">我很担心你，<br>可翻来覆去只会这一句。</span></span>
+        </span>
+      </button>
+
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「我和你妈都挺好的。」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">有些小毛病，<br>但不想让你分心。</span></span>
+        </span>
+      </button>
+
+      <button class="flip rv" aria-pressed="false">
+        <span class="flip-in">
+          <span class="face front"><span class="tag">他 说</span><span class="say">「行了，挂了吧。」</span><span class="hint">点 击 翻 面</span></span>
+          <span class="face back"><span class="tag">翻译过来是</span><span class="mean">其实，<br>还想再听你说两句。</span></span>
+        </span>
+      </button>
+    </div>
+    <div class="cards-note rv">—— 这些话，你一定也听过 ——</div>
+  </div>
+</section>
+
+<!-- ============ 夜更深 · 来历 ============ -->
+<section>
+  <div class="wrap">
+    <div class="stage rv">夜更深 · 三</div>
+    <h2 class="rv">这个节日，是怎么来的</h2>
+    <p class="body rv" style="margin-bottom:52px">父亲节很年轻——它不是古老的传统，而是一份迟到的认可。</p>
+
+    <div class="tl">
+      <div class="tl-item rv">
+        <div class="tl-year">一九〇八</div>
+        <div class="tl-place">美国 · 西弗吉尼亚</div>
+        <p>莫农加矿难带走了 361 名矿工，其中大多是父亲。次年，小镇为他们办了一场追思礼拜——那是为父亲设立纪念日最早的尝试，可惜只办了一次。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-year">一九一〇</div>
+        <div class="tl-place">美国 · 斯波坎</div>
+        <p>多德夫人的父亲是位内战老兵，妻子早逝后<strong>独自拉扯大六个孩子</strong>。她为此奔走了一年，促成了世界上第一个父亲节，日子定在六月的第三个星期日。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-year">一九四五</div>
+        <div class="tl-place">中国 · 上海</div>
+        <p>抗战胜利前夕，上海各界发起「八八父亲节」——<strong>「八八」谐音「爸爸」</strong>，纪念阵亡将士中的父亲们。次年被正式确立，台湾至今仍在八月八日过节。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-year">一九七二</div>
+        <div class="tl-place">美国 · 华盛顿</div>
+        <p>被冷落、被调侃了半个多世纪之后，父亲节终于在这一年成为美国法定节日。从第一次庆祝算起，<strong>整整等了六十二年</strong>——像极了父亲：习惯了被忽略，也从不抱怨。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-year">二〇二六</div>
+        <div class="tl-place">今天</div>
+        <p>如今通行的父亲节在六月的第三个星期日。今年，是 <strong>6 月 21 日</strong>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 深夜 · 灯还亮着 ============ -->
+<section class="lamp-sec">
+  <div class="wrap">
+    <div class="stage rv">深夜 · 四</div>
+    <h2 class="rv">灯还亮着</h2>
+
+    <div class="lamp-stage rv">
+      <div class="lamp-glow" aria-hidden="true"></div>
+      <svg class="lamp" width="160" height="280" viewBox="0 0 160 280" aria-hidden="true">
+        <line x1="80" y1="0" x2="80" y2="96" stroke="#2B3C5E" stroke-width="3"/>
+        <path d="M34 142 L126 142 L104 100 L56 100 Z" fill="#1B2A47" stroke="#3A4E76" stroke-width="2"/>
+        <circle cx="80" cy="152" r="11" fill="#FFD9A0"/>
+        <circle cx="80" cy="152" r="22" fill="#FFC97E" opacity=".35"/>
+        <circle cx="80" cy="152" r="38" fill="#FFC97E" opacity=".14"/>
+      </svg>
+    </div>
+
+    <p class="lamp-copy rv">无论你多晚回家，总有一盏灯为你留着。</p>
+    <p class="lamp-copy2 rv">今年父亲节，不必突然说「我爱你」——那会把他吓一跳。打个电话，问一句「吃了吗」就好。这是你们之间的暗号，他听得懂。</p>
+
+    <div class="count rv" id="countdown">距离父亲节还有 — 天</div>
+
+    <div class="note-zone rv">
+      <div class="note-label">也可以写一句话，存成卡片发给他</div>
+      <textarea class="note-input" id="noteInput" rows="2" maxlength="60" placeholder="比如：老豆，这些年辛苦你了。"></textarea>
+
+      <div class="note-card" id="noteCard">
+        <div class="to">写 给 爸 爸</div>
+        <div class="msg" id="noteMsg">老豆，这些年辛苦你了。</div>
+        <div class="from">二〇二六年六月二十一日 · 父亲节</div>
+      </div>
+
+      <button class="save-btn" id="saveBtn">把这张卡片存下来</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="big rv">「辛苦了，父亲们。」</div>
+  <div class="small rv">愿每一位沉默的父亲，都被时间温柔相待。<br>二〇二六 · 父亲节 · 六月二十一日</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 星星 ---------- */
+  var starsBox = document.getElementById("stars");
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < 110; i++){
+    var s = document.createElement("i");
+    s.className = "star";
+    var size = (Math.random() * 1.6 + 0.8).toFixed(1);
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.left = (Math.random() * 100).toFixed(2) + "%";
+    s.style.top = (Math.random() * 72).toFixed(2) + "%";
+    s.style.animationDelay = (Math.random() * 3.6).toFixed(2) + "s";
+    s.style.animationDuration = (2.6 + Math.random() * 3).toFixed(2) + "s";
+    frag.appendChild(s);
+  }
+  starsBox.appendChild(frag);
+
+  /* ---------- 滚动 = 天色入夜 ---------- */
+  var skyNight = document.getElementById("skyNight");
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var f = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      skyNight.style.opacity = f.toFixed(3);
+      starsBox.style.opacity = Math.pow(f, 1.4).toFixed(3);
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- 入场显现 ---------- */
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rvs = document.querySelectorAll(".rv");
+  if (!reduce && "IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    rvs.forEach(function(el){ io.observe(el); });
+  } else {
+    rvs.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- 卡片翻面 ---------- */
+  document.querySelectorAll(".flip").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var on = btn.classList.toggle("on");
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  });
+
+  /* ---------- 倒计时 ---------- */
+  (function(){
+    var el = document.getElementById("countdown");
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var target = new Date(2026, 5, 21);
+    var days = Math.round((target - today) / 86400000);
+    if (days > 1)       el.textContent = "距离父亲节还有 " + days + " 天";
+    else if (days === 1) el.textContent = "明天就是父亲节，记得给他打个电话";
+    else if (days === 0) el.textContent = "今天就是父亲节 · 现在就给他打个电话吧";
+    else                 el.textContent = "爱不用等节日 · 想他了就打个电话";
+  })();
+
+  /* ---------- 留言卡 ---------- */
+  var DEFAULT_MSG = "老豆，这些年辛苦你了。";
+  var input = document.getElementById("noteInput");
+  var msgEl = document.getElementById("noteMsg");
+  input.addEventListener("input", function(){
+    msgEl.textContent = input.value.trim() ? input.value : DEFAULT_MSG;
+  });
+
+  /* ---------- 生成 PNG 卡片 ---------- */
+  function wrapText(ctx, text, maxWidth){
+    var lines = [], line = "";
+    var paragraphs = text.split("\n");
+    for (var p = 0; p < paragraphs.length; p++){
+      line = "";
+      var chars = paragraphs[p].split("");
+      for (var i = 0; i < chars.length; i++){
+        var test = line + chars[i];
+        if (ctx.measureText(test).width > maxWidth && line){
+          lines.push(line); line = chars[i];
+        } else {
+          line = test;
+        }
+      }
+      lines.push(line);
+    }
+    return lines;
+  }
+
+  document.getElementById("saveBtn").addEventListener("click", function(){
+    var text = input.value.trim() || DEFAULT_MSG;
+    var W = 1200, H = 800;
+    var canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext("2d");
+
+    var bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, "#FBF0DA");
+    bg.addColorStop(1, "#F0DFBC");
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.strokeStyle = "#C9A36A";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(34, 34, W - 68, H - 68);
+    ctx.strokeStyle = "rgba(201,163,106,.45)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(46, 46, W - 92, H - 92);
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    /* 标题 */
+    ctx.fillStyle = "#8A6B40";
+    ctx.font = '26px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText("写 给 爸 爸", W / 2, 120);
+
+    /* 正文 */
+    ctx.fillStyle = "#34281A";
+    ctx.font = '56px "Kaiti SC","STKaiti","KaiTi",serif';
+    var lines = wrapText(ctx, text, 920);
+    var lh = 92;
+    var startY = H / 2 + 6 - (lines.length - 1) * lh / 2;
+    for (var i = 0; i < lines.length; i++){
+      ctx.fillText(lines[i], W / 2, startY + i * lh);
+    }
+
+    /* 落款 */
+    ctx.fillStyle = "#8A6B40";
+    ctx.font = '26px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.fillText("二〇二六年六月二十一日 · 父亲节", W / 2, H - 110);
+
+    var a = document.createElement("a");
+    a.download = "父亲节卡片.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+})();
+</script>
+</body>
+</html>
