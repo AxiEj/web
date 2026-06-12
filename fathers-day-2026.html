@@ -54,7 +54,8 @@
     background:
       linear-gradient(180deg,rgba(4,7,15,.10) 0%,rgba(4,7,15,.06) 52%,rgba(4,7,15,.42) 100%),
       linear-gradient(90deg,rgba(4,7,15,.18) 0%,rgba(4,7,15,0) 48%,rgba(4,7,15,.24) 100%),
-      url("images/fathers-day-2026/hero-bg.webp") center/cover no-repeat;
+      /* 67%: keep the father & son (at ~63% of the frame) centered when narrow viewports crop the wide image */
+      url("images/fathers-day-2026/hero-bg.webp") 67% center/cover no-repeat;
   }
   .hero-eyebrow{
     position:absolute;top:5vh;left:7vw;
