@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心力衰竭 · 一堂讲透的临床思维课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b141b; --ink-soft:#2c2230;
+  --wine:#7a1e2e; --wine-deep:#571421; --wine-tint:#f6e9ea;
+  --coral:#e0674f; --coral-soft:#f6b39f;
+  --teal:#2c6a6a; --teal-deep:#1f4f4f; --teal-tint:#e5f0ee;
+  --gold:#bd851f; --gold-deep:#8a5f13; --gold-tint:#f8edd3;
+  --paper:#fbf8f5; --paper-2:#f2eae4; --card:#ffffff;
+  --line:#e8ddd6; --line-strong:#d8c9c0;
+  --text:#2a2228; --muted:#7a6d72;
+  --serif:"Noto Serif SC","Songti SC",Georgia,serif;
+  --latin:"Fraunces","Noto Serif SC",Georgia,serif;
+  --sans:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans); color:var(--text); background:var(--paper);
+  line-height:1.85; font-size:17px; font-weight:400;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 26px}
+
+/* ---------- top progress ---------- */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--wine),var(--coral));transition:width .1s linear}
+
+/* ---------- HERO ---------- */
+.hero{background:radial-gradient(120% 130% at 78% 8%,#3a1622 0%,var(--ink) 46%,#140f14 100%);
+  color:#f4ece6;position:relative;overflow:hidden;padding:96px 0 78px}
+.hero .wrap{position:relative;z-index:2}
+.hero .eyebrow{font-family:var(--sans);letter-spacing:.32em;text-transform:uppercase;
+  font-size:12.5px;color:var(--coral-soft);font-weight:600;margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:64px;line-height:1.02;
+  letter-spacing:.04em;margin-bottom:8px}
+.hero .latin{font-family:var(--latin);font-weight:500;font-style:italic;
+  font-size:30px;color:var(--coral-soft);letter-spacing:.01em;margin-bottom:30px;opacity:.92}
+.hero .lede{font-size:18.5px;max-width:600px;color:#e5d6cf;line-height:1.8}
+.hero .lede b{color:#fff;font-weight:700}
+.hero .meta{margin-top:36px;font-size:13.5px;color:#b6a09a;letter-spacing:.02em;line-height:1.9}
+.heart-art{position:absolute;right:-40px;top:40px;width:430px;opacity:.16;z-index:1;
+  filter:drop-shadow(0 0 40px rgba(224,103,79,.4))}
+@media(max-width:720px){.heart-art{display:none}}
+
+/* ---------- section rhythm ---------- */
+.act{padding:74px 0 8px}
+.act-dark{background:linear-gradient(160deg,var(--ink) 0%,#241521 100%);color:#f2e8e2;padding:70px 0 66px;margin-top:56px}
+.act-dark .wrap{position:relative}
+.act-num{font-family:var(--latin);font-style:italic;font-size:15px;color:var(--coral);letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;display:block;margin-bottom:12px}
+.act-dark .act-num{color:var(--coral-soft)}
+h2.big{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.15;letter-spacing:.02em;color:var(--wine)}
+.act-dark h2.big{color:#fff}
+h2.big .sub{display:block;font-family:var(--latin);font-style:italic;font-weight:500;font-size:20px;
+  color:var(--muted);letter-spacing:0;margin-top:8px}
+.act-dark h2.big .sub{color:var(--coral-soft)}
+.act-lede{font-size:18px;color:var(--text);max-width:680px;margin-top:20px;line-height:1.85}
+.act-dark .act-lede{color:#e7dad4}
+
+h3{font-family:var(--serif);font-weight:700;font-size:26px;color:var(--ink);margin:52px 0 4px;letter-spacing:.01em;line-height:1.3}
+h3 .en{font-family:var(--latin);font-style:italic;font-weight:500;font-size:17px;color:var(--teal);margin-left:8px;letter-spacing:0}
+h4{font-family:var(--sans);font-weight:700;font-size:19px;color:var(--wine);margin:34px 0 6px;letter-spacing:.01em}
+p{margin:16px 0}
+p.first{margin-top:22px}
+strong,b{font-weight:700;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--gold-tint) 62%);padding:0 2px;font-weight:500}
+a{color:var(--wine);text-decoration:none;border-bottom:1px solid var(--coral-soft)}
+.lead-in{font-size:19px;color:var(--wine-deep);font-weight:500;line-height:1.75;margin:22px 0}
+
+/* term chip */
+.term{display:inline-block;font-family:var(--latin);font-style:italic;font-weight:600;color:var(--teal-deep);
+  background:var(--teal-tint);padding:0 7px;border-radius:5px;font-size:.92em;letter-spacing:.01em}
+
+/* ---------- callouts ---------- */
+.box{border-radius:16px;padding:22px 24px 22px;margin:26px 0;position:relative;
+  box-shadow:0 2px 18px rgba(60,30,30,.05);border:1px solid var(--line)}
+.box .tag{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:13.5px;
+  letter-spacing:.04em;padding:4px 13px 4px 10px;border-radius:30px;margin-bottom:12px}
+.box .tag .ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:13px;color:#fff}
+.box p{margin:11px 0}.box p:first-of-type{margin-top:2px}.box p:last-child{margin-bottom:0}
+.box ul{margin:10px 0 2px;padding-left:4px;list-style:none}
+.box li{position:relative;padding-left:22px;margin:8px 0}
+.box li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%}
+
+.logic{background:linear-gradient(180deg,#fbeef0,#fdf6f6);border-color:#eccdd1}
+.logic .tag{background:#fff;color:var(--wine)}
+.logic .tag .ic{background:var(--wine)}
+.logic li::before{background:var(--wine)}
+.logic strong{color:var(--wine-deep)}
+
+.mech{background:linear-gradient(180deg,#e9f3f1,#f4faf8);border-color:#c9e2dd}
+.mech .tag{background:#fff;color:var(--teal-deep)}
+.mech .tag .ic{background:var(--teal)}
+.mech li::before{background:var(--teal)}
+.mech strong{color:var(--teal-deep)}
+
+.analogy{background:linear-gradient(180deg,#fdeee7,#fef7f3);border-color:#f3ccbb}
+.analogy .tag{background:#fff;color:#b64a30}
+.analogy .tag .ic{background:var(--coral)}
+.analogy li::before{background:var(--coral)}
+.analogy strong{color:#b64a30}
+.analogy em{background:linear-gradient(transparent 62%,#f8d8c9 62%)}
+
+.pearl{background:linear-gradient(180deg,#f9efd6,#fdf8ec);border-color:#ecd9a8}
+.pearl .tag{background:#fff;color:var(--gold-deep)}
+.pearl .tag .ic{background:var(--gold)}
+.pearl li::before{background:var(--gold)}
+.pearl strong{color:var(--gold-deep)}
+
+.clin{background:linear-gradient(165deg,#241a24,#33212c);border-color:#4a2f3c;color:#efe2dc;box-shadow:0 6px 26px rgba(40,15,25,.22)}
+.clin .tag{background:rgba(255,255,255,.08);color:#f6c1b0}
+.clin .tag .ic{background:var(--coral)}
+.clin strong{color:#fff}
+.clin em{background:linear-gradient(transparent 60%,rgba(224,103,79,.45) 60%);color:#fff}
+.clin li::before{background:var(--coral)}
+.clin .term{background:rgba(94,199,190,.16);color:#8fd7cf}
+
+.warn{background:linear-gradient(180deg,#fbe6e2,#fdf1ee);border-color:#f0c2b6}
+.warn .tag{background:#fff;color:#b23a26}
+.warn .tag .ic{background:#c0432c}
+.warn li::before{background:#c0432c}
+.warn strong{color:#b23a26}
+
+/* ---------- tables ---------- */
+.tbl{margin:28px 0;border-radius:14px;overflow:hidden;border:1px solid var(--line-strong);box-shadow:0 2px 16px rgba(60,30,30,.05)}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card)}
+thead th{background:var(--wine);color:#fff;font-weight:700;text-align:left;padding:13px 15px;font-size:14.5px;letter-spacing:.02em}
+thead th.teal{background:var(--teal)}
+tbody td{padding:12px 15px;border-top:1px solid var(--line);vertical-align:top;line-height:1.65}
+tbody tr:nth-child(even){background:#faf5f2}
+tbody td:first-child{font-weight:600;color:var(--ink)}
+.tbl.compare thead th:nth-child(2){background:#a83b2a}
+.tbl.compare thead th:nth-child(3){background:var(--teal)}
+caption{caption-side:top;text-align:left;font-size:13.5px;color:var(--muted);padding:0 2px 10px;font-style:italic}
+
+/* ---------- figure ---------- */
+figure{margin:34px 0;background:var(--card);border:1px solid var(--line-strong);border-radius:18px;
+  padding:26px 22px 18px;box-shadow:0 4px 22px rgba(60,30,30,.06)}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:14px;color:var(--muted);margin-top:16px;line-height:1.7;text-align:center}
+figcaption b{color:var(--wine)}
+.fig-title{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--ink);text-align:center;margin-bottom:6px}
+
+/* ---------- pull / quote ---------- */
+.pull{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;color:var(--wine);
+  margin:40px 0;padding:8px 0 8px 26px;border-left:4px solid var(--coral)}
+.act-dark .pull{color:#fff;border-color:var(--coral)}
+
+/* ---------- step flow ---------- */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:26px 0}
+.flow .node{background:var(--card);border:1px solid var(--line-strong);border-radius:12px;padding:12px 16px;
+  font-size:14.5px;font-weight:600;color:var(--ink);text-align:center;flex:1;min-width:96px;box-shadow:0 2px 8px rgba(60,30,30,.05)}
+.flow .arrow{display:grid;place-items:center;color:var(--coral);font-weight:800;font-size:20px;padding:0 8px}
+.flow .node small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:3px}
+
+/* mnemonic ribbon */
+.mnem{display:inline-block;font-family:var(--serif);font-weight:700;font-size:19px;color:var(--gold-deep);
+  background:var(--gold-tint);border:1px dashed var(--gold);border-radius:10px;padding:9px 16px;margin:6px 0;letter-spacing:.04em}
+
+/* section TOC */
+.toc{background:var(--card);border:1px solid var(--line-strong);border-radius:18px;padding:26px 30px;margin:40px 0 0;
+  box-shadow:0 4px 22px rgba(60,30,30,.06)}
+.toc h5{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--wine);margin-bottom:14px;letter-spacing:.03em}
+.toc ol{list-style:none;counter-reset:t;columns:2;column-gap:34px}
+.toc li{counter-increment:t;padding:7px 0 7px 30px;position:relative;font-size:15px;break-inside:avoid}
+.toc li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:7px;
+  font-family:var(--latin);font-style:italic;font-weight:600;color:var(--coral);font-size:13px}
+.toc a{color:var(--text);border:none}
+.toc a:hover{color:var(--wine)}
+@media(max-width:600px){.toc ol{columns:1}}
+
+hr.soft{border:none;border-top:1px solid var(--line);margin:44px 0}
+
+/* footer */
+.foot{background:var(--ink);color:#c9b8b2;padding:52px 0 44px;margin-top:60px;font-size:14.5px;line-height:1.85}
+.foot b{color:#f4ece6}
+.foot .big{font-family:var(--serif);font-weight:700;font-size:22px;color:#fff;margin-bottom:8px}
+
+/* responsive type */
+@media(max-width:720px){
+  body{font-size:16px}
+  .hero{padding:70px 0 56px}
+  .hero h1{font-size:44px}.hero .latin{font-size:22px}
+  h2.big{font-size:31px}h3{font-size:22px}
+  .flow{flex-direction:column}.flow .arrow{transform:rotate(90deg);padding:4px 0}
+  .pull{font-size:21px}
+}
+@media print{
+  .hero,.act-dark{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #bar{display:none}
+}
+
+/* ---------- two-column pairs ---------- */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+.grid-2 .box{margin:0;height:100%}
+
+/* ---------- closing ---------- */
+.closing{text-align:center}
+.close-word{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:6px}
+.close-word span{font-family:var(--latin);font-weight:700;letter-spacing:.04em;line-height:1}
+.close-word .strike{font-size:44px;color:#9a7f84;text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:3px}
+.close-word .future{font-size:56px;color:#fff;text-shadow:0 2px 34px rgba(224,103,79,.55)}
+.close-word .arrow{font-size:38px;color:var(--coral-soft);font-weight:800}
+.think-q{max-width:680px;margin:42px auto 0;background:rgba(255,255,255,.05);border:1px solid rgba(246,179,159,.28);border-radius:16px;padding:24px 30px;text-align:left}
+.tq-title{font-family:var(--serif);font-weight:700;font-size:18px;color:#ffd7c9;margin-bottom:12px}
+.think-q ul{list-style:none;padding:0}
+.think-q li{position:relative;padding:10px 0 10px 26px;color:#e7d8d2;font-size:15px;line-height:1.7;border-top:1px solid rgba(255,255,255,.07)}
+.think-q li:first-child{border-top:none}
+.think-q li::before{content:"?";position:absolute;left:0;top:10px;color:var(--coral-soft);font-family:var(--latin);font-weight:800}
+.ref-note{max-width:680px;margin:28px auto 0;text-align:center;color:#b09a94;font-size:12.5px;line-height:1.7}
+@media(max-width:720px){
+  .grid-2{grid-template-columns:1fr}
+  .close-word{gap:14px}
+  .close-word .strike{font-size:32px}.close-word .future{font-size:40px}.close-word .arrow{font-size:26px}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="heart-art" viewBox="0 0 200 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 175 C40 130 15 95 15 62 C15 35 35 18 60 18 C78 18 92 30 100 46 C108 30 122 18 140 18 C165 18 185 35 185 62 C185 95 160 130 100 175 Z" stroke="#f6b39f" stroke-width="2.2"/>
+    <path d="M100 60 C96 74 84 78 80 92 M100 60 C104 78 118 84 120 100" stroke="#f6b39f" stroke-width="1.6" opacity=".8"/>
+    <path d="M62 40 C70 52 74 66 72 82 M138 40 C130 54 126 70 128 86" stroke="#f6b39f" stroke-width="1.4" opacity=".6"/>
+    <path d="M100 100 C88 112 92 128 100 140 C108 128 112 112 100 100 Z" stroke="#e0674f" stroke-width="1.8" opacity=".9"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">内科学 · 心血管系统 · 大连医科大学</div>
+    <h1>心力衰竭</h1>
+    <div class="latin">Heart Failure — 心脏病最后的战场</div>
+    <p class="lede">这份讲义不打算让你去背 74 张幻灯片。它只想让你想通<b>一件事</b>：心脏是一台泵，泵坏了会发生什么，身体如何拼命抢救，而这场抢救本身如何变成了疾病——想通了这条主线，从症状、诊断到「新四联」用药，全都会自己长出来。</p>
+    <div class="meta">配套课件：《内科学》（第 9 版）· 2023 国家心力衰竭指南<br>讲法：先问「为什么」，再拆机制，配生活化类比，最后回到考点与临床思维</div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <h5>这堂课的行军路线</h5>
+  <ol>
+    <li><a href="#core">一句话主线：泵坏了会怎样</a></li>
+    <li><a href="#def">定义：把一段绕口令拆开</a></li>
+    <li><a href="#class">分类：泵会以两种方式坏掉</a></li>
+    <li><a href="#ef">读懂 EF：射血分数到底在说什么</a></li>
+    <li><a href="#grade">分级与分期：给「病到什么程度」打分</a></li>
+    <li><a href="#cause">病因与诱因：谁把泵弄坏了</a></li>
+    <li><a href="#contract">复习：健康心肌是怎么收缩的</a></li>
+    <li><a href="#starling">Frank-Starling：身体的第一招自救</a></li>
+    <li><a href="#neuro">神经内分泌：救兵变成了掘墓人</a></li>
+    <li><a href="#remodel">心室重塑：心衰进展的发动机</a></li>
+    <li><a href="#symptom">临床表现：症状是机制的影子</a></li>
+    <li><a href="#dx">诊断：BNP、超声与 2023 流程图</a></li>
+    <li><a href="#tx">治疗总逻辑：从「加鞭」到「拦截」</a></li>
+    <li><a href="#quad">新四联：四把刀砍在四条通路上</a></li>
+    <li><a href="#inotrope">强心药：为什么它救急却不救命</a></li>
+    <li><a href="#digoxin">洋地黄与中毒：一把双刃的老刀</a></li>
+    <li><a href="#device">器械与移植：药物之外的战场</a></li>
+    <li><a href="#acute">急性心衰：抢救急性肺水肿</a></li>
+    <li><a href="#think">举一反三：把整条链条焊起来</a></li>
+  </ol>
+</nav>
+</div>
+
+<!-- ============ ACT I ============ -->
+<section class="act" id="core">
+  <div class="wrap">
+    <span class="act-num">First Principle · 第一性</span>
+    <h2 class="big">先记住这一句<span class="sub">Everything hangs on one sentence</span></h2>
+    <p class="act-lede">整个心力衰竭，长得复杂，其实只有一句话。你把这句话焊进脑子，后面所有的症状、化验、用药，都会像多米诺骨牌一样自己倒下去。</p>
+
+    <p class="pull">心脏是一台泵。泵一旦衰弱，两件事必然发生：泵的<b>后面</b>会堵车（淤血），泵的<b>前面</b>会缺货（灌注不足）。身体不甘心，拼命想办法补救；而这些补救办法，长期看反过来把泵越拖越垮。</p>
+
+    <p>就这么三段：<strong>泵弱了 → 前堵后缺 → 代偿反噬</strong>。这门课接下来做的所有事，无非是把这三段展开、放大、再落到床边。我们先把它讲透。</p>
+
+    <div class="box analogy">
+      <span class="tag"><span class="ic">🚰</span>打个比方</span>
+      <p>想象小区里一台给全楼供水又负责排水的<strong>中央水泵</strong>。它有力气，楼上住户水龙头哗哗流（<em>组织灌注</em>好），地下室排水沟畅通（<em>静脉回流</em>顺）。</p>
+      <p>某天水泵老化、没劲了。会同时出两种事故：一是<strong>楼上没水</strong>——高层住户拧开龙头只有细流，这就是「泵前面缺货」，对应全身<em>灌注不足</em>：乏力、少尿、手脚冰凉、脑子发懵；二是<strong>地下室倒灌</strong>——水排不出去，往回顶，地下室先淹，这就是「泵后面堵车」，对应<em>淤血</em>：气短、水肿、肝大。</p>
+      <p>你看，「没劲的水泵」一句话，就同时解释了心衰最核心的两大类表现。剩下的全是细节。</p>
+    </div>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>核心逻辑</span>
+      <p>请把心衰的表现永远拆成两条腿走路：</p>
+      <ul>
+        <li><strong>向前衰竭（forward failure）</strong>——心排血量↓，送不出去 → 组织<strong>灌注不足</strong>：疲乏、无力、活动耐量下降、少尿、四肢发冷、意识模糊。</li>
+        <li><strong>向后衰竭（backward failure）</strong>——压力往回顶 → 泵后方器官<strong>淤血</strong>。至于淹哪儿，取决于是<strong>哪一侧</strong>的泵坏了。</li>
+      </ul>
+      <p>这两条腿，就是后面「左心衰 vs 右心衰」「临床表现」两大节的全部骨架。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 定义 ===== -->
+<section class="act" id="def">
+  <div class="wrap">
+    <span class="act-num">01 · Definition</span>
+    <h2 class="big">定义：把一段绕口令拆开</h2>
+    <p class="act-lede">教材的定义又长又拗口，很多同学直接背下来却没读懂。我们把它一刀一刀切开，你会发现每个短语都在讲刚才那句主线。</p>
+
+    <p class="lead-in">「各种心脏结构或功能性疾病导致心室充盈和（或）射血功能受损，心排血量不能满足机体组织代谢需要，以肺循环和（或）体循环淤血、器官组织血液灌注不足为临床表现的一组综合征。」</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:44%">定义里的短语</th><th>它其实在说什么</th></tr></thead>
+        <tbody>
+          <tr><td>各种心脏结构或功能性疾病</td><td>心衰不是一种病，是<strong>一堆病的共同下场</strong>（综合征）。冠心病、高血压、瓣膜病、心肌病……殊途同归。</td></tr>
+          <tr><td>心室<strong>充盈</strong>和（或）<strong>射血</strong>功能受损</td><td>泵坏有两种坏法：<strong>装不进血</strong>（充盈=舒张问题）或<strong>挤不出血</strong>（射血=收缩问题）。这正是后面 HFpEF / HFrEF 的分家依据。</td></tr>
+          <tr><td>心排血量不能满足代谢需要</td><td>「泵弱了」的量化说法。安静时也许够，一活动就露馅——所以症状常先在<strong>用力时</strong>出现。</td></tr>
+          <tr><td>肺循环和（或）体循环<strong>淤血</strong></td><td>「泵后面堵车」。堵肺循环=左心衰，堵体循环=右心衰。</td></tr>
+          <tr><td>器官组织血液<strong>灌注不足</strong></td><td>「泵前面缺货」。向前衰竭那条腿。</td></tr>
+          <tr><td>一组<strong>综合征</strong></td><td>再强调一次：它是终点站，不是始发站。看到心衰，永远要往回追「谁把泵弄坏的」。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>它主要表现为三样东西——<strong>呼吸困难、体力活动受限、体液潴留</strong>。回看你就懂了：呼吸困难=肺淤血，体力活动受限=灌注不足，体液潴留=淤血+后面要讲的水钠潴留。定义没有一个字是多余的。</p>
+
+    <div class="box pearl">
+      <span class="tag"><span class="ic">📌</span>考点提醒</span>
+      <p>「充盈和（或）射血功能受损」这半句，是理解后面所有分类的<strong>题眼</strong>。出题人爱在这里设问：EF 正常就一定没心衰吗？——不。因为泵还可以「装不进」而不是「挤不出」。先埋个伏笔，第 4 节揭晓。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 分类 ===== -->
+<section class="act" id="class">
+  <div class="wrap">
+    <span class="act-num">02 · Classification</span>
+    <h2 class="big">分类：一台泵，两个方向坏<span class="sub">Left / Right / Total · Acute / Chronic</span></h2>
+    <p class="act-lede">课件给了三套分类。别把它们当三张要背的表——它们其实是从三个不同的角度，在问「泵是怎么坏的」。</p>
+
+    <h3>第一套：左心衰、右心衰、全心衰<span class="en">by which side</span></h3>
+    <p>这套分类问的是<strong>哪一侧泵坏了</strong>，从而<strong>淤血堵在哪儿</strong>。这里藏着心衰最漂亮、也最常考的一条推理：症状不用背，是从解剖位置推出来的。</p>
+    <p class="first">左心把血从肺送往全身。<strong>左心衰</strong>，血就往回顶进<strong>肺</strong>——所以是<em>肺淤血</em>，主症是气短。右心把全身回来的血送往肺。<strong>右心衰</strong>，血就往回顶进<strong>体循环静脉</strong>——所以是<em>体循环淤血</em>，主症是水肿、肝大、颈静脉怒张。</p>
+
+    <figure>
+      <div class="fig-title">哪侧泵坏，血就往哪侧顶</div>
+      <svg viewBox="0 0 780 470" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs>
+          <marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7a1e2e"/></marker>
+          <marker id="arb" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#2c6a6a"/></marker>
+          <radialGradient id="lung" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#f6d9cf"/><stop offset="100%" stop-color="#f0c2b6"/></radialGradient>
+          <radialGradient id="glowR" cx="50%" cy="40%" r="70%"><stop offset="0%" stop-color="#e0674f" stop-opacity=".28"/><stop offset="100%" stop-color="#e0674f" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glowB" cx="50%" cy="60%" r="70%"><stop offset="0%" stop-color="#2c6a6a" stop-opacity=".26"/><stop offset="100%" stop-color="#2c6a6a" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <!-- backup glows -->
+        <ellipse cx="390" cy="88" rx="230" ry="95" fill="url(#glowR)"/>
+        <ellipse cx="390" cy="378" rx="230" ry="90" fill="url(#glowB)"/>
+
+        <!-- lungs -->
+        <path d="M250 78 q-40 -46 22 -50 q38 -2 40 30 q30 -34 60 -30 q60 6 20 52 q34 34 -8 60 q-52 24 -84 -6 q-40 22 -70 -6 q-36 -36 20 -50 Z" fill="url(#lung)" stroke="#d98a76" stroke-width="1.5"/>
+        <text x="390" y="70" text-anchor="middle" font-size="18" font-weight="700" fill="#a83b2a">肺循环 · 肺</text>
+        <text x="390" y="94" text-anchor="middle" font-size="12.5" fill="#a05040">气体交换的地方</text>
+
+        <!-- right heart -->
+        <rect x="150" y="195" width="150" height="90" rx="14" fill="#eaf2f0" stroke="#2c6a6a" stroke-width="2"/>
+        <text x="225" y="232" text-anchor="middle" font-size="20" font-weight="700" fill="#1f4f4f">右心</text>
+        <text x="225" y="256" text-anchor="middle" font-size="12.5" fill="#3a6a6a">收全身回血 → 泵向肺</text>
+
+        <!-- left heart -->
+        <rect x="480" y="195" width="150" height="90" rx="14" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="555" y="232" text-anchor="middle" font-size="20" font-weight="700" fill="#7a1e2e">左心</text>
+        <text x="555" y="256" text-anchor="middle" font-size="12.5" fill="#8a4450">收肺回血 → 泵向全身</text>
+
+        <!-- body -->
+        <rect x="250" y="330" width="280" height="72" rx="16" fill="#f2eae4" stroke="#c98a76" stroke-width="1.5"/>
+        <text x="390" y="362" text-anchor="middle" font-size="18" font-weight="700" fill="#8a5f13">体循环 · 全身</text>
+        <text x="390" y="384" text-anchor="middle" font-size="12.5" fill="#7a6d52">四肢 · 肝 · 肾 · 脑</text>
+
+        <!-- flow arrows (clockwise): RH->lung->LH->body->RH -->
+        <path d="M255 200 C270 150 300 130 345 122" fill="none" stroke="#2c6a6a" stroke-width="2.4" marker-end="url(#arb)"/>
+        <text x="285" y="150" font-size="12" fill="#2c6a6a" font-weight="600">缺氧血→肺</text>
+        <path d="M470 122 C520 130 545 152 555 195" fill="none" stroke="#7a1e2e" stroke-width="2.4" marker-end="url(#ar)"/>
+        <text x="512" y="150" font-size="12" fill="#7a1e2e" font-weight="600">含氧血→左心</text>
+        <path d="M560 288 C560 315 545 322 520 330" fill="none" stroke="#7a1e2e" stroke-width="2.4" marker-end="url(#ar)"/>
+        <text x="566" y="318" font-size="12" fill="#7a1e2e" font-weight="600">动脉血→全身</text>
+        <path d="M258 330 C238 322 232 312 228 288" fill="none" stroke="#2c6a6a" stroke-width="2.4" marker-end="url(#arb)"/>
+        <text x="120" y="322" font-size="12" fill="#2c6a6a" font-weight="600">静脉回右心</text>
+
+        <!-- backup labels -->
+        <rect x="500" y="30" width="270" height="112" rx="12" fill="#fff" stroke="#e0674f" stroke-width="1.5"/>
+        <text x="516" y="54" font-size="14.5" font-weight="700" fill="#a83b2a">🫁 左心衰 → 肺淤血</text>
+        <text x="516" y="78" font-size="12.8" fill="#5a2f28">呼吸困难 · 端坐呼吸</text>
+        <text x="516" y="98" font-size="12.8" fill="#5a2f28">夜间阵发性呼吸困难</text>
+        <text x="516" y="118" font-size="12.8" fill="#5a2f28">急性肺水肿（粉红泡沫痰）</text>
+        <text x="516" y="136" font-size="12.8" fill="#5a2f28">肺部湿啰音</text>
+
+        <rect x="10" y="360" width="230" height="100" rx="12" fill="#fff" stroke="#2c6a6a" stroke-width="1.5"/>
+        <text x="26" y="384" font-size="14.5" font-weight="700" fill="#1f4f4f">🦵 右心衰 → 体循环淤血</text>
+        <text x="26" y="406" font-size="12.8" fill="#28403f">颈静脉怒张 · 肝大</text>
+        <text x="26" y="426" font-size="12.8" fill="#28403f">双下肢对称性水肿 · 腹水</text>
+        <text x="26" y="446" font-size="12.8" fill="#28403f">胃肠淤血→食欲差、腹胀</text>
+      </svg>
+      <figcaption>顺时针一圈是正常血流：<b>右心→肺→左心→全身→右心</b>。哪一侧的泵先垮，血就在它<b>上游</b>堵起来。左心的上游是肺，右心的上游是全身静脉——症状因此各不相同。</figcaption>
+    </figure>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>临床思维</span>
+      <p>一个反直觉但极其重要的临床事实：<strong>右心衰最常见的病因，恰恰是左心衰</strong>。左心先坏 → 肺淤血 → 肺动脉压力长期升高 → 把右心也累垮 → 右心也衰 → 就成了<em>全心衰</em>。</p>
+      <p>所以床边看到一个下肢水肿、颈静脉怒张的病人，别只想着「右心的事」——要顺着血流往回追：<strong>他的左心还好吗？</strong>这条追问，就是「心衰是综合征、要找上游」在床边的具体动作。</p>
+    </div>
+
+    <h3>第二套：急性 vs 慢性<span class="en">by tempo</span></h3>
+    <p>这套问的是<strong>坏得多快</strong>。慢性心衰是泵在几个月、几年里慢慢变弱，身体有时间搞代偿（也因此有时间发生重塑）；急性心衰是泵在几小时内突然罢工或急剧恶化，身体来不及缓冲，直接表现为<em>急性肺水肿</em>甚至<em>心源性休克</em>——这是本课最后要重点抢救的场景。慢性心衰也可以在诱因下「急性失代偿」，从慢性轨道突然掉进急性。</p>
+
+    <h3>第三套：HFrEF / HFmrEF / HFpEF<span class="en">by ejection fraction</span></h3>
+    <p>这是最现代、也最重要的一套，因为<strong>用药完全跟着它走</strong>。它用一个叫<span class="term">LVEF</span>（左室射血分数）的数字，把心衰分成三类。要理解它，必须先真正读懂 EF 这个数在说什么——太多同学只会背「≥50% 是保留」，却不知道它到底量的是什么。</p>
+  </div>
+</section>
+
+<!-- ===== EF ===== -->
+<section class="act" id="ef">
+  <div class="wrap">
+    <span class="act-num">03 · Ejection Fraction</span>
+    <h2 class="big">读懂 EF：它量的是「效率」，不是「够不够」</h2>
+
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>机制拆解</span>
+      <p>心室在舒张末装满了血，这一满缸叫<strong>舒张末容积（EDV）</strong>。收缩一下，挤出去一部分，这一泵挤出去的量叫<strong>每搏输出量（SV）</strong>。</p>
+      <p style="text-align:center;font-family:var(--serif);font-size:22px;color:var(--wine);margin:16px 0">EF ＝ SV ／ EDV ＝ 「挤出去的」占「原本装的」百分之几</p>
+      <p>所以 EF 是一个<strong>效率百分比</strong>：这一缸血，你挤出去了多大比例。正常心脏 EF ≥ 50%，也就是说满缸血一次能泵出去一半以上。</p>
+    </div>
+
+    <p class="lead-in">关键的、反直觉的一步来了：泵坏有两种坏法，而 EF 只照得出其中一种。</p>
+
+    <figure>
+      <div class="fig-title">同样是心衰，两颗完全不同的心</div>
+      <svg viewBox="0 0 780 400" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs>
+          <radialGradient id="blood" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#b23a2c"/><stop offset="100%" stop-color="#7a1e2e"/></radialGradient>
+          <linearGradient id="mus" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8b9a8"/><stop offset="100%" stop-color="#cf9483"/></linearGradient>
+        </defs>
+
+        <!-- ==== HFrEF ==== -->
+        <text x="205" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#7a1e2e">HFrEF · 挤不出</text>
+        <text x="205" y="56" text-anchor="middle" font-size="13" fill="#8a4450">收缩功能障碍 · 心室扩大变薄</text>
+        <!-- dilated thin-walled ventricle -->
+        <circle cx="205" cy="185" r="98" fill="url(#mus)" stroke="#b8836f" stroke-width="1.5"/>
+        <circle cx="205" cy="185" r="88" fill="url(#blood)"/>
+        <text x="205" y="180" text-anchor="middle" font-size="14" fill="#fff" font-weight="600">大而薄的腔</text>
+        <text x="205" y="200" text-anchor="middle" font-size="12.5" fill="#f6b39f">装了一大缸血</text>
+        <!-- EF bar -->
+        <rect x="120" y="300" width="170" height="24" rx="6" fill="#eadfda"/>
+        <rect x="120" y="300" width="46" height="24" rx="6" fill="#7a1e2e"/>
+        <text x="120" y="345" font-size="13" fill="#5a2f28">只挤出这一小截 →</text>
+        <text x="290" y="316" text-anchor="end" font-size="14" font-weight="700" fill="#fff" transform="translate(-4,0)">≤40%</text>
+        <text x="205" y="376" text-anchor="middle" font-size="13.5" fill="#7a1e2e" font-weight="600">力气不够，效率低 → EF 低</text>
+
+        <!-- divider -->
+        <line x1="390" y1="70" x2="390" y2="360" stroke="#e0d3cb" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+        <!-- ==== HFpEF ==== -->
+        <text x="575" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#1f4f4f">HFpEF · 装不进</text>
+        <text x="575" y="56" text-anchor="middle" font-size="13" fill="#3a6a6a">舒张功能障碍 · 心室肥厚僵硬</text>
+        <!-- small thick-walled ventricle -->
+        <circle cx="575" cy="185" r="98" fill="url(#mus)" stroke="#b8836f" stroke-width="1.5"/>
+        <circle cx="575" cy="185" r="46" fill="url(#blood)"/>
+        <text x="575" y="185" text-anchor="middle" font-size="12.5" fill="#f6b39f">小缸</text>
+        <path d="M575 100 L575 139 M490 185 L529 185 M575 231 L575 270 M621 185 L660 185" stroke="#a86b57" stroke-width="0" />
+        <text x="575" y="128" text-anchor="middle" font-size="12" fill="#7a4a3a">↑ 壁厚 ↑</text>
+        <!-- EF bar -->
+        <rect x="490" y="300" width="170" height="24" rx="6" fill="#eadfda"/>
+        <rect x="490" y="300" width="105" height="24" rx="6" fill="#2c6a6a"/>
+        <text x="655" y="316" text-anchor="end" font-size="14" font-weight="700" fill="#fff">≥50%</text>
+        <text x="575" y="345" text-anchor="middle" font-size="13" fill="#28403f">比例正常，可缸本身就小 →</text>
+        <text x="575" y="376" text-anchor="middle" font-size="13.5" fill="#1f4f4f" font-weight="600">挤得动，却装不满/充盈压高</text>
+      </svg>
+      <figcaption>左边 <b>HFrEF</b>：心腔扩张、心肌变薄，力气不足，满缸血只挤得出一小部分 → <b>EF 低</b>。右边 <b>HFpEF</b>：心肌肥厚僵硬，能挤出正常比例，但腔小、装血费劲、充盈压很高 → <b>EF 正常，人却照样心衰</b>。EF 照得出「挤不出」，照不出「装不进」。</figcaption>
+    </figure>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>核心逻辑</span>
+      <p>把伏笔收了：<strong>EF 正常 ≠ 心脏没问题</strong>。EF 只反映「收缩挤压」这一件事。如果泵坏在「舒张充盈」上（装不进血，靠拼命升高充盈压才勉强装一点），那么每一泵挤出去的<em>比例</em>可以完全正常，EF 漂亮得很——但血一样淤在肺里，人一样喘。这就是 <strong>HFpEF（射血分数保留的心衰）</strong>。</p>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <caption>2022 年起的分型（Circulation 2022；2023 中国指南沿用）</caption>
+        <thead><tr><th>分型</th><th>LVEF</th><th>坏在哪</th><th>典型人群 / 特征</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HFrEF</strong> 射血分数降低</td><td>≤ 40%</td><td>收缩（挤不出）</td><td>大心脏、心肌梗死后、扩张型心肌病；<strong>「新四联」证据最充分</strong></td></tr>
+          <tr><td><strong>HFmrEF</strong> 轻度降低</td><td>41%–49%</td><td>介于两者之间</td><td>常是 HFrEF 好转或 HFpEF 恶化途中的过渡区</td></tr>
+          <tr><td><strong>HFpEF</strong> 射血分数保留</td><td>≥ 50%</td><td>舒张（装不进）</td><td>老年、高血压、肥厚心；需有充盈压升高证据（钠尿肽↑等）</td></tr>
+          <tr><td><strong>HFimpEF</strong> 射血分数改善</td><td>曾≤40%，随访＞40%</td><td>治疗后回升</td><td>新增类别：提示「重塑可逆」，但<strong>治疗不能停</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box pearl">
+      <span class="tag"><span class="ic">📌</span>考点 + 一个陷阱</span>
+      <p>指南特别标注的一个灰色地带（课件也讲了）：那些 LVEF 从 41–49% <strong>回升到 ≥50%</strong> 的病人，后续该按 HFpEF 还是 HFmrEF 治，目前证据不足、不清楚。别以为 EF 一回到正常就万事大吉——<strong>EF 改善（HFimpEF）不等于治愈，擅自停药常导致重塑反弹、心衰复发</strong>。这正呼应了那个新类别设立的初衷。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 分级分期 ===== -->
+<section class="act" id="grade">
+  <div class="wrap">
+    <span class="act-num">04 · Staging & Grading</span>
+    <h2 class="big">给「病到什么程度」打两种分<span class="sub">Function vs Structure</span></h2>
+    <p class="act-lede">分级和分期常被混着背。其实它们是两把不同的尺子：一把量「今天你能干多少活」，另一把量「病走到了哪一步」。理解了这个区别，就不会再搞混。</p>
+
+    <h3>NYHA 分级：量「症状 / 干活能力」<span class="en">functional, reversible</span></h3>
+    <p>纽约心脏病协会（NYHA）分级，问的是<strong>你现在能不能活动、活动到什么程度会喘</strong>。它是<em>功能性</em>的，会<strong>随治疗上下浮动</strong>——今天心衰加重是 III 级，利尿治好了可以回到 II 级。</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:14%">级别</th><th>什么状态</th><th>翻译成大白话</th></tr></thead>
+        <tbody>
+          <tr><td>Ⅰ 级</td><td>体力活动不受限</td><td>该干嘛干嘛，一般活动不喘</td></tr>
+          <tr><td>Ⅱ 级</td><td>体力活动轻度受限</td><td>日常活动就开始有点喘/累（如快走、上楼）</td></tr>
+          <tr><td>Ⅲ 级</td><td>体力活动明显受限</td><td>比日常还轻的活动就明显不适（如穿衣、慢走几步）</td></tr>
+          <tr><td>Ⅳ 级</td><td>不能从事任何体力活动</td><td>躺着不动也喘</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">一无、二轻、三明显，四级不动也困难</div>
+
+    <h3>ACC/AHA 分期：量「病程走到哪」<span class="en">structural, one-way</span></h3>
+    <p>分期（A/B/C/D）看的是<strong>心脏结构损害和病程进展</strong>，它<strong>只进不退</strong>——一旦进入下一期，就回不去了（与 NYHA 的可逆刚好相反，这是最爱考的对比点）。</p>
+    <div class="flow">
+      <div class="node">A 期<small>有危险因素<br>无结构病变、无症状</small></div>
+      <div class="arrow">→</div>
+      <div class="node">B 期<small>已有结构病变<br>但还没症状</small></div>
+      <div class="arrow">→</div>
+      <div class="node">C 期<small>结构病变<br>+ 有/曾有症状</small></div>
+      <div class="arrow">→</div>
+      <div class="node">D 期<small>难治性终末期<br>需特殊干预</small></div>
+    </div>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>核心逻辑</span>
+      <p>两把尺子合起来用才完整：<strong>分期 = 疾病走了多远（不可逆、防线思维），NYHA = 今天症状多重（可逆、疗效标尺）</strong>。分期的价值在于<em>提早干预</em>——A、B 期还没症状时就上药，是为了阻止病人滑向 C、D 期；这背后正是「重塑一旦发生就难逆转」的思想，我们后面会讲透。</p>
+    </div>
+
+    <h3>6 分钟步行试验<span class="en">6MWT · 客观化</span></h3>
+    <p>NYHA 靠病人自述，难免主观。<strong>6 分钟步行试验（6MWT）</strong>让病人在平地尽力走 6 分钟，量走了多远——把「能干多少活」变成一个<em>客观数字</em>。它既评估心脏储备功能，也是<strong>评价心衰疗效</strong>的常用手段（治疗前后各走一次，看进步）。走得越短，心功能越差（教材常用：重度 &lt;150 m，中度 150–450 m，轻度 &gt;450 m；不同分层方案数值略有差异）。</p>
+  </div>
+</section>
+
+<!-- ===== 病因诱因 ===== -->
+<section class="act" id="cause">
+  <div class="wrap">
+    <span class="act-num">05 · Etiology & Triggers</span>
+    <h2 class="big">谁把泵弄坏了<span class="sub">Cause vs Trigger — 两个不同的问题</span></h2>
+    <p class="act-lede">病因和诱因是两回事，且都能用「泵」的语言讲清。病因是<strong>让泵本身变坏</strong>的根本原因；诱因是<strong>压垮骆驼的最后一根稻草</strong>——泵本已勉强维持，某件事一来就崩了。</p>
+
+    <h3>病因：泵为什么会坏</h3>
+    <p>一台泵会坏，无非两个方向：<strong>要么马达坏了，要么让它干的活太重</strong>。心脏一模一样。</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">病因大类</th><th>机制</th><th>常见例子</th></tr></thead>
+        <tbody>
+          <tr><td><strong>① 心肌损害</strong><br><span class="term">myocardial injury</span></td><td>「马达」本身受损，收缩力下降</td><td>原发：心肌梗死、心肌炎、扩张型/肥厚型心肌病；继发：糖尿病、甲状腺、药物毒性心肌病</td></tr>
+          <tr><td><strong>② 后负荷过重</strong><br><span class="term">afterload ↑</span></td><td>泵每次得对抗更高的阻力才能射血，长期累垮</td><td>高血压（对抗高动脉压）、主动脉瓣狭窄、肺动脉高压</td></tr>
+          <tr><td><strong>② 前负荷过重</strong><br><span class="term">preload ↑</span></td><td>回心血量/容量长期过多，心腔被撑大做无用功</td><td>瓣膜关闭不全（血倒流回来）、左右分流的先心病、慢性容量负荷</td></tr>
+          <tr><td><strong>③ 心室前负荷不足 / 充盈受限</strong></td><td>不是泵没劲，是「装不进血」→ 泵空转，排出也少</td><td>严重二尖瓣狭窄、心包缩窄/填塞、限制型心肌病</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>把前、后负荷记牢很关键：<strong>前负荷 ≈ 心室舒张末被撑开的程度（容量／回心血量）；后负荷 ≈ 射血时要对抗的阻力（动脉压／流出道梗阻）</strong>。这两个词在后面讲 Frank-Starling、讲扩血管药「减轻前/后负荷」时会反复出现，现在就把它们焊牢。</p>
+
+    <h3>诱因：最后一根稻草</h3>
+    <p>很多慢性心衰病人平时稳稳的，突然加重住院，背后几乎总有一个<strong>诱因</strong>。找诱因、去诱因，是心衰急性加重处理的第一步——每一个都能用「增加了泵的负担」或「削弱了泵」来解释：</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:30%">诱因</th><th>为什么它能压垮泵</th></tr></thead>
+        <tbody>
+          <tr><td>感染（尤其肺部）</td><td><strong>最常见诱因</strong>。发热→代谢率↑→泵要输出更多；肺部感染还直接损害气体交换、加重缺氧</td></tr>
+          <tr><td>心律失常（尤其快速房颤）</td><td>心跳过快→舒张期变短→心室来不及充盈→每搏更少；还丢掉了「心房辅助泵」的贡献</td></tr>
+          <tr><td>血容量增加</td><td>输液过多、高盐饮食→前负荷骤增→本已在曲线顶端的心室被压垮，直接淤血</td></tr>
+          <tr><td>过度体力消耗、情绪激动</td><td>交感激活→心率、后负荷、耗氧齐升→需求超过了衰竭泵的供给上限</td></tr>
+          <tr><td>治疗不当</td><td>擅自停药（利尿剂、ACEI/β 阻滞剂）、用了负性肌力或水钠潴留的药</td></tr>
+          <tr><td>原有心脏病加重 / 合并新病</td><td>如再发心梗、贫血、肾功能恶化、甲亢——都在给泵额外加码</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>临床思维</span>
+      <p>床边口诀：<strong>看到心衰加重，先问三句——「感染了吗？心率乱吗？水/盐超了吗？」</strong>这三条覆盖了绝大多数诱因。很多时候，你不需要换更贵的药，只要<em>把诱因拔掉</em>，病人就能从急性失代偿退回稳定状态。这就是「治病求因」在心衰里最实用的一招。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT II — PATHOPHYSIOLOGY ============ -->
+<section class="act-dark">
+  <div class="wrap">
+    <span class="act-num">Act Two · 病理生理</span>
+    <h2 class="big">救兵，如何变成掘墓人<span class="sub">The rescue that becomes the disease</span></h2>
+    <p class="act-lede">这是整门课的思想核心，也是最容易「背了却没懂」的一段。请带着一个问题往下读：<strong>身体明明在拼命自救，为什么心衰还是一步步恶化？</strong>想通这个悖论，你就拿到了理解全部心衰治疗的钥匙——因为现代治疗做的事，恰恰是<strong>拦住这些「好心办坏事」的自救</strong>。</p>
+    <p class="pull">泵一弱，身体立刻启动三级火箭救援：先靠拉伸多挤（Frank-Starling），再靠神经内分泌总动员，最后把心脏本身改造（重塑）。急救时它们是英雄。可这套为「失血」进化出来的应急程序，用在一颗<b>长期衰弱</b>的心脏上，每一步都在加重它的负担。</p>
+  </div>
+</section>
+
+<!-- ===== 收缩基础 ===== -->
+<section class="act" id="contract">
+  <div class="wrap">
+    <span class="act-num">06 · Cellular Basis</span>
+    <h2 class="big">先修：健康心肌怎么收缩</h2>
+    <p class="act-lede">这一节课件放在「复习」，很多同学一扫而过。但这里有两个不起眼的事实，后面会分别引爆<strong>洋地黄的机制</strong>和<strong>HFpEF 的舒张障碍</strong>。花三分钟把它焊牢，非常划算。</p>
+
+    <h3>收缩，本质是一场「钙触发的滑动」</h3>
+    <p>心肌细胞里排列着<strong>肌节</strong>——由粗肌丝（<span class="term">肌球蛋白 myosin</span>）和细肌丝（<span class="term">肌动蛋白 actin</span>）交错组成。平时有一组「调节蛋白」（向肌球蛋白、肌钙蛋白）像门闩一样挡着，不让它俩结合。收缩这件事，一步步是这样发生的：</p>
+
+    <div class="flow" style="font-size:13.5px">
+      <div class="node">心肌兴奋<small>电信号来了</small></div><div class="arrow">→</div>
+      <div class="node">胞浆 Ca²⁺ ↑↑<small>钙涌入</small></div><div class="arrow">→</div>
+      <div class="node">Ca²⁺ 结合调节蛋白<small>门闩打开</small></div><div class="arrow">→</div>
+      <div class="node">肌球+肌动结合<small>形成横桥</small></div><div class="arrow">→</div>
+      <div class="node">ATP 水解供能<small>横桥摆动</small></div><div class="arrow">→</div>
+      <div class="node">肌丝滑动<small>心肌收缩</small></div>
+    </div>
+
+    <p>把两个主角记牢：<strong>钙离子是「扳机」</strong>（决定收不收缩、收多强），<strong>ATP 是「燃料」</strong>（横桥每摆动一次都要烧 ATP）。钙负责「点火」，把电兴奋这个信号翻译成机械收缩——它是<em>兴奋-收缩偶联</em>的中介。</p>
+
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>机制拆解 · 两颗即将引爆的伏笔</span>
+      <ul>
+        <li><strong>伏笔一（→ 洋地黄）：细胞内钙越多，收缩越强。</strong>那么，只要想办法把钙「攒」在细胞里，就能增强收缩力。洋地黄类正是靠这一招——抑制 Na⁺-K⁺-ATP 酶，间接抬高细胞内钙。第 16 节兑现。</li>
+        <li><strong>伏笔二（→ HFpEF）：舒张，是一件要花钱（ATP）的事。</strong>收缩后要放松，必须把钙<em>主动泵回</em>肌浆网、泵出细胞——这个过程<strong>耗能</strong>。一旦供能不足（比如心肌缺血），钙撤不走，心肌就<strong>松不下来</strong>→ 舒张功能障碍。这就是 HFpEF「装不进血」的分子根源。第 8 节兑现。</li>
+      </ul>
+      <p>记住这句反直觉的话：<strong>放松比收缩更「贵」</strong>——很多人以为舒张是被动的、不花力气的，恰恰错了。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Frank-Starling ===== -->
+<section class="act" id="starling">
+  <div class="wrap">
+    <span class="act-num">07 · Frank-Starling</span>
+    <h2 class="big">第一招自救：拉得越开，挤得越猛<span class="sub">…until it isn't</span></h2>
+    <p class="act-lede">泵一弱、血一堵，心室被回来的血撑得更满。神奇的是，心肌<strong>被拉伸得越多，下一次收缩就越有力</strong>——这就是 Frank-Starling 定律，身体不花任何「新装备」就能启动的即时自救。可这招有个致命的天花板。</p>
+
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>机制拆解</span>
+      <p>为什么拉伸能增力？回到肌节：在一定范围内，把心肌拉长，粗、细肌丝的<strong>重叠区变得更理想</strong>，能搭上的横桥更多，钙的敏感性也升高 → 收缩力更大 → 每搏输出更多。所以当前负荷（舒张末容积）增加，输出跟着增加——这是曲线的<strong>上升支</strong>。</p>
+      <p>但肌丝拉伸有极限。<strong>超过最佳重叠点，再拉，横桥反而搭不上、力量不增反降</strong>——曲线走平甚至掉头向下（<strong>下降支</strong>）。而与此同时，越高的前负荷意味着越高的<em>充盈压</em>，压力顺着往回顶 → <strong>肺淤血/体循环淤血</strong>。</p>
+    </div>
+
+    <figure>
+      <div class="fig-title">Frank-Starling 曲线：一条会背叛你的救命曲线</div>
+      <svg viewBox="0 0 780 470" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs>
+          <marker id="da" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7a6d72"/></marker>
+        </defs>
+        <!-- zones -->
+        <rect x="90" y="60" width="345" height="320" fill="#2c6a6a" opacity=".06"/>
+        <rect x="435" y="60" width="285" height="320" fill="#e0674f" opacity=".08"/>
+        <line x1="435" y1="60" x2="435" y2="380" stroke="#e0674f" stroke-width="1.6" stroke-dasharray="5 5"/>
+        <text x="262" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#1f4f4f">代偿区</text>
+        <text x="262" y="100" text-anchor="middle" font-size="11.5" fill="#2c6a6a">↑前负荷 → ↑输出</text>
+        <text x="578" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#a83b2a">淤血区</text>
+        <text x="578" y="100" text-anchor="middle" font-size="11.5" fill="#a83b2a">再撑只涨淤血，输出不涨反跌</text>
+
+        <!-- axes -->
+        <line x1="90" y1="60" x2="90" y2="380" stroke="#4a3f44" stroke-width="2"/>
+        <line x1="90" y1="380" x2="720" y2="380" stroke="#4a3f44" stroke-width="2"/>
+        <text x="60" y="220" text-anchor="middle" font-size="13.5" font-weight="600" fill="#4a3f44" transform="rotate(-90 60 220)">每搏输出量 / 心脏做功 →</text>
+        <text x="405" y="415" text-anchor="middle" font-size="13.5" font-weight="600" fill="#4a3f44">前负荷（心室舒张末容积 / 充盈压）→</text>
+
+        <!-- normal curve -->
+        <path d="M100,352 C175,298 215,150 305,126 C405,100 565,96 700,95" fill="none" stroke="#2c6a6a" stroke-width="3.4"/>
+        <text x="620" y="82" text-anchor="middle" font-size="0" fill="#2c6a6a"></text>
+        <text x="640" y="112" font-size="14" font-weight="700" fill="#1f4f4f">正常心</text>
+
+        <!-- failing curve -->
+        <path d="M100,373 C210,356 305,314 405,303 C505,293 575,312 700,352" fill="none" stroke="#7a1e2e" stroke-width="3.4"/>
+        <text x="640" y="368" font-size="14" font-weight="700" fill="#7a1e2e">衰竭心</text>
+
+        <!-- shift arrow -->
+        <path d="M305,150 C305,210 305,235 405,278" fill="none" stroke="#7a6d72" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#da)"/>
+        <text x="250" y="235" font-size="12" fill="#7a6d72">心衰：曲线</text>
+        <text x="250" y="252" font-size="12" fill="#7a6d72">整体下移、压平</text>
+
+        <!-- operating points -->
+        <circle cx="270" cy="139" r="6" fill="#2c6a6a"/>
+        <text x="150" y="128" font-size="12" font-weight="600" fill="#1f4f4f">正常工作点：</text>
+        <text x="150" y="146" font-size="11.5" fill="#2c6a6a">小前负荷就够用</text>
+
+        <circle cx="560" cy="316" r="6" fill="#7a1e2e"/>
+        <text x="500" y="345" font-size="12" font-weight="600" fill="#7a1e2e">衰竭心被迫工作点：</text>
+        <text x="500" y="362" font-size="11.5" fill="#a83b2a">靠高前负荷硬撑，</text>
+        <text x="500" y="378" font-size="11.5" fill="#a83b2a">输出勉强、淤血已来</text>
+      </svg>
+      <figcaption>正常心（青）用<b>很小</b>的前负荷就能泵出充足血量。衰竭心（酒红）整条曲线<b>下移压平</b>：为了维持输出，它被迫把前负荷推到很高，此时早已越过分界线进入<b>淤血区</b>——输出没涨多少，肺里/腿上却先淹了。这就是「代偿到失代偿」的转折点。</figcaption>
+    </figure>
+
+    <div class="box analogy">
+      <span class="tag"><span class="ic">🏋️</span>打个比方</span>
+      <p>像拉一根皮筋弹小球：<em>拉得越开，弹得越远</em>——这是上升支，越拉越强。但你要是<strong>拉过了头</strong>，皮筋绷到极限甚至要断，小球不但弹不远，皮筋还会伤到你的手（对应<em>淤血</em>）。衰竭心就是一根<strong>已经老化、弹性变差</strong>的皮筋：想弹同样远，得拉得更开，而它离「拉过头受伤」的距离，比新皮筋近得多。</p>
+    </div>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>临床思维 · 这条曲线怎么指导治疗</span>
+      <p>这张图不是纯理论，它直接解释了两类用药：</p>
+      <ul>
+        <li><strong>利尿剂 / 扩静脉药（减前负荷）</strong>：把病人从曲线<em>右侧的淤血区</em>往左拉回一点。输出可能只掉一点点（因为已在平台），淤血却能<strong>大幅缓解</strong>——这就是为什么给急性肺水肿病人利尿、坐起来放腿，喘马上就好转。</li>
+        <li><strong>为什么不能一味补液</strong>：给一个已在曲线平台/下降支的衰竭心大量输液，前负荷再往右推，只会把他直接推进肺水肿。这解释了「血容量增加」为何是心衰的诱因，也是临床输液如履薄冰的原因。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 神经内分泌 ===== -->
+<section class="act" id="neuro">
+  <div class="wrap">
+    <span class="act-num">08 · Neurohormonal Activation</span>
+    <h2 class="big">第二招自救：一场认错了敌人的总动员<span class="sub">The body thinks you're bleeding out</span></h2>
+    <p class="act-lede">Frank-Starling 顶不住时，身体拉响第二级警报：神经-体液-细胞因子系统全面激活。这里有一个进化埋下的<strong>致命误会</strong>——理解了它，后面「新四联」为什么长这样，就一目了然。</p>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>核心逻辑 · 那个致命误会</span>
+      <p>身体感知血压/灌注的方式，是靠<strong>压力感受器</strong>（颈动脉、主动脉）。心衰时心排血量↓、血压/灌注↓，压力感受器一报警，身体的第一反应是——<strong>「糟了，是不是在大出血？」</strong></p>
+      <p>面对「失血」，最合理的应急程序是：<em>加快心跳、收缩血管保住核心器官、拼命留住水和盐把血容量补回来</em>。这套程序对<strong>真出血</strong>是救命的。可心衰病人根本没失血，他的问题是<strong>泵坏了、容量本已过多</strong>。于是这套「补容量、升阻力」的程序，正好<strong>南辕北辙</strong>：加重前负荷（淤血）、加重后负荷（泵更累）、还直接毒害心肌。救兵，就这样变成了掘墓人。</p>
+    </div>
+
+    <h3>激活的几路「救兵」逐一看</h3>
+    <p>课件列了七条，核心是前四路。我们对每一路都问同一组问题：<strong>谁触发它？它急救时干了什么好事？长期又干了什么坏事？我们用什么药拦它？</strong></p>
+
+    <h4>① 交感神经系统（SNS）—— 加鞭抽一匹累马</h4>
+    <p>压力感受器报警 → 交感兴奋 → 释放<strong>去甲肾上腺素（NE）</strong>：作用于心脏 β₁ 受体 → 心率加快、收缩力增强（短期把输出撑住）；作用于血管 α₁ → 收缩血管、升高血压（保住重要器官灌注）。急救很漂亮。</p>
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>长期为何有害 → β 阻滞剂的理论依据</span>
+      <ul>
+        <li><strong>后负荷↑</strong>：血管持续收缩，衰竭的泵每次射血都要对抗更高阻力，越抽越累。</li>
+        <li><strong>心率↑ 的双重伤害</strong>：心跳越快，① 耗氧越多；② 舒张期越短——而<em>舒张期正是心室充盈和冠脉供血的时间窗</em>，缩短它意味着<strong>供血更少、装血更少</strong>。对一颗缺血又缺力的心，这是雪上加霜。</li>
+        <li><strong>NE 直接毒害心肌</strong>：长期高浓度儿茶酚胺促进心肌细胞<em>凋亡</em>、驱动<em>心脏重塑</em>；β₁ 受体还会被「下调」（数量减少），代偿反而越来越无力。</li>
+      </ul>
+      <p>所以——<strong>抑制交感（β 受体阻滞剂）能改善心衰预后</strong>。这就是那句反直觉结论的由来：给一颗「没劲」的心用「减弱心跳」的药，看似荒谬，实则是<em>停止让一匹累马继续被鞭子抽死</em>。</p>
+    </div>
+
+    <h4>② 肾素-血管紧张素-醛固酮系统（RAAS）—— 最该被拦的一路</h4>
+    <p>肾灌注↓（加上交感激活、肾小管钠减少）→ 肾脏释放<strong>肾素</strong> → 把血管紧张素原切成<strong>血管紧张素 Ⅰ</strong> → 血管紧张素转化酶（<span class="term">ACE</span>）再把它变成主角<strong>血管紧张素 Ⅱ（Ang Ⅱ）</strong>。Ang Ⅱ 通过 <strong>AT1 受体</strong>干三件大事，件件都在把心衰往深里推：</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:30%">Ang Ⅱ 经 AT1 做的事</th><th>短期「好意」</th><th>长期恶果</th></tr></thead>
+        <tbody>
+          <tr><td>强力收缩小动脉</td><td>升血压、保灌注</td><td>后负荷↑，泵更累</td></tr>
+          <tr><td>刺激醛固酮分泌</td><td>留钠留水、补容量</td><td>前负荷↑（淤血、水肿）；醛固酮还促<strong>心肌/血管纤维化</strong></td></tr>
+          <tr><td>促细胞生长、损伤、凋亡</td><td>—</td><td>直接驱动<strong>心室重塑</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>四种拦法，对应四类药（先建地图，后面细讲）</span>
+      <ul>
+        <li><strong>ACEI</strong>（培哚普利、依那普利…）：卡在「ACE 这一步」，不让 Ang Ⅰ 变 Ang Ⅱ。副产物是 ACE 也降解<em>缓激肽</em>，抑制 ACE → 缓激肽蓄积 → 扩血管（好处），也带来标志性的<strong>干咳</strong>（副作用）。</li>
+        <li><strong>ARB</strong>（缬沙坦、氯沙坦…）：不管 Ang Ⅱ 从哪条路来，直接<em>堵住 AT1 受体</em>。不动缓激肽 → <strong>很少干咳</strong>，适合 ACEI 不耐受者。</li>
+        <li><strong>MRA / 醛固酮受体拮抗剂</strong>（螺内酯…）：拦最下游的<em>醛固酮</em>，抗纤维化、保钾。</li>
+        <li><strong>ARNI</strong>（沙库巴曲缬沙坦）：ARB 之上再加一记「保护友军」的招——见下条 BNP。</li>
+      </ul>
+    </div>
+    <div class="box pearl">
+      <span class="tag"><span class="ic">📌</span>别忽略 AT2</span>
+      <p>Ang Ⅱ 还能走 <strong>AT2 受体</strong>，效果几乎<em>相反</em>：扩血管、抑制细胞生长、促分化——是「好的那一面」。这解释了 ARB 的巧妙：它只堵坏的 AT1，Ang Ⅱ 被迫更多走 AT2，等于「坏门关上、好门敞开」。</p>
+    </div>
+
+    <h4>③ 钠尿肽 ANP / BNP —— 唯一的「友军」，却打不过</h4>
+    <p>不是所有激素都在帮倒忙。<strong>心房压力增高</strong>时心房分泌 <span class="term">ANP</span>，<strong>心室压力增高</strong>时心室分泌 <span class="term">BNP</span>。它俩是身体里<strong>对抗上述所有坏激素的「好人」</strong>：扩张血管、增加排钠排水、对抗肾上腺素和 RAAS 的水钠潴留、抗重塑。</p>
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>一个激素，三重身份（极高频考点）</span>
+      <ul>
+        <li><strong>身份一 · 代偿友军</strong>：可惜它的力量被 RAAS+交感的洪流<em>淹没</em>了，独木难支。</li>
+        <li><strong>身份二 · 诊断/预后标志物</strong>：心室压力越高、心衰越重，BNP 分泌越多 → 抽血测 <strong>BNP / NT-proBNP</strong> 就能辅助诊断心衰、判断严重程度与预后。这是它在临床上最实用的价值，第 11 节详谈。</li>
+        <li><strong>身份三 · ARNI 的靶点</strong>：既然它是好人，能不能<em>让它多留一会儿</em>？体内有个叫「脑啡肽酶（neprilysin）」的酶专门降解 BNP。<strong>ARNI = ARB + 脑啡肽酶抑制剂</strong>（沙库巴曲的代谢产物 LBQ657 抑制该酶）→ 一边堵住坏的 Ang Ⅱ（ARB），一边不让好的 BNP 被拆掉（保护友军）→ 双管齐下，疗效超过单用 ACEI。</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <span class="tag"><span class="ic">⚠️</span>由此引出的临床陷阱</span>
+      <p>用了 ARNI（抑制脑啡肽酶）后，<strong>BNP 会被人为地升高</strong>（因为它降解慢了），这时用 BNP 监测病情会误判。所以<strong>用 ARNI 期间，改用 NT-proBNP 监测</strong>——NT-proBNP 是无活性的裂解片段，不受脑啡肽酶影响。这一条几乎年年被考。</p>
+    </div>
+
+    <h4>④ 精氨酸加压素（AVP / ADH）—— 把水越留越多</h4>
+    <p>压力感受器和 Ang Ⅱ 还会刺激<strong>脑垂体分泌 AVP</strong>：通过 V2 受体<em>抗利尿（留水）</em>，通过 V1 受体<em>收缩外周血管（后负荷↑）</em>。留水过头会造成<strong>稀释性低钠血症</strong>（水比钠留得还多）。<strong>托伐普坦</strong>正是 V2 受体拮抗剂，用于心衰合并低钠血症时「只排水、不排钠」。</p>
+
+    <h4>⑤ 内皮素等其他 —— 补刀</h4>
+    <p><strong>内皮素（ET）</strong>是已知最强的缩血管物质之一，心衰时升高，进一步抬高后负荷、促进重塑；再加上各种<em>炎性细胞因子</em>（如 TNF-α）参与心肌损伤。它们大体都在重复同一个主题：<strong>缩血管 + 促重塑</strong>。</p>
+
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔬</span>顺带兑现伏笔二 · HFpEF 为什么「装不进」</span>
+      <p>还记得第 6 节说「放松要花 ATP」吗？HFpEF 的舒张障碍正有两个来源：</p>
+      <ul>
+        <li><strong>主动舒张障碍（耗能环节坏了）</strong>：供能不足时，把钙<em>回摄入肌浆网、泵出细胞</em>的耗能过程受损 → 钙撤不走 → 心肌松不下来。<em>冠心病明显心肌缺血时</em>出现的舒张功能障碍，就是这个机理。</li>
+        <li><strong>心室僵硬、顺应性↓（房子太硬）</strong>：主要见于<em>心室肥厚</em>（常由长期高血压、上面讲的重塑造成）——墙又厚又硬，同样容量下充盈压飙升。</li>
+      </ul>
+      <p>结果就是那颗「挤得动、装不进」的 HFpEF 心：EF 正常，充盈压却很高，血照样淤在肺里。</p>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <caption>一页速记：坏激素军团 vs 它们的克星</caption>
+        <thead><tr><th>激活的系统</th><th>核心坏处</th><th class="teal">对应药物</th></tr></thead>
+        <tbody>
+          <tr><td>交感神经（NE）</td><td>心率↑耗氧↑、后负荷↑、心肌凋亡、重塑</td><td>β 受体阻滞剂</td></tr>
+          <tr><td>RAAS（Ang Ⅱ）</td><td>后负荷↑、水钠潴留、重塑</td><td>ACEI / ARB / ARNI</td></tr>
+          <tr><td>醛固酮</td><td>水钠潴留、纤维化</td><td>MRA（螺内酯等）</td></tr>
+          <tr><td>钠尿肽（友军，被降解）</td><td>力量不足</td><td>ARNI（抑制其降解）</td></tr>
+          <tr><td>AVP</td><td>留水、低钠、后负荷↑</td><td>托伐普坦（V2 拮抗）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 心室重塑 ===== -->
+<section class="act" id="remodel">
+  <div class="wrap">
+    <span class="act-num">09 · Remodeling</span>
+    <h2 class="big">心室重塑：心衰进展的发动机<span class="sub">The engine of progression</span></h2>
+    <p class="act-lede">课件在开头就点名：本课要「主要理解<strong>心肌重塑</strong>的概念」。为什么单挑它？因为它回答了那个贯穿全课的悖论——<strong>身体在自救，心衰却为什么还在恶化</strong>。答案就是重塑。它是把「一次损伤」变成「一路下坡」的那台发动机。</p>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>先给定义，再讲它为何致命</span>
+      <p><strong>心室重塑（ventricular remodeling）</strong>：在心脏功能受损、心腔扩大、心肌肥厚的代偿过程中，<em>心肌细胞、非心肌细胞、细胞外基质、胶原纤维网</em>都发生相应改变——心肌细胞肥大与凋亡、间质纤维化、心腔从「橄榄形」变「球形」。<strong>它是心衰发生发展的基本病理机制。</strong></p>
+      <p>关键在于：驱动重塑的手，正是上一节那批「救兵」——<strong>NE、Ang Ⅱ、醛固酮</strong>加上机械牵张。也就是说，代偿激素一边勉强维持着今天的循环，一边悄悄把心脏<em>改造成一个更差的泵</em>。重塑早期还能撑住输出，但会<strong>不可逆地、进行性地</strong>让心功能越来越差。</p>
+    </div>
+
+    <p class="lead-in">于是形成一个自我强化的死亡螺旋——记住这张图，你就记住了整个心衰的病理生理，也记住了整个治疗策略。</p>
+
+    <figure>
+      <div class="fig-title">心衰的恶性循环，以及现代治疗如何剪断它</div>
+      <svg viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs>
+          <marker id="cy" markerWidth="11" markerHeight="11" refX="7" refY="3.2" orient="auto"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#7a1e2e"/></marker>
+          <marker id="brk" markerWidth="11" markerHeight="11" refX="7" refY="3.2" orient="auto"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#2c6a6a"/></marker>
+        </defs>
+
+        <!-- entry -->
+        <rect x="255" y="16" width="250" height="46" rx="10" fill="#f2eae4" stroke="#c98a76" stroke-width="1.5"/>
+        <text x="380" y="38" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a5f13">始动打击</text>
+        <text x="380" y="56" text-anchor="middle" font-size="12" fill="#7a6d52">心肌损伤（心梗/心肌炎）· 负荷过重（高血压/瓣膜病）</text>
+        <path d="M380,62 L380,88" fill="none" stroke="#c98a76" stroke-width="2.2" marker-end="url(#cy)"/>
+
+        <!-- Node A top: CO down -->
+        <rect x="290" y="90" width="180" height="58" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="380" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#7a1e2e">心输出量 ↓</text>
+        <text x="380" y="136" text-anchor="middle" font-size="11.5" fill="#8a4450">泵送不出、灌注不足</text>
+
+        <!-- Node B right: neurohormonal -->
+        <rect x="500" y="222" width="200" height="66" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="600" y="246" text-anchor="middle" font-size="14.5" font-weight="700" fill="#7a1e2e">神经内分泌激活</text>
+        <text x="600" y="266" text-anchor="middle" font-size="11" fill="#8a4450">交感 · RAAS · 醛固酮</text>
+        <text x="600" y="281" text-anchor="middle" font-size="11" fill="#8a4450">AVP · 内皮素</text>
+
+        <!-- Node C bottom-right: load + toxicity -->
+        <rect x="415" y="470" width="205" height="66" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="517" y="494" text-anchor="middle" font-size="14" font-weight="700" fill="#7a1e2e">前/后负荷 ↑</text>
+        <text x="517" y="514" text-anchor="middle" font-size="11" fill="#8a4450">+ 心肌直接毒性</text>
+        <text x="517" y="529" text-anchor="middle" font-size="11" fill="#8a4450">+ 纤维化刺激</text>
+
+        <!-- Node D bottom-left: remodeling -->
+        <rect x="150" y="470" width="205" height="66" rx="12" fill="#7a1e2e" stroke="#571421" stroke-width="2"/>
+        <text x="252" y="494" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">心室重塑</text>
+        <text x="252" y="514" text-anchor="middle" font-size="11" fill="#f6b39f">肥大 · 扩张 · 纤维化</text>
+        <text x="252" y="529" text-anchor="middle" font-size="11" fill="#f6b39f">凋亡 · 形态变球形</text>
+
+        <!-- Node E left: function worse -->
+        <rect x="70" y="222" width="185" height="66" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="162" y="252" text-anchor="middle" font-size="14" font-weight="700" fill="#7a1e2e">心功能进一步 ↓</text>
+        <text x="162" y="272" text-anchor="middle" font-size="11" fill="#8a4450">泵越改越差</text>
+
+        <!-- cycle arrows (clockwise) -->
+        <path d="M470,132 C540,150 575,180 595,218" fill="none" stroke="#7a1e2e" stroke-width="2.6" marker-end="url(#cy)"/>
+        <path d="M600,290 C600,360 570,420 540,466" fill="none" stroke="#7a1e2e" stroke-width="2.6" marker-end="url(#cy)"/>
+        <path d="M413,505 L360,505" fill="none" stroke="#7a1e2e" stroke-width="2.6" marker-end="url(#cy)"/>
+        <path d="M215,468 C185,420 160,360 158,292" fill="none" stroke="#7a1e2e" stroke-width="2.6" marker-end="url(#cy)"/>
+        <path d="M195,220 C215,180 250,150 305,134" fill="none" stroke="#7a1e2e" stroke-width="2.6" marker-end="url(#cy)"/>
+
+        <!-- center label -->
+        <text x="380" y="300" text-anchor="middle" font-size="17" font-weight="700" fill="#a83b2a">恶性循环</text>
+        <text x="380" y="322" text-anchor="middle" font-size="12.5" fill="#7a6d72">自我强化，越转越低</text>
+
+        <!-- BRAKES -->
+        <!-- brake 1: on B->C arrow (neurohormonal blockade) -->
+        <line x1="626" y1="366" x2="690" y2="366" stroke="#2c6a6a" stroke-width="2.4" stroke-dasharray="3 3"/>
+        <rect x="612" y="330" width="164" height="70" rx="10" fill="#e5f0ee" stroke="#2c6a6a" stroke-width="1.5"/>
+        <text x="694" y="352" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f4f4f">✂ 神经内分泌阻断</text>
+        <text x="694" y="370" text-anchor="middle" font-size="11" fill="#2c6a6a">β阻滞剂 · ACEI/ARB</text>
+        <text x="694" y="385" text-anchor="middle" font-size="11" fill="#2c6a6a">ARNI · MRA · SGLT2i</text>
+
+        <!-- brake 2: on C (load) -->
+        <rect x="360" y="548" width="290" height="44" rx="10" fill="#e5f0ee" stroke="#2c6a6a" stroke-width="1.5"/>
+        <text x="505" y="570" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f4f4f">✂ 减负荷、缓症状：利尿剂 · 扩血管药</text>
+        <text x="505" y="586" text-anchor="middle" font-size="10.5" fill="#2c6a6a">（快速缓解淤血，但主要改善症状而非逆转重塑）</text>
+
+        <!-- brake note left -->
+        <rect x="20" y="330" width="150" height="60" rx="10" fill="#f8edd3" stroke="#bd851f" stroke-width="1.5"/>
+        <text x="95" y="352" text-anchor="middle" font-size="12" font-weight="700" fill="#8a5f13">治疗新范式</text>
+        <text x="95" y="370" text-anchor="middle" font-size="10.5" fill="#8a5f13">不是加鞭催泵，</text>
+        <text x="95" y="384" text-anchor="middle" font-size="10.5" fill="#8a5f13">而是剪断此环</text>
+      </svg>
+      <figcaption>损伤→输出↓→神经内分泌激活→负荷/毒性↑→<b>重塑</b>→功能更差→输出更↓……环环相扣、越转越低。<b>「新四联」的每一味药，本质都是在这个环上剪一刀</b>——阻断神经内分泌，从源头刹住重塑；利尿/扩血管则在「负荷」处减压、缓解症状。看懂这张图，治疗那一章你几乎不用再背。</figcaption>
+    </figure>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>临床思维 · 整门课最重要的一次「范式转变」</span>
+      <p>请把这句话刻下来：<strong>现代心衰治疗的目标，从「让衰竭的泵挤得更用力」，转向了「阻断神经内分泌、逆转/延缓重塑」。</strong></p>
+      <p>这解释了两个看似矛盾的现象——为什么<em>能增强收缩力的强心药（如洋地黄）反而不改善生存率</em>（它没动这个环，只是硬催泵）；为什么<em>会「削弱」心脏的 β 阻滞剂反而能救命</em>（它剪断了环）。<strong>症状改善 ≠ 预后改善</strong>，能不能改预后，就看它有没有动这个恶性循环。带着这把尺子去看每一种药，你就有了真正的临床判断力。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 临床表现 ===== -->
+<section class="act" id="symptom">
+  <div class="wrap">
+    <span class="act-num">10 · Clinical Presentation</span>
+    <h2 class="big">症状，是机制投下的影子<span class="sub">Read the mechanism, not the list</span></h2>
+    <p class="act-lede">别把临床表现当一张要死记的清单。每一个症状，都是前面某条机制在床边露出的马脚。我们回到那张「哪侧泵坏、血往哪顶」的图，把症状一个个<strong>推</strong>出来。</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin:26px 0">
+      <div style="flex:1;min-width:120px;text-align:center;background:var(--card);border:1px solid var(--line-strong);border-radius:14px;padding:18px 10px">
+        <div style="font-family:var(--latin);font-weight:700;font-size:34px;color:var(--wine)">1210<span style="font-size:16px">万</span></div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:4px">我国心衰患者数<br>（≥25 岁患病率约 1.1%）</div>
+      </div>
+      <div style="flex:1;min-width:120px;text-align:center;background:var(--card);border:1px solid var(--line-strong);border-radius:14px;padding:18px 10px">
+        <div style="font-family:var(--latin);font-weight:700;font-size:34px;color:var(--coral)">69<span style="font-size:16px">%</span></div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:4px">一年内再住院率<br>——高负担、高需求</div>
+      </div>
+      <div style="flex:1;min-width:120px;text-align:center;background:var(--card);border:1px solid var(--line-strong);border-radius:14px;padding:18px 10px">
+        <div style="font-family:var(--latin);font-weight:700;font-size:34px;color:var(--teal)">4.1<span style="font-size:16px">%</span></div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:4px">住院病死率<br>预后仍不理想</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-6px">数字告诉你为什么要认真学它：心衰在中国基数巨大、反复住院、花费高、预后差——它是心血管病真正的「最后战场」。</p>
+
+    <h3>左心衰：一部「呼吸困难进化史」<span class="en">pulmonary congestion</span></h3>
+    <p>左心衰的主线是<strong>肺淤血</strong>（血顶回肺）+ <strong>低灌注</strong>（乏力）。其中呼吸困难会随病情<em>层层升级</em>，而每一级升级，都能用血流力学解释清楚——这也是最经典的考点链：</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:30%">呼吸困难的四个台阶</th><th>为什么会这样（机制）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>① 劳力性呼吸困难</strong><br>（最早出现）</td><td>活动→回心血量↑、需氧↑→衰竭左心跟不上→肺淤血加重。所以症状<em>先在用力时</em>暴露——呼应「安静够用、活动露馅」。</td></tr>
+          <tr><td><strong>② 端坐呼吸</strong><br>orthopnea</td><td>平卧时，原本淤在下肢和腹腔的血<em>重新分布回中心循环</em>→回心血量骤增→本已不堪的左心被压垮→肺淤血加重，只能<strong>坐起来</strong>。坐位靠重力把血「压」在下半身、减少回心血量，喘就缓解。</td></tr>
+          <tr><td><strong>③ 夜间阵发性呼吸困难</strong><br>PND（更重）</td><td>入睡 1–2 小时后突然憋醒、被迫坐起。机制叠加：夜间<em>组织间隙水肿液缓慢回吸收</em>入血→血容量↑；睡眠时<em>交感张力低、呼吸中枢敏感性下降</em>；加上平卧的回心增多。多因素凑齐，半夜发作。</td></tr>
+          <tr><td><strong>④ 急性肺水肿</strong><br>（最危重）</td><td>肺毛细血管压急剧升高→血浆＋红细胞漏进肺泡→<strong>咳粉红色泡沫痰</strong>。这是急性左心衰的极端，本课最后专门抢救。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>体征上，左心衰听诊双肺<strong>湿啰音</strong>（肺泡里有液体），可闻<strong>舒张早期第三心音（S₃）奔马律</strong>（心室充盈受阻的信号）。低灌注则表现为乏力、活动耐量下降。</p>
+
+    <h3>右心衰：重力决定了它的样子<span class="en">systemic congestion</span></h3>
+    <p>右心衰的主线是<strong>体循环静脉淤血</strong>（血顶回全身静脉）。想象水往回堵、又受重力牵引，你就能推出它的每一个体征：</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:30%">右心衰的表现</th><th>为什么会这样（机制）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>双下肢对称性水肿</strong></td><td>静脉压升高→液体渗入组织间隙；受<em>重力</em>影响→积在身体最低处（能走动者在脚踝/小腿，卧床者在骶尾部）。「对称、可凹陷、下垂部位」是心源性水肿的特点。</td></tr>
+          <tr><td><strong>颈静脉怒张</strong></td><td>右心压力直接「顶」到颈静脉，是右心充盈压升高<em>最直观的窗口</em>。</td></tr>
+          <tr><td><strong>肝大 + 肝颈静脉回流征阳性</strong></td><td>肝静脉淤血→肝淤血肿大；按压肝区把淤血挤向已经胀满的右心系统→颈静脉更鼓，即回流征阳性。</td></tr>
+          <tr><td><strong>腹水</strong></td><td>体循环静脉压持续升高的进一步结果。</td></tr>
+          <tr><td><strong>食欲差、腹胀、恶心</strong></td><td>胃肠道也在体循环里——<em>胃肠淤血</em>影响消化吸收。别把它当「消化科的事」而漏掉右心衰。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box pearl">
+      <span class="tag"><span class="ic">📌</span>一句话记牢左右心衰</span>
+      <p><strong>左心衰「淹肺」——喘（肺淤血）；右心衰「淹身」——肿（体循环淤血）。</strong>喘在上、肿在下，一图记全。再补一句临床关键：<em>全心衰</em>时右心衰的体循环淤血会「接盘」，反而使肺淤血的呼吸困难有所减轻（因为右心泵不动，顶到肺里的血也少了）——这个「矛盾缓解」偶尔出现在题目里，别被绕进去。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 诊断 ===== -->
+<section class="act" id="dx">
+  <div class="wrap">
+    <span class="act-num">11 · Diagnosis</span>
+    <h2 class="big">诊断：两件武器，各司其职<span class="sub">BNP rules out · Echo defines</span></h2>
+    <p class="act-lede">心衰诊断的核心，是搞懂两样检查各自<strong>擅长什么</strong>——钠尿肽负责「快速排除」，超声心动图负责「确诊+定型」。用错了角色，思路就乱。</p>
+
+    <h3>钠尿肽 BNP / NT-proBNP：一把优秀的「排除」刀</h3>
+    <p>还记得第 8 节吗？<strong>心室压力越高、心衰越重，BNP 分泌越多</strong>。它的临床威力在于<strong>敏感性高</strong>：如果一个人钠尿肽<em>完全正常</em>，那他患心衰的可能性就很小——很适合在急诊「快速排除」心衰。反过来，它<strong>不够特异</strong>：房颤、肾功能不全、肺栓塞、高龄等也会升高，所以升高只是「支持」，不能单凭它「确诊」。</p>
+    <div class="tbl">
+      <table>
+        <caption>2023 国家指南的钠尿肽切点（记「急性门槛高、慢性门槛低」）</caption>
+        <thead><tr><th style="width:34%">场景</th><th>BNP</th><th>NT-proBNP</th></tr></thead>
+        <tbody>
+          <tr><td>急性发作（急诊考虑急性心衰）</td><td>≥ 100 pg/ml</td><td>≥ 300 pg/ml</td></tr>
+          <tr><td>非急性（门诊考虑慢性心衰）</td><td>≥ 35 pg/ml</td><td>≥ 125 pg/ml</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>肌钙蛋白</strong>则是<em>心肌损害</em>的特异指标——它升高提示有心肌细胞坏死（如合并心梗），和 BNP 一起看，帮助判断病因和危险分层。</p>
+
+    <h3>超声心动图：确诊 + 定型的「金标准检查」</h3>
+    <p>这是心衰评估里<strong>最关键</strong>的一项。它一次性回答几乎所有结构与功能问题：<strong>LVEF 是多少</strong>（据此分 HFrEF/mrEF/pEF，直接决定用药）、心腔大小、室壁厚度与运动、瓣膜情况、舒张功能参数。钠尿肽升高之后，<strong>下一步几乎总是做超声</strong>。其余如心电图、X 线/CT（看心影大小、肺淤血）、心脏磁共振、冠脉造影、右心漂浮导管、核素等，则按需补充、各查一角。</p>
+
+    <figure>
+      <div class="fig-title">2023 国家指南 · 心衰诊断主线（精简）</div>
+      <svg viewBox="0 0 780 360" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs><marker id="dx1" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7a1e2e"/></marker></defs>
+        <rect x="250" y="16" width="280" height="52" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+        <text x="390" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#7a1e2e">怀疑心力衰竭</text>
+        <text x="390" y="58" text-anchor="middle" font-size="11.5" fill="#8a4450">有危险因素 / 症状体征 / 心电图或胸片异常</text>
+        <path d="M390,68 L390,92" stroke="#7a1e2e" stroke-width="2.2" marker-end="url(#dx1)"/>
+
+        <rect x="230" y="94" width="320" height="52" rx="12" fill="#e5f0ee" stroke="#2c6a6a" stroke-width="1.8"/>
+        <text x="390" y="116" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1f4f4f">测钠尿肽（BNP / NT-proBNP）</text>
+        <text x="390" y="135" text-anchor="middle" font-size="11.5" fill="#2c6a6a">按「急性 / 非急性」门槛判断</text>
+        <path d="M390,146 L390,170" stroke="#7a1e2e" stroke-width="2.2" marker-end="url(#dx1)"/>
+        <!-- branch -->
+        <text x="415" y="164" font-size="11.5" fill="#7a6d72">升高</text>
+
+        <rect x="235" y="172" width="310" height="52" rx="12" fill="#f8edd3" stroke="#bd851f" stroke-width="1.8"/>
+        <text x="390" y="194" text-anchor="middle" font-size="14.5" font-weight="700" fill="#8a5f13">超声心动图</text>
+        <text x="390" y="213" text-anchor="middle" font-size="11.5" fill="#8a5f13">评估心脏结构与功能（必要时补其他影像）</text>
+        <path d="M390,224 L390,248" stroke="#7a1e2e" stroke-width="2.2" marker-end="url(#dx1)"/>
+
+        <rect x="255" y="250" width="270" height="44" rx="12" fill="#7a1e2e" stroke="#571421" stroke-width="2"/>
+        <text x="390" y="278" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">确诊心衰 → 按 LVEF 分型</text>
+        <path d="M390,294 L390,314" stroke="#7a1e2e" stroke-width="2.2" marker-end="url(#dx1)"/>
+
+        <g font-size="12" font-weight="700">
+          <rect x="120" y="316" width="150" height="38" rx="9" fill="#fbeef0" stroke="#7a1e2e"/><text x="195" y="340" text-anchor="middle" fill="#7a1e2e">HFrEF ≤40%</text>
+          <rect x="315" y="316" width="150" height="38" rx="9" fill="#e5f0ee" stroke="#2c6a6a"/><text x="390" y="340" text-anchor="middle" fill="#1f4f4f">HFmrEF 41–49%</text>
+          <rect x="510" y="316" width="150" height="38" rx="9" fill="#f8edd3" stroke="#bd851f"/><text x="585" y="340" text-anchor="middle" fill="#8a5f13">HFpEF ≥50%</text>
+        </g>
+      </svg>
+      <figcaption>主线只有四步：<b>怀疑 → 测钠尿肽 → 做超声 → 分型</b>。钠尿肽正常基本能排除；升高则靠超声<b>确诊并定型</b>，而定型直接决定后面开什么药。</figcaption>
+    </figure>
+
+    <h3>鉴别诊断：别把「像心衰」的当心衰<span class="en">differential</span></h3>
+    <p>心衰的症状不专属于它，几个「李鬼」必须会分：</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">易混疾病</th><th>相似点</th><th>怎么分开（关键鉴别）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>支气管哮喘</strong></td><td>都有发作性呼吸困难、喘鸣</td><td>心源性哮喘（急性左心衰）多有<em>基础心脏病、端坐位、咳粉红泡沫痰、双肺湿啰音、S₃ 奔马律、BNP↑</em>；支气管哮喘多为<em>过敏史、哮鸣为主、支气管扩张剂有效</em>。这是最经典的一组鉴别。</td></tr>
+          <tr><td><strong>肝硬化（腹水/水肿）</strong></td><td>都可有水肿、腹水</td><td>肝硬化<em>无颈静脉怒张、无肝颈回流征阳性</em>，有肝病史与门脉高压证据；右心衰则静脉压高、回流征阳性。</td></tr>
+          <tr><td><strong>心包积液 / 缩窄性心包炎</strong></td><td>都可有体循环淤血样表现</td><td>靠<em>超声/影像</em>看到积液或心包增厚缩窄；血流动力学与心肌收缩力受损的心衰不同。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>把诊断串成一句话</span>
+      <p>完整的心衰诊断不只是「有没有心衰」，而是三连问：<strong>①病因诊断（谁弄坏的泵）②心功能评价（坏到哪级）③预后评估（前路如何）</strong>。这三问，正好对应治疗要解决的三件事——治病因、缓症状、改预后。诊断和治疗，在这里合上了。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT III — TREATMENT ============ -->
+<section class="act-dark">
+  <div class="wrap">
+    <span class="act-num">Act Three · 治疗</span>
+    <h2 class="big">从「给泵加鞭」到「给恶性循环踩刹车」<span class="sub">Symptom relief vs disease modification</span></h2>
+    <p class="act-lede">治疗这一章看着药名一大堆，其实只需带一把尺子去读：<strong>这药是「缓症状」的，还是「改预后」的？</strong>——也就是，它有没有去剪断第 9 节那个恶性循环。带着这把尺，几十个药会自动分成两类，条理立现。</p>
+    <p class="pull">治疗目标就三句：<b>①防止和延缓心衰发生发展 ②缓解症状、提高生活质量 ③改善长期预后、降低病死率与再住院率。</b>第②句靠「缓症状药」（利尿、强心），第①③句靠「改预后药」（神经内分泌阻断）。分清这两拨，是理解整章的钥匙。</p>
+  </div>
+</section>
+
+<!-- ===== 治疗总逻辑 + 利尿 ===== -->
+<section class="act" id="tx">
+  <div class="wrap">
+    <span class="act-num">12 · Strategy & Diuretics</span>
+    <h2 class="big">总策略与利尿剂：先把「淹的水」排掉</h2>
+
+    <h3>一般治疗：不起眼，却是地基</h3>
+    <p>去除诱因（治感染、控房颤、纠正贫血/甲亢）、限钠限水、监测体重（<em>短期体重骤增＝在潴留水，是失代偿的早期信号</em>）、适度运动康复、管理合并症。这些不「高级」，但和药物同等重要——很多再住院，恰恰败在这些日常管理上。</p>
+
+    <h3>利尿剂：缓解淤血最快、最有效的一招<span class="en">symptom relief</span></h3>
+    <p>把利尿剂放在治疗第一线，是因为它直击那个让病人最难受的问题——<strong>淤血/水肿</strong>。它排出多余的水钠 → 降低前负荷 → 把病人从 Frank-Starling 曲线的「淤血区」往回拉（回看第 7 节那张图）→ 喘和肿迅速缓解。请记住它的定位：<strong>改善症状的快速有效药，但单靠它不改善预后</strong>——因为它没动那个恶性循环，甚至反而<em>激活神经内分泌</em>（利尿→血容量↓→身体又以为「失血」→ RAAS/交感更活跃）。所以利尿剂常需和「改预后药」联用。</p>
+
+    <div class="tbl">
+      <table>
+        <caption>利尿剂按「作用在肾小管哪一段」分类——记住位置就记住了强度与配伍</caption>
+        <thead><tr><th style="width:22%">类别</th><th>代表药</th><th>作用部位 / 特点</th></tr></thead>
+        <tbody>
+          <tr><td><strong>袢利尿剂</strong></td><td>呋塞米、托拉塞米、布美他尼</td><td>髓袢升支粗段，<strong>最强效</strong>，心衰主力，急救首选</td></tr>
+          <tr><td><strong>噻嗪类</strong></td><td>氢氯噻嗪</td><td>远曲小管近端；中效；可与袢利尿剂序贯增效</td></tr>
+          <tr><td><strong>保钾利尿剂</strong></td><td>螺内酯、氨苯蝶啶、阿米洛利、依普利酮</td><td>远曲小管远端/集合管；<em>留钾</em>；螺内酯/依普利酮同时是 MRA（既利尿又改预后）</td></tr>
+          <tr><td><strong>V2 受体拮抗剂</strong></td><td>托伐普坦</td><td>只排水不排钠 → 专治<strong>低钠血症</strong>（呼应第 8 节 AVP）</td></tr>
+          <tr><td><strong>利钠肽</strong></td><td>重组人脑利钠肽</td><td>扩血管、利尿利钠、抑制 RAAS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box warn">
+      <span class="tag"><span class="ic">⚠️</span>利尿剂的副作用，全能从机制推出来</span>
+      <ul>
+        <li><strong>电解质紊乱</strong>（尤其<em>低钾</em>）：袢/噻嗪把钾也一起排掉 → 低钾。这一点极重要，因为<strong>低钾会诱发洋地黄中毒和恶性心律失常</strong>（第 15 节兑现）。</li>
+        <li><strong>低血压、氮质血症</strong>：利尿过猛→血容量不足→肾灌注↓。</li>
+        <li><strong>神经内分泌激活</strong>：如上所述，这正是它不能「单打独斗」的原因。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 新四联 ===== -->
+<section class="act" id="quad">
+  <div class="wrap">
+    <span class="act-num">13 · The New Quadruple Therapy</span>
+    <h2 class="big">新四联：四把刀，砍在四条通路上<span class="sub">金三角 → 新四联</span></h2>
+    <p class="act-lede">课件原话：<strong>「打破心衰『金三角』旧格局，开启『新四联』时代。」</strong>旧的金三角是 ACEI/ARB + β 阻滞剂 + MRA；新四联在此基础上加入了第四根柱子 <strong>SGLT2i</strong>。理解它的最好方式，不是背四个药，而是看清<strong>四把刀分别砍在恶性循环的哪条通路上</strong>。</p>
+
+    <figure>
+      <div class="fig-title">四根柱子，撑起「改善预后」</div>
+      <svg viewBox="0 0 780 430" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <!-- roof -->
+        <rect x="20" y="20" width="740" height="60" rx="12" fill="#7a1e2e"/>
+        <text x="390" y="46" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">改善预后：↓ 病死率 · ↓ 再住院 · 逆转重塑</text>
+        <text x="390" y="68" text-anchor="middle" font-size="12" fill="#f6b39f">HFrEF 四联，各自独立获益，越早联用越好</text>
+        <!-- pillars -->
+        <g>
+          <rect x="30" y="110" width="165" height="215" rx="12" fill="#fbeef0" stroke="#7a1e2e" stroke-width="2"/>
+          <text x="112" y="150" text-anchor="middle" font-size="14.5" font-weight="700" fill="#7a1e2e">ARNI</text>
+          <text x="112" y="170" text-anchor="middle" font-size="11.5" fill="#8a4450">(或 ACEI / ARB)</text>
+          <line x1="55" y1="184" x2="170" y2="184" stroke="#eccdd1"/>
+          <text x="112" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#7a1e2e">砍 RAAS</text>
+          <text x="112" y="234" text-anchor="middle" font-size="11" fill="#5a2f28">堵住 Ang Ⅱ</text>
+          <text x="112" y="252" text-anchor="middle" font-size="11" fill="#5a2f28">↓后负荷、抗重塑</text>
+          <text x="112" y="286" text-anchor="middle" font-size="11" fill="#5a2f28">ARNI 还保护</text>
+          <text x="112" y="304" text-anchor="middle" font-size="11" fill="#5a2f28">钠尿肽「友军」</text>
+        </g>
+        <g>
+          <rect x="222" y="110" width="165" height="215" rx="12" fill="#e5f0ee" stroke="#2c6a6a" stroke-width="2"/>
+          <text x="304" y="150" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1f4f4f">β 受体阻滞剂</text>
+          <text x="304" y="170" text-anchor="middle" font-size="11.5" fill="#3a6a6a">美托洛尔/比索洛尔/卡维地洛</text>
+          <line x1="247" y1="184" x2="362" y2="184" stroke="#c9e2dd"/>
+          <text x="304" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#1f4f4f">砍 交感</text>
+          <text x="304" y="234" text-anchor="middle" font-size="11" fill="#28403f">拦住 NE</text>
+          <text x="304" y="252" text-anchor="middle" font-size="11" fill="#28403f">↓心率耗氧</text>
+          <text x="304" y="286" text-anchor="middle" font-size="11" fill="#28403f">防凋亡、抗重塑</text>
+          <text x="304" y="304" text-anchor="middle" font-size="11" fill="#28403f">「小量起、慢加」</text>
+        </g>
+        <g>
+          <rect x="414" y="110" width="165" height="215" rx="12" fill="#f8edd3" stroke="#bd851f" stroke-width="2"/>
+          <text x="496" y="150" text-anchor="middle" font-size="14.5" font-weight="700" fill="#8a5f13">MRA</text>
+          <text x="496" y="170" text-anchor="middle" font-size="11.5" fill="#8a6f2f">螺内酯 / 依普利酮</text>
+          <line x1="439" y1="184" x2="554" y2="184" stroke="#ecd9a8"/>
+          <text x="496" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5f13">砍 醛固酮</text>
+          <text x="496" y="234" text-anchor="middle" font-size="11" fill="#6f5a1f">抗纤维化</text>
+          <text x="496" y="252" text-anchor="middle" font-size="11" fill="#6f5a1f">保钾、抗重塑</text>
+          <text x="496" y="286" text-anchor="middle" font-size="11" fill="#6f5a1f">盯紧血钾</text>
+          <text x="496" y="304" text-anchor="middle" font-size="11" fill="#6f5a1f">和肾功能</text>
+        </g>
+        <g>
+          <rect x="606" y="110" width="165" height="215" rx="12" fill="#fdeee7" stroke="#e0674f" stroke-width="2"/>
+          <text x="688" y="150" text-anchor="middle" font-size="14.5" font-weight="700" fill="#b64a30">SGLT2i</text>
+          <text x="688" y="170" text-anchor="middle" font-size="11.5" fill="#b64a30">达格列净 / 恩格列净</text>
+          <line x1="631" y1="184" x2="746" y2="184" stroke="#f3ccbb"/>
+          <text x="688" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#b64a30">新的第四柱</text>
+          <text x="688" y="234" text-anchor="middle" font-size="11" fill="#8a3a26">排糖利钠、减负荷</text>
+          <text x="688" y="252" text-anchor="middle" font-size="11" fill="#8a3a26">护肾、改善心肌能量</text>
+          <text x="688" y="286" text-anchor="middle" font-size="11" fill="#8a3a26">不论有无糖尿病</text>
+          <text x="688" y="304" text-anchor="middle" font-size="11" fill="#8a3a26">各型心衰都获益</text>
+        </g>
+        <!-- base -->
+        <rect x="20" y="345" width="740" height="60" rx="12" fill="#f2eae4" stroke="#c98a76" stroke-width="1.5"/>
+        <text x="390" y="371" text-anchor="middle" font-size="14.5" font-weight="700" fill="#8a5f13">地基 · 利尿剂：缓解淤血、控制容量（改善症状，不撑预后）</text>
+        <text x="390" y="393" text-anchor="middle" font-size="11.5" fill="#7a6d52">四联负责「改预后」，利尿剂负责「缓症状」——分工不同，缺一不可</text>
+      </svg>
+      <figcaption>四根柱子各<b>独立</b>阻断一条通路（RAAS、交感、醛固酮、代谢），共同把病人从恶性循环里往外拉、撑起「改善预后」这片屋顶；利尿剂是缓解症状的<b>地基</b>。四联主要针对 <b>HFrEF</b>，且证据支持<b>尽早、尽量四药联用</b>并逐步加到靶剂量。</figcaption>
+    </figure>
+
+    <h3>柱子一：RAAS 抑制剂（ARNI ＞ ACEI/ARB）</h3>
+    <h4>ACEI —— 老牌基石</h4>
+    <p>机制：抑制 ACE、减少 Ang Ⅱ 生成，同时抑制缓激肽降解（→ 缓激肽↑，扩血管获益）。代表药：培哚普利、依那普利、雷米普利、福辛普利、卡托普利。<strong>用法原则：小剂量起始，1–2 周监测肾功能与血钾，逐步滴定到最大耐受剂量。</strong></p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:22%"></th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>常见副作用</td><td>低血压、肾功能一过性恶化、高血钾、<strong>干咳</strong>（缓激肽所致）、血管性水肿</td></tr>
+        <tr><td>禁用</td><td>妊娠、双侧肾动脉狭窄、高钾血症（&gt;6 mmol/L）、血管神经性水肿史</td></tr>
+        <tr><td>慎用</td><td>血肌酐显著升高（&gt;265 μmol/L）、高钾（5.5–6）、症状性低血压（SBP&lt;90）、左室流出道梗阻</td></tr>
+      </tbody></table></div>
+
+    <h4>ARB —— 咳嗽不耐受者的替补</h4>
+    <p>机制：直接阻断 AT1 受体（对 ACE 和非 ACE 途径产生的 Ang Ⅱ 都拦），<strong>不影响缓激肽 → 干咳、血管性水肿少见</strong>。代表药：缬沙坦、替米沙坦、厄贝沙坦、氯沙坦、坎地沙坦。定位：主要用于 ACEI 因咳嗽等不能耐受时。</p>
+
+    <h4>ARNI —— 一石二鸟的升级款</h4>
+    <p>机制：<strong>ARB + 脑啡肽酶抑制剂</strong>。沙库巴曲的代谢产物 LBQ657 抑制脑啡肽酶 → 减少 BNP 降解（保住「友军」），同时缬沙坦部分堵住 Ang Ⅱ。代表药：<strong>沙库巴曲缬沙坦</strong>，在 HFrEF 中疗效优于单用 ACEI。两点务必记：<strong>不与 ACEI 合用</strong>（需洗脱期，否则血管性水肿风险叠加）；<strong>NYHA Ⅳ 级不推荐启用</strong>；用药期间用 <strong>NT-proBNP</strong> 监测（回看第 8 节陷阱）。</p>
+
+    <h3>柱子二：β 受体阻滞剂</h3>
+    <p>机制：抑制交感神经系统（回看第 8 节①）。代表药：美托洛尔、比索洛尔、<strong>卡维地洛</strong>（兼阻 α₁、β₁、β₂）。</p>
+    <div class="box warn">
+      <span class="tag"><span class="ic">⚠️</span>用法与禁忌（最容易出错的一味药）</span>
+      <ul>
+        <li><strong>小剂量起始，逐渐滴定到最大耐受量</strong>——因为一上来就减弱心跳，会短暂拿掉交感的「支撑」，可能让心衰一过性加重。必须在病人<em>容量稳定、无明显淤血</em>时开始。</li>
+        <li>启动后监测：低血压（24~48 小时内）、液体潴留/心衰恶化、心动过缓与房室阻滞。</li>
+        <li><strong>禁忌</strong>：支气管痉挛性疾病（哮喘）、严重心动过缓、二度及以上房室传导阻滞、严重外周血管病（如雷诺）、<strong>重度急性/失代偿心衰</strong>。</li>
+      </ul>
+    </div>
+
+    <h3>柱子三：MRA（醛固酮受体拮抗剂）</h3>
+    <p>机制：阻断醛固酮 → 抗纤维化、抗重塑、保钾。代表药：螺内酯、<strong>依普利酮</strong>（选择性 MRA）。副作用：<strong>高钾血症、氮质血症</strong>（务必监测血钾与肾功能），螺内酯还可致<em>男性乳腺增生、阳痿、月经紊乱</em>（因其非选择性、有抗雄激素作用）——不能耐受时换选择性的依普利酮。</p>
+
+    <h3>柱子四：SGLT2i（钠-葡萄糖协同转运体抑制剂）</h3>
+    <p>它本是降糖药，却意外成了心衰治疗的新支柱。机制是多方面的：抑制近端小管 SGLT2 → <strong>排糖、排钠、渗透性利尿</strong>（减前负荷）；恢复<em>肾小管-肾小球反馈</em>，让入球小动脉适当收缩 → 降低肾小球内压 → <strong>护肾</strong>；改善心肌能量代谢（利用酮体供能）等。</p>
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>为什么它这么重要</span>
+      <p><strong>无论有无 2 型糖尿病，SGLT2i 都能降低心衰住院和心血管死亡；而且它是唯一在 HFrEF、HFmrEF、HFpEF 三型中都显示获益的药</strong>——这在过去「HFpEF 无有效改善预后药物」的困境里，是重大突破。这也是它能从金三角外挤进来、把三角变四联的原因。</p>
+    </div>
+    <div class="box warn">
+      <span class="tag"><span class="ic">⚠️</span>注意事项</span>
+      <ul>
+        <li>单用一般不引起低血糖；与胰岛素/促泌剂合用可能低血糖，需调整合并用药，且<em>减胰岛素不宜过快</em>，否则可能酮症酸中毒。</li>
+        <li>可发生<strong>正常血糖的酮症酸中毒</strong>（酮体生成增加）；注意预防<strong>泌尿、生殖系统感染</strong>；糖尿病足者加强观察。</li>
+        <li>存在容量不足时先补足容量再用；若肌酐升高 ≥100% 或 eGFR&lt;20，停用。</li>
+      </ul>
+    </div>
+
+    <h3>四联之外的补充武器</h3>
+    <h4>伊伐布雷定 —— 只减速、不减力的「纯降心率」药</h4>
+    <p>β 阻滞剂加到最大耐受量，心率还是快怎么办？这时上伊伐布雷定。它是<strong>选择性、特异性窦房结 If 电流抑制剂</strong>：只减慢窦性心率、延长舒张期，<em>不影响心脏电传导，也没有负性肌力作用</em>——这是它相对 β 阻滞剂的独特之处。要理解它，得先看窦房结是怎么「自己跳」的。</p>
+
+    <figure>
+      <div class="fig-title">If 电流：窦房结的「起搏斜率」，与伊伐布雷定如何踩慢它</div>
+      <svg viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <!-- axes -->
+        <line x1="80" y1="30" x2="80" y2="290" stroke="#4a3f44" stroke-width="1.6"/>
+        <text x="52" y="160" text-anchor="middle" font-size="12" fill="#4a3f44" transform="rotate(-90 52 160)">膜电位 →</text>
+        <text x="400" y="312" text-anchor="middle" font-size="12" fill="#4a3f44">时间 →（同样的时间窗）</text>
+
+        <!-- top: normal -->
+        <text x="90" y="26" font-size="13" font-weight="700" fill="#2c6a6a">正常窦房结</text>
+        <line x1="80" y1="72" x2="700" y2="72" stroke="#2c6a6a" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="705" y="76" font-size="11" fill="#2c6a6a">阈值</text>
+        <polyline points="110,118 285,72 293,44 303,118 478,72 486,44 496,118 671,72 679,44 689,118" fill="none" stroke="#2c6a6a" stroke-width="2.6"/>
+        <text x="150" y="108" font-size="11" fill="#1f4f4f" transform="rotate(-15 150 108)">If 驱动的缓慢去极化（斜率陡）</text>
+        <text x="520" y="145" font-size="12" font-weight="700" fill="#2c6a6a">同一时间窗内跳 3 次</text>
+
+        <!-- bottom: ivabradine -->
+        <text x="90" y="180" font-size="13" font-weight="700" fill="#7a1e2e">用伊伐布雷定后</text>
+        <line x1="80" y1="204" x2="700" y2="204" stroke="#7a1e2e" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="705" y="208" font-size="11" fill="#7a1e2e">阈值</text>
+        <polyline points="110,250 385,204 393,176 403,250 678,204 686,176 690,250" fill="none" stroke="#7a1e2e" stroke-width="2.6"/>
+        <text x="150" y="242" font-size="11" fill="#8a4450" transform="rotate(-9 150 242)">抑制 If → 斜率变缓 → 到阈值更慢</text>
+        <text x="500" y="285" font-size="12" font-weight="700" fill="#7a1e2e">同一时间窗内只跳 2 次 → 心率↓</text>
+      </svg>
+      <figcaption><b>If 电流</b>是舒张期缓慢内流的钠钾电流，它决定了舒张期去极化曲线<b>爬向阈值的斜率</b>——斜率越陡，越快到阈值、越快触发下一次心跳。伊伐布雷定<b>剂量依赖性地抑制 If</b>，把斜率压缓，到阈值更慢 → 心率下降、舒张期延长（更好的充盈与冠脉灌注），却不碰传导、不减收缩力。</figcaption>
+    </figure>
+    <p><strong>适应证</strong>：在已用 β 受体阻滞剂基础上，仍 LVEF ≤ 35%、心功能 Ⅱ~Ⅳ 级、<em>窦性心律</em>、心率 ≥ 70 次/分的慢性心衰病人。（注意：它只对<strong>窦性心律</strong>有效，房颤时无用——因为房颤时不是窦房结在主导节律。）</p>
+
+    <h4>维立西呱 —— 刺激 sGC，走 NO 那条舒张通路</h4>
+    <p>机制：直接刺激可溶性鸟苷酸环化酶（<span class="term">sGC</span>），并稳定 NO 与 sGC 的结合，增强 <strong>NO–sGC–cGMP</strong> 信号 → 改善心肌与血管功能。代表药：维立西呱。适用于<em>近期发生心衰失代偿、经治疗后病情稳定、LVEF &lt; 45%</em> 的症状性心衰病人——定位在「刚经历过一次加重、想进一步降风险」的场景。</p>
+
+    <h4>扩血管药 —— 直接给循环「松绑」</h4>
+    <p>作用是改善血流动力学，<strong>减轻前、后负荷和淤血</strong>（把这句和第 7 节 Frank-Starling 联系起来）：</p>
+    <ul style="list-style:none;padding-left:4px">
+      <li style="padding:6px 0 6px 20px;position:relative"><span style="position:absolute;left:0;color:var(--coral)">▸</span><strong>扩张静脉（减前负荷）</strong>：硝酸酯类。</li>
+      <li style="padding:6px 0 6px 20px;position:relative"><span style="position:absolute;left:0;color:var(--coral)">▸</span><strong>扩张小动脉（减后负荷）</strong>：α₁ 受体阻断剂（乌拉地尔）。</li>
+      <li style="padding:6px 0 6px 20px;position:relative"><span style="position:absolute;left:0;color:var(--coral)">▸</span><strong>直接扩张动脉</strong>：硝普钠（动静脉均衡扩张）。</li>
+    </ul>
+    <p>主要副作用是<strong>低血压</strong>——一切扩血管药的共同软肋，用时都要盯血压。</p>
+  </div>
+</section>
+
+<!-- ===== 正性肌力药 ===== -->
+<section class="act" id="inotrope">
+  <div class="wrap">
+    <span class="act-num">15 · Inotropes</span>
+    <h2 class="big">强心药：为什么它救急，却不救命<span class="sub">Rescue ≠ survival</span></h2>
+    <p class="act-lede">这是整章最反直觉、也最能考验理解的一节。心衰的核心是「泵弱了」，那给它加强收缩力不是最对症吗？——短期看是的，长期看却相反。搞懂这个悖论，你就真正把「缓症状 vs 改预后」这把尺用透了。</p>
+
+    <div class="box logic">
+      <span class="tag"><span class="ic">🫀</span>先说结论，再讲道理</span>
+      <p><strong>正性肌力药能在低心排、低灌注时快速增加心输出量、改善症状，但（除左西孟旦外）并不改善、甚至可能恶化远期预后。</strong>课件原话：这类药「不能改善患者的远期预后」。</p>
+    </div>
+
+    <div class="box analogy">
+      <span class="tag"><span class="ic">💡</span>打个比方 · 抽鞭子催一匹累垮的马</span>
+      <p>心衰的心脏，是一匹又累又饿（能量耗竭）的马。强心药就是那记鞭子——抽下去，马确实能再冲一段（心排↑、症状缓解）。但鞭子没给马<em>喂草</em>，反而<strong>让它消耗更快</strong>：强行增强收缩 → <em>心肌耗氧↑</em>、<em>诱发心律失常</em>、<em>加速心肌细胞死亡</em>。它完全没碰第 9 节那个恶性循环，只是把泵往死里催。所以它救的是「此刻的急」，赔的是「将来的命」。<strong>唯一相对例外是左西孟旦</strong>（钙增敏剂，增强收缩却不明显增加耗氧）。</p>
+    </div>
+
+    <p>把「缓症状 / 改预后」这把尺架在治疗全景上，几十个药立刻各就各位：</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:34%">这一类药</th><th>主要作用</th><th>改预后吗</th></tr></thead>
+        <tbody>
+          <tr><td>利尿剂</td><td>缓解淤血、控容量</td><td>❌ 主要缓症状</td></tr>
+          <tr><td>正性肌力药（洋地黄、儿茶酚胺、PDE 抑制剂）</td><td>增强收缩、救急</td><td>❌ 不改善远期预后</td></tr>
+          <tr><td>钙增敏剂（左西孟旦）</td><td>增强收缩、耗氧增加不明显</td><td>△ 相对例外</td></tr>
+          <tr><td><strong>ARNI/ACEI/ARB · β 阻滞剂 · MRA · SGLT2i</strong></td><td>阻断神经内分泌、抗重塑</td><td>✅ <strong>改善预后</strong>（新四联）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>正性肌力药有哪几类<span class="en">classes</span></h3>
+    <ul style="list-style:none;padding-left:4px">
+      <li style="padding:6px 0 6px 22px;position:relative"><span style="position:absolute;left:0;color:var(--wine)">▸</span><strong>洋地黄类</strong>（地高辛等）：抑制 Na⁺-K⁺-ATP 酶——下一节详解。</li>
+      <li style="padding:6px 0 6px 22px;position:relative"><span style="position:absolute;left:0;color:var(--wine)">▸</span><strong>儿茶酚胺类</strong>（多巴胺、多巴酚丁胺）：激动 β 受体，增强收缩。</li>
+      <li style="padding:6px 0 6px 22px;position:relative"><span style="position:absolute;left:0;color:var(--wine)">▸</span><strong>磷酸二酯酶（PDE）抑制剂</strong>（米力农、氨力农）：抑制 cAMP 降解 → 强心 + 扩血管。</li>
+      <li style="padding:6px 0 6px 22px;position:relative"><span style="position:absolute;left:0;color:var(--wine)">▸</span><strong>钙增敏剂</strong>（左西孟旦）：增加肌丝对 Ca²⁺ 的敏感性，耗氧增加不明显。</li>
+    </ul>
+
+    <h3>多巴胺：同一个药，剂量不同，「换了个人」<span class="en">dose-dependent</span></h3>
+    <p>多巴胺是剂量依赖效应的经典范例——低、中、高剂量分别激动不同受体，作用截然不同。这是常考点：</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">剂量</th><th>主要激动</th><th>效应</th></tr></thead>
+        <tbody>
+          <tr><td><strong>小剂量</strong><br>&lt; 2 μg/kg/min</td><td>多巴胺受体</td><td>降低外周阻力，扩张肾、冠脉、脑血管 → 增加肾血流与尿量</td></tr>
+          <tr><td><strong>中剂量</strong><br>2–5 μg/kg/min</td><td>β₁ / β₂ 受体</td><td>增强心肌收缩力、扩张血管（尤其肾小动脉），心率加快不明显，显著改善血流动力学</td></tr>
+          <tr><td><strong>大剂量</strong><br>5–10 μg/kg/min</td><td>α 受体</td><td>收缩血管、升压，但<em>增加左室后负荷</em>（对衰竭心脏未必有利）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 洋地黄 ===== -->
+<section class="act" id="digoxin">
+  <div class="wrap">
+    <span class="act-num">16 · Digoxin & Toxicity</span>
+    <h2 class="big">洋地黄：一把双刃的老刀<span class="sub">强心、减率，也最易中毒</span></h2>
+    <p class="act-lede">洋地黄是最古老的强心药之一，作用强、治疗窗窄——用好了一箭双雕，用不好就是中毒。它的机制，正是第 6 节埋下的那颗种子：<strong>Na⁺-K⁺-ATP 酶</strong>。现在把它挖出来兑现。</p>
+
+    <figure>
+      <div class="fig-title">洋地黄如何「借钠生钙」增强收缩</div>
+      <svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <defs><marker id="dg" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7a1e2e"/></marker></defs>
+        <text x="40" y="40" font-size="13" font-weight="700" fill="#4a3f44">细胞外</text>
+        <text x="40" y="205" font-size="13" font-weight="700" fill="#4a3f44">细胞内（胞浆）</text>
+        <!-- membrane band -->
+        <rect x="40" y="98" width="700" height="46" rx="6" fill="#efe6dc" stroke="#d9c9b6"/>
+        <text x="695" y="126" text-anchor="end" font-size="11" fill="#b0a08c">细胞膜</text>
+
+        <!-- Na-K-ATPase pump -->
+        <rect x="150" y="86" width="96" height="70" rx="8" fill="#e5f0ee" stroke="#2c6a6a" stroke-width="1.8"/>
+        <text x="198" y="112" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f4f4f">Na⁺-K⁺</text>
+        <text x="198" y="128" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f4f4f">-ATP 酶</text>
+        <!-- block mark -->
+        <circle cx="198" cy="70" r="15" fill="#fbeef0" stroke="#a83b2a" stroke-width="2"/>
+        <text x="198" y="75" text-anchor="middle" font-size="15" font-weight="700" fill="#a83b2a">✕</text>
+        <text x="198" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#7a1e2e">洋地黄抑制它</text>
+        <!-- Na out arrow (blocked) -->
+        <path d="M170,86 L170,58" stroke="#9aa0a0" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#dg)"/>
+        <text x="150" y="54" text-anchor="middle" font-size="11" fill="#8a8f8f">3Na⁺↑</text>
+        <!-- pump normally sends Na out; blocked -->
+
+        <!-- Na accumulation inside -->
+        <rect x="300" y="180" width="150" height="40" rx="10" fill="#fdeee7" stroke="#e0674f" stroke-width="1.6"/>
+        <text x="375" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#b64a30">胞内 Na⁺ ↑</text>
+        <path d="M246,140 C270,165 290,178 300,192" fill="none" stroke="#7a1e2e" stroke-width="2" marker-end="url(#dg)"/>
+
+        <!-- NCX -->
+        <rect x="520" y="86" width="96" height="70" rx="8" fill="#f8edd3" stroke="#bd851f" stroke-width="1.8"/>
+        <text x="568" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#8a5f13">Na⁺/Ca²⁺</text>
+        <text x="568" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="#8a5f13">交换体</text>
+        <!-- Na high slows Ca extrusion -->
+        <path d="M450,200 C500,200 545,175 560,158" fill="none" stroke="#7a1e2e" stroke-width="2" marker-end="url(#dg)"/>
+        <text x="640" y="120" font-size="11" fill="#8a5f13">Ca²⁺ 外排 ↓</text>
+        <path d="M616,110 L660,110" stroke="#bd851f" stroke-width="2" stroke-dasharray="4 3"/>
+
+        <!-- Ca up result -->
+        <rect x="470" y="180" width="230" height="44" rx="10" fill="#7a1e2e" stroke="#571421" stroke-width="2"/>
+        <text x="585" y="207" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">胞内 Ca²⁺ ↑ → 收缩力 ↑</text>
+        <path d="M568,156 L580,178" stroke="#7a1e2e" stroke-width="2" marker-end="url(#dg)"/>
+
+        <!-- low K note -->
+        <rect x="150" y="258" width="500" height="62" rx="10" fill="#f8edd3" stroke="#bd851f" stroke-width="1.5"/>
+        <text x="400" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a5f13">⚠ 血钾（K⁺）与洋地黄竞争同一结合位点</text>
+        <text x="400" y="303" text-anchor="middle" font-size="11.5" fill="#8a6f2f">低钾 → 洋地黄更易结合、毒性增强 → 这就是「利尿致低钾」成为中毒头号诱因的原因</text>
+      </svg>
+      <figcaption>洋地黄抑制 Na⁺-K⁺-ATP 酶 → 泵不出钠、<b>胞内 Na⁺ 堆积</b> → Na⁺/Ca²⁺ 交换体「借钠排钙」的动力下降、<b>Ca²⁺ 外排减少</b> → 胞内 <b>Ca²⁺ 升高</b> → 收缩力增强。关键陷阱：<b>K⁺ 与洋地黄竞争同一位点，低钾时毒性骤增</b>——把「利尿剂低钾」和「洋地黄中毒」这两个考点焊在了一起。</figcaption>
+    </figure>
+
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔧</span>不止强心：洋地黄的三重身份</span>
+      <ul>
+        <li><strong>正性肌力（机械）</strong>：如上，借钠生钙，增强收缩。</li>
+        <li><strong>负性传导（电生理）</strong>：减慢房室结传导——这解释了它为什么特别适合<em>快速房颤</em>（既强心又控室率）。</li>
+        <li><strong>神经调节</strong>：增敏压力感受器、抑制交感、抑制肾素——温和的神经内分泌作用。</li>
+      </ul>
+    </div>
+
+    <div class="grid-2">
+      <div class="box pearl">
+        <span class="tag"><span class="ic">📌</span>最佳适应证</span>
+        <p><strong>「快速房颤 + 收缩性心衰」是洋地黄的黄金搭配</strong>——一手强心、一手把过快的心室率压下来。尤其适合伴心室扩大的收缩性心衰（扩张型心肌病、缺血性、高血压性心肌病，以及二尖瓣/主动脉瓣反流等）。</p>
+      </div>
+      <div class="box warn">
+        <span class="tag"><span class="ic">⚠️</span>禁忌</span>
+        <p><strong>肥厚型心肌病、主动脉瓣狭窄</strong>（增强收缩反而加重流出道梗阻）；<strong>严重心动过缓、二度及以上房室传导阻滞</strong>（它还会再压传导）；<strong>急性心梗急性期</strong>（尤其有进行性缺血时）。</p>
+      </div>
+    </div>
+
+    <h3>洋地黄中毒：治疗窗窄，务必会识、会救<span class="en">digitalis toxicity</span></h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">环节</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td><strong>诱因</strong></td><td><strong>低钾、低镁</strong>（最常见，多因利尿）、心肌缺血缺氧、肾功能不全（地高辛经肾排泄，肾差易蓄积）、甲减、与影响其浓度的药物合用</td></tr>
+          <tr><td><strong>心脏表现</strong></td><td>各种心律失常——室性早搏（常见二联律）、房室传导阻滞、<strong>非阵发性交界性心动过速</strong>；<em>「快速房性心律失常合并传导阻滞」被视为洋地黄中毒的特征性表现</em>（既让它跳快、又阻断传导，这种「又快又堵」的组合很典型）</td></tr>
+          <tr><td><strong>胃肠表现</strong></td><td>恶心、呕吐、食欲减退（常是最早的信号）</td></tr>
+          <tr><td><strong>神经/视觉</strong></td><td>头痛、乏力、定向障碍；<strong>黄视、绿视</strong>（看东西发黄发绿，是很有提示性的特征）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>中毒的处理逻辑（每一步都对着机制）</span>
+      <ul>
+        <li><strong>立即停药、去除诱因</strong>（尤其纠正低钾低镁）。</li>
+        <li>轻者（偶发室早、一度房室阻滞）停药后多可自行缓解。</li>
+        <li><strong>快速性心律失常</strong> → <strong>补钾</strong>（钾与洋地黄竞争位点，回看上图）；<strong>利多卡因或苯妥英钠</strong>；<strong>切忌电复律</strong>（易诱发室颤，属禁忌）。</li>
+        <li><strong>缓慢性心律失常/传导阻滞</strong> → 阿托品，必要时临时起搏；异丙肾上腺素需谨慎。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 器械与移植 ===== -->
+<section class="act" id="device">
+  <div class="wrap">
+    <span class="act-num">17 · Devices & Transplant</span>
+    <h2 class="big">药物之外的战场：器械与移植<span class="sub">When drugs aren't enough</span></h2>
+    <p class="act-lede">当规范药物治疗仍控制不住、或存在特定的电学/机械问题时，就轮到器械和外科登场。理解它们的关键，同样是「<strong>各自解决哪一个具体问题</strong>」。</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:20%">手段</th><th style="width:34%">解决什么问题</th><th>大致适用</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CRT</strong><br>心脏再同步化治疗</td><td>纠正<em>心室收缩不同步</em>（左束支阻滞、QRS 增宽时，左右心室/室壁不同步收缩，白白浪费泵力）→ 让它们「重新一起使劲」</td><td>优化药物后仍 LVEF 低下、窦性心律、QRS 明显增宽（如 LBBB）、症状性心衰</td></tr>
+          <tr><td><strong>ICD</strong><br>植入式心律转复除颤器</td><td>防<em>心脏性猝死</em>——心衰患者常死于室速/室颤，ICD 在恶性心律失常发生时自动除颤「兜底」</td><td>LVEF 显著降低仍有猝死风险者（一级预防），或曾发生室颤/持续室速（二级预防）</td></tr>
+          <tr><td><strong>CCM</strong><br>心脏收缩力调节</td><td>通过特定电刺激增强收缩力，供<em>不适合 CRT</em> 的患者选择</td><td>不符合 CRT 指征的部分心衰患者</td></tr>
+          <tr><td><strong>LVAD</strong><br>左室辅助装置</td><td>用机械泵<em>替心脏干活</em>——直接把血泵出去</td><td>终末期/晚期心衰：作为移植前过渡、决策前过渡，或长期替代治疗</td></tr>
+          <tr><td><strong>心脏移植</strong></td><td>换一颗心——<em>终末期难治性心衰的终极治疗</em></td><td>常规治疗无效的终末期心衰（见下）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="box mech">
+        <span class="tag"><span class="ic">🔧</span>心脏移植 · 适应与禁忌</span>
+        <p><strong>适应证</strong>：经充分规范治疗仍反复失代偿、预期寿命有限的终末期心衰。</p>
+        <p><strong>禁忌（示例）</strong>：不可逆的重度肺动脉高压、活动性感染、近期恶性肿瘤、其他重要脏器不可逆功能衰竭、无法控制的依从性/精神社会问题等。</p>
+      </div>
+      <div class="box pearl">
+        <span class="tag"><span class="ic">📌</span>移植后生存（记个大数）</span>
+        <p>随着技术进步，心脏移植的疗效已相当可观：<strong>1 年生存率约 90%，3 年约 83%</strong>。它虽是终极手段，但受供体来源限制，是「少数人的救命选择」。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT IV — ACUTE ============ -->
+<section class="act-dark">
+  <div class="wrap">
+    <span class="act-num">Act Four · 急性心衰</span>
+    <h2 class="big">当泵突然罢工：一场与时间赛跑的抢救<span class="sub">Acute decompensation</span></h2>
+    <p class="act-lede">前面讲的是「慢性心衰怎么长期管」。但心衰也会<strong>急性爆发</strong>——短时间内心功能急剧恶化，最典型、最凶险的就是<strong>急性肺水肿</strong>。这时不再是从容滴定，而是分秒必争的抢救。好在，前面所有的机制在这里都能立刻变现。</p>
+  </div>
+</section>
+
+<!-- ===== 急性心衰 ===== -->
+<section class="act" id="acute">
+  <div class="wrap">
+    <span class="act-num">18 · Acute Heart Failure</span>
+    <h2 class="big">急性心衰：识别、分型、抢救</h2>
+
+    <h3>急性肺水肿：一幅让人过目不忘的画面<span class="en">the classic picture</span></h3>
+    <p>急性左心衰时，肺毛细血管压骤升，血浆连同红细胞一起漏进肺泡。经典表现是——<strong>突发极度呼吸困难、端坐位、大汗、烦躁、有濒死感，咳出粉红色泡沫痰</strong>，双肺满布湿啰音与哮鸣音。这幅画面一旦见过就忘不了，也几乎是送分的识别题。</p>
+    <div class="box mech">
+      <span class="tag"><span class="ic">🔧</span>为什么是「粉红色泡沫痰」？</span>
+      <p>拆开这五个字，全是机制：<strong>泡沫</strong>——漏出液在肺泡里被气流搅动打成泡；<strong>粉红</strong>——毛细血管压高到连<em>红细胞</em>都漏了出来，血染成淡红。它是肺泡被「淹没」的直接证据。影像上，胸片可见双肺门向外的<strong>蝴蝶征（蝶翼状阴影）</strong>，是肺水肿的典型征象。</p>
+    </div>
+
+    <h3>「冷暖干湿」：一张图定抢救方向<span class="en">the 2×2 that runs the resuscitation</span></h3>
+    <p>床旁快速评估急性心衰，用两个维度就够，而这两个维度<em>正是全课的主线</em>：<strong>有没有淤血（湿/干）</strong>与<strong>灌注够不够（暖/冷）</strong>。四个象限，直接对应四套处理思路：</p>
+
+    <figure>
+      <div class="fig-title">急性心衰床旁分型 · 冷暖干湿四象限</div>
+      <svg viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans SC',sans-serif">
+        <!-- axis titles -->
+        <text x="405" y="30" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4a3f44">淤血程度 →</text>
+        <text x="278" y="66" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a7a52">干（无淤血）</text>
+        <text x="533" y="66" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a5f13">湿（肺/体循环淤血）</text>
+        <text x="30" y="290" text-anchor="middle" font-size="13.5" font-weight="700" fill="#4a3f44" transform="rotate(-90 30 290)">← 灌注情况</text>
+        <text x="120" y="192" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a7a52" transform="rotate(-90 120 192)">暖（灌注好）</text>
+        <text x="120" y="392" text-anchor="middle" font-size="12.5" font-weight="700" fill="#a83b2a" transform="rotate(-90 120 392)">冷（低灌注）</text>
+
+        <!-- TL warm-dry -->
+        <rect x="150" y="90" width="255" height="195" rx="12" fill="#eef4ec" stroke="#5a7a52" stroke-width="2"/>
+        <text x="277" y="128" text-anchor="middle" font-size="17" font-weight="700" fill="#3f5a38">暖 · 干</text>
+        <text x="277" y="152" text-anchor="middle" font-size="12" fill="#4a6642">灌注好、无淤血</text>
+        <text x="277" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#3f5a38">＝ 代偿良好 / 治疗目标</text>
+        <text x="277" y="214" text-anchor="middle" font-size="11.5" fill="#4a6642">处理：维持并优化口服方案</text>
+        <text x="277" y="232" text-anchor="middle" font-size="11.5" fill="#4a6642">（把病人「稳」在这一格）</text>
+
+        <!-- TR warm-wet -->
+        <rect x="405" y="90" width="255" height="195" rx="12" fill="#f8edd3" stroke="#bd851f" stroke-width="2"/>
+        <text x="532" y="128" text-anchor="middle" font-size="17" font-weight="700" fill="#8a5f13">暖 · 湿</text>
+        <text x="532" y="152" text-anchor="middle" font-size="12" fill="#8a6f2f">灌注尚可、有淤血（喘/肿）</text>
+        <text x="532" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5f13">＝ 最常见的急性失代偿</text>
+        <text x="532" y="214" text-anchor="middle" font-size="11.5" fill="#8a6f2f">处理：利尿 + 扩血管</text>
+        <text x="532" y="232" text-anchor="middle" font-size="11.5" fill="#8a6f2f">（核心是「减负荷、排水」）</text>
+
+        <!-- BL cold-dry -->
+        <rect x="150" y="285" width="255" height="195" rx="12" fill="#fdeee7" stroke="#e0674f" stroke-width="2"/>
+        <text x="277" y="323" text-anchor="middle" font-size="17" font-weight="700" fill="#b64a30">冷 · 干</text>
+        <text x="277" y="347" text-anchor="middle" font-size="12" fill="#8a3a26">灌注差、无明显淤血</text>
+        <text x="277" y="379" text-anchor="middle" font-size="13" font-weight="700" fill="#b64a30">＝ 容量不足 / 低灌注</text>
+        <text x="277" y="409" text-anchor="middle" font-size="11.5" fill="#8a3a26">处理：谨慎补充容量</text>
+        <text x="277" y="427" text-anchor="middle" font-size="11.5" fill="#8a3a26">必要时正性肌力药</text>
+
+        <!-- BR cold-wet -->
+        <rect x="405" y="285" width="255" height="195" rx="12" fill="#7a1e2e" stroke="#571421" stroke-width="2"/>
+        <text x="532" y="323" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">冷 · 湿</text>
+        <text x="532" y="347" text-anchor="middle" font-size="12" fill="#f6b39f">又冷又湿：低灌注 + 淤血</text>
+        <text x="532" y="379" text-anchor="middle" font-size="13" font-weight="700" fill="#ffd7c9">＝ 最危重</text>
+        <text x="532" y="405" text-anchor="middle" font-size="11.5" fill="#f6b39f">正性肌力/血管活性药</text>
+        <text x="532" y="423" text-anchor="middle" font-size="11.5" fill="#f6b39f">± 扩血管 ± 利尿</text>
+        <text x="532" y="441" text-anchor="middle" font-size="11.5" fill="#f6b39f">必要时机械辅助（IABP/ECMO）</text>
+
+        <text x="405" y="516" text-anchor="middle" font-size="12" fill="#7a6d72">思路一句话：<tspan font-weight="700" fill="#8a5f13">湿就排水</tspan>（利尿/扩血管）、<tspan font-weight="700" fill="#a83b2a">冷就增灌注</tspan>（正性肌力/血管活性），又冷又湿则两手都要上。</text>
+      </svg>
+      <figcaption>横轴问「<b>湿不湿</b>」（淤血），纵轴问「<b>冷不冷</b>」（灌注）——恰是全课主线「淤血 / 灌注不足」的床旁翻版。<b>暖湿</b>最常见（排水为主），<b>冷湿</b>最危重（既要增灌注又要减淤血）。此外，急性心衰还常用 <b>Killip 分级</b>（急性心梗背景）和 <b>Forrester 分型</b>（按心排指数与肺毛细血管楔压）来评估。</figcaption>
+    </figure>
+
+    <h3>抢救措施：每一条都对着一个机制<span class="en">the rescue</span></h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">措施</th><th>为什么有效（机制）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>体位</strong>：端坐、双腿下垂</td><td>让血靠重力淤在下肢 → <em>减少回心血量</em> → 减轻肺淤血。最简单、最快、零成本的一招。</td></tr>
+          <tr><td><strong>吸氧 / 无创通气</strong>（CPAP、BiPAP）</td><td>纠正低氧；正压通气还能<em>把肺泡里的水「压」回去</em>、减少回心血量，对肺水肿尤为有效。</td></tr>
+          <tr><td><strong>吗啡</strong></td><td>镇静、扩张静脉减少回心血量、缓解烦躁与呼吸窘迫。（呼吸抑制、意识障碍者慎用）</td></tr>
+          <tr><td><strong>快速利尿</strong>（呋塞米静推）</td><td>迅速减少血容量与前负荷 → 直击淤血。</td></tr>
+          <tr><td><strong>氨茶碱</strong></td><td>解除支气管痉挛（缓解「哮鸣」成分），兼有一定强心利尿作用。</td></tr>
+          <tr><td><strong>洋地黄</strong></td><td>适合<em>伴快速房颤</em>者——强心兼控室率（回看第 16 节最佳适应证）。</td></tr>
+          <tr><td><strong>血管扩张药</strong>（硝普钠、硝酸甘油、乌拉地尔）</td><td>降低前/后负荷、减轻淤血、减少心脏做功。用时盯血压。</td></tr>
+          <tr><td><strong>血管活性 / 正性肌力药</strong></td><td>用于低血压、低灌注（「冷」）的病人，维持重要器官灌注。</td></tr>
+          <tr><td><strong>机械循环/替代</strong>：IABP、ECMO、Impella、CRRT/超滤</td><td>药物无效的危重病例，机械地支撑循环或清除容量，为病因治疗争取时间。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT V — SYNTHESIS ============ -->
+<section class="act-dark">
+  <div class="wrap">
+    <span class="act-num">Act Five · 融会贯通</span>
+    <h2 class="big">举一反三：把整条链焊成一根脊梁<span class="sub">One chain to hang everything on</span></h2>
+    <p class="act-lede">如果这一整份讲义只让你带走一句话，那就是它——</p>
+    <p class="pull" style="font-size:1.35rem"><b>泵弱了 → 前堵后缺（淤血 + 灌注不足）→ 身体误判「失血」而启动神经内分泌代偿 → 代偿反噬、驱动心室重塑 → 泵更弱……</b></p>
+    <p class="act-lede" style="margin-top:20px">整门心衰——定义、分类、症状、检查、用药、器械、急救——<strong>全都挂在这一根脊梁上</strong>。下面这张表，就是把散落各章的知识点，一个个挂回它们在链条上的位置。看懂它，你就拥有了临床思维的骨架。</p>
+  </div>
+</section>
+
+<section class="act" id="think">
+  <div class="wrap">
+    <span class="act-num">19 · Clinical Reasoning</span>
+    <h2 class="big">一张总表，串起全部考点</h2>
+    <p>横着读每一行，你会看到<strong>同一个机制环节，是如何一路决定「表现 → 检查 → 治疗」的</strong>。这正是「举一反三」的本质——不是记住更多孤立的点，而是抓住把它们连起来的那条线。</p>
+
+    <div class="tbl">
+      <table>
+        <caption>心衰主线总表 · 机制 → 表现 → 检查 → 治疗（横向对照阅读）</caption>
+        <thead><tr>
+          <th style="width:19%">机制环节</th><th style="width:27%">床边表现</th><th style="width:20%">关键检查</th><th style="width:34%">对应治疗（缓症状 / 改预后）</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>泵力↓、低灌注</strong></td>
+            <td>乏力、活动耐量下降、四肢发凉（「冷」）</td>
+            <td>超声 LVEF↓</td>
+            <td>急性低灌注→正性肌力（缓）；根本→<strong>新四联</strong>抗重塑（改预后）</td>
+          </tr>
+          <tr>
+            <td><strong>肺淤血（左心衰）</strong></td>
+            <td>劳力性呼吸困难→端坐呼吸→夜间阵发→粉红泡沫痰；湿啰音、S₃ 奔马律</td>
+            <td>BNP↑、胸片肺淤血/蝴蝶征</td>
+            <td>利尿、扩血管、端坐吸氧（缓症状）</td>
+          </tr>
+          <tr>
+            <td><strong>体循环淤血（右心衰）</strong></td>
+            <td>对称性下肢水肿、颈静脉怒张、肝大 + 回流征阳性、腹胀纳差</td>
+            <td>体征、超声</td>
+            <td>利尿、限钠限水（缓症状）</td>
+          </tr>
+          <tr>
+            <td><strong>神经内分泌激活</strong><br>（交感 / RAAS / AVP）</td>
+            <td>心率增快、外周收缩、水钠潴留、低钠血症</td>
+            <td>BNP↑（心室压力标志）</td>
+            <td><strong>β阻滞剂</strong>（砍交感）、<strong>ACEI/ARB/ARNI</strong>（砍 RAAS）、<strong>MRA</strong>（砍醛固酮）、托伐普坦（治低钠）——全是改预后主力</td>
+          </tr>
+          <tr>
+            <td><strong>心室重塑</strong><br>（进展发动机）</td>
+            <td>病情进行性恶化、心腔扩大、由橄榄形变球形</td>
+            <td>超声：EF↓、心腔增大</td>
+            <td>新四联抗重塑（改预后）；不同步者 CRT</td>
+          </tr>
+          <tr>
+            <td><strong>电学异常 / 猝死风险</strong></td>
+            <td>快速房颤、室速/室颤</td>
+            <td>心电图</td>
+            <td>洋地黄（快速房颤+收缩性心衰）、ICD（防猝死）、CRT</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>临床思维实战：把链条倒过来用<span class="en">reasoning in action</span></h3>
+    <p>会顺着链条推是「懂」，能倒着链条追是「会」。两个小场景，练一练这种反向推理：</p>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>场景一 · 一个「看东西发黄」的心衰病人</span>
+      <p>扩张型心肌病 + 快速房颤的病人，长期口服<em>地高辛 + 呋塞米</em>，近来恶心、乏力，抱怨看灯光<strong>发黄发绿</strong>，心电图见室早二联律。你脑中该立刻亮灯：</p>
+      <p><strong>倒推链条</strong>：呋塞米（袢利尿）→ 排钾 → <em>低钾</em> → 低钾与地高辛竞争 Na⁺-K⁺-ATP 酶同一位点 → <strong>洋地黄中毒</strong>（黄绿视 + 室性心律失常是典型）。<strong>处置</strong>：停地高辛、查并补钾镁、室性心律失常用利多卡因/苯妥英钠，<em>切忌电复律</em>。——你看，第 12、15、16 三节在这一个病例里全接上了。</p>
+    </div>
+
+    <div class="box clin">
+      <span class="tag"><span class="ic">⚕️</span>场景二 · 为什么给心衰病人用「会削弱心脏」的药？</span>
+      <p>家属不解：「他心脏本来就没力气，你们为什么还开<em>减慢心跳、减弱收缩</em>的 β 阻滞剂？」这正是检验你有没有真懂的问题。</p>
+      <p><strong>用链条回答</strong>：心衰恶化的真正引擎不是「这一刻泵得不够用力」，而是<em>神经内分泌—重塑</em>那个恶性循环（第 8、9 节）。β 阻滞剂短期确实让心脏「慢下来、轻一点」，但它<strong>剪断了交感这条通路，从源头刹住重塑</strong>，长期反而延长生命。这就是全课那把尺——<strong>症状改善 ≠ 预后改善，能不能改预后，看它动没动那个循环</strong>。强心药催得欢却不改命，β 阻滞剂看着「软」却能救命，道理都在这里。</p>
+    </div>
+
+    <div class="box pearl">
+      <span class="tag"><span class="ic">📌</span>带走这套「心衰三问 + 一把尺」</span>
+      <p>面对任何一个心衰病人，心里走这套流程，你就不会乱：</p>
+      <p><strong>① 病因是什么？</strong>（谁弄坏了泵——缺血？高血压？瓣膜？）<br>
+      <strong>② 心功能到哪一步？</strong>（NYHA 几级、EF 多少、哪侧为主、急性还是慢性）<br>
+      <strong>③ 预后与风险？</strong>（BNP 多高、有无猝死/失代偿风险）<br>
+      <strong>贯穿始终的那把尺：这一步是在「缓症状」还是「改预后」？</strong>——它决定你如何取舍每一个决策。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section class="act-dark closing">
+  <div class="wrap">
+    <div class="close-word">
+      <span class="strike">FAILURE</span>
+      <span class="arrow">→</span>
+      <span class="future">FUTURE</span>
+    </div>
+    <p class="act-lede" style="text-align:center;max-width:640px;margin:24px auto 0">心力衰竭曾是「心脏病的终点」，但从「给泵加鞭」到「拦截神经内分泌、逆转重塑」，我们已把许多 FAILURE 改写成 FUTURE。理解了机制，你手里的每一个决策，都是在为病人多争取一点未来。</p>
+
+    <div class="think-q">
+      <div class="tq-title">留给你的思考题</div>
+      <ul>
+        <li>同样是「呼吸困难」，如何一步步区分急性左心衰与支气管哮喘？各自的关键证据是什么？</li>
+        <li>为什么 SGLT2i 能成为唯一在 HFrEF、HFmrEF、HFpEF 三型中都获益的药？试从它的多重机制说明。</li>
+        <li>一位 HFrEF 患者已用到最大耐受剂量的 β 阻滞剂，静息心率仍 78 次/分、窦性心律——下一步可以加什么？为什么它只对窦性心律有效？</li>
+        <li>用「冷暖干湿」四象限，各举一个处理原则截然不同的急性心衰情景。</li>
+      </ul>
+    </div>
+
+    <p class="ref-note">主要参考：《内科学》（第 9 版）· 2023 版《国家心力衰竭指南》。本讲义为配合课件的讲解与复习之用，具体临床决策请以最新指南与上级医师意见为准。</p>
+  </div>
+</section>
+
+<script>
+const bar=document.getElementById('bar');
+if(bar){addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight);bar.style.width=(p*100)+'%';},{passive:true});}
+</script>
+</body>
+</html>
